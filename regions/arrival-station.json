@@ -1,0 +1,73 @@
+{
+  "identity": {
+    "id": "arrival-station",
+    "schema": "RegionDocument",
+    "version": 1
+  },
+  "displayName": "Arrival Station",
+  "placement": {
+    "gridPosition": {
+      "x": 0,
+      "y": 0
+    },
+    "placementPolicy": "world-grid"
+  },
+  "scene": {
+    "folders": [],
+    "placedAssets": [],
+    "playerPresence": null,
+    "npcPresences": [],
+    "itemPresences": []
+  },
+  "environmentBinding": {
+    "defaultEnvironmentId": "wordlark:environment:default"
+  },
+  "areas": [],
+  "behaviors": [],
+  "landscape": {
+    "enabled": true,
+    "size": 25,
+    "subdivisions": 160,
+    "surfaceSlots": [
+      {
+        "channelId": "base",
+        "displayName": "Base",
+        "slotName": "Base",
+        "surface": {
+          "kind": "inline",
+          "surface": {
+            "layers": [
+              {
+                "layerId": "32f28ec8-1938-4767-8702-386ae7cb25a9",
+                "displayName": "Base",
+                "enabled": true,
+                "opacity": 1,
+                "mask": {
+                  "kind": "always"
+                },
+                "kind": "appearance",
+                "blendMode": "base",
+                "content": {
+                  "kind": "color",
+                  "color": 13223101
+                }
+              }
+            ],
+            "context": "universal"
+          }
+        },
+        "tilingScale": null
+      }
+    ],
+    "deform": null,
+    "effect": null,
+    "paintPayload": null
+  },
+  "audio": {
+    "emitters": [],
+    "ambienceZones": []
+  },
+  "markers": [],
+  "gameplayPlacements": [],
+  "lorePageId": null
+}

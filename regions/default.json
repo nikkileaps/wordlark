@@ -1,0 +1,73 @@
+{
+  "identity": {
+    "id": "default",
+    "schema": "RegionDocument",
+    "version": 1
+  },
+  "displayName": "Default Region",
+  "placement": {
+    "gridPosition": {
+      "x": 0,
+      "y": 0
+    },
+    "placementPolicy": "world-grid"
+  },
+  "scene": {
+    "folders": [],
+    "placedAssets": [],
+    "playerPresence": null,
+    "npcPresences": [],
+    "itemPresences": []
+  },
+  "environmentBinding": {
+    "defaultEnvironmentId": "wordlark:environment:default"
+  },
+  "areas": [],
+  "behaviors": [],
+  "landscape": {
+    "enabled": true,
+    "size": 100,
+    "subdivisions": 160,
+    "surfaceSlots": [
+      {
+        "channelId": "base",
+        "displayName": "Base",
+        "slotName": "Base",
+        "surface": {
+          "kind": "inline",
+          "surface": {
+            "layers": [
+              {
+                "layerId": "93554cdb-05a0-444d-b7e7-7812ba33fb87",
+                "displayName": "Base",
+                "enabled": true,
+                "opacity": 1,
+                "mask": {
+                  "kind": "always"
+                },
+                "kind": "appearance",
+                "blendMode": "base",
+                "content": {
+                  "kind": "color",
+                  "color": 13223101
+                }
+              }
+            ],
+            "context": "universal"
+          }
+        },
+        "tilingScale": null
+      }
+    ],
+    "deform": null,
+    "effect": null,
+    "paintPayload": null
+  },
+  "audio": {
+    "emitters": [],
+    "ambienceZones": []
+  },
+  "markers": [],
+  "gameplayPlacements": [],
+  "lorePageId": null
+}

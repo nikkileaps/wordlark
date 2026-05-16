@@ -1,0 +1,559 @@
+{
+  "identity": {
+    "id": "wordlark",
+    "schema": "GameProject",
+    "version": 1
+  },
+  "displayName": "Wordlark Hollow",
+  "gameRootPath": ".",
+  "deployment": {
+    "publishTargetId": "web",
+    "deploymentTargetId": null,
+    "targetOverrides": {}
+  },
+  "regionRegistry": [
+    {
+      "regionId": "default"
+    },
+    {
+      "regionId": "arrival-station"
+    }
+  ],
+  "pluginConfigurations": [],
+  "contentLibraryId": "wordlark:content-library",
+  "playerDefinition": {
+    "definitionId": "wordlark:player:default",
+    "displayName": "Player",
+    "physicalProfile": {
+      "height": 1.8,
+      "radius": 0.35,
+      "eyeHeight": 1.62
+    },
+    "movementProfile": {
+      "walkSpeed": 4.5,
+      "runSpeed": 6.5,
+      "acceleration": 10
+    },
+    "casterProfile": {
+      "initialBattery": 100,
+      "rechargeRate": 1,
+      "initialResonance": 0,
+      "allowedSpellTags": [],
+      "blockedSpellTags": []
+    },
+    "presentation": {
+      "modelAssetDefinitionId": null,
+      "animationAssetBindings": {
+        "idle": null,
+        "walk": null,
+        "run": null
+      }
+    }
+  },
+  "spellDefinitions": [],
+  "itemDefinitions": [],
+  "documentDefinitions": [],
+  "npcDefinitions": [],
+  "dialogueDefinitions": [],
+  "questDefinitions": [],
+  "menuDefinitions": [
+    {
+      "definitionId": "wordlark:menu:start",
+      "definitionKind": "menu",
+      "displayName": "Start Menu",
+      "menuKey": "start-menu",
+      "root": {
+        "nodeId": "wordlark:ui:start-menu:root",
+        "kind": "container",
+        "styleId": "panel",
+        "layout": {
+          "direction": "column",
+          "gap": 18,
+          "padding": 36,
+          "align": "stretch",
+          "justify": "center",
+          "width": 420,
+          "height": "auto"
+        },
+        "anchor": null,
+        "props": {},
+        "events": {},
+        "children": [
+          {
+            "nodeId": "wordlark:ui:start-menu:title",
+            "kind": "text",
+            "styleId": "heading",
+            "layout": {
+              "direction": "column",
+              "gap": 12,
+              "padding": 16,
+              "align": "center",
+              "justify": "center",
+              "width": "auto",
+              "height": "auto"
+            },
+            "anchor": null,
+            "props": {
+              "text": {
+                "kind": "literal",
+                "value": "Sugarmagic"
+              }
+            },
+            "events": {},
+            "children": []
+          },
+          {
+            "nodeId": "wordlark:ui:start-menu:new-game",
+            "kind": "button",
+            "styleId": "button-primary",
+            "layout": {
+              "direction": "column",
+              "gap": 12,
+              "padding": 14,
+              "align": "center",
+              "justify": "center",
+              "width": "fill",
+              "height": "auto"
+            },
+            "anchor": null,
+            "props": {
+              "text": {
+                "kind": "literal",
+                "value": "New Game"
+              }
+            },
+            "events": {
+              "onClick": {
+                "action": "start-new-game"
+              }
+            },
+            "children": []
+          },
+          {
+            "nodeId": "wordlark:ui:start-menu:settings",
+            "kind": "button",
+            "styleId": "button-primary",
+            "layout": {
+              "direction": "column",
+              "gap": 12,
+              "padding": 14,
+              "align": "center",
+              "justify": "center",
+              "width": "fill",
+              "height": "auto"
+            },
+            "anchor": null,
+            "props": {
+              "text": {
+                "kind": "literal",
+                "value": "Settings"
+              }
+            },
+            "events": {},
+            "children": []
+          }
+        ]
+      }
+    },
+    {
+      "definitionId": "wordlark:menu:pause",
+      "definitionKind": "menu",
+      "displayName": "Pause Menu",
+      "menuKey": "pause-menu",
+      "root": {
+        "nodeId": "wordlark:ui:pause-menu:root",
+        "kind": "container",
+        "styleId": "panel",
+        "layout": {
+          "direction": "column",
+          "gap": 16,
+          "padding": 32,
+          "align": "stretch",
+          "justify": "center",
+          "width": 360,
+          "height": "auto"
+        },
+        "anchor": null,
+        "props": {},
+        "events": {},
+        "children": [
+          {
+            "nodeId": "wordlark:ui:pause-menu:title",
+            "kind": "text",
+            "styleId": "heading",
+            "layout": {
+              "direction": "column",
+              "gap": 12,
+              "padding": 16,
+              "align": "center",
+              "justify": "center",
+              "width": "auto",
+              "height": "auto"
+            },
+            "anchor": null,
+            "props": {
+              "text": {
+                "kind": "literal",
+                "value": "Paused"
+              }
+            },
+            "events": {},
+            "children": []
+          },
+          {
+            "nodeId": "wordlark:ui:pause-menu:resume",
+            "kind": "button",
+            "styleId": "button-primary",
+            "layout": {
+              "direction": "column",
+              "gap": 12,
+              "padding": 14,
+              "align": "center",
+              "justify": "center",
+              "width": "fill",
+              "height": "auto"
+            },
+            "anchor": null,
+            "props": {
+              "text": {
+                "kind": "literal",
+                "value": "Resume"
+              }
+            },
+            "events": {
+              "onClick": {
+                "action": "resume-game"
+              }
+            },
+            "children": []
+          },
+          {
+            "nodeId": "wordlark:ui:pause-menu:quit",
+            "kind": "button",
+            "styleId": "button-primary",
+            "layout": {
+              "direction": "column",
+              "gap": 12,
+              "padding": 14,
+              "align": "center",
+              "justify": "center",
+              "width": "fill",
+              "height": "auto"
+            },
+            "anchor": null,
+            "props": {
+              "text": {
+                "kind": "literal",
+                "value": "Main Menu"
+              }
+            },
+            "events": {
+              "onClick": {
+                "action": "quit-to-menu"
+              }
+            },
+            "children": []
+          }
+        ]
+      }
+    }
+  ],
+  "hudDefinition": {
+    "definitionId": "wordlark:hud:default",
+    "definitionKind": "hud",
+    "root": {
+      "nodeId": "wordlark:ui:hud:root",
+      "kind": "container",
+      "styleId": null,
+      "layout": {
+        "direction": "column",
+        "gap": 12,
+        "padding": 20,
+        "align": "start",
+        "justify": "start",
+        "width": "fill",
+        "height": "fill"
+      },
+      "anchor": null,
+      "props": {},
+      "events": {},
+      "children": [
+        {
+          "nodeId": "wordlark:ui:hud:bottom-bar",
+          "kind": "container",
+          "styleId": null,
+          "layout": {
+            "direction": "row",
+            "gap": 12,
+            "padding": 0,
+            "align": "center",
+            "justify": "center",
+            "width": "auto",
+            "height": "auto"
+          },
+          "anchor": "bottom-center",
+          "props": {},
+          "events": {},
+          "children": [
+            {
+              "nodeId": "wordlark:ui:hud:inventory",
+              "kind": "button",
+              "styleId": "button-hud",
+              "layout": {
+                "direction": "column",
+                "gap": 12,
+                "padding": 8,
+                "align": "center",
+                "justify": "center",
+                "width": "auto",
+                "height": "auto"
+              },
+              "anchor": null,
+              "props": {
+                "text": {
+                  "kind": "literal",
+                  "value": "🎒"
+                }
+              },
+              "events": {
+                "onClick": {
+                  "action": "open-inventory"
+                }
+              },
+              "children": []
+            },
+            {
+              "nodeId": "wordlark:ui:hud:caster",
+              "kind": "button",
+              "styleId": "button-hud",
+              "layout": {
+                "direction": "column",
+                "gap": 12,
+                "padding": 8,
+                "align": "center",
+                "justify": "center",
+                "width": "auto",
+                "height": "auto"
+              },
+              "anchor": null,
+              "props": {
+                "text": {
+                  "kind": "literal",
+                  "value": "✨"
+                }
+              },
+              "events": {
+                "onClick": {
+                  "action": "open-caster"
+                }
+              },
+              "children": []
+            },
+            {
+              "nodeId": "wordlark:ui:hud:main",
+              "kind": "button",
+              "styleId": "button-hud",
+              "layout": {
+                "direction": "column",
+                "gap": 12,
+                "padding": 8,
+                "align": "center",
+                "justify": "center",
+                "width": "auto",
+                "height": "auto"
+              },
+              "anchor": null,
+              "props": {
+                "text": {
+                  "kind": "literal",
+                  "value": "🏠"
+                }
+              },
+              "events": {
+                "onClick": {
+                  "action": "quit-to-menu"
+                }
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "uiTheme": {
+    "tokens": {
+      "color.text": "#f6f1ff",
+      "color.muted": "#beb7d8",
+      "color.surface": "rgba(18, 18, 32, 0.82)",
+      "color.surfaceStrong": "rgba(29, 29, 52, 0.92)",
+      "color.surfaceMuted": "rgba(15, 17, 28, 0.45)",
+      "color.primary": "#ff4aa2",
+      "color.primaryText": "#fff7fb",
+      "font.body": "Avenir Next, Nunito, sans-serif",
+      "font.heading": "Georgia, ui-serif, serif",
+      "radius.panel": "24px",
+      "radius.button": "999px"
+    },
+    "styles": [
+      {
+        "styleId": "panel",
+        "displayName": "Panel",
+        "properties": {
+          "color": "color.text",
+          "background": "color.surface",
+          "fontFamily": "font.body",
+          "borderRadius": "radius.panel",
+          "borderColor": "rgba(255, 255, 255, 0.16)",
+          "borderWidth": "1px"
+        }
+      },
+      {
+        "styleId": "heading",
+        "displayName": "Heading",
+        "properties": {
+          "color": "color.text",
+          "fontFamily": "font.heading",
+          "fontSize": "44px",
+          "fontWeight": "700"
+        }
+      },
+      {
+        "styleId": "body",
+        "displayName": "Body",
+        "properties": {
+          "color": "color.text",
+          "fontFamily": "font.body",
+          "fontSize": "16px"
+        }
+      },
+      {
+        "styleId": "button-primary",
+        "displayName": "Primary Button",
+        "properties": {
+          "color": "color.primaryText",
+          "background": "color.primary",
+          "fontFamily": "font.body",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "borderRadius": "radius.button"
+        }
+      },
+      {
+        "styleId": "button-hud",
+        "displayName": "HUD Button",
+        "properties": {
+          "color": "color.text",
+          "background": "color.surfaceMuted",
+          "fontFamily": "font.body",
+          "fontSize": "22px",
+          "fontWeight": "500",
+          "borderRadius": "12px",
+          "borderColor": "rgba(255, 255, 255, 0.12)",
+          "borderWidth": "1px"
+        }
+      }
+    ]
+  },
+  "soundEventBindings": {
+    "game.menu-open": null,
+    "game.menu-close": null,
+    "ui.click": null,
+    "ui.hover": null,
+    "player.footstep": null,
+    "item.pickup": null,
+    "interaction.activate": null,
+    "spell.cast-success": null,
+    "spell.cast-fail": null,
+    "quest.reward": null
+  },
+  "audioMixer": {
+    "master": 1,
+    "music": 0.7,
+    "sfx": 1,
+    "ambient": 0.5,
+    "ui": 1,
+    "voice": 1
+  },
+  "mechanics": {
+    "stats": [
+      {
+        "id": "battery",
+        "displayName": "Battery",
+        "default": 100,
+        "min": 0,
+        "max": 100,
+        "decay": null,
+        "recharge": {
+          "ratePerSecond": 0.016666666666666666
+        },
+        "display": "battery",
+        "role": "battery"
+      },
+      {
+        "id": "resonance",
+        "displayName": "Resonance",
+        "default": 0,
+        "min": 0,
+        "max": 100,
+        "decay": null,
+        "recharge": null,
+        "display": "bar",
+        "role": "resonance"
+      }
+    ],
+    "castables": [
+      {
+        "id": "spell",
+        "displayName": "Spell",
+        "description": "Default Sugarmagic spell cast flow.",
+        "inputs": [
+          {
+            "id": "batteryCost",
+            "type": "number",
+            "required": true,
+            "default": 1,
+            "description": "Battery consumed by the spell."
+          },
+          {
+            "id": "chaosBase",
+            "type": "number",
+            "required": true,
+            "default": 0,
+            "description": "Base chaos chance from 0 to 100."
+          }
+        ],
+        "cost": "caster.battery >= self.batteryCost",
+        "acceptsTarget": false,
+        "onCast": [
+          {
+            "op": "consume",
+            "target": "caster.battery",
+            "amount": "self.batteryCost"
+          },
+          {
+            "op": "branch",
+            "condition": "roll(1d100) <= clamp(self.chaosBase - caster.resonance * 0.8, 0, 100)",
+            "then": [
+              {
+                "op": "emit",
+                "kind": "spell-chaos"
+              },
+              {
+                "op": "set",
+                "target": "caster.resonance",
+                "value": "0"
+              }
+            ],
+            "else": [
+              {
+                "op": "emit",
+                "kind": "spell-success"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
