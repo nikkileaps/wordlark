@@ -25,13 +25,29 @@ fi
 # Read authoritative deploy-time values from terraform outputs. Terraform
 # is the single source of truth for resolved resource names; we don't
 # duplicate them here.
-TF_OUTPUTS="$(terraform -chdir="${TERRAFORM_DIR}" output -json)"
-ARTIFACT_REGISTRY_URL="$(echo "${TF_OUTPUTS}" | jq -r '.artifact_registry_url.value')"
-RUNTIME_SA_EMAIL="$(echo "${TF_OUTPUTS}" | jq -r '.runtime_sa_email.value')"
-# Story 46.9 — comma-join terraform's allowed_origins list (a JSON
-# array) for the gateway env var. Empty list -> empty string, which
-# the gateway treats as "no allowed origins" (browsers blocked).
-ALLOWED_ORIGINS="$(echo "${TF_OUTPUTS}" | jq -r '.allowed_origins.value | join(",")')"
+# Story 46.10 — env-vars-or-terraform resolution. GHA can't run
+# terraform (no state in the runner; no terraform binary by default),
+# so the workflow injects the three values it knows directly:
+#   - SUGARMAGIC_RUNTIME_SA_EMAIL (already a repo VAR from 46.8)
+#   - SUGARMAGIC_ARTIFACT_REGISTRY_URL (derived at workflow-gen time)
+#   - SUGARMAGIC_ALLOWED_ORIGINS (derived at workflow-gen time)
+# When ANY are missing (local dev runs deploy.sh by hand), we fall
+# back to terraform output -json for the missing pieces.
+NEED_TF=0
+[ -z "${SUGARMAGIC_RUNTIME_SA_EMAIL:-}" ] && NEED_TF=1
+[ -z "${SUGARMAGIC_ARTIFACT_REGISTRY_URL:-}" ] && NEED_TF=1
+[ -z "${SUGARMAGIC_ALLOWED_ORIGINS:-}" ] && NEED_TF=1
+TF_OUTPUTS=""
+if [ "${NEED_TF}" = "1" ]; then
+  if ! command -v terraform >/dev/null 2>&1; then
+    echo "[sugardeploy] terraform is required to resolve deploy-time values when SUGARMAGIC_RUNTIME_SA_EMAIL / SUGARMAGIC_ARTIFACT_REGISTRY_URL / SUGARMAGIC_ALLOWED_ORIGINS are not all preset; install terraform or pre-set those env vars." >&2
+    exit 1
+  fi
+  TF_OUTPUTS="$(terraform -chdir="${TERRAFORM_DIR}" output -json)"
+fi
+RUNTIME_SA_EMAIL="${SUGARMAGIC_RUNTIME_SA_EMAIL:-$(echo "${TF_OUTPUTS}" | jq -r '.runtime_sa_email.value')}"
+ARTIFACT_REGISTRY_URL="${SUGARMAGIC_ARTIFACT_REGISTRY_URL:-$(echo "${TF_OUTPUTS}" | jq -r '.artifact_registry_url.value')}"
+ALLOWED_ORIGINS="${SUGARMAGIC_ALLOWED_ORIGINS:-$(echo "${TF_OUTPUTS}" | jq -r '.allowed_origins.value | join(",")')}"
 
 if [ -z "${ARTIFACT_REGISTRY_URL}" ] || [ "${ARTIFACT_REGISTRY_URL}" = "null" ]; then
   echo "[sugardeploy] terraform output 'artifact_registry_url' is empty; did Setup Infra finish?" >&2

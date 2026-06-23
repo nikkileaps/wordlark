@@ -10,7 +10,7 @@
     },
     {
       "relativePath": "deployment/google-cloud-run/deploy.sh",
-      "contentHash": "fnv1a-f678d5d5"
+      "contentHash": "fnv1a-f5a6b4af"
     },
     {
       "relativePath": "deployment/google-cloud-run/deployment-plan.json",
@@ -70,7 +70,7 @@
     },
     {
       "relativePath": ".github/workflows/sugardeploy-deploy.yml",
-      "contentHash": "fnv1a-f9327c6"
+      "contentHash": "fnv1a-504990c2"
     }
   ]
 }
