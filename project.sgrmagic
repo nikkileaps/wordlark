@@ -6,11 +6,6 @@
   },
   "displayName": "Wordlark Hollow",
   "gameRootPath": ".",
-  "deployment": {
-    "publishTargetId": "web",
-    "deploymentTargetId": null,
-    "targetOverrides": {}
-  },
   "regionRegistry": [
     {
       "regionId": "default"
@@ -19,11 +14,65 @@
       "regionId": "arrival-station"
     }
   ],
-  "pluginConfigurations": [],
+  "pluginConfigurations": [
+    {
+      "identity": {
+        "id": "28cc810b-5768-43a0-8736-231bbe3e5e1e",
+        "schema": "PluginConfiguration",
+        "version": 1
+      },
+      "pluginId": "sugaragent",
+      "enabled": true,
+      "config": {
+        "loreSourceKind": "local",
+        "loreLocalPath": "",
+        "loreRepositoryUrl": "",
+        "loreRepositoryRef": "main",
+        "maxEvidenceResults": 4,
+        "debugLogging": false,
+        "tone": ""
+      }
+    },
+    {
+      "identity": {
+        "id": "e5a41f2a-7bd8-4771-ad4d-bf6c672ddec4",
+        "schema": "PluginConfiguration",
+        "version": 1
+      },
+      "pluginId": "sugardeploy",
+      "enabled": true,
+      "config": {
+        "settings": {
+          "backendDeploymentTargetId": "google-cloud-run",
+          "frontendDeploymentTargetId": "netlify",
+          "workingDirectory": "/Users/nikki/projects/wordlark",
+          "githubRepo": "nikkileaps/wordlark",
+          "targetOverrides": {
+            "google-cloud-run": {
+              "projectId": "",
+              "serviceNamePrefix": "",
+              "workingDirectory": "/Users/nikki/projects/wordlark",
+              "githubRepo": "nikkileaps/wordlark",
+              "minInstances": 1,
+              "maxInstances": 4,
+              "gatewayAuthMode": "bearer"
+            },
+            "netlify": {
+              "siteId": "2122920a-dbc2-443e-84ed-80743862033f",
+              "siteName": "wordlark-prod"
+            }
+          }
+        },
+        "versionedProjectIdentifiers": {
+          "v1": "1dqlc"
+        }
+      }
+    }
+  ],
   "contentLibraryId": "wordlark:content-library",
   "playerDefinition": {
     "definitionId": "wordlark:player:default",
-    "displayName": "Player",
+    "displayName": "Mim",
     "physicalProfile": {
       "height": 1.8,
       "radius": 0.35,
@@ -60,7 +109,7 @@
     {
       "definitionId": "wordlark:menu:start",
       "definitionKind": "menu",
-      "displayName": "Start Menu",
+      "displayName": "Start",
       "menuKey": "start-menu",
       "root": {
         "nodeId": "wordlark:ui:start-menu:root",
@@ -555,5 +604,6 @@
         ]
       }
     ]
-  }
+  },
+  "majorVersion": 1
 }

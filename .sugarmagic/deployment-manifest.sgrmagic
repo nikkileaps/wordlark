@@ -1,0 +1,76 @@
+{
+  "files": [
+    {
+      "relativePath": "deployment/google-cloud-run/README.md",
+      "contentHash": "fnv1a-17b90160"
+    },
+    {
+      "relativePath": "deployment/google-cloud-run/.env.example",
+      "contentHash": "fnv1a-4f65735"
+    },
+    {
+      "relativePath": "deployment/google-cloud-run/deploy.sh",
+      "contentHash": "fnv1a-f678d5d5"
+    },
+    {
+      "relativePath": "deployment/google-cloud-run/deployment-plan.json",
+      "contentHash": "fnv1a-1b7a0600"
+    },
+    {
+      "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/package.json",
+      "contentHash": "fnv1a-38ce40b0"
+    },
+    {
+      "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/routes.json",
+      "contentHash": "fnv1a-498bd4ca"
+    },
+    {
+      "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/server.mjs",
+      "contentHash": "fnv1a-34c8a7c2"
+    },
+    {
+      "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/Dockerfile",
+      "contentHash": "fnv1a-e6f5a033"
+    },
+    {
+      "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/service.yaml",
+      "contentHash": "fnv1a-7069e6ef"
+    },
+    {
+      "relativePath": "deployment/google-cloud-run/terraform/main.tf",
+      "contentHash": "fnv1a-b041782e"
+    },
+    {
+      "relativePath": "deployment/google-cloud-run/terraform/variables.tf",
+      "contentHash": "fnv1a-276c601a"
+    },
+    {
+      "relativePath": "deployment/google-cloud-run/terraform/outputs.tf",
+      "contentHash": "fnv1a-38547209"
+    },
+    {
+      "relativePath": "deployment/google-cloud-run/terraform/terraform.tfvars",
+      "contentHash": "fnv1a-4fc53713"
+    },
+    {
+      "relativePath": "deployment/google-cloud-run/terraform/.gitignore",
+      "contentHash": "fnv1a-d43ef060"
+    },
+    {
+      "relativePath": "deployment/netlify/netlify.toml",
+      "contentHash": "fnv1a-d97e8369"
+    },
+    {
+      "relativePath": "deployment/netlify/build-config.json",
+      "contentHash": "fnv1a-3b42b43e"
+    },
+    {
+      "relativePath": "deployment/netlify/README.md",
+      "contentHash": "fnv1a-8e37b976"
+    },
+    {
+      "relativePath": ".github/workflows/sugardeploy-deploy.yml",
+      "contentHash": "fnv1a-f9327c6"
+    }
+  ]
+}

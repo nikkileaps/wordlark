@@ -1,0 +1,33 @@
+{
+  "publishTargetId": "web",
+  "backendDeploymentTargetId": "google-cloud-run",
+  "status": "ready",
+  "targetOverrides": {
+    "workingDirectory": "/Users/nikki/projects/wordlark",
+    "projectId": "wordlark-v1-1dqlc",
+    "region": "us-central1",
+    "serviceNamePrefix": "wordlark-v1-1dqlc",
+    "containerPort": 8080,
+    "minInstances": 1,
+    "maxInstances": 4,
+    "ingress": "all",
+    "githubRepo": "nikkileaps/wordlark",
+    "runtimeServiceAccountName": "",
+    "gatewayAuthMode": "bearer"
+  },
+  "serviceUnits": [
+    {
+      "serviceUnitId": "sugarmagic-gateway",
+      "serviceName": "wordlark-v1-1dqlc-sugarmagic-gateway",
+      "runtimeFamily": null,
+      "executionModel": "request-response",
+      "routes": [
+        "/api/sugaragent/generate",
+        "/api/sugaragent/lore",
+        "/api/sugaragent/retrieve"
+      ]
+    }
+  ],
+  "conflicts": [],
+  "warnings": []
+}

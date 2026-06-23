@@ -1,0 +1,27 @@
+{
+  "serviceUnitId": "sugarmagic-gateway",
+  "label": "Sugarmagic Gateway",
+  "owners": [
+    "sugaragent"
+  ],
+  "routes": [
+    {
+      "routeId": "sugaragent-generate",
+      "path": "/api/sugaragent/generate",
+      "protocol": "http-json",
+      "consumer": "browser-runtime"
+    },
+    {
+      "routeId": "sugaragent-lore",
+      "path": "/api/sugaragent/lore",
+      "protocol": "http-json",
+      "consumer": "browser-runtime"
+    },
+    {
+      "routeId": "sugaragent-retrieve",
+      "path": "/api/sugaragent/retrieve",
+      "protocol": "http-json",
+      "consumer": "browser-runtime"
+    }
+  ]
+}
