@@ -10,7 +10,7 @@
     },
     {
       "relativePath": "deployment/google-cloud-run/deploy.sh",
-      "contentHash": "fnv1a-1dec5be7"
+      "contentHash": "fnv1a-ce5ef61"
     },
     {
       "relativePath": "deployment/google-cloud-run/deployment-plan.json",
@@ -70,7 +70,7 @@
     },
     {
       "relativePath": ".sugarmagic/published-web/boot.json",
-      "contentHash": "fnv1a-bc5ad58f"
+      "contentHash": "fnv1a-ff78149c"
     },
     {
       "relativePath": ".sugarmagic/published-web/README.md",
@@ -78,7 +78,7 @@
     },
     {
       "relativePath": ".github/workflows/sugardeploy-deploy.yml",
-      "contentHash": "fnv1a-e0c1be79"
+      "contentHash": "fnv1a-e563720c"
     }
   ]
 }

@@ -72,6 +72,29 @@ SECRET_ARGS=(
   "--set-secrets=SUGARMAGIC_OPENAI_API_KEY=wordlark-v1-1dqlc-openai-api-key:latest"
 )
 
+# Story 46.15 — non-secret runtime config env vars the gateway needs.
+# Each entry reads its value from deploy.sh's own process env at run
+# time (set by the GHA workflow or by the Studio host action that
+# spawned this script). Keys whose env value is empty are SKIPPED to
+# avoid setting EMPTY env on Cloud Run (which would shadow a future
+# default the gateway might bake in).
+RUNTIME_CONFIG_PAIRS=()
+RUNTIME_CONFIG_PAIRS+=("SUGARMAGIC_ANTHROPIC_MODEL=${SUGARMAGIC_ANTHROPIC_MODEL:-}")
+RUNTIME_CONFIG_PAIRS+=("SUGARMAGIC_OPENAI_EMBEDDING_MODEL=${SUGARMAGIC_OPENAI_EMBEDDING_MODEL:-}")
+RUNTIME_CONFIG_PAIRS+=("SUGARMAGIC_OPENAI_VECTOR_STORE_ID=${SUGARMAGIC_OPENAI_VECTOR_STORE_ID:-}")
+RUNTIME_CONFIG_VARS=""
+for pair in "${RUNTIME_CONFIG_PAIRS[@]}"; do
+  key="${pair%%=*}"
+  value="${pair#*=}"
+  if [ -n "${value}" ]; then
+    if [ -z "${RUNTIME_CONFIG_VARS}" ]; then
+      RUNTIME_CONFIG_VARS="${pair}"
+    else
+      RUNTIME_CONFIG_VARS="${RUNTIME_CONFIG_VARS},${pair}"
+    fi
+  fi
+done
+
 services=(
   "wordlark-v1-1dqlc-sugarmagic-gateway|services/sugarmagic-gateway"
 )
@@ -118,6 +141,6 @@ for entry in "${services[@]}"; do
     --max-instances=4 \
     --ingress=all \
     --allow-unauthenticated \
-    --set-env-vars="^@^SUGARMAGIC_GATEWAY_ALLOWED_ORIGINS=${ALLOWED_ORIGINS}" \
+    --set-env-vars="^@^SUGARMAGIC_GATEWAY_ALLOWED_ORIGINS=${ALLOWED_ORIGINS}${RUNTIME_CONFIG_VARS:+,${RUNTIME_CONFIG_VARS}}" \
     "${SECRET_ARGS[@]}"
 done
