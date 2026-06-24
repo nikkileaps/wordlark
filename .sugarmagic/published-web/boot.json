@@ -62,7 +62,18 @@
         },
         "versionedProjectIdentifiers": {
           "v1": "1dqlc"
-        }
+        },
+        "deployHistory": [
+          {
+            "runId": 28109075568,
+            "runUrl": "https://github.com/nikkileaps/wordlark/actions/runs/28109075568",
+            "ref": "main",
+            "headSha": "9d9ac7ded4032100352bac5a6edb4555a63410d7",
+            "dispatchedAt": "2026-06-24T15:16:29.479Z",
+            "status": "queued",
+            "conclusion": null
+          }
+        ]
       }
     }
   ],
