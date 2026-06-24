@@ -69,8 +69,16 @@
       "contentHash": "fnv1a-8e37b976"
     },
     {
+      "relativePath": ".sugarmagic/published-web/boot.json",
+      "contentHash": "fnv1a-20c80a16"
+    },
+    {
+      "relativePath": ".sugarmagic/published-web/README.md",
+      "contentHash": "fnv1a-d5680403"
+    },
+    {
       "relativePath": ".github/workflows/sugardeploy-deploy.yml",
-      "contentHash": "fnv1a-af66da49"
+      "contentHash": "fnv1a-e0c1be79"
     }
   ]
 }
