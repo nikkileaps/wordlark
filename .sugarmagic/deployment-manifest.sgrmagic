@@ -70,7 +70,7 @@
     },
     {
       "relativePath": ".github/workflows/sugardeploy-deploy.yml",
-      "contentHash": "fnv1a-504990c2"
+      "contentHash": "fnv1a-af66da49"
     }
   ]
 }
