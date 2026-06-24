@@ -16,7 +16,31 @@
     "folders": [],
     "placedAssets": [],
     "playerPresence": null,
-    "npcPresences": [],
+    "npcPresences": [
+      {
+        "presenceId": "119dc389-9217-469f-93fc-1f79b5c0afb0",
+        "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9",
+        "shaderOverrides": [],
+        "shaderParameterOverrides": [],
+        "transform": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      }
+    ],
     "itemPresences": []
   },
   "environmentBinding": {
@@ -69,5 +93,5 @@
   },
   "markers": [],
   "gameplayPlacements": [],
-  "lorePageId": null
+  "lorePageId": "lore.entities.npcs.bippity-roo"
 }

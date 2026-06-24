@@ -68,6 +68,15 @@
         },
         "deployHistory": [
           {
+            "runId": 28112397183,
+            "runUrl": "https://github.com/nikkileaps/wordlark/actions/runs/28112397183",
+            "ref": "main",
+            "headSha": "f271996a33c883b37e06c2c132234d9f92be64e0",
+            "dispatchedAt": "2026-06-24T16:08:39.809Z",
+            "status": "queued",
+            "conclusion": null
+          },
+          {
             "runId": 28109075568,
             "runUrl": "https://github.com/nikkileaps/wordlark/actions/runs/28109075568",
             "ref": "main",
@@ -113,7 +122,23 @@
   "spellDefinitions": [],
   "itemDefinitions": [],
   "documentDefinitions": [],
-  "npcDefinitions": [],
+  "npcDefinitions": [
+    {
+      "definitionId": "42670c12-cecb-4484-944b-0697935173f9",
+      "displayName": "Testy McTesterson",
+      "interactionMode": "agent",
+      "lorePageId": null,
+      "presentation": {
+        "modelAssetDefinitionId": null,
+        "modelHeight": 1.7,
+        "animationAssetBindings": {
+          "idle": null,
+          "walk": null,
+          "run": null
+        }
+      }
+    }
+  ],
   "dialogueDefinitions": [],
   "questDefinitions": [],
   "menuDefinitions": [
