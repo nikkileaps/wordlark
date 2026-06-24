@@ -647,7 +647,7 @@ async function handleSugarAgentGenerate(req, res) {
   const model =
     typeof body.model === "string" && body.model.trim()
       ? body.model.trim()
-      : resolveEnv("SUGARMAGIC_ANTHROPIC_MODEL", "claude-sonnet-4-5");
+      : resolveEnv("SUGARMAGIC_SUGARAGENT_ANTHROPIC_MODEL", "claude-sonnet-4-5");
   const systemPrompt =
     typeof body.systemPrompt === "string" ? body.systemPrompt.trim() : "";
   const userPrompt =
@@ -719,7 +719,7 @@ async function handleSugarAgentEmbed(req, res) {
   const model =
     typeof body.model === "string" && body.model.trim()
       ? body.model.trim()
-      : resolveEnv("SUGARMAGIC_OPENAI_EMBEDDING_MODEL", "text-embedding-3-small");
+      : resolveEnv("SUGARMAGIC_SUGARAGENT_OPENAI_EMBEDDING_MODEL", "text-embedding-3-small");
 
   if (!input) {
     sendJson(res, 400, {
@@ -770,7 +770,7 @@ async function handleSugarAgentSearch(req, res) {
   const vectorStoreId =
     typeof body.vectorStoreId === "string" && body.vectorStoreId.trim()
       ? body.vectorStoreId.trim()
-      : resolveEnv("SUGARMAGIC_OPENAI_VECTOR_STORE_ID");
+      : resolveEnv("SUGARMAGIC_SUGARAGENT_OPENAI_VECTOR_STORE_ID");
   const maxResults =
     typeof body.maxResults === "number" && Number.isFinite(body.maxResults)
       ? Math.max(1, Math.min(8, Math.floor(body.maxResults)))
@@ -838,7 +838,7 @@ async function handleSugarAgentLoreStatus(req, res) {
   }
 
   const lore = readLorePages();
-  const vectorStoreId = resolveEnv("SUGARMAGIC_OPENAI_VECTOR_STORE_ID") || null;
+  const vectorStoreId = resolveEnv("SUGARMAGIC_SUGARAGENT_OPENAI_VECTOR_STORE_ID") || null;
   sendJson(res, 200, {
     ok: true,
     sourceKind: lore.source.sourceKind,
@@ -937,7 +937,7 @@ async function handleSugarAgentLoreIngest(req, res) {
   const vectorStoreId =
     typeof body.vectorStoreId === "string" && body.vectorStoreId.trim()
       ? body.vectorStoreId.trim()
-      : resolveEnv("SUGARMAGIC_OPENAI_VECTOR_STORE_ID");
+      : resolveEnv("SUGARMAGIC_SUGARAGENT_OPENAI_VECTOR_STORE_ID");
 
   if (!vectorStoreId) {
     sendJson(res, 400, {

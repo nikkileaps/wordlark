@@ -30,7 +30,9 @@
         "loreRepositoryRef": "main",
         "maxEvidenceResults": 4,
         "debugLogging": false,
-        "tone": ""
+        "tone": "",
+        "anthropicModel": "claude-opus-4-7",
+        "openAiVectorStoreId": "vs_69d16958aec48191b2fe258bd16bf028"
       }
     },
     {

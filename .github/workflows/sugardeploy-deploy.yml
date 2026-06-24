@@ -44,6 +44,8 @@ jobs:
           SUGARMAGIC_RUNTIME_SA_EMAIL: ${{ vars.SUGARMAGIC_RUNTIME_SA_EMAIL }}
           SUGARMAGIC_ARTIFACT_REGISTRY_URL: us-central1-docker.pkg.dev/wordlark-v1-1dqlc/wordlark-v1-1dqlc
           SUGARMAGIC_ALLOWED_ORIGINS: "https://*--wordlark-prod.netlify.app,https://wordlark-prod.netlify.app"
+          SUGARMAGIC_SUGARAGENT_ANTHROPIC_MODEL: "claude-opus-4-7"
+          SUGARMAGIC_SUGARAGENT_OPENAI_VECTOR_STORE_ID: "vs_69d16958aec48191b2fe258bd16bf028"
         run: bash deploy.sh
 
   deploy-frontend:
