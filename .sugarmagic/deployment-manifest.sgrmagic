@@ -10,7 +10,7 @@
     },
     {
       "relativePath": "deployment/google-cloud-run/deploy.sh",
-      "contentHash": "fnv1a-f5a6b4af"
+      "contentHash": "fnv1a-1dec5be7"
     },
     {
       "relativePath": "deployment/google-cloud-run/deployment-plan.json",

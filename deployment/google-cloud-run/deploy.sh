@@ -86,10 +86,23 @@ for entry in "${services[@]}"; do
   IFS='|' read -r service_name service_dir <<<"$entry"
   image="${ARTIFACT_REGISTRY_URL}/${service_name}:latest"
 
+  # Story 46.10 — local docker build + push instead of `gcloud builds
+  # submit`. The submit path uploads source to Cloud Build's implicit
+  # source bucket, which requires the caller (WIF principal on GHA) to
+  # hold `serviceusage.services.use` on the project. Building locally
+  # sidesteps the whole Cloud Build IAM surface: `gcloud auth
+  # configure-docker` already wired docker's credential helper to the
+  # active gcloud credentials, so `docker push` just works against
+  # Artifact Registry. Faster too (no upload step).
   echo "[sugardeploy] building ${service_name} from ${service_dir}"
-  gcloud builds submit "${service_dir}" \
-    --tag "${image}" \
-    --project "${PROJECT_ID}"
+  if ! command -v docker >/dev/null 2>&1; then
+    echo "[sugardeploy] docker is required to build the gateway image; install Docker (https://docs.docker.com/get-docker/) and retry." >&2
+    exit 1
+  fi
+  docker build -t "${image}" "${service_dir}"
+
+  echo "[sugardeploy] pushing ${service_name} to ${ARTIFACT_REGISTRY_URL}"
+  docker push "${image}"
 
   echo "[sugardeploy] deploying ${service_name}"
   gcloud run deploy "${service_name}" \
