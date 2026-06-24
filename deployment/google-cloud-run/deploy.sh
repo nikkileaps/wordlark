@@ -86,10 +86,15 @@ for pair in "${RUNTIME_CONFIG_PAIRS[@]}"; do
   key="${pair%%=*}"
   value="${pair#*=}"
   if [ -n "${value}" ]; then
+    # gcloud --set-env-vars="^@^k1=v1@k2=v2" uses @ as the kvpair
+    # delimiter (the ^@^ prefix sets it). Join entries with @ here
+    # so the parser sees distinct env vars; joining with , would
+    # collapse them into a single value (allowed-origins absorbs
+    # everything that follows the first comma).
     if [ -z "${RUNTIME_CONFIG_VARS}" ]; then
       RUNTIME_CONFIG_VARS="${pair}"
     else
-      RUNTIME_CONFIG_VARS="${RUNTIME_CONFIG_VARS},${pair}"
+      RUNTIME_CONFIG_VARS="${RUNTIME_CONFIG_VARS}@${pair}"
     fi
   fi
 done
@@ -140,6 +145,6 @@ for entry in "${services[@]}"; do
     --max-instances=4 \
     --ingress=all \
     --allow-unauthenticated \
-    --set-env-vars="^@^SUGARMAGIC_GATEWAY_ALLOWED_ORIGINS=${ALLOWED_ORIGINS}${RUNTIME_CONFIG_VARS:+,${RUNTIME_CONFIG_VARS}}" \
+    --set-env-vars="^@^SUGARMAGIC_GATEWAY_ALLOWED_ORIGINS=${ALLOWED_ORIGINS}${RUNTIME_CONFIG_VARS:+@${RUNTIME_CONFIG_VARS}}" \
     "${SECRET_ARGS[@]}"
 done

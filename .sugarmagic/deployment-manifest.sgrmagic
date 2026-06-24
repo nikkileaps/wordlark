@@ -10,7 +10,7 @@
     },
     {
       "relativePath": "deployment/google-cloud-run/deploy.sh",
-      "contentHash": "fnv1a-f6520935"
+      "contentHash": "fnv1a-9613bf9e"
     },
     {
       "relativePath": "deployment/google-cloud-run/deployment-plan.json",
@@ -70,7 +70,7 @@
     },
     {
       "relativePath": ".sugarmagic/published-web/boot.json",
-      "contentHash": "fnv1a-ae1bfe7e"
+      "contentHash": "fnv1a-db4c431e"
     },
     {
       "relativePath": ".sugarmagic/published-web/README.md",
