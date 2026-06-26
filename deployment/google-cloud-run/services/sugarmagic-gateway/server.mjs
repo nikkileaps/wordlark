@@ -3,7 +3,7 @@ import { createServer } from "node:http";
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, extname, join, relative } from "node:path";
-import { timingSafeEqual } from "node:crypto";
+import { createHmac, timingSafeEqual } from "node:crypto";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -149,6 +149,65 @@ function authorizeBearer(req) {
   } catch {
     return false;
   }
+}
+function decodeBase64Url(segment) {
+  // Supabase tokens are base64url; Buffer.from(..., "base64") accepts
+  // base64url-style input on Node 18+, but we normalize defensively so
+  // older runtimes still decode cleanly.
+  const normalized = segment.replace(/-/g, "+").replace(/_/g, "/");
+  const padding = normalized.length % 4 === 0 ? 0 : 4 - (normalized.length % 4);
+  return Buffer.from(normalized + "=".repeat(padding), "base64");
+}
+
+function verifySupabaseJwt(req) {
+  const secret = process.env.SUGARMAGIC_SUPABASE_JWT_SECRET || "";
+  if (!secret) return null;
+  const header = (req.headers && req.headers["authorization"]) || "";
+  const prefix = "Bearer ";
+  if (typeof header !== "string" || !header.startsWith(prefix)) return null;
+  const token = header.slice(prefix.length).trim();
+  if (!token) return null;
+  const parts = token.split(".");
+  if (parts.length !== 3) return null;
+  const [headerB64, payloadB64, signatureB64] = parts;
+
+  // Recompute HMAC-SHA256 of `header.payload` and constant-time
+  // compare against the presented signature.
+  const expectedSig = createHmac("sha256", secret)
+    .update(headerB64 + "." + payloadB64)
+    .digest();
+  let presentedSig;
+  try {
+    presentedSig = decodeBase64Url(signatureB64);
+  } catch {
+    return null;
+  }
+  if (expectedSig.length !== presentedSig.length) return null;
+  try {
+    if (!timingSafeEqual(expectedSig, presentedSig)) return null;
+  } catch {
+    return null;
+  }
+
+  // Decode the payload + validate Supabase's expected claims:
+  // aud === "authenticated" (set by supabase-js on every signed-in
+  // token), exp > now, sub is the user id.
+  let payload;
+  try {
+    payload = JSON.parse(decodeBase64Url(payloadB64).toString("utf8"));
+  } catch {
+    return null;
+  }
+  if (payload === null || typeof payload !== "object") return null;
+  if (payload.aud !== "authenticated") return null;
+  const nowSeconds = Math.floor(Date.now() / 1000);
+  if (typeof payload.exp !== "number" || payload.exp <= nowSeconds) return null;
+  if (typeof payload.sub !== "string" || !payload.sub) return null;
+
+  return {
+    userId: payload.sub,
+    email: typeof payload.email === "string" ? payload.email : null
+  };
 }
 
 function resolveEnv(name, fallback = "") {
@@ -1087,18 +1146,26 @@ const server = createServer(async (req, res) => {
     return;
   }
 
-  // Story 45.5.8 — bearer-token auth gate. Generated based on the
-  // gatewayAuthMode override at plan time. /health stays public above; this
-  // gate runs on EVERY other path before the route dispatcher.
-  if (!authorizeBearer(req)) {
+  // Story 45.5.8 / Story 47.9 — auth gate. Generated based on the effective
+  // gatewayAuthMode at plan time:
+  //   - "none"          → no gate
+  //   - "bearer"        → shared-token check (45.5.8)
+  //   - "supabase-jwt"  → Supabase HS256 verification (47.9) — selected
+  //     automatically when SugarProfile is enabled AND the persisted user
+  //     toggle is "bearer". Attaches `req.user` for downstream routes.
+  // /health stays public above; this gate runs on EVERY other path before
+  // the route dispatcher.
+  const verifiedUser = verifySupabaseJwt(req);
+  if (!verifiedUser) {
     logInfo("gateway:unauthorized", { path });
     sendJson(res, 401, {
       ok: false,
       error: "Unauthorized",
-      message: "Missing or invalid Authorization header. This gateway requires a Bearer token; set the gateway-shared-token deployment secret and send \"Authorization: Bearer <token>\" on every request."
+      message: "Missing or invalid Supabase JWT. This gateway requires \"Authorization: Bearer <jwt>\" signed by the configured Supabase project."
     });
     return;
   }
+  req.user = verifiedUser;
 
   const match = findManagedRoute(path);
   if (!match) {

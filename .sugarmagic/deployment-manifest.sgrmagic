@@ -10,7 +10,7 @@
     },
     {
       "relativePath": "deployment/google-cloud-run/deploy.sh",
-      "contentHash": "fnv1a-ae1856c2"
+      "contentHash": "fnv1a-deefc116"
     },
     {
       "relativePath": "deployment/google-cloud-run/deployment-plan.json",
@@ -26,7 +26,7 @@
     },
     {
       "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/server.mjs",
-      "contentHash": "fnv1a-26dc2900"
+      "contentHash": "fnv1a-bf3cdc2a"
     },
     {
       "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/Dockerfile",
@@ -50,7 +50,7 @@
     },
     {
       "relativePath": "deployment/google-cloud-run/terraform/terraform.tfvars",
-      "contentHash": "fnv1a-89d976ce"
+      "contentHash": "fnv1a-7f2c87bb"
     },
     {
       "relativePath": "deployment/google-cloud-run/terraform/.gitignore",
@@ -70,7 +70,7 @@
     },
     {
       "relativePath": ".sugarmagic/published-web/boot.json",
-      "contentHash": "fnv1a-399ea43"
+      "contentHash": "fnv1a-492fba75"
     },
     {
       "relativePath": ".sugarmagic/published-web/README.md",
