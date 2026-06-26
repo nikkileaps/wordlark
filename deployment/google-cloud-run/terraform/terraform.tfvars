@@ -8,8 +8,7 @@ runtime_sa_account_id = "wordlark-v1-1dqlc-runtime"
 github_repo           = "nikkileaps/wordlark"
 secret_names          = [
   "wordlark-v1-1dqlc-anthropic-api-key",
-  "wordlark-v1-1dqlc-openai-api-key",
-  "wordlark-v1-1dqlc-supabase-jwt-secret"
+  "wordlark-v1-1dqlc-openai-api-key"
 ]
 allowed_origins       = [
   "https://*--wordlark-prod.netlify.app",

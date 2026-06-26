@@ -3,7 +3,12 @@ import { createServer } from "node:http";
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, extname, join, relative } from "node:path";
-import { createHmac, timingSafeEqual } from "node:crypto";
+import {
+  createHmac,
+  createPublicKey,
+  timingSafeEqual,
+  verify as cryptoVerify
+} from "node:crypto";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -152,46 +157,157 @@ function authorizeBearer(req) {
 }
 function decodeBase64Url(segment) {
   // Supabase tokens are base64url; Buffer.from(..., "base64") accepts
-  // base64url-style input on Node 18+, but we normalize defensively so
-  // older runtimes still decode cleanly.
+  // base64url-style input on Node 18+, but we normalize defensively
+  // so older runtimes still decode cleanly.
   const normalized = segment.replace(/-/g, "+").replace(/_/g, "/");
   const padding = normalized.length % 4 === 0 ? 0 : 4 - (normalized.length % 4);
   return Buffer.from(normalized + "=".repeat(padding), "base64");
 }
 
-function verifySupabaseJwt(req) {
-  const secret = process.env.SUGARMAGIC_SUPABASE_JWT_SECRET || "";
-  if (!secret) return null;
-  const header = (req.headers && req.headers["authorization"]) || "";
+// Module-level JWKS cache. 10-minute TTL covers normal key rotation
+// without thrashing the upstream; a manual restart drops the cache
+// faster if needed.
+const __jwksCache = { url: "", expiresAt: 0, keys: [] };
+const __JWKS_TTL_MS = 10 * 60 * 1000;
+
+async function __fetchJwks(jwksUrl) {
+  const now = Date.now();
+  if (__jwksCache.url === jwksUrl && __jwksCache.expiresAt > now) {
+    return __jwksCache.keys;
+  }
+  let response;
+  try {
+    response = await fetch(jwksUrl);
+  } catch (error) {
+    logError("supabase-jwt:jwks-fetch-failed", error, { jwksUrl });
+    return null;
+  }
+  if (!response.ok) {
+    logError(
+      "supabase-jwt:jwks-non-2xx",
+      new Error("status " + response.status),
+      { jwksUrl, status: response.status }
+    );
+    return null;
+  }
+  let body;
+  try {
+    body = await response.json();
+  } catch (error) {
+    logError("supabase-jwt:jwks-bad-json", error, { jwksUrl });
+    return null;
+  }
+  const keys = Array.isArray(body && body.keys) ? body.keys : [];
+  __jwksCache.url = jwksUrl;
+  __jwksCache.expiresAt = now + __JWKS_TTL_MS;
+  __jwksCache.keys = keys;
+  return keys;
+}
+
+// Convert a JWS-format ES256 signature (raw concat r||s, 64 bytes
+// total) to DER-encoded ECDSA signature, which is what Node's
+// crypto.verify expects.
+function __jwsSigToDer(rawSig) {
+  if (rawSig.length !== 64) return null;
+  const r = rawSig.slice(0, 32);
+  const s = rawSig.slice(32);
+  function trim(buf) {
+    let i = 0;
+    while (i < buf.length - 1 && buf[i] === 0) i++;
+    let trimmed = buf.slice(i);
+    if (trimmed[0] & 0x80) {
+      trimmed = Buffer.concat([Buffer.from([0]), trimmed]);
+    }
+    return trimmed;
+  }
+  const rTrimmed = trim(r);
+  const sTrimmed = trim(s);
+  const seqBody = Buffer.concat([
+    Buffer.from([0x02, rTrimmed.length]),
+    rTrimmed,
+    Buffer.from([0x02, sTrimmed.length]),
+    sTrimmed
+  ]);
+  return Buffer.concat([Buffer.from([0x30, seqBody.length]), seqBody]);
+}
+
+async function verifySupabaseJwt(req) {
+  const supabaseUrl = (process.env.SUGARMAGIC_SUGARPROFILE_SUPABASE_URL || "").trim();
+  if (!supabaseUrl) return null;
+  const jwksUrl = supabaseUrl.replace(/\/+$/, "") + "/auth/v1/.well-known/jwks.json";
+
+  const authHeader = (req.headers && req.headers["authorization"]) || "";
   const prefix = "Bearer ";
-  if (typeof header !== "string" || !header.startsWith(prefix)) return null;
-  const token = header.slice(prefix.length).trim();
+  if (typeof authHeader !== "string" || !authHeader.startsWith(prefix)) return null;
+  const token = authHeader.slice(prefix.length).trim();
   if (!token) return null;
   const parts = token.split(".");
   if (parts.length !== 3) return null;
   const [headerB64, payloadB64, signatureB64] = parts;
 
-  // Recompute HMAC-SHA256 of `header.payload` and constant-time
-  // compare against the presented signature.
-  const expectedSig = createHmac("sha256", secret)
-    .update(headerB64 + "." + payloadB64)
-    .digest();
-  let presentedSig;
+  let jwtHeader;
   try {
-    presentedSig = decodeBase64Url(signatureB64);
+    jwtHeader = JSON.parse(decodeBase64Url(headerB64).toString("utf8"));
   } catch {
     return null;
   }
-  if (expectedSig.length !== presentedSig.length) return null;
+  if (!jwtHeader || typeof jwtHeader !== "object") return null;
+  const alg = jwtHeader.alg;
+  const kid = jwtHeader.kid;
+  if (typeof alg !== "string" || typeof kid !== "string" || !kid) return null;
+  if (alg !== "ES256" && alg !== "HS256") return null;
+
+  const keys = await __fetchJwks(jwksUrl);
+  if (!keys) return null;
+  const jwk = keys.find((entry) => entry && entry.kid === kid);
+  if (!jwk) return null;
+  if (jwk.alg && jwk.alg !== alg) return null;
+
+  let signature;
   try {
-    if (!timingSafeEqual(expectedSig, presentedSig)) return null;
+    signature = decodeBase64Url(signatureB64);
   } catch {
     return null;
+  }
+  const signingInput = Buffer.from(headerB64 + "." + payloadB64, "utf8");
+
+  if (alg === "ES256") {
+    if (jwk.kty !== "EC" || jwk.crv !== "P-256") return null;
+    let publicKey;
+    try {
+      publicKey = createPublicKey({ key: jwk, format: "jwk" });
+    } catch (error) {
+      logError("supabase-jwt:jwk-import-failed", error, { kid });
+      return null;
+    }
+    const derSig = __jwsSigToDer(signature);
+    if (!derSig) return null;
+    let valid;
+    try {
+      valid = cryptoVerify("SHA256", signingInput, publicKey, derSig);
+    } catch {
+      return null;
+    }
+    if (!valid) return null;
+  } else {
+    if (jwk.kty !== "oct" || typeof jwk.k !== "string") return null;
+    let secretBytes;
+    try {
+      secretBytes = decodeBase64Url(jwk.k);
+    } catch {
+      return null;
+    }
+    const expectedSig = createHmac("sha256", secretBytes)
+      .update(signingInput)
+      .digest();
+    if (expectedSig.length !== signature.length) return null;
+    try {
+      if (!timingSafeEqual(expectedSig, signature)) return null;
+    } catch {
+      return null;
+    }
   }
 
-  // Decode the payload + validate Supabase's expected claims:
-  // aud === "authenticated" (set by supabase-js on every signed-in
-  // token), exp > now, sub is the user id.
   let payload;
   try {
     payload = JSON.parse(decodeBase64Url(payloadB64).toString("utf8"));
@@ -1155,7 +1271,7 @@ const server = createServer(async (req, res) => {
   //     toggle is "bearer". Attaches `req.user` for downstream routes.
   // /health stays public above; this gate runs on EVERY other path before
   // the route dispatcher.
-  const verifiedUser = verifySupabaseJwt(req);
+  const verifiedUser = await verifySupabaseJwt(req);
   if (!verifiedUser) {
     logInfo("gateway:unauthorized", { path });
     sendJson(res, 401, {

@@ -69,7 +69,6 @@ REGION="${SUGARMAGIC_GCP_REGION:-us-central1}"
 SECRET_ARGS=(
   "--set-secrets=SUGARMAGIC_ANTHROPIC_API_KEY=wordlark-v1-1dqlc-anthropic-api-key:latest"
   "--set-secrets=SUGARMAGIC_OPENAI_API_KEY=wordlark-v1-1dqlc-openai-api-key:latest"
-  "--set-secrets=SUGARMAGIC_SUPABASE_JWT_SECRET=wordlark-v1-1dqlc-supabase-jwt-secret:latest"
 )
 
 # Story 46.15 — non-secret runtime config env vars the gateway needs.
