@@ -6,11 +6,11 @@
     },
     {
       "relativePath": "deployment/google-cloud-run/.env.example",
-      "contentHash": "fnv1a-2389f1bd"
+      "contentHash": "fnv1a-86580963"
     },
     {
       "relativePath": "deployment/google-cloud-run/deploy.sh",
-      "contentHash": "fnv1a-9613bf9e"
+      "contentHash": "fnv1a-ae1856c2"
     },
     {
       "relativePath": "deployment/google-cloud-run/deployment-plan.json",
@@ -70,7 +70,7 @@
     },
     {
       "relativePath": ".sugarmagic/published-web/boot.json",
-      "contentHash": "fnv1a-db4c431e"
+      "contentHash": "fnv1a-ab036dab"
     },
     {
       "relativePath": ".sugarmagic/published-web/README.md",
@@ -78,7 +78,7 @@
     },
     {
       "relativePath": ".github/workflows/sugardeploy-deploy.yml",
-      "contentHash": "fnv1a-ad5a1474"
+      "contentHash": "fnv1a-325b8d50"
     }
   ]
 }

@@ -46,6 +46,8 @@ jobs:
           SUGARMAGIC_ALLOWED_ORIGINS: "https://*--wordlark-prod.netlify.app,https://wordlark-prod.netlify.app"
           SUGARMAGIC_SUGARAGENT_ANTHROPIC_MODEL: "claude-opus-4-7"
           SUGARMAGIC_SUGARAGENT_OPENAI_VECTOR_STORE_ID: "vs_69d16958aec48191b2fe258bd16bf028"
+          SUGARMAGIC_SUGARPROFILE_SUPABASE_ANON_KEY: "sb_publishable_XgdRpHfF_nDBdYLc4x1mTg_0CPfYcVZ"
+          SUGARMAGIC_SUGARPROFILE_SUPABASE_URL: "https://fhhcmtbtozlxaboqhrla.supabase.co"
         run: bash deploy.sh
 
   deploy-frontend:

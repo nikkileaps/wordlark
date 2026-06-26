@@ -28,7 +28,7 @@
         "loreLocalPath": "",
         "loreRepositoryUrl": "",
         "loreRepositoryRef": "main",
-        "maxEvidenceResults": 4,
+        "maxEvidenceResults": 5,
         "debugLogging": false,
         "tone": "",
         "anthropicModel": "claude-opus-4-7",
@@ -88,6 +88,21 @@
             "conclusion": null
           }
         ]
+      }
+    },
+    {
+      "identity": {
+        "id": "28d2f851-7d41-47a4-b446-3832bef0a4ec",
+        "schema": "PluginConfiguration",
+        "version": 1
+      },
+      "pluginId": "sugarprofile",
+      "enabled": true,
+      "config": {
+        "supabaseUrl": "https://fhhcmtbtozlxaboqhrla.supabase.co",
+        "supabaseAnonKey": "sb_publishable_XgdRpHfF_nDBdYLc4x1mTg_0CPfYcVZ",
+        "allowAnonymous": false,
+        "enableLogin": true
       }
     }
   ],
