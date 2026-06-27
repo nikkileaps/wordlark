@@ -118,7 +118,7 @@
   "contentLibraryId": "wordlark:content-library",
   "playerDefinition": {
     "definitionId": "wordlark:player:default",
-    "displayName": "Mimm",
+    "displayName": "Mim",
     "physicalProfile": {
       "height": 1.8,
       "radius": 0.35,
@@ -211,7 +211,36 @@
               }
             },
             "events": {},
-            "children": []
+            "children": [],
+            "visibility": "always"
+          },
+          {
+            "nodeId": "wordlark:ui:start-menu:continue",
+            "kind": "button",
+            "styleId": "button-primary",
+            "layout": {
+              "direction": "column",
+              "gap": 12,
+              "padding": 14,
+              "align": "center",
+              "justify": "center",
+              "width": "fill",
+              "height": "auto"
+            },
+            "anchor": null,
+            "props": {
+              "text": {
+                "kind": "literal",
+                "value": "Continue"
+              }
+            },
+            "events": {
+              "onClick": {
+                "action": "continue-game"
+              }
+            },
+            "children": [],
+            "visibility": "hasSave"
           },
           {
             "nodeId": "wordlark:ui:start-menu:new-game",
@@ -238,7 +267,8 @@
                 "action": "start-new-game"
               }
             },
-            "children": []
+            "children": [],
+            "visibility": "always"
           },
           {
             "nodeId": "wordlark:ui:start-menu:settings",
@@ -261,9 +291,11 @@
               }
             },
             "events": {},
-            "children": []
+            "children": [],
+            "visibility": "always"
           }
-        ]
+        ],
+        "visibility": "always"
       }
     },
     {
@@ -309,7 +341,8 @@
               }
             },
             "events": {},
-            "children": []
+            "children": [],
+            "visibility": "always"
           },
           {
             "nodeId": "wordlark:ui:pause-menu:resume",
@@ -336,7 +369,8 @@
                 "action": "resume-game"
               }
             },
-            "children": []
+            "children": [],
+            "visibility": "always"
           },
           {
             "nodeId": "wordlark:ui:pause-menu:quit",
@@ -363,9 +397,11 @@
                 "action": "quit-to-menu"
               }
             },
-            "children": []
+            "children": [],
+            "visibility": "always"
           }
-        ]
+        ],
+        "visibility": "always"
       }
     }
   ],
@@ -431,7 +467,8 @@
                   "action": "open-inventory"
                 }
               },
-              "children": []
+              "children": [],
+              "visibility": "always"
             },
             {
               "nodeId": "wordlark:ui:hud:caster",
@@ -458,7 +495,8 @@
                   "action": "open-caster"
                 }
               },
-              "children": []
+              "children": [],
+              "visibility": "always"
             },
             {
               "nodeId": "wordlark:ui:hud:main",
@@ -485,11 +523,14 @@
                   "action": "quit-to-menu"
                 }
               },
-              "children": []
+              "children": [],
+              "visibility": "always"
             }
-          ]
+          ],
+          "visibility": "always"
         }
-      ]
+      ],
+      "visibility": "always"
     }
   },
   "uiTheme": {
@@ -667,5 +708,6 @@
       }
     ]
   },
-  "majorVersion": 1
+  "majorVersion": 1,
+  "defaultGameSavePayload": null
 }
