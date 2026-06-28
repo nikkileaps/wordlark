@@ -70,11 +70,11 @@
     },
     {
       "relativePath": ".sugarmagic/published-web/boot.json",
-      "contentHash": "fnv1a-e4362e10"
+      "contentHash": "fnv1a-9b704a37"
     },
     {
       "relativePath": ".sugarmagic/published-web/README.md",
-      "contentHash": "fnv1a-d5680403"
+      "contentHash": "fnv1a-d1c3553e"
     },
     {
       "relativePath": "deployment/supabase/config.toml",
@@ -86,7 +86,7 @@
     },
     {
       "relativePath": ".github/workflows/sugardeploy-deploy.yml",
-      "contentHash": "fnv1a-325b8d50"
+      "contentHash": "fnv1a-a1058277"
     }
   ]
 }
