@@ -1,10 +1,11 @@
 node_modules
 dist
-# SugarDeploy's per-game engine bundle output; ignored by the top-level
-# `dist` rule above but the deploy-frontend GHA job needs it committed.
-# Stopgap until Plan 048 lands (engine bundle comes from GHCR; this line
-# can go away then).
-!.sugarmagic/published-web/dist
+# Sugarmagic Plan 053 — engine bundle regenerates inside the GHA
+# deploy-frontend job at deploy time (it checks out the sugarmagic
+# repo, runs `pnpm --filter @sugarmagic/target-web build`, then
+# copies the dist here). Nothing in the game repo needs to commit
+# the built bundle anymore; the top-level `dist` rule above covers
+# .sugarmagic/published-web/dist/.
 coverage
 .DS_Store
 .vite
