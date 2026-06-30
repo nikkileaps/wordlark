@@ -58,27 +58,8 @@
         "displayName": "Base",
         "slotName": "Base",
         "surface": {
-          "kind": "inline",
-          "surface": {
-            "layers": [
-              {
-                "layerId": "93554cdb-05a0-444d-b7e7-7812ba33fb87",
-                "displayName": "Base",
-                "enabled": true,
-                "opacity": 1,
-                "mask": {
-                  "kind": "always"
-                },
-                "kind": "appearance",
-                "blendMode": "base",
-                "content": {
-                  "kind": "color",
-                  "color": 13223101
-                }
-              }
-            ],
-            "context": "universal"
-          }
+          "kind": "reference",
+          "surfaceDefinitionId": "wordlark:surface:surface-1782849266547-1"
         },
         "tilingScale": null
       }
