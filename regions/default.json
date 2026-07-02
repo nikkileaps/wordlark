@@ -41,7 +41,32 @@
         }
       }
     ],
-    "itemPresences": []
+    "itemPresences": [
+      {
+        "presenceId": "f089bb66-f05f-4b9c-8a84-b9e2ef2f45ee",
+        "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+        "quantity": 1,
+        "shaderOverrides": [],
+        "shaderParameterOverrides": [],
+        "transform": {
+          "position": [
+            6.52598755829983,
+            1.0157776627494237,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      }
+    ]
   },
   "environmentBinding": {
     "defaultEnvironmentId": "wordlark:environment:default"

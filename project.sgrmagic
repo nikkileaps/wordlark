@@ -146,13 +146,39 @@
     }
   },
   "spellDefinitions": [],
-  "itemDefinitions": [],
+  "itemDefinitions": [
+    {
+      "definitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+      "displayName": "Suitcase",
+      "category": "misc",
+      "inventory": {
+        "stackable": false,
+        "maxStack": 1,
+        "giftable": false
+      },
+      "presentation": {
+        "modelAssetDefinitionId": null,
+        "thumbnailAssetPath": null
+      },
+      "interactionView": {
+        "kind": "none",
+        "title": "",
+        "body": "",
+        "consumeLabel": "Use",
+        "documentDefinitionId": null,
+        "castableInvocation": {
+          "id": "",
+          "args": {}
+        }
+      }
+    }
+  ],
   "documentDefinitions": [],
   "npcDefinitions": [
     {
       "definitionId": "42670c12-cecb-4484-944b-0697935173f9",
       "displayName": "Testy McTesterson",
-      "interactionMode": "agent",
+      "interactionMode": "scripted",
       "lorePageId": null,
       "presentation": {
         "modelAssetDefinitionId": null,
@@ -165,8 +191,102 @@
       }
     }
   ],
-  "dialogueDefinitions": [],
-  "questDefinitions": [],
+  "dialogueDefinitions": [
+    {
+      "definitionId": "5040b419-9f95-44f3-8d25-bcc6d95d8b29",
+      "displayName": "Dialogue 1",
+      "startNodeId": "3f5d230f-fa3b-4888-991d-c79b2fdd5c64",
+      "nodes": [
+        {
+          "nodeId": "3f5d230f-fa3b-4888-991d-c79b2fdd5c64",
+          "displayName": "Hello",
+          "speakerId": "42670c12-cecb-4484-944b-0697935173f9",
+          "text": "Hello! I'm the Station Manager how can I help?",
+          "next": [
+            {
+              "targetNodeId": "b057fb78-3f59-4fd2-8934-40eb401e28a3"
+            }
+          ],
+          "graphPosition": {
+            "x": 80,
+            "y": 80
+          }
+        },
+        {
+          "nodeId": "b057fb78-3f59-4fd2-8934-40eb401e28a3",
+          "displayName": "Introduction",
+          "speakerId": "e095b3b2-3351-403a-abe1-88861fa489ad",
+          "text": "I'm looking for my luggage. Where do we pick it up?",
+          "next": [
+            {
+              "targetNodeId": "ff0b5fd6-5ac2-4ad9-8d48-11cd1ade6e45"
+            }
+          ],
+          "graphPosition": {
+            "x": 383.67789462988367,
+            "y": 95.1273687954072
+          }
+        },
+        {
+          "nodeId": "ff0b5fd6-5ac2-4ad9-8d48-11cd1ade6e45",
+          "displayName": "Luggage Huh",
+          "speakerId": "42670c12-cecb-4484-944b-0697935173f9",
+          "text": "Luggage is unloaded here at the dock. It should be over there. Good luck to ya. I 've got a schedule to maintain you see?",
+          "next": [],
+          "graphPosition": {
+            "x": 648.6666666666666,
+            "y": 121.12736879540721
+          }
+        }
+      ],
+      "interactionBinding": {
+        "npcDefinitionId": null
+      }
+    }
+  ],
+  "questDefinitions": [
+    {
+      "definitionId": "7d8625b2-3652-4e65-a68b-9cb47f15c33a",
+      "displayName": "Find the Luggage",
+      "description": "Quest description...",
+      "startStageId": "65868df1-f29e-423a-86a0-597e77377943",
+      "stageDefinitions": [
+        {
+          "stageId": "65868df1-f29e-423a-86a0-597e77377943",
+          "displayName": "Start",
+          "nextStageId": null,
+          "nodeDefinitions": [
+            {
+              "nodeId": "028447aa-20cc-4c61-8ce1-57bff9246bf2",
+              "displayName": "Talk to Station Manager",
+              "description": "Talk to the station manager about picking up luggage.",
+              "nodeBehavior": "objective",
+              "objectiveSubtype": "talk",
+              "targetId": "42670c12-cecb-4484-944b-0697935173f9",
+              "count": 1,
+              "optional": false,
+              "dialogueDefinitionId": "5040b419-9f95-44f3-8d25-bcc6d95d8b29",
+              "autoStart": false,
+              "prerequisiteNodeIds": [],
+              "failTargetNodeIds": [],
+              "onEnterActions": [],
+              "onCompleteActions": [],
+              "showInHud": false,
+              "graphPosition": {
+                "x": 80,
+                "y": 80
+              }
+            }
+          ],
+          "entryNodeIds": [
+            "028447aa-20cc-4c61-8ce1-57bff9246bf2"
+          ]
+        }
+      ],
+      "rewardDefinitions": [],
+      "repeatable": false
+    }
+  ],
   "menuDefinitions": [
     {
       "definitionId": "wordlark:menu:start",
