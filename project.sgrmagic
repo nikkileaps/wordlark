@@ -242,6 +242,26 @@
       "interactionBinding": {
         "npcDefinitionId": null
       }
+    },
+    {
+      "definitionId": "d728d566-1d68-49bf-8589-fafae61b3ea9",
+      "displayName": "Talky talky",
+      "startNodeId": "c1254d95-5356-4fa7-ad06-8855c429c620",
+      "nodes": [
+        {
+          "nodeId": "c1254d95-5356-4fa7-ad06-8855c429c620",
+          "displayName": "Start",
+          "text": "Hello!",
+          "next": [],
+          "graphPosition": {
+            "x": 80,
+            "y": 80
+          }
+        }
+      ],
+      "interactionBinding": {
+        "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9"
+      }
     }
   ],
   "questDefinitions": [
@@ -265,7 +285,7 @@
               "targetId": "42670c12-cecb-4484-944b-0697935173f9",
               "count": 1,
               "optional": false,
-              "dialogueDefinitionId": "5040b419-9f95-44f3-8d25-bcc6d95d8b29",
+              "dialogueDefinitionId": "d728d566-1d68-49bf-8589-fafae61b3ea9",
               "autoStart": false,
               "prerequisiteNodeIds": [],
               "failTargetNodeIds": [],

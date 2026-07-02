@@ -490,7 +490,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "51bd9af8-197e-4c63-aa53-bcff067d1366",
+              "layerId": "a3f034a1-d64b-4e9e-8fd7-d78682a1d5be",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -505,7 +505,7 @@
               }
             },
             {
-              "layerId": "12a1b71b-d078-41b6-a0b1-0493a4d486b5",
+              "layerId": "4d60fc21-604b-4af0-a742-fe60b8911751",
               "displayName": "Tall Grass",
               "enabled": true,
               "opacity": 1,
@@ -522,7 +522,7 @@
               "deform": null
             },
             {
-              "layerId": "bce86bf4-84a5-4427-88dc-5ca380509ed8",
+              "layerId": "20733a50-bf24-44a6-8476-5c3a323e4b3d",
               "displayName": "Flowers",
               "enabled": true,
               "opacity": 0.7,
@@ -539,7 +539,7 @@
               "deform": null
             },
             {
-              "layerId": "f64cbd26-c17a-4c4d-b8c6-f809b2a7ebd6",
+              "layerId": "eda04ff1-88af-4e61-ab99-c30db03f90ec",
               "displayName": "Warm Light",
               "enabled": true,
               "opacity": 0.5,
@@ -564,7 +564,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "8f62fe89-2fd3-4550-81f2-10bb1ab76bbf",
+              "layerId": "7a87bc25-02b4-4af0-b40f-4609e5dbe95b",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -579,7 +579,7 @@
               }
             },
             {
-              "layerId": "a3d57a0b-71cd-49d3-b7c3-eebb24228512",
+              "layerId": "16169be2-bb5b-4135-accc-d641a3acca45",
               "displayName": "Grass",
               "enabled": true,
               "opacity": 1,
@@ -596,7 +596,7 @@
               "deform": null
             },
             {
-              "layerId": "39f10348-de9a-48f3-a79f-57f367f91743",
+              "layerId": "826a6f93-97c8-4c48-9bf0-4a5e485ece4d",
               "displayName": "Flowers",
               "enabled": true,
               "opacity": 0.45,
@@ -623,7 +623,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "1e81976c-de0e-4bd2-9f79-cafff354730d",
+              "layerId": "92cedca2-c702-49ee-ba1c-ef06bc6c1070",
               "displayName": "Bark",
               "enabled": true,
               "opacity": 1,
@@ -638,7 +638,7 @@
               }
             },
             {
-              "layerId": "f69fbde9-dc45-4288-839c-05308e18e2bf",
+              "layerId": "841cd93c-14ed-445e-9ad7-792bedf152e4",
               "displayName": "Moss Tint",
               "enabled": true,
               "opacity": 0.45,
@@ -663,7 +663,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "0bbe5a3b-1db5-4803-b46c-7b9af970e123",
+              "layerId": "3b935a9a-b563-42c8-80ed-9786b65281cb",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -678,7 +678,7 @@
               }
             },
             {
-              "layerId": "fe599ece-cc2a-40d4-b8c2-2cf0dd6ebbe4",
+              "layerId": "530d8311-00b0-4ec8-b7d0-e239facd32aa",
               "displayName": "Short Grass",
               "enabled": true,
               "opacity": 1,
@@ -705,7 +705,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "be5de92d-1df3-4758-9330-2c71f8719f7e",
+              "layerId": "728125d3-c4bf-44c3-bbd3-c3c70b65dd9c",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -720,7 +720,7 @@
               }
             },
             {
-              "layerId": "22d76524-d8b1-49de-ba10-fe63c339d6a7",
+              "layerId": "92dab941-e224-49ae-9fed-be10a9f121a0",
               "displayName": "Clover Base",
               "enabled": true,
               "opacity": 0.85,
@@ -737,7 +737,7 @@
               "deform": null
             },
             {
-              "layerId": "a0a9591e-bc2e-401b-a3f2-54219d3a259e",
+              "layerId": "6c0e7f08-090a-4cc0-aab6-d0233bb4b76c",
               "displayName": "Tiny Blooms",
               "enabled": true,
               "opacity": 0.35,
@@ -764,7 +764,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "b3e27d9d-e26e-4e40-9257-f77990a63b08",
+              "layerId": "0983bffe-f6e4-4dcc-8ab4-5465aa8ae29d",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -779,7 +779,7 @@
               }
             },
             {
-              "layerId": "151d1ed2-4f76-4268-9222-d5fb048ef70f",
+              "layerId": "e1fdb687-262b-415c-8d9d-07ba5b307ac5",
               "displayName": "Painterly Tufts",
               "enabled": true,
               "opacity": 0.95,
@@ -796,7 +796,7 @@
               "deform": null
             },
             {
-              "layerId": "84466c36-f8ba-4035-906c-a5371cab29b2",
+              "layerId": "dbcd0f2b-683f-4469-a3c7-2d017abcaa31",
               "displayName": "Tiny Blooms",
               "enabled": true,
               "opacity": 0.2,
@@ -813,7 +813,7 @@
               "deform": null
             },
             {
-              "layerId": "c179b1ff-4cf9-4250-99fe-f69816cb08d2",
+              "layerId": "e4e1522e-d433-4155-b076-fc651638074c",
               "displayName": "Warm Lift",
               "enabled": true,
               "opacity": 0.35,
@@ -12011,6 +12011,26 @@
       "interactionBinding": {
         "npcDefinitionId": null
       }
+    },
+    {
+      "definitionId": "d728d566-1d68-49bf-8589-fafae61b3ea9",
+      "displayName": "Talky talky",
+      "startNodeId": "c1254d95-5356-4fa7-ad06-8855c429c620",
+      "nodes": [
+        {
+          "nodeId": "c1254d95-5356-4fa7-ad06-8855c429c620",
+          "displayName": "Start",
+          "text": "Hello!",
+          "next": [],
+          "graphPosition": {
+            "x": 80,
+            "y": 80
+          }
+        }
+      ],
+      "interactionBinding": {
+        "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9"
+      }
     }
   ],
   "questDefinitions": [
@@ -12034,7 +12054,7 @@
               "targetId": "42670c12-cecb-4484-944b-0697935173f9",
               "count": 1,
               "optional": false,
-              "dialogueDefinitionId": "5040b419-9f95-44f3-8d25-bcc6d95d8b29",
+              "dialogueDefinitionId": "d728d566-1d68-49bf-8589-fafae61b3ea9",
               "autoStart": false,
               "prerequisiteNodeIds": [],
               "failTargetNodeIds": [],
