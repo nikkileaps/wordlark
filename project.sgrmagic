@@ -145,7 +145,29 @@
       }
     }
   },
-  "spellDefinitions": [],
+  "spellDefinitions": [
+    {
+      "definitionId": "28fbc226-3ada-4cbe-bf86-57001e5e7c89",
+      "displayName": "Finder",
+      "description": "Spell description...",
+      "iconAssetDefinitionId": null,
+      "tags": [],
+      "castable": {
+        "id": "spell",
+        "args": {
+          "batteryCost": 10,
+          "chaosBase": 0
+        }
+      },
+      "effects": [
+        {
+          "effectId": "a5831041-bda3-429d-a253-367cbb2f2bde",
+          "type": "event"
+        }
+      ],
+      "chaosEffects": []
+    }
+  ],
   "itemDefinitions": [
     {
       "definitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
@@ -290,7 +312,13 @@
               "prerequisiteNodeIds": [],
               "failTargetNodeIds": [],
               "onEnterActions": [],
-              "onCompleteActions": [],
+              "onCompleteActions": [
+                {
+                  "type": "setFlag",
+                  "targetId": "foo",
+                  "value": "bar"
+                }
+              ],
               "showInHud": false,
               "graphPosition": {
                 "x": 80,

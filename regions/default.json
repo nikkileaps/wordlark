@@ -71,8 +71,54 @@
   "environmentBinding": {
     "defaultEnvironmentId": "wordlark:environment:default"
   },
-  "areas": [],
-  "behaviors": [],
+  "areas": [
+    {
+      "areaId": "region-area-1783038665540-1",
+      "displayName": "Area 1",
+      "lorePageId": null,
+      "parentAreaId": null,
+      "kind": "zone",
+      "bounds": {
+        "kind": "box",
+        "center": [
+          13,
+          6,
+          -8
+        ],
+        "size": [
+          6,
+          12,
+          4
+        ]
+      }
+    }
+  ],
+  "behaviors": [
+    {
+      "behaviorId": "region-behavior-1783038574090-1",
+      "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9",
+      "displayName": "Testy McTesterson Behavior",
+      "tasks": [
+        {
+          "taskId": "region-behavior-task-1783038574090-1",
+          "displayName": "Move After Intro",
+          "description": null,
+          "targetAreaId": "region-area-1783038665540-1",
+          "currentActivity": "idle",
+          "currentGoal": "idle",
+          "activation": {
+            "questDefinitionId": null,
+            "questStageId": null,
+            "worldFlagEquals": {
+              "key": "foo",
+              "valueType": "string",
+              "value": "bar"
+            }
+          }
+        }
+      ]
+    }
+  ],
   "landscape": {
     "enabled": true,
     "size": 100,
