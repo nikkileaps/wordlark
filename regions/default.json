@@ -12,62 +12,6 @@
     },
     "placementPolicy": "world-grid"
   },
-  "scene": {
-    "folders": [],
-    "placedAssets": [],
-    "playerPresence": null,
-    "npcPresences": [
-      {
-        "presenceId": "119dc389-9217-469f-93fc-1f79b5c0afb0",
-        "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9",
-        "shaderOverrides": [],
-        "shaderParameterOverrides": [],
-        "transform": {
-          "position": [
-            0,
-            0,
-            0
-          ],
-          "rotation": [
-            0,
-            0,
-            0
-          ],
-          "scale": [
-            1,
-            1,
-            1
-          ]
-        }
-      }
-    ],
-    "itemPresences": [
-      {
-        "presenceId": "f089bb66-f05f-4b9c-8a84-b9e2ef2f45ee",
-        "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
-        "quantity": 1,
-        "shaderOverrides": [],
-        "shaderParameterOverrides": [],
-        "transform": {
-          "position": [
-            6.52598755829983,
-            1.0157776627494237,
-            0
-          ],
-          "rotation": [
-            0,
-            0,
-            0
-          ],
-          "scale": [
-            1,
-            1,
-            1
-          ]
-        }
-      }
-    ]
-  },
   "environmentBinding": {
     "defaultEnvironmentId": "wordlark:environment:default"
   },
@@ -145,5 +89,7 @@
   },
   "markers": [],
   "gameplayPlacements": [],
-  "lorePageId": "lore.entities.npcs.bippity-roo"
+  "lorePageId": "lore.entities.npcs.bippity-roo",
+  "placedAssets": [],
+  "folders": []
 }

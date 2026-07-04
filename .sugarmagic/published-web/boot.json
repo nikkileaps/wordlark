@@ -128,62 +128,6 @@
         },
         "placementPolicy": "world-grid"
       },
-      "scene": {
-        "folders": [],
-        "placedAssets": [],
-        "playerPresence": null,
-        "npcPresences": [
-          {
-            "presenceId": "119dc389-9217-469f-93fc-1f79b5c0afb0",
-            "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9",
-            "shaderOverrides": [],
-            "shaderParameterOverrides": [],
-            "transform": {
-              "position": [
-                0,
-                0,
-                0
-              ],
-              "rotation": [
-                0,
-                0,
-                0
-              ],
-              "scale": [
-                1,
-                1,
-                1
-              ]
-            }
-          }
-        ],
-        "itemPresences": [
-          {
-            "presenceId": "f089bb66-f05f-4b9c-8a84-b9e2ef2f45ee",
-            "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
-            "quantity": 1,
-            "shaderOverrides": [],
-            "shaderParameterOverrides": [],
-            "transform": {
-              "position": [
-                6.52598755829983,
-                1.0157776627494237,
-                0
-              ],
-              "rotation": [
-                0,
-                0,
-                0
-              ],
-              "scale": [
-                1,
-                1,
-                1
-              ]
-            }
-          }
-        ]
-      },
       "environmentBinding": {
         "defaultEnvironmentId": "wordlark:environment:default"
       },
@@ -261,7 +205,9 @@
       },
       "markers": [],
       "gameplayPlacements": [],
-      "lorePageId": "lore.entities.npcs.bippity-roo"
+      "lorePageId": "lore.entities.npcs.bippity-roo",
+      "placedAssets": [],
+      "folders": []
     },
     {
       "identity": {
@@ -276,13 +222,6 @@
           "y": 0
         },
         "placementPolicy": "world-grid"
-      },
-      "scene": {
-        "folders": [],
-        "placedAssets": [],
-        "playerPresence": null,
-        "npcPresences": [],
-        "itemPresences": []
       },
       "environmentBinding": {
         "defaultEnvironmentId": "wordlark:environment:default"
@@ -334,9 +273,120 @@
       },
       "markers": [],
       "gameplayPlacements": [],
-      "lorePageId": null
+      "lorePageId": null,
+      "placedAssets": [],
+      "folders": []
     }
   ],
+  "scenes": [
+    {
+      "sceneId": "scene:default",
+      "sceneOrder": 0,
+      "displayName": "Arrival",
+      "description": "",
+      "notes": "",
+      "unlockCondition": "always",
+      "environmentOverride": null,
+      "audioOverride": null,
+      "transitionConfig": {
+        "titleText": "The Arrival",
+        "subtitleText": "Getting there is the battle",
+        "durationMs": 2500,
+        "fadeStyle": "black"
+      },
+      "regionOverlays": {
+        "default": {
+          "itemPresences": [
+            {
+              "presenceId": "f089bb66-f05f-4b9c-8a84-b9e2ef2f45ee",
+              "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+              "quantity": 1,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  6.52598755829983,
+                  1.0157776627494237,
+                  0
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            }
+          ],
+          "npcPresences": [
+            {
+              "presenceId": "119dc389-9217-469f-93fc-1f79b5c0afb0",
+              "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9",
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  0,
+                  0,
+                  0
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            }
+          ],
+          "playerPresence": null,
+          "placedAssets": [],
+          "folders": []
+        }
+      }
+    },
+    {
+      "sceneId": "scene-1783109660782-1",
+      "sceneOrder": 1,
+      "displayName": "Finding that Guy",
+      "description": "",
+      "notes": "",
+      "unlockCondition": {
+        "kind": "questComplete",
+        "questDefinitionId": "7d8625b2-3652-4e65-a68b-9cb47f15c33a"
+      },
+      "environmentOverride": null,
+      "audioOverride": null,
+      "transitionConfig": {
+        "titleText": "Finding Guy",
+        "subtitleText": "Just Keep Swimming",
+        "durationMs": 2500,
+        "fadeStyle": "black"
+      },
+      "regionOverlays": {}
+    },
+    {
+      "sceneId": "scene-1783181377160-1",
+      "sceneOrder": 2,
+      "displayName": "Meeting Agatha",
+      "description": "",
+      "notes": "",
+      "unlockCondition": "always",
+      "environmentOverride": null,
+      "audioOverride": null,
+      "transitionConfig": null,
+      "regionOverlays": {}
+    }
+  ],
+  "scenesUiLabel": "Scene",
   "activeRegionId": "default",
   "activeEnvironmentId": null,
   "contentLibrary": {
@@ -536,7 +586,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "7de006f1-8995-4e67-b4cd-c9d2fb2244b3",
+              "layerId": "cb192297-5c8a-4e7a-ba01-93ea7d7779a5",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -551,7 +601,7 @@
               }
             },
             {
-              "layerId": "1888eda3-1314-4488-80fe-3cf502240576",
+              "layerId": "cc9f4923-96b9-4468-887b-bd15aedb2724",
               "displayName": "Tall Grass",
               "enabled": true,
               "opacity": 1,
@@ -568,7 +618,7 @@
               "deform": null
             },
             {
-              "layerId": "c1468448-e110-4c80-8c3d-4dc508b98756",
+              "layerId": "b43efe00-a715-4b54-837a-1ef6e1a2e771",
               "displayName": "Flowers",
               "enabled": true,
               "opacity": 0.7,
@@ -585,7 +635,7 @@
               "deform": null
             },
             {
-              "layerId": "08afb848-07f6-41fc-8afa-a14edf5df6f6",
+              "layerId": "af4065d7-362d-4897-8ac0-9ddd73721174",
               "displayName": "Warm Light",
               "enabled": true,
               "opacity": 0.5,
@@ -610,7 +660,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "a4c85314-510e-4f7c-b600-33cbcf8c5877",
+              "layerId": "f76e2aee-c170-483e-a489-54b768a46c79",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -625,7 +675,7 @@
               }
             },
             {
-              "layerId": "9a2a3f20-e07c-4c47-92e0-0668cb6edca9",
+              "layerId": "9654d8e0-960c-4913-aa57-570691c78937",
               "displayName": "Grass",
               "enabled": true,
               "opacity": 1,
@@ -642,7 +692,7 @@
               "deform": null
             },
             {
-              "layerId": "12980e69-a909-4f34-a296-10c0a35a4690",
+              "layerId": "925dcf85-5b37-4fcb-9abe-74321e0cf84a",
               "displayName": "Flowers",
               "enabled": true,
               "opacity": 0.45,
@@ -669,7 +719,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "45a46456-87d8-4d6f-94fb-07494a1ba398",
+              "layerId": "81bd41ca-29e4-4dfd-a0d5-ab16a443961d",
               "displayName": "Bark",
               "enabled": true,
               "opacity": 1,
@@ -684,7 +734,7 @@
               }
             },
             {
-              "layerId": "67e8f35f-6765-41b1-b4bc-df02303bcdfa",
+              "layerId": "2f68aafa-29dc-4746-985e-a0146ce95930",
               "displayName": "Moss Tint",
               "enabled": true,
               "opacity": 0.45,
@@ -709,7 +759,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "1aa5d6bb-5b86-4b12-83f4-4bbc7401f00e",
+              "layerId": "3af49e86-cc0e-42b5-a67d-a7f48fe03be3",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -724,7 +774,7 @@
               }
             },
             {
-              "layerId": "74c6280e-74f4-461e-b150-8209b8a6af68",
+              "layerId": "d1de53e6-2b2b-4968-9932-201f2ce4e21e",
               "displayName": "Short Grass",
               "enabled": true,
               "opacity": 1,
@@ -751,7 +801,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "59c224ec-a72a-4918-a759-48918d352c4d",
+              "layerId": "22edb88b-15dc-410c-be12-9b1fd6515ebc",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -766,7 +816,7 @@
               }
             },
             {
-              "layerId": "1be53712-e092-442d-994e-fd4fe77e32f1",
+              "layerId": "c1c024b7-5f5b-4c65-b58d-e3c1eea9f13d",
               "displayName": "Clover Base",
               "enabled": true,
               "opacity": 0.85,
@@ -783,7 +833,7 @@
               "deform": null
             },
             {
-              "layerId": "c3991c57-4d58-4749-b590-7a020ddeffc5",
+              "layerId": "5afc6263-f434-4ac0-9fc2-62c80b5a9b17",
               "displayName": "Tiny Blooms",
               "enabled": true,
               "opacity": 0.35,
@@ -810,7 +860,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "c9700e29-ba8e-4210-803f-0bc85e9b6c60",
+              "layerId": "f7397df9-04e7-4cf9-b283-f8a50ffff9a5",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -825,7 +875,7 @@
               }
             },
             {
-              "layerId": "3ebef1b1-95de-4557-91d0-a97499403a3e",
+              "layerId": "79ee3435-3c7f-422b-b82e-038e4d5c90af",
               "displayName": "Painterly Tufts",
               "enabled": true,
               "opacity": 0.95,
@@ -842,7 +892,7 @@
               "deform": null
             },
             {
-              "layerId": "e8fd80fd-7dd5-4aa1-a1b2-6336ac91f45c",
+              "layerId": "3521f532-7731-42a4-9bf3-63c8889cbc73",
               "displayName": "Tiny Blooms",
               "enabled": true,
               "opacity": 0.2,
@@ -859,7 +909,7 @@
               "deform": null
             },
             {
-              "layerId": "eb83d77b-f566-4ffd-942c-7a88d5ccd5f5",
+              "layerId": "6be10eb9-fa5c-4f92-a62c-08eda1096e2b",
               "displayName": "Warm Lift",
               "enabled": true,
               "opacity": 0.35,
@@ -12008,6 +12058,31 @@
           "args": {}
         }
       }
+    },
+    {
+      "definitionId": "04d34277-a817-4e52-86a6-877fa7386594",
+      "displayName": "Newspaper",
+      "category": "misc",
+      "inventory": {
+        "stackable": false,
+        "maxStack": 1,
+        "giftable": false
+      },
+      "presentation": {
+        "modelAssetDefinitionId": null,
+        "thumbnailAssetPath": null
+      },
+      "interactionView": {
+        "kind": "none",
+        "title": "",
+        "body": "",
+        "consumeLabel": "Use",
+        "documentDefinitionId": null,
+        "castableInvocation": {
+          "id": "",
+          "args": {}
+        }
+      }
     }
   ],
   "documentDefinitions": [],
@@ -12129,14 +12204,13 @@
               "onEnterActions": [],
               "onCompleteActions": [
                 {
-                  "type": "setFlag",
-                  "targetId": "foo",
-                  "value": "bar"
+                  "type": "advanceToNextScene",
+                  "targetId": "scene-1783109660782-1"
                 }
               ],
               "showInHud": false,
               "graphPosition": {
-                "x": 80,
+                "x": 80.66666666666667,
                 "y": 80
               }
             }

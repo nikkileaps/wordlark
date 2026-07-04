@@ -193,6 +193,31 @@
           "args": {}
         }
       }
+    },
+    {
+      "definitionId": "04d34277-a817-4e52-86a6-877fa7386594",
+      "displayName": "Newspaper",
+      "category": "misc",
+      "inventory": {
+        "stackable": false,
+        "maxStack": 1,
+        "giftable": false
+      },
+      "presentation": {
+        "modelAssetDefinitionId": null,
+        "thumbnailAssetPath": null
+      },
+      "interactionView": {
+        "kind": "none",
+        "title": "",
+        "body": "",
+        "consumeLabel": "Use",
+        "documentDefinitionId": null,
+        "castableInvocation": {
+          "id": "",
+          "args": {}
+        }
+      }
     }
   ],
   "documentDefinitions": [],
@@ -314,14 +339,13 @@
               "onEnterActions": [],
               "onCompleteActions": [
                 {
-                  "type": "setFlag",
-                  "targetId": "foo",
-                  "value": "bar"
+                  "type": "advanceToNextScene",
+                  "targetId": "scene-1783109660782-1"
                 }
               ],
               "showInHud": false,
               "graphPosition": {
-                "x": 80,
+                "x": 80.66666666666667,
                 "y": 80
               }
             }
@@ -877,5 +901,114 @@
     ]
   },
   "majorVersion": 1,
-  "defaultGameSavePayload": null
+  "defaultGameSavePayload": null,
+  "scenes": [
+    {
+      "sceneId": "scene:default",
+      "sceneOrder": 0,
+      "displayName": "Arrival",
+      "description": "",
+      "notes": "",
+      "unlockCondition": "always",
+      "environmentOverride": null,
+      "audioOverride": null,
+      "transitionConfig": {
+        "titleText": "The Arrival",
+        "subtitleText": "Getting there is the battle",
+        "durationMs": 2500,
+        "fadeStyle": "black"
+      },
+      "regionOverlays": {
+        "default": {
+          "itemPresences": [
+            {
+              "presenceId": "f089bb66-f05f-4b9c-8a84-b9e2ef2f45ee",
+              "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+              "quantity": 1,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  6.52598755829983,
+                  1.0157776627494237,
+                  0
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            }
+          ],
+          "npcPresences": [
+            {
+              "presenceId": "119dc389-9217-469f-93fc-1f79b5c0afb0",
+              "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9",
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  0,
+                  0,
+                  0
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            }
+          ],
+          "playerPresence": null,
+          "placedAssets": [],
+          "folders": []
+        }
+      }
+    },
+    {
+      "sceneId": "scene-1783109660782-1",
+      "sceneOrder": 1,
+      "displayName": "Finding that Guy",
+      "description": "",
+      "notes": "",
+      "unlockCondition": {
+        "kind": "questComplete",
+        "questDefinitionId": "7d8625b2-3652-4e65-a68b-9cb47f15c33a"
+      },
+      "environmentOverride": null,
+      "audioOverride": null,
+      "transitionConfig": {
+        "titleText": "Finding Guy",
+        "subtitleText": "Just Keep Swimming",
+        "durationMs": 2500,
+        "fadeStyle": "black"
+      },
+      "regionOverlays": {}
+    },
+    {
+      "sceneId": "scene-1783181377160-1",
+      "sceneOrder": 2,
+      "displayName": "Meeting Agatha",
+      "description": "",
+      "notes": "",
+      "unlockCondition": "always",
+      "environmentOverride": null,
+      "audioOverride": null,
+      "transitionConfig": null,
+      "regionOverlays": {}
+    }
+  ],
+  "scenesUiLabel": "Scene"
 }

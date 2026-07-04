@@ -12,13 +12,6 @@
     },
     "placementPolicy": "world-grid"
   },
-  "scene": {
-    "folders": [],
-    "placedAssets": [],
-    "playerPresence": null,
-    "npcPresences": [],
-    "itemPresences": []
-  },
   "environmentBinding": {
     "defaultEnvironmentId": "wordlark:environment:default"
   },
@@ -69,5 +62,7 @@
   },
   "markers": [],
   "gameplayPlacements": [],
-  "lorePageId": null
+  "lorePageId": null,
+  "placedAssets": [],
+  "folders": []
 }
