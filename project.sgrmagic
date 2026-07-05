@@ -111,7 +111,9 @@
         "supabaseUrl": "https://fhhcmtbtozlxaboqhrla.supabase.co",
         "supabaseAnonKey": "sb_publishable_XgdRpHfF_nDBdYLc4x1mTg_0CPfYcVZ",
         "allowAnonymous": false,
-        "enableLogin": true
+        "enableLogin": true,
+        "sessionCookieDomain": ".wordlarkhollow.com",
+        "playPageUrl": "https://wordlarkhollow.com/play"
       }
     }
   ],
