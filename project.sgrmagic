@@ -621,6 +621,34 @@
             },
             "children": [],
             "visibility": "always"
+          },
+          {
+            "nodeId": "ui-node:button-1783293218174-1",
+            "kind": "button",
+            "styleId": "button-primary",
+            "layout": {
+              "direction": "column",
+              "gap": 12,
+              "padding": 12,
+              "align": "center",
+              "justify": "center",
+              "width": "auto",
+              "height": "auto"
+            },
+            "anchor": null,
+            "props": {
+              "text": {
+                "kind": "literal",
+                "value": "Exit"
+              }
+            },
+            "events": {
+              "onClick": {
+                "action": "exit-to-site"
+              }
+            },
+            "children": [],
+            "visibility": "always"
           }
         ],
         "visibility": "always"
