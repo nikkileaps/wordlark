@@ -485,6 +485,34 @@
             "events": {},
             "children": [],
             "visibility": "always"
+          },
+          {
+            "nodeId": "ui-node:button-1783269457100-1",
+            "kind": "button",
+            "styleId": "button-primary",
+            "layout": {
+              "direction": "column",
+              "gap": 12,
+              "padding": 12,
+              "align": "center",
+              "justify": "center",
+              "width": "auto",
+              "height": "auto"
+            },
+            "anchor": null,
+            "props": {
+              "text": {
+                "kind": "literal",
+                "value": "Episodes"
+              }
+            },
+            "events": {
+              "onClick": {
+                "action": "open-episodes"
+              }
+            },
+            "children": [],
+            "visibility": "always"
           }
         ],
         "visibility": "always"
@@ -1010,5 +1038,20 @@
       "regionOverlays": {}
     }
   ],
-  "scenesUiLabel": "Scene"
+  "scenesUiLabel": "Scene",
+  "musicBindings": {
+    "menuMusicId": "c1db7287-c29f-4aa8-aaef-ed8705deefdf",
+    "defaultBackgroundMusicId": null,
+    "creditsThemeMusicId": "c1db7287-c29f-4aa8-aaef-ed8705deefdf"
+  },
+  "creditsDefinition": {
+    "sections": [
+      {
+        "heading": "Writer",
+        "lines": [
+          "Nicole Jacobson"
+        ]
+      }
+    ]
+  }
 }
