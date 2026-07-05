@@ -133,8 +133,13 @@ jobs:
           # 2026-07-05 — ship the project's file-backed assets (audio,
           # models, textures); boot.json's assetSources maps each
           # relativeAssetPath to /assets/... on the deployed site.
+          # dist/assets/ already exists (Vite bundle output), so MERGE
+          # contents (`assets/.`) — `cp -R assets <existing-dir>` would
+          # nest a second assets/ level inside it (shipped one deploy
+          # at /assets/assets/... before this was caught).
           if [ -d assets ]; then
-            cp -R assets .sugarmagic/published-web/dist/assets
+            mkdir -p .sugarmagic/published-web/dist/assets
+            cp -R assets/. .sugarmagic/published-web/dist/assets/
           fi
       - name: Deploy to Netlify
         env:
