@@ -70,6 +70,15 @@
         },
         "deployHistory": [
           {
+            "runId": 28758282340,
+            "runUrl": "https://github.com/nikkileaps/wordlark/actions/runs/28758282340",
+            "ref": "main",
+            "headSha": "4d46c4933dafb03eff2cb5cbafdc1e099c815a9d",
+            "dispatchedAt": "2026-07-05T23:16:01.576Z",
+            "status": "queued",
+            "conclusion": null
+          },
+          {
             "runId": 28249506230,
             "runUrl": "https://github.com/nikkileaps/wordlark/actions/runs/28249506230",
             "ref": "main",
