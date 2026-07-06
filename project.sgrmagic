@@ -129,7 +129,7 @@
   "contentLibraryId": "wordlark:content-library",
   "playerDefinition": {
     "definitionId": "wordlark:player:default",
-    "displayName": "Mimm",
+    "displayName": "Mim",
     "physicalProfile": {
       "height": 1.8,
       "radius": 0.35,
@@ -148,7 +148,7 @@
       "blockedSpellTags": []
     },
     "presentation": {
-      "modelAssetDefinitionId": null,
+      "modelAssetDefinitionId": "wordlark:character-model:mim-game-ready-v1",
       "animationAssetBindings": {
         "idle": null,
         "walk": null,
