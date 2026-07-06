@@ -8,6 +8,10 @@ This directory is the per-game artifact root that the GHA
 ## Generated on save
 
 - `boot.json` — per-game runtime payload (schemaVersion 1). Regenerated every time you save the project.
+- `_headers` — Netlify cache rules for the deployed site
+  (authored assets cache immutably — their URLs are
+  version-stamped per deploy; boot.json always
+  revalidates). Copied into `dist/` at deploy time.
 - `README.md` — this file.
 
 ## Generated at deploy time (gitignored)

@@ -130,6 +130,20 @@ jobs:
           mkdir -p .sugarmagic/published-web/dist
           cp -R sugarmagic/targets/web/dist/. .sugarmagic/published-web/dist/
           cp .sugarmagic/published-web/boot.json .sugarmagic/published-web/dist/boot.json
+          # Plan 060 — stamp every assetSources URL with the deployed
+          # sha. New deploy -> new URLs -> browsers fetch fresh with
+          # no manual cache busting; unchanged deploys keep serving
+          # from cache. Stamping the DIST copy only — the committed
+          # boot.json stays clean. Pairs with the immutable
+          # Cache-Control in _headers.
+          jq --arg v "$GITHUB_SHA" '.assetSources |= with_entries(.value += "?v=" + $v)' \
+            .sugarmagic/published-web/dist/boot.json > .sugarmagic/published-web/dist/boot.json.tmp
+          mv .sugarmagic/published-web/dist/boot.json.tmp .sugarmagic/published-web/dist/boot.json
+          # Plan 060 — cache headers for the deployed site (authored
+          # assets get immutable caching; URLs are version-stamped).
+          if [ -f .sugarmagic/published-web/_headers ]; then
+            cp .sugarmagic/published-web/_headers .sugarmagic/published-web/dist/_headers
+          fi
           # 2026-07-05 — ship the project's file-backed assets (audio,
           # models, textures); boot.json's assetSources maps each
           # relativeAssetPath to /assets/... on the deployed site.
