@@ -73,8 +73,27 @@
         "displayName": "Base",
         "slotName": "Base",
         "surface": {
-          "kind": "reference",
-          "surfaceDefinitionId": "wordlark:surface:surface-1782849266547-1"
+          "kind": "inline",
+          "surface": {
+            "layers": [
+              {
+                "layerId": "3e60dd8e-bfe4-4f2e-8c34-53dc58455355",
+                "displayName": "Base",
+                "enabled": true,
+                "opacity": 1,
+                "mask": {
+                  "kind": "always"
+                },
+                "kind": "appearance",
+                "blendMode": "base",
+                "content": {
+                  "kind": "color",
+                  "color": 6064730
+                }
+              }
+            ],
+            "context": "universal"
+          }
         },
         "tilingScale": null
       }
@@ -91,5 +110,6 @@
   "gameplayPlacements": [],
   "lorePageId": "lore.entities.npcs.bippity-roo",
   "placedAssets": [],
-  "folders": []
+  "folders": [],
+  "layoutSketch": null
 }

@@ -129,7 +129,7 @@
   "contentLibraryId": "wordlark:content-library",
   "playerDefinition": {
     "definitionId": "wordlark:player:default",
-    "displayName": "Mim",
+    "displayName": "Mimm",
     "physicalProfile": {
       "height": 1.8,
       "radius": 0.35,
@@ -148,11 +148,11 @@
       "blockedSpellTags": []
     },
     "presentation": {
-      "modelAssetDefinitionId": "wordlark:character-model:mim-game-ready-v1",
+      "modelAssetDefinitionId": "wordlark:character-model:mim-game-ready-v1-rigged",
       "animationAssetBindings": {
-        "idle": null,
-        "walk": null,
-        "run": null
+        "idle": "wordlark:character-animation:mim-game-ready-v1-Generated_Idle",
+        "walk": "wordlark:character-animation:mim-game-ready-v1-Generated_Walk",
+        "run": "wordlark:character-animation:mim-game-ready-v1-Generated_Run"
       }
     }
   },
@@ -977,6 +977,7 @@
       "description": "",
       "notes": "",
       "unlockCondition": "always",
+      "startingRegionId": "arrival-station",
       "environmentOverride": null,
       "audioOverride": null,
       "transitionConfig": {
@@ -1039,8 +1040,306 @@
             }
           ],
           "playerPresence": null,
-          "placedAssets": [],
-          "folders": []
+          "placedAssets": [
+            {
+              "instanceId": "placed-asset:dock-platform-small-1783639128300-1",
+              "assetDefinitionId": "asset:dock-platform-small",
+              "displayName": "dock-platform-small",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  0,
+                  0.5,
+                  0
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            }
+          ],
+          "folders": [],
+          "assetAppearanceOverrides": {}
+        },
+        "arrival-station": {
+          "itemPresences": [],
+          "npcPresences": [],
+          "playerPresence": {
+            "presenceId": "d009bfe5-f0bd-4284-8cd6-64f388f811e6",
+            "transform": {
+              "position": [
+                0,
+                0,
+                26.55021855368706
+              ],
+              "rotation": [
+                0,
+                -3.0840797787920757,
+                0
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ]
+            }
+          },
+          "placedAssets": [
+            {
+              "instanceId": "placed-asset:dock_previz_v2-1784178409623-1",
+              "assetDefinitionId": "asset:dock_previz_v2",
+              "displayName": "dock_previz_v2",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  0,
+                  -0.03697909459484938,
+                  20.52763049883001
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:test_tree_7-1784179928805-1",
+              "assetDefinitionId": "asset:test_tree_7",
+              "displayName": "test_tree_7",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -10.596402196138467,
+                  0.5,
+                  14.596905747755159
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:dryad_statue_previz_v3-1784231488689-1",
+              "assetDefinitionId": "asset:dryad_statue_previz_v3",
+              "displayName": "dryad_statue_previz_v3",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "surfaceSlotOverrides": [
+                {
+                  "slotName": "stone",
+                  "surface": {
+                    "kind": "inline",
+                    "surface": {
+                      "layers": [
+                        {
+                          "layerId": "4aaf68bf-3426-4a96-8d93-bc5a6e7844bb",
+                          "displayName": "Base",
+                          "enabled": true,
+                          "opacity": 1,
+                          "mask": {
+                            "kind": "always"
+                          },
+                          "kind": "appearance",
+                          "blendMode": "base",
+                          "content": {
+                            "kind": "color",
+                            "color": 8026752
+                          }
+                        },
+                        {
+                          "layerId": "0843c4e5-6bea-45dd-a51d-9c1e30d89ec0",
+                          "displayName": "Appearance",
+                          "enabled": true,
+                          "opacity": 0.8,
+                          "mask": {
+                            "kind": "world-position-gradient",
+                            "axis": "y",
+                            "min": 0.61,
+                            "max": 0.79,
+                            "fade": 0.23,
+                            "space": "local"
+                          },
+                          "kind": "appearance",
+                          "blendMode": "mix",
+                          "content": {
+                            "kind": "color",
+                            "color": 13749959
+                          }
+                        }
+                      ],
+                      "context": "universal"
+                    }
+                  }
+                }
+              ],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -2.160809417187729,
+                  -3.4946382236008393,
+                  25.31321219934368
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:rock_formation_1-1784233294715-1",
+              "assetDefinitionId": "asset:rock_formation_1",
+              "displayName": "rock_formation_1",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -8.152521717285504,
+                  -0.21326563862501258,
+                  15.281124735492412
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  2.0211986374453446,
+                  2.0211986374453446,
+                  2.0211986374453446
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:dryad_statue_previz_v3-1784237107244-1",
+              "assetDefinitionId": "asset:dryad_statue_previz_v3",
+              "displayName": "dryad_statue_previz_v3",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  1.413266725976436,
+                  -3.5283838670795884,
+                  25.237791737043175
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "surfaceSlotOverrides": [
+                {
+                  "slotName": "stone",
+                  "surface": {
+                    "kind": "inline",
+                    "surface": {
+                      "layers": [
+                        {
+                          "layerId": "f529812c-4905-4067-85f9-903d967bba0a",
+                          "displayName": "Base",
+                          "enabled": true,
+                          "opacity": 1,
+                          "mask": {
+                            "kind": "always"
+                          },
+                          "kind": "appearance",
+                          "blendMode": "base",
+                          "content": {
+                            "kind": "color",
+                            "color": 8026752
+                          }
+                        },
+                        {
+                          "layerId": "6a02de75-e5b9-421a-ac5d-844dbfe635cd",
+                          "displayName": "Appearance",
+                          "enabled": true,
+                          "opacity": 0.8,
+                          "mask": {
+                            "kind": "world-position-gradient",
+                            "axis": "y",
+                            "min": 0.73,
+                            "max": 0.83,
+                            "fade": 0.29,
+                            "space": "local"
+                          },
+                          "kind": "appearance",
+                          "blendMode": "mix",
+                          "content": {
+                            "kind": "color",
+                            "color": 13749959
+                          }
+                        }
+                      ],
+                      "context": "universal"
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "folders": [
+            {
+              "folderId": "scene-folder-1783830567607-1",
+              "displayName": "shrine",
+              "parentFolderId": null
+            },
+            {
+              "folderId": "scene-folder-1783830815490-1",
+              "displayName": "lost resonance",
+              "parentFolderId": null
+            },
+            {
+              "folderId": "scene-folder-1783830960362-2",
+              "displayName": "dock",
+              "parentFolderId": null
+            }
+          ],
+          "assetAppearanceOverrides": {}
         }
       }
     },
@@ -1054,6 +1353,7 @@
         "kind": "questComplete",
         "questDefinitionId": "7d8625b2-3652-4e65-a68b-9cb47f15c33a"
       },
+      "startingRegionId": null,
       "environmentOverride": null,
       "audioOverride": null,
       "transitionConfig": {
@@ -1071,6 +1371,7 @@
       "description": "",
       "notes": "",
       "unlockCondition": "always",
+      "startingRegionId": null,
       "environmentOverride": null,
       "audioOverride": null,
       "transitionConfig": null,

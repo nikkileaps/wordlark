@@ -4,7 +4,490 @@
     "schema": "ContentLibrary",
     "version": 6
   },
-  "assetDefinitions": [],
+  "assetDefinitions": [
+    {
+      "definitionId": "asset:cliff-crag",
+      "definitionKind": "asset",
+      "displayName": "cliff-crag",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "Rock",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "RockDark",
+          "slotIndex": 1,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "source": {
+        "relativeAssetPath": "assets/imported/cliff-crag.glb",
+        "fileName": "cliff-crag.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:dock-platform-small",
+      "definitionKind": "asset",
+      "displayName": "dock-platform-small",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "WoodLight",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "WoodDark",
+          "slotIndex": 1,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "source": {
+        "relativeAssetPath": "assets/imported/dock-platform-small.glb",
+        "fileName": "dock-platform-small.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:dock-platform",
+      "definitionKind": "asset",
+      "displayName": "dock-platform",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "WoodLight",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "WoodDark",
+          "slotIndex": 1,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "source": {
+        "relativeAssetPath": "assets/imported/dock-platform.glb",
+        "fileName": "dock-platform.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:lavender-plant",
+      "definitionKind": "asset",
+      "displayName": "lavender-plant",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "Foliage",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "Stem",
+          "slotIndex": 1,
+          "surface": null
+        },
+        {
+          "slotName": "Bloom",
+          "slotIndex": 2,
+          "surface": null
+        },
+        {
+          "slotName": "BloomDeep",
+          "slotIndex": 3,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "source": {
+        "relativeAssetPath": "assets/imported/lavender-plant.glb",
+        "fileName": "lavender-plant.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:lavender-plant-b",
+      "definitionKind": "asset",
+      "displayName": "lavender-plant-b",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "Foliage",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "Stem",
+          "slotIndex": 1,
+          "surface": null
+        },
+        {
+          "slotName": "Bloom",
+          "slotIndex": 2,
+          "surface": null
+        },
+        {
+          "slotName": "BloomDeep",
+          "slotIndex": 3,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "source": {
+        "relativeAssetPath": "assets/imported/lavender-plant-b.glb",
+        "fileName": "lavender-plant-b.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:cliff-edge-b",
+      "definitionKind": "asset",
+      "displayName": "cliff-edge-b",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "Rock",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "Grass",
+          "slotIndex": 1,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "source": {
+        "relativeAssetPath": "assets/imported/cliff-edge-b.glb",
+        "fileName": "cliff-edge-b.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:cliff-edge-a",
+      "definitionKind": "asset",
+      "displayName": "cliff-edge-a",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "Rock",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "Grass",
+          "slotIndex": 1,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "source": {
+        "relativeAssetPath": "assets/imported/cliff-edge-a.glb",
+        "fileName": "cliff-edge-a.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:cliff-edge-c",
+      "definitionKind": "asset",
+      "displayName": "cliff-edge-c",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "Rock",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "Grass",
+          "slotIndex": 1,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "source": {
+        "relativeAssetPath": "assets/imported/cliff-edge-c.glb",
+        "fileName": "cliff-edge-c.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:stone_cliff_1_v3",
+      "definitionKind": "asset",
+      "displayName": "stone_cliff_1_v3",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "stone",
+          "slotIndex": 0,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "source": {
+        "relativeAssetPath": "assets/imported/stone_cliff_1_v3.glb",
+        "fileName": "stone_cliff_1_v3.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:dock_previz_v1",
+      "definitionKind": "asset",
+      "displayName": "dock_previz_v1",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "wood_1",
+          "slotIndex": 0,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "source": {
+        "relativeAssetPath": "assets/imported/dock_previz_v1.glb",
+        "fileName": "dock_previz_v1.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:dock_previz_v2",
+      "definitionKind": "asset",
+      "displayName": "dock_previz_v2",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "wood_1",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "wood_1.005",
+          "slotIndex": 1,
+          "surface": null
+        },
+        {
+          "slotName": "wood_1.028",
+          "slotIndex": 2,
+          "surface": null
+        },
+        {
+          "slotName": "wood_1.030",
+          "slotIndex": 3,
+          "surface": null
+        },
+        {
+          "slotName": "wood_1.031",
+          "slotIndex": 4,
+          "surface": null
+        },
+        {
+          "slotName": "wood_1.032",
+          "slotIndex": 5,
+          "surface": null
+        },
+        {
+          "slotName": "wood_1.043",
+          "slotIndex": 6,
+          "surface": null
+        },
+        {
+          "slotName": "wood_1.044",
+          "slotIndex": 7,
+          "surface": null
+        },
+        {
+          "slotName": "wood_1.003",
+          "slotIndex": 8,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "source": {
+        "relativeAssetPath": "assets/imported/dock_previz_v2.glb",
+        "fileName": "dock_previz_v2.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:dryad_statue_previz_v2",
+      "definitionKind": "asset",
+      "displayName": "dryad_statue_previz_v2",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "stone",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "wood_1",
+          "slotIndex": 1,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "source": {
+        "relativeAssetPath": "assets/imported/dryad_statue_previz_v2.glb",
+        "fileName": "dryad_statue_previz_v2.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:test_tree_6",
+      "definitionKind": "asset",
+      "displayName": "test_tree_6",
+      "assetKind": "foliage",
+      "surfaceSlots": [
+        {
+          "slotName": "FoilageMaker Export Trunk",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "FoilageMaker Export Leaves",
+          "slotIndex": 1,
+          "surface": {
+            "kind": "inline",
+            "surface": {
+              "layers": [
+                {
+                  "layerId": "92fe664d-988c-42d8-bc3b-a249ca8dd50f",
+                  "displayName": "Base",
+                  "enabled": true,
+                  "opacity": 1,
+                  "mask": {
+                    "kind": "always"
+                  },
+                  "kind": "appearance",
+                  "blendMode": "base",
+                  "content": {
+                    "kind": "material",
+                    "materialDefinitionId": "material:test_tree_6:foilagemaker-export-leaves:1",
+                    "shaderOverrideDefinitionId": null,
+                    "tiling": null
+                  }
+                }
+              ],
+              "context": "universal"
+            }
+          }
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "source": {
+        "relativeAssetPath": "assets/imported/test_tree_6.glb",
+        "fileName": "test_tree_6.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:test_tree_7",
+      "definitionKind": "asset",
+      "displayName": "test_tree_7",
+      "assetKind": "foliage",
+      "surfaceSlots": [
+        {
+          "slotName": "FoilageMaker Export Trunk",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "FoilageMaker Export Leaves",
+          "slotIndex": 1,
+          "surface": {
+            "kind": "inline",
+            "surface": {
+              "layers": [
+                {
+                  "layerId": "6f0341bc-b130-43c5-b8ae-ef064a7c6a6b",
+                  "displayName": "Base",
+                  "enabled": true,
+                  "opacity": 1,
+                  "mask": {
+                    "kind": "always"
+                  },
+                  "kind": "appearance",
+                  "blendMode": "base",
+                  "content": {
+                    "kind": "material",
+                    "materialDefinitionId": "material:test_tree_7:foilagemaker-export-leaves:1",
+                    "shaderOverrideDefinitionId": null,
+                    "tiling": null
+                  }
+                }
+              ],
+              "context": "universal"
+            }
+          }
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "source": {
+        "relativeAssetPath": "assets/imported/test_tree_7.glb",
+        "fileName": "test_tree_7.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:dryad_statue_previz_v3",
+      "definitionKind": "asset",
+      "displayName": "dryad_statue_previz_v3",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "stone",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "wood_1",
+          "slotIndex": 1,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "source": {
+        "relativeAssetPath": "assets/imported/dryad_statue_previz_v3.glb",
+        "fileName": "dryad_statue_previz_v3.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:rock_formation_1",
+      "definitionKind": "asset",
+      "displayName": "rock_formation_1",
+      "assetKind": "model",
+      "surfaceSlots": [],
+      "deform": null,
+      "effect": null,
+      "source": {
+        "relativeAssetPath": "assets/imported/rock_formation_1.glb",
+        "fileName": "rock_formation_1.glb",
+        "mimeType": null
+      }
+    }
+  ],
   "audioClipDefinitions": [
     {
       "definitionId": "d15d013c-ff89-47b3-b908-7fc6c0a66097",
@@ -27,10 +510,101 @@
         "relativeAssetPath": "assets/character-models/mim-game-ready-v1.glb",
         "fileName": "mim-game-ready-v1.glb",
         "mimeType": null
-      }
+      },
+      "rigId": null
+    },
+    {
+      "definitionId": "wordlark:character-model:mim-game-ready-v1-rigged",
+      "definitionKind": "character-model",
+      "displayName": "mim-game-ready-v1 (rigged)",
+      "source": {
+        "relativeAssetPath": "assets/character-models/mim-game-ready-v1-rigged.glb",
+        "fileName": "mim-game-ready-v1-rigged.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "rigId": "sugarmagic-humanoid-v1"
     }
   ],
-  "characterAnimationDefinitions": [],
+  "characterAnimationDefinitions": [
+    {
+      "definitionId": "wordlark:character-animation:mim-game-ready-v1-Idle_Loop",
+      "definitionKind": "character-animation",
+      "displayName": "mim-game-ready-v1 Idle_Loop",
+      "source": {
+        "relativeAssetPath": "assets/character-animations/mim-game-ready-v1-Idle_Loop.glb",
+        "fileName": "mim-game-ready-v1-Idle_Loop.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Idle_Loop"
+      ]
+    },
+    {
+      "definitionId": "wordlark:character-animation:mim-game-ready-v1-Walk_Loop",
+      "definitionKind": "character-animation",
+      "displayName": "mim-game-ready-v1 Walk_Loop",
+      "source": {
+        "relativeAssetPath": "assets/character-animations/mim-game-ready-v1-Walk_Loop.glb",
+        "fileName": "mim-game-ready-v1-Walk_Loop.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Walk_Loop"
+      ]
+    },
+    {
+      "definitionId": "wordlark:character-animation:mim-game-ready-v1-Jog_Fwd_Loop",
+      "definitionKind": "character-animation",
+      "displayName": "mim-game-ready-v1 Jog_Fwd_Loop",
+      "source": {
+        "relativeAssetPath": "assets/character-animations/mim-game-ready-v1-Jog_Fwd_Loop.glb",
+        "fileName": "mim-game-ready-v1-Jog_Fwd_Loop.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Jog_Fwd_Loop"
+      ]
+    },
+    {
+      "definitionId": "wordlark:character-animation:mim-game-ready-v1-Generated_Idle",
+      "definitionKind": "character-animation",
+      "displayName": "mim-game-ready-v1 Generated_Idle",
+      "source": {
+        "relativeAssetPath": "assets/character-animations/mim-game-ready-v1-Generated_Idle.glb",
+        "fileName": "mim-game-ready-v1-Generated_Idle.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Generated_Idle"
+      ]
+    },
+    {
+      "definitionId": "wordlark:character-animation:mim-game-ready-v1-Generated_Walk",
+      "definitionKind": "character-animation",
+      "displayName": "mim-game-ready-v1 Generated_Walk",
+      "source": {
+        "relativeAssetPath": "assets/character-animations/mim-game-ready-v1-Generated_Walk.glb",
+        "fileName": "mim-game-ready-v1-Generated_Walk.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Generated_Walk"
+      ]
+    },
+    {
+      "definitionId": "wordlark:character-animation:mim-game-ready-v1-Generated_Run",
+      "definitionKind": "character-animation",
+      "displayName": "mim-game-ready-v1 Generated_Run",
+      "source": {
+        "relativeAssetPath": "assets/character-animations/mim-game-ready-v1-Generated_Run.glb",
+        "fileName": "mim-game-ready-v1-Generated_Run.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Generated_Run"
+      ]
+    }
+  ],
   "materialDefinitions": [
     {
       "definitionId": "wordlark:material:wood",
@@ -205,6 +779,106 @@
         "builtIn": true,
         "builtInKey": "plain-painted"
       }
+    },
+    {
+      "definitionId": "wordlark:material:material-1783620672561-1",
+      "definitionKind": "material",
+      "displayName": "Ground",
+      "pbr": {
+        "baseColor": 8421504,
+        "baseColorMap": "texture:ground_basecolor",
+        "normalMap": "texture:ground_normal",
+        "ormMap": null,
+        "roughnessMap": "texture:ground_roughness",
+        "metallicMap": "texture:ground_metallic",
+        "ambientOcclusionMap": "texture:ground_ambientocclusion",
+        "roughness": 0.7,
+        "metallic": 0,
+        "ambientOcclusion": 1,
+        "emissiveColor": 0,
+        "emissiveIntensity": 0,
+        "emissiveMap": null,
+        "tiling": [
+          1,
+          1
+        ]
+      },
+      "shaderDefinitionId": null
+    },
+    {
+      "definitionId": "wordlark:material:material-1783719188722-1",
+      "definitionKind": "material",
+      "displayName": "Grass",
+      "pbr": {
+        "baseColor": 8421504,
+        "baseColorMap": "texture:grass_basecolor",
+        "normalMap": "texture:grass_normal",
+        "ormMap": null,
+        "roughnessMap": "texture:grass_roughness",
+        "metallicMap": null,
+        "ambientOcclusionMap": null,
+        "roughness": 0.7,
+        "metallic": 0,
+        "ambientOcclusion": 1,
+        "emissiveColor": 0,
+        "emissiveIntensity": 0,
+        "emissiveMap": null,
+        "tiling": [
+          1,
+          1
+        ]
+      },
+      "shaderDefinitionId": null
+    },
+    {
+      "definitionId": "material:test_tree_6:foilagemaker-export-leaves:1",
+      "definitionKind": "material",
+      "displayName": "test_tree_6 FoilageMaker Export Leaves",
+      "pbr": {
+        "baseColor": 8421504,
+        "baseColorMap": "texture:test_tree_6:image-1",
+        "normalMap": null,
+        "ormMap": null,
+        "roughnessMap": null,
+        "metallicMap": null,
+        "ambientOcclusionMap": null,
+        "roughness": 0.7,
+        "metallic": 0,
+        "ambientOcclusion": 1,
+        "emissiveColor": 0,
+        "emissiveIntensity": 0,
+        "emissiveMap": null,
+        "tiling": [
+          1,
+          1
+        ]
+      },
+      "shaderDefinitionId": null
+    },
+    {
+      "definitionId": "material:test_tree_7:foilagemaker-export-leaves:1",
+      "definitionKind": "material",
+      "displayName": "test_tree_7 FoilageMaker Export Leaves",
+      "pbr": {
+        "baseColor": 8421504,
+        "baseColorMap": "texture:test_tree_7:image-1",
+        "normalMap": null,
+        "ormMap": null,
+        "roughnessMap": null,
+        "metallicMap": null,
+        "ambientOcclusionMap": null,
+        "roughness": 0.7,
+        "metallic": 0,
+        "ambientOcclusion": 1,
+        "emissiveColor": 0,
+        "emissiveIntensity": 0,
+        "emissiveMap": null,
+        "tiling": [
+          1,
+          1
+        ]
+      },
+      "shaderDefinitionId": null
     }
   ],
   "soundCueDefinitions": [
@@ -240,17 +914,194 @@
       }
     }
   ],
-  "textureDefinitions": [],
-  "maskTextureDefinitions": [],
+  "textureDefinitions": [
+    {
+      "definitionId": "texture:ground_basecolor",
+      "definitionKind": "texture",
+      "displayName": "ground_basecolor basecolor",
+      "source": {
+        "relativeAssetPath": "assets/textures/ground_basecolor.png",
+        "fileName": "ground_basecolor.png",
+        "mimeType": "image/png"
+      },
+      "packing": "rgba",
+      "colorSpace": "srgb"
+    },
+    {
+      "definitionId": "texture:ground_normal",
+      "definitionKind": "texture",
+      "displayName": "ground_normal normal",
+      "source": {
+        "relativeAssetPath": "assets/textures/ground_normal.png",
+        "fileName": "ground_normal.png",
+        "mimeType": "image/png"
+      },
+      "packing": "normal",
+      "colorSpace": "linear"
+    },
+    {
+      "definitionId": "texture:ground_ambientocclusion",
+      "definitionKind": "texture",
+      "displayName": "ground_ambientocclusion ambient occlusion",
+      "source": {
+        "relativeAssetPath": "assets/textures/ground_ambientocclusion.png",
+        "fileName": "ground_ambientocclusion.png",
+        "mimeType": "image/png"
+      },
+      "packing": "ao",
+      "colorSpace": "linear"
+    },
+    {
+      "definitionId": "texture:ground_height",
+      "definitionKind": "texture",
+      "displayName": "ground_height height",
+      "source": {
+        "relativeAssetPath": "assets/textures/ground_height.png",
+        "fileName": "ground_height.png",
+        "mimeType": "image/png"
+      },
+      "packing": "height",
+      "colorSpace": "linear"
+    },
+    {
+      "definitionId": "texture:ground_metallic",
+      "definitionKind": "texture",
+      "displayName": "ground_metallic metallic",
+      "source": {
+        "relativeAssetPath": "assets/textures/ground_metallic.png",
+        "fileName": "ground_metallic.png",
+        "mimeType": "image/png"
+      },
+      "packing": "metallic",
+      "colorSpace": "linear"
+    },
+    {
+      "definitionId": "texture:ground_roughness",
+      "definitionKind": "texture",
+      "displayName": "ground_roughness roughness",
+      "source": {
+        "relativeAssetPath": "assets/textures/ground_roughness.png",
+        "fileName": "ground_roughness.png",
+        "mimeType": "image/png"
+      },
+      "packing": "roughness",
+      "colorSpace": "linear"
+    },
+    {
+      "definitionId": "texture:grass_basecolor",
+      "definitionKind": "texture",
+      "displayName": "grass_basecolor basecolor",
+      "source": {
+        "relativeAssetPath": "assets/textures/grass_basecolor.png",
+        "fileName": "grass_basecolor.png",
+        "mimeType": "image/png"
+      },
+      "packing": "rgba",
+      "colorSpace": "srgb"
+    },
+    {
+      "definitionId": "texture:grass_normal",
+      "definitionKind": "texture",
+      "displayName": "grass_normal normal",
+      "source": {
+        "relativeAssetPath": "assets/textures/grass_normal.png",
+        "fileName": "grass_normal.png",
+        "mimeType": "image/png"
+      },
+      "packing": "normal",
+      "colorSpace": "linear"
+    },
+    {
+      "definitionId": "texture:grass_roughness",
+      "definitionKind": "texture",
+      "displayName": "grass_roughness roughness",
+      "source": {
+        "relativeAssetPath": "assets/textures/grass_roughness.png",
+        "fileName": "grass_roughness.png",
+        "mimeType": "image/png"
+      },
+      "packing": "roughness",
+      "colorSpace": "linear"
+    },
+    {
+      "definitionId": "texture:grass-clump-01",
+      "definitionKind": "texture",
+      "displayName": "grass-clump-01",
+      "source": {
+        "relativeAssetPath": "assets/textures/grass-clump-01.png",
+        "fileName": "grass-clump-01.png",
+        "mimeType": "image/png"
+      },
+      "packing": "rgba",
+      "colorSpace": "srgb"
+    },
+    {
+      "definitionId": "texture:grass-clump-03",
+      "definitionKind": "texture",
+      "displayName": "grass-clump-03",
+      "source": {
+        "relativeAssetPath": "assets/textures/grass-clump-03.png",
+        "fileName": "grass-clump-03.png",
+        "mimeType": "image/png"
+      },
+      "packing": "rgba",
+      "colorSpace": "srgb"
+    },
+    {
+      "definitionId": "texture:test_tree_6:image-1",
+      "definitionKind": "texture",
+      "displayName": "test_tree_6 FoilageMaker Export Leaves Base Color",
+      "source": {
+        "relativeAssetPath": "assets/textures/foilagemakerleafsprite.png",
+        "fileName": "foilagemakerleafsprite.png",
+        "mimeType": "image/png"
+      },
+      "colorSpace": "srgb",
+      "packing": "rgba"
+    },
+    {
+      "definitionId": "texture:test_tree_7:image-1",
+      "definitionKind": "texture",
+      "displayName": "test_tree_7 FoilageMaker Export Leaves Base Color",
+      "source": {
+        "relativeAssetPath": "assets/textures/leavestexture01_transparency.png",
+        "fileName": "leavestexture01_transparency.png",
+        "mimeType": "image/png"
+      },
+      "colorSpace": "srgb",
+      "packing": "rgba"
+    }
+  ],
+  "maskTextureDefinitions": [
+    {
+      "definitionId": "mask-texture:mask-1784007002803-1",
+      "definitionKind": "mask-texture",
+      "displayName": "Painted Mask 1",
+      "source": {
+        "relativeAssetPath": "masks/mask-1784007002803-1.png",
+        "fileName": "mask-1784007002803-1.png",
+        "mimeType": "image/png"
+      },
+      "format": "r8",
+      "resolution": [
+        512,
+        512
+      ]
+    }
+  ],
   "surfaceDefinitions": [
     {
       "definitionId": "wordlark:surface:wildflower-meadow",
+      "metadata": {
+        "builtIn": true,
+        "builtInKey": "wildflower-meadow"
+      },
       "definitionKind": "surface",
       "displayName": "Wildflower Meadow",
       "surface": {
         "layers": [
           {
-            "layerId": "4387ad05-8207-4e75-8ad0-db1b37681128",
+            "layerId": "c041967b-c44b-4174-9ad6-64bbe50b8dd1",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -265,7 +1116,7 @@
             }
           },
           {
-            "layerId": "0597d710-ca7a-4757-a0cd-047216c8021f",
+            "layerId": "f56c7c2e-c3b2-41b6-8d6e-6a850efa05d2",
             "displayName": "Tall Grass",
             "enabled": true,
             "opacity": 1,
@@ -279,10 +1130,11 @@
             },
             "shaderDefinitionId": "wordlark:shader:grass-surface-4",
             "materialDefinitionId": null,
-            "deform": null
+            "deform": null,
+            "textureBindings": {}
           },
           {
-            "layerId": "05ff9082-01a8-4f76-a495-372d447ad9cf",
+            "layerId": "b336a1f7-f48f-4b5b-8182-bc0a0592b736",
             "displayName": "Flowers",
             "enabled": true,
             "opacity": 0.7,
@@ -296,10 +1148,11 @@
             },
             "shaderDefinitionId": null,
             "materialDefinitionId": null,
-            "deform": null
+            "deform": null,
+            "textureBindings": {}
           },
           {
-            "layerId": "ea83a745-5ef0-46e0-a547-e59d76bd6edf",
+            "layerId": "3d0a58df-ea35-41fb-a09b-472f33dd101c",
             "displayName": "Warm Light",
             "enabled": true,
             "opacity": 0.5,
@@ -319,12 +1172,16 @@
     },
     {
       "definitionId": "wordlark:surface:autumn-field",
+      "metadata": {
+        "builtIn": true,
+        "builtInKey": "autumn-field"
+      },
       "definitionKind": "surface",
       "displayName": "Autumn Field",
       "surface": {
         "layers": [
           {
-            "layerId": "e65d9760-ffdc-4a78-8547-8bb97dfd2f57",
+            "layerId": "a59ca0f7-15d6-41c9-9a8b-6bafb1316de5",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -339,7 +1196,7 @@
             }
           },
           {
-            "layerId": "cfa79e7e-bc75-4af1-99ed-e8542d155687",
+            "layerId": "e33081ca-8083-4692-9247-6c16746d56a9",
             "displayName": "Grass",
             "enabled": true,
             "opacity": 1,
@@ -353,10 +1210,11 @@
             },
             "shaderDefinitionId": "wordlark:shader:grass-surface-4",
             "materialDefinitionId": null,
-            "deform": null
+            "deform": null,
+            "textureBindings": {}
           },
           {
-            "layerId": "c2f15b88-0d60-4761-a32c-275920b1a309",
+            "layerId": "e307e569-6166-4356-a60d-26288e8803e3",
             "displayName": "Flowers",
             "enabled": true,
             "opacity": 0.45,
@@ -370,7 +1228,8 @@
             },
             "shaderDefinitionId": null,
             "materialDefinitionId": null,
-            "deform": null
+            "deform": null,
+            "textureBindings": {}
           }
         ],
         "context": "universal"
@@ -378,12 +1237,16 @@
     },
     {
       "definitionId": "wordlark:surface:mossy-bark",
+      "metadata": {
+        "builtIn": true,
+        "builtInKey": "mossy-bark"
+      },
       "definitionKind": "surface",
       "displayName": "Mossy Bark",
       "surface": {
         "layers": [
           {
-            "layerId": "cb0a6dd9-1292-4f9d-ab9e-d5c7fe5ffdb0",
+            "layerId": "ce3c349e-7201-4209-a204-02c0f8be110d",
             "displayName": "Bark",
             "enabled": true,
             "opacity": 1,
@@ -398,7 +1261,7 @@
             }
           },
           {
-            "layerId": "c9b98797-332a-4bde-ad9b-58db2d1f2028",
+            "layerId": "edb6fcaf-df06-4d8e-aaf4-f8ae434b3d3c",
             "displayName": "Moss Tint",
             "enabled": true,
             "opacity": 0.45,
@@ -418,12 +1281,16 @@
     },
     {
       "definitionId": "wordlark:surface:manicured-lawn",
+      "metadata": {
+        "builtIn": true,
+        "builtInKey": "manicured-lawn"
+      },
       "definitionKind": "surface",
       "displayName": "Manicured Lawn",
       "surface": {
         "layers": [
           {
-            "layerId": "b876430d-8f70-4f96-99e2-1d729bca2e1c",
+            "layerId": "28b9979e-6033-4b01-b9a3-c854da6db5dd",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -438,7 +1305,7 @@
             }
           },
           {
-            "layerId": "eb09be82-67ba-49db-8e05-1c9651d6022d",
+            "layerId": "babb2a92-4bad-4735-9311-344f146b06f6",
             "displayName": "Short Grass",
             "enabled": true,
             "opacity": 1,
@@ -452,7 +1319,8 @@
             },
             "shaderDefinitionId": "wordlark:shader:grass-surface-4",
             "materialDefinitionId": null,
-            "deform": null
+            "deform": null,
+            "textureBindings": {}
           }
         ],
         "context": "universal"
@@ -460,12 +1328,16 @@
     },
     {
       "definitionId": "wordlark:surface:clover-patch",
+      "metadata": {
+        "builtIn": true,
+        "builtInKey": "clover-patch"
+      },
       "definitionKind": "surface",
       "displayName": "Clover Patch",
       "surface": {
         "layers": [
           {
-            "layerId": "bbcc556d-460c-48f6-bf49-4adaa55e020f",
+            "layerId": "fd26d1cc-9ee9-4874-8f82-7a7ebd5272fa",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -480,7 +1352,7 @@
             }
           },
           {
-            "layerId": "d4aeaf87-60a2-4b41-8db9-fb91af3f9a8d",
+            "layerId": "39175947-b7fb-42e2-a387-fc82002e1d87",
             "displayName": "Clover Base",
             "enabled": true,
             "opacity": 0.85,
@@ -494,10 +1366,11 @@
             },
             "shaderDefinitionId": "wordlark:shader:grass-surface-4",
             "materialDefinitionId": null,
-            "deform": null
+            "deform": null,
+            "textureBindings": {}
           },
           {
-            "layerId": "1411fc74-f597-44a9-bb6b-f40b4b2f387f",
+            "layerId": "d9ff51bd-01ef-48e0-9b61-69feab4572b8",
             "displayName": "Tiny Blooms",
             "enabled": true,
             "opacity": 0.35,
@@ -511,7 +1384,8 @@
             },
             "shaderDefinitionId": null,
             "materialDefinitionId": null,
-            "deform": null
+            "deform": null,
+            "textureBindings": {}
           }
         ],
         "context": "universal"
@@ -519,12 +1393,16 @@
     },
     {
       "definitionId": "wordlark:surface:painterly-grass",
+      "metadata": {
+        "builtIn": true,
+        "builtInKey": "painterly-grass"
+      },
       "definitionKind": "surface",
       "displayName": "Painterly Grass",
       "surface": {
         "layers": [
           {
-            "layerId": "b7b8162e-a731-4db3-a7f2-427c8f5c1d42",
+            "layerId": "0a1a27c4-ff1b-493a-bad0-b81b2dbed6bf",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -535,11 +1413,11 @@
             "blendMode": "base",
             "content": {
               "kind": "color",
-              "color": 7177796
+              "color": 6263872
             }
           },
           {
-            "layerId": "51da1293-69ad-4365-a55d-41d7a337ae9c",
+            "layerId": "6e820ccb-40be-4e92-91c1-fcd438732263",
             "displayName": "Painterly Tufts",
             "enabled": true,
             "opacity": 0.95,
@@ -553,10 +1431,11 @@
             },
             "shaderDefinitionId": "wordlark:shader:painterly-grass",
             "materialDefinitionId": null,
-            "deform": null
+            "deform": null,
+            "textureBindings": {}
           },
           {
-            "layerId": "ecb08afb-dd33-4b1c-a5eb-fde18bbf694f",
+            "layerId": "b00eabe6-35d1-416f-9eb2-cf988b4f66cc",
             "displayName": "Tiny Blooms",
             "enabled": true,
             "opacity": 0.2,
@@ -570,10 +1449,11 @@
             },
             "shaderDefinitionId": null,
             "materialDefinitionId": null,
-            "deform": null
+            "deform": null,
+            "textureBindings": {}
           },
           {
-            "layerId": "7c78a081-c3a3-47ab-9d78-0c51d8e466ba",
+            "layerId": "8cf04487-2469-4067-9947-f8e4a222afdb",
             "displayName": "Warm Lift",
             "enabled": true,
             "opacity": 0.35,
@@ -608,8 +1488,168 @@
             "kind": "appearance",
             "blendMode": "base",
             "content": {
+              "kind": "material",
+              "materialDefinitionId": "wordlark:material:material-1783620672561-1",
+              "shaderOverrideDefinitionId": null
+            }
+          }
+        ],
+        "context": "universal"
+      }
+    },
+    {
+      "definitionId": "wordlark:surface:ce1efbc5-2cbf-4ee7-877d-7d09f07fd8d6",
+      "definitionKind": "surface",
+      "displayName": "Prairie Tall Dense Grass",
+      "surface": {
+        "layers": [
+          {
+            "layerId": "c8c80400-f461-45ce-9dd7-427a5943e797",
+            "displayName": "Base Green",
+            "enabled": true,
+            "opacity": 1,
+            "mask": {
+              "kind": "always"
+            },
+            "kind": "appearance",
+            "blendMode": "base",
+            "content": {
               "kind": "color",
-              "color": 9132587
+              "color": 7311186
+            }
+          },
+          {
+            "layerId": "349be9a3-6eb3-41a0-8ad5-10dd92b5993c",
+            "displayName": "Appearance",
+            "enabled": true,
+            "opacity": 0.8,
+            "mask": {
+              "kind": "perlin-noise",
+              "scale": 3.01,
+              "offset": [
+                0,
+                0
+              ],
+              "threshold": 0.51,
+              "fade": 0.1
+            },
+            "kind": "appearance",
+            "blendMode": "mix",
+            "content": {
+              "kind": "color",
+              "color": 2184241
+            }
+          },
+          {
+            "layerId": "0069255a-81d4-448a-956b-37381d30ead3",
+            "displayName": "Appearance",
+            "enabled": true,
+            "opacity": 0.8,
+            "mask": {
+              "kind": "perlin-noise",
+              "scale": 5.11,
+              "offset": [
+                0,
+                0
+              ],
+              "threshold": 0.48,
+              "fade": 0.16
+            },
+            "kind": "appearance",
+            "blendMode": "mix",
+            "content": {
+              "kind": "color",
+              "color": 13492334
+            }
+          },
+          {
+            "layerId": "674e3659-77ab-4388-b069-020d6fc9beaa",
+            "displayName": "Painterly Tufts",
+            "enabled": true,
+            "opacity": 0.51,
+            "mask": {
+              "kind": "always"
+            },
+            "kind": "scatter",
+            "content": {
+              "kind": "grass",
+              "grassTypeId": "wordlark:grass-type:painterly-card"
+            },
+            "shaderDefinitionId": "wordlark:shader:card-foliage-4",
+            "materialDefinitionId": null,
+            "deform": null,
+            "textureBindings": {
+              "silhouette": "texture:grass-clump-03"
+            }
+          },
+          {
+            "layerId": "59d1d0d4-5651-4ac6-a950-4c83689f3af4",
+            "displayName": "Tiny Blooms",
+            "enabled": true,
+            "opacity": 0.2,
+            "mask": {
+              "kind": "always"
+            },
+            "kind": "scatter",
+            "content": {
+              "kind": "flowers",
+              "flowerTypeId": "wordlark:flower-type:white-meadow"
+            },
+            "shaderDefinitionId": null,
+            "materialDefinitionId": null,
+            "deform": null
+          }
+        ],
+        "context": "universal"
+      }
+    },
+    {
+      "definitionId": "wordlark:surface:surface-1783891556051-1",
+      "definitionKind": "surface",
+      "displayName": "Stone 1",
+      "surface": {
+        "layers": [
+          {
+            "layerId": "e1508ab4-802e-4eb2-baad-6309b73b9f4e",
+            "displayName": "Base",
+            "enabled": true,
+            "opacity": 1,
+            "mask": {
+              "kind": "always"
+            },
+            "kind": "appearance",
+            "blendMode": "base",
+            "content": {
+              "kind": "color",
+              "color": 8421504
+            }
+          }
+        ],
+        "context": "universal"
+      }
+    },
+    {
+      "definitionId": "wordlark:surface:uv-test-grid",
+      "metadata": {
+        "builtIn": true,
+        "builtInKey": "uv-test-grid"
+      },
+      "definitionKind": "surface",
+      "displayName": "UV Test Grid",
+      "surface": {
+        "layers": [
+          {
+            "layerId": "a5431a29-793c-4552-a91d-15bca8795bc4",
+            "displayName": "UV Grid",
+            "enabled": true,
+            "opacity": 1,
+            "mask": {
+              "kind": "always"
+            },
+            "kind": "appearance",
+            "blendMode": "base",
+            "content": {
+              "kind": "uv-grid"
             }
           }
         ],
@@ -821,24 +1861,24 @@
       "tuft": {
         "kind": "procedural",
         "bladeProfile": "tapered",
-        "bladesPerTuft": 6,
+        "bladesPerTuft": 5,
         "heightRange": [
-          0.35,
-          0.7
+          0.24,
+          0.5
         ],
-        "widthBase": 0.08,
-        "bendAmount": 0.7
+        "widthBase": 0.3,
+        "bendAmount": 0.75
       },
-      "density": 70,
+      "density": 110,
       "scaleJitter": [
         0.8,
         1.25
       ],
       "rotationJitter": 1,
       "heightJitter": 0.3,
-      "tipColor": 14083987,
-      "baseColor": 6456896,
-      "colorJitter": 0.15,
+      "tipColor": 16119784,
+      "baseColor": 14673104,
+      "colorJitter": 0.08,
       "wind": {
         "kind": "shader",
         "shaderDefinitionId": "wordlark:shader:foliage-wind",
@@ -853,6 +1893,48 @@
           "kind": "procedural-reduced",
           "vertexBudget": 0.5
         },
+        "billboard": {
+          "kind": "billboard"
+        }
+      },
+      "lod1Distance": 36,
+      "lod2Distance": 68,
+      "lodTransitionWidth": 12,
+      "distantMeshThreshold": 88,
+      "maxDrawDistance": 120
+    },
+    {
+      "definitionId": "wordlark:grass-type:painterly-card",
+      "definitionKind": "grass-type",
+      "displayName": "Painterly Card",
+      "tuft": {
+        "kind": "card",
+        "cardsPerClump": 3,
+        "width": 0.9,
+        "height": 0.55,
+        "splayDegrees": 14
+      },
+      "density": 26,
+      "scaleJitter": [
+        0.8,
+        1.25
+      ],
+      "rotationJitter": 1,
+      "heightJitter": 0.3,
+      "tipColor": 16777215,
+      "baseColor": 15922410,
+      "colorJitter": 0.06,
+      "wind": {
+        "kind": "shader",
+        "shaderDefinitionId": "wordlark:shader:foliage-wind",
+        "parameterValues": {},
+        "textureBindings": {}
+      },
+      "lodMeshes": {
+        "near": {
+          "kind": "procedural-default"
+        },
+        "far": null,
         "billboard": {
           "kind": "billboard"
         }
@@ -1257,7 +2339,7 @@
       "definitionKind": "shader",
       "displayName": "Flat Texture",
       "targetKind": "mesh-surface",
-      "revision": 1,
+      "revision": 2,
       "nodes": [
         {
           "nodeId": "uv",
@@ -1280,11 +2362,47 @@
           }
         },
         {
-          "nodeId": "scale-uv",
+          "nodeId": "split-uv",
+          "nodeType": "math.split-vector",
+          "position": {
+            "x": 240,
+            "y": 160
+          },
+          "settings": {}
+        },
+        {
+          "nodeId": "split-tiling",
+          "nodeType": "math.split-vector",
+          "position": {
+            "x": 240,
+            "y": 304
+          },
+          "settings": {}
+        },
+        {
+          "nodeId": "scale-u",
           "nodeType": "math.multiply",
           "position": {
-            "x": 320,
-            "y": 224
+            "x": 432,
+            "y": 140
+          },
+          "settings": {}
+        },
+        {
+          "nodeId": "scale-v",
+          "nodeType": "math.multiply",
+          "position": {
+            "x": 432,
+            "y": 240
+          },
+          "settings": {}
+        },
+        {
+          "nodeId": "scaled-uv",
+          "nodeType": "math.combine-vector",
+          "position": {
+            "x": 624,
+            "y": 190
           },
           "settings": {}
         },
@@ -1292,7 +2410,7 @@
           "nodeId": "texture",
           "nodeType": "input.material-texture",
           "position": {
-            "x": 608,
+            "x": 816,
             "y": 160
           },
           "settings": {
@@ -1303,7 +2421,7 @@
           "nodeId": "output",
           "nodeType": "output.surface",
           "position": {
-            "x": 912,
+            "x": 1104,
             "y": 160
           },
           "settings": {}
@@ -1311,23 +2429,65 @@
       ],
       "edges": [
         {
-          "edgeId": "edge-uv-scale",
+          "edgeId": "edge-uv-split",
           "sourceNodeId": "uv",
           "sourcePortId": "value",
-          "targetNodeId": "scale-uv",
+          "targetNodeId": "split-uv",
+          "targetPortId": "input"
+        },
+        {
+          "edgeId": "edge-tiling-split",
+          "sourceNodeId": "tiling",
+          "sourcePortId": "value",
+          "targetNodeId": "split-tiling",
+          "targetPortId": "input"
+        },
+        {
+          "edgeId": "edge-scale-u-a",
+          "sourceNodeId": "split-uv",
+          "sourcePortId": "x",
+          "targetNodeId": "scale-u",
           "targetPortId": "a"
         },
         {
-          "edgeId": "edge-tiling-scale",
-          "sourceNodeId": "tiling",
-          "sourcePortId": "value",
-          "targetNodeId": "scale-uv",
+          "edgeId": "edge-scale-u-b",
+          "sourceNodeId": "split-tiling",
+          "sourcePortId": "x",
+          "targetNodeId": "scale-u",
           "targetPortId": "b"
         },
         {
-          "edgeId": "edge-scale-texture-uv",
-          "sourceNodeId": "scale-uv",
+          "edgeId": "edge-scale-v-a",
+          "sourceNodeId": "split-uv",
+          "sourcePortId": "y",
+          "targetNodeId": "scale-v",
+          "targetPortId": "a"
+        },
+        {
+          "edgeId": "edge-scale-v-b",
+          "sourceNodeId": "split-tiling",
+          "sourcePortId": "y",
+          "targetNodeId": "scale-v",
+          "targetPortId": "b"
+        },
+        {
+          "edgeId": "edge-combine-u",
+          "sourceNodeId": "scale-u",
           "sourcePortId": "value",
+          "targetNodeId": "scaled-uv",
+          "targetPortId": "x"
+        },
+        {
+          "edgeId": "edge-combine-v",
+          "sourceNodeId": "scale-v",
+          "sourcePortId": "value",
+          "targetNodeId": "scaled-uv",
+          "targetPortId": "y"
+        },
+        {
+          "edgeId": "edge-scale-texture-uv",
+          "sourceNodeId": "scaled-uv",
+          "sourcePortId": "vec2",
           "targetNodeId": "texture",
           "targetPortId": "uv"
         },
@@ -2618,7 +3778,6 @@
           "parameterId": "rootTint",
           "displayName": "Root Tint",
           "dataType": "color",
-          "colorSpace": "hdr",
           "defaultValue": [
             0.36,
             0.52,
@@ -2993,7 +4152,6 @@
           "parameterId": "rootTint",
           "displayName": "Root Tint",
           "dataType": "color",
-          "colorSpace": "hdr",
           "defaultValue": [
             0.36,
             0.52,
@@ -3504,7 +4662,6 @@
           "parameterId": "rootTint",
           "displayName": "Root Tint",
           "dataType": "color",
-          "colorSpace": "hdr",
           "defaultValue": [
             0.36,
             0.52,
@@ -4509,7 +5666,6 @@
           "parameterId": "rootTint",
           "displayName": "Root Tint",
           "dataType": "color",
-          "colorSpace": "hdr",
           "defaultValue": [
             0.36,
             0.52,
@@ -5141,7 +6297,6 @@
           "parameterId": "rootTint",
           "displayName": "Root Tint",
           "dataType": "color",
-          "colorSpace": "hdr",
           "defaultValue": [
             0.72,
             0.9,
@@ -5735,7 +6890,6 @@
           "parameterId": "rootTint",
           "displayName": "Root Tint",
           "dataType": "color",
-          "colorSpace": "hdr",
           "defaultValue": [
             0.86,
             1.04,
@@ -6329,7 +7483,6 @@
           "parameterId": "rootTint",
           "displayName": "Root Tint",
           "dataType": "color",
-          "colorSpace": "hdr",
           "defaultValue": [
             0.98,
             0.82,
@@ -6409,7 +7562,7 @@
       "definitionKind": "shader",
       "displayName": "Painterly Grass",
       "targetKind": "mesh-surface",
-      "revision": 2,
+      "revision": 4,
       "nodes": [
         {
           "nodeId": "vertex-color",
@@ -6513,6 +7666,15 @@
           "settings": {
             "parameterId": "tipTint"
           }
+        },
+        {
+          "nodeId": "tip-relative",
+          "nodeType": "color.multiply",
+          "position": {
+            "x": 448,
+            "y": 64
+          },
+          "settings": {}
         },
         {
           "nodeId": "height-tint",
@@ -6774,6 +7936,15 @@
           }
         },
         {
+          "nodeId": "uvy-squared",
+          "nodeType": "math.multiply",
+          "position": {
+            "x": 896,
+            "y": 840
+          },
+          "settings": {}
+        },
+        {
           "nodeId": "width-delta",
           "nodeType": "math.subtract",
           "position": {
@@ -6912,6 +8083,20 @@
           "targetPortId": "input"
         },
         {
+          "edgeId": "e-root-tiprelative",
+          "sourceNodeId": "root-tint",
+          "sourcePortId": "value",
+          "targetNodeId": "tip-relative",
+          "targetPortId": "a"
+        },
+        {
+          "edgeId": "e-tiplift-tiprelative",
+          "sourceNodeId": "tip-tint",
+          "sourcePortId": "value",
+          "targetNodeId": "tip-relative",
+          "targetPortId": "b"
+        },
+        {
           "edgeId": "e-root-heighttint",
           "sourceNodeId": "root-tint",
           "sourcePortId": "value",
@@ -6920,7 +8105,7 @@
         },
         {
           "edgeId": "e-tip-heighttint",
-          "sourceNodeId": "tip-tint",
+          "sourceNodeId": "tip-relative",
           "sourcePortId": "value",
           "targetNodeId": "height-tint",
           "targetPortId": "b"
@@ -7136,6 +8321,20 @@
           "targetPortId": "b"
         },
         {
+          "edgeId": "e-uvy-sq-a",
+          "sourceNodeId": "split-uv",
+          "sourcePortId": "y",
+          "targetNodeId": "uvy-squared",
+          "targetPortId": "a"
+        },
+        {
+          "edgeId": "e-uvy-sq-b",
+          "sourceNodeId": "split-uv",
+          "sourcePortId": "y",
+          "targetNodeId": "uvy-squared",
+          "targetPortId": "b"
+        },
+        {
           "edgeId": "e-widthdelta-widthscale",
           "sourceNodeId": "width-delta",
           "sourcePortId": "value",
@@ -7144,8 +8343,8 @@
         },
         {
           "edgeId": "e-uvy-widthscale",
-          "sourceNodeId": "split-uv",
-          "sourcePortId": "y",
+          "sourceNodeId": "uvy-squared",
+          "sourcePortId": "value",
           "targetNodeId": "width-scale",
           "targetPortId": "b"
         },
@@ -7260,29 +8459,29 @@
           "parameterId": "rootTint",
           "displayName": "Root Tint",
           "dataType": "color",
-          "colorSpace": "hdr",
           "defaultValue": [
-            0.88,
-            0.98,
-            0.78
-          ]
+            0.55,
+            0.66,
+            0.35
+          ],
+          "inheritSource": "baseLayerColor"
         },
         {
           "parameterId": "tipTint",
-          "displayName": "Tip Tint",
+          "displayName": "Tip Lift",
           "dataType": "color",
           "colorSpace": "hdr",
           "defaultValue": [
-            1.26,
-            1.34,
-            0.96
+            1.1,
+            1.18,
+            0.95
           ]
         },
         {
           "parameterId": "baseShade",
           "displayName": "Base Shade",
           "dataType": "float",
-          "defaultValue": 0.58
+          "defaultValue": 0.48
         },
         {
           "parameterId": "tipShade",
@@ -7305,7 +8504,7 @@
           "parameterId": "sunStrength",
           "displayName": "Sun Strength",
           "dataType": "float",
-          "defaultValue": 0.34
+          "defaultValue": 0.1
         },
         {
           "parameterId": "tipBoostColor",
@@ -7322,7 +8521,7 @@
           "parameterId": "tipBoostStrength",
           "displayName": "Tip Boost Strength",
           "dataType": "float",
-          "defaultValue": 0.22
+          "defaultValue": 0.05
         },
         {
           "parameterId": "rimColor",
@@ -7351,7 +8550,7 @@
           "parameterId": "rootWidth",
           "displayName": "Root Width",
           "dataType": "float",
-          "defaultValue": 0.48
+          "defaultValue": 0.5
         },
         {
           "parameterId": "tipWidth",
@@ -7363,7 +8562,7 @@
           "parameterId": "edgeSoftness",
           "displayName": "Edge Softness",
           "dataType": "float",
-          "defaultValue": 0.16
+          "defaultValue": 0.3
         }
       ],
       "metadata": {
@@ -10220,6 +11419,7 @@
           "parameterId": "lift",
           "displayName": "Lift",
           "dataType": "color",
+          "colorSpace": "hdr",
           "defaultValue": [
             0,
             0,
@@ -10230,6 +11430,7 @@
           "parameterId": "gamma",
           "displayName": "Gamma",
           "dataType": "color",
+          "colorSpace": "hdr",
           "defaultValue": [
             1,
             1,
@@ -10240,6 +11441,7 @@
           "parameterId": "gain",
           "displayName": "Gain",
           "dataType": "color",
+          "colorSpace": "hdr",
           "defaultValue": [
             1,
             1,
@@ -11560,6 +12762,411 @@
       "metadata": {
         "builtIn": true,
         "builtInKey": "cloud-shadows"
+      }
+    },
+    {
+      "shaderDefinitionId": "wordlark:shader:card-foliage",
+      "definitionKind": "shader",
+      "displayName": "Card Foliage",
+      "targetKind": "mesh-surface",
+      "revision": 2,
+      "nodes": [
+        {
+          "nodeId": "uv",
+          "nodeType": "input.uv",
+          "position": {
+            "x": 48,
+            "y": 160
+          },
+          "settings": {}
+        },
+        {
+          "nodeId": "tree-height",
+          "nodeType": "input.tree-height",
+          "position": {
+            "x": 48,
+            "y": 60
+          },
+          "settings": {}
+        },
+        {
+          "nodeId": "root-tint",
+          "nodeType": "input.parameter",
+          "position": {
+            "x": 256,
+            "y": 24
+          },
+          "settings": {
+            "parameterId": "rootTint"
+          }
+        },
+        {
+          "nodeId": "tip-adjust",
+          "nodeType": "color.adjust",
+          "position": {
+            "x": 448,
+            "y": 64
+          },
+          "settings": {
+            "saturation": 0.75,
+            "value": 0.94
+          }
+        },
+        {
+          "nodeId": "height-tint",
+          "nodeType": "math.lerp",
+          "position": {
+            "x": 672,
+            "y": 64
+          },
+          "settings": {}
+        },
+        {
+          "nodeId": "silhouette",
+          "nodeType": "input.material-texture",
+          "position": {
+            "x": 448,
+            "y": 260
+          },
+          "settings": {
+            "parameterId": "silhouette"
+          }
+        },
+        {
+          "nodeId": "output",
+          "nodeType": "output.surface",
+          "position": {
+            "x": 912,
+            "y": 160
+          },
+          "settings": {}
+        }
+      ],
+      "edges": [
+        {
+          "edgeId": "cf-e-root-tipadj",
+          "sourceNodeId": "root-tint",
+          "sourcePortId": "value",
+          "targetNodeId": "tip-adjust",
+          "targetPortId": "color"
+        },
+        {
+          "edgeId": "cf-e-root-tint",
+          "sourceNodeId": "root-tint",
+          "sourcePortId": "value",
+          "targetNodeId": "height-tint",
+          "targetPortId": "a"
+        },
+        {
+          "edgeId": "cf-e-tipadj-tint",
+          "sourceNodeId": "tip-adjust",
+          "sourcePortId": "value",
+          "targetNodeId": "height-tint",
+          "targetPortId": "b"
+        },
+        {
+          "edgeId": "cf-e-height-tint",
+          "sourceNodeId": "tree-height",
+          "sourcePortId": "value",
+          "targetNodeId": "height-tint",
+          "targetPortId": "alpha"
+        },
+        {
+          "edgeId": "cf-e-uv-silhouette",
+          "sourceNodeId": "uv",
+          "sourcePortId": "value",
+          "targetNodeId": "silhouette",
+          "targetPortId": "uv"
+        },
+        {
+          "edgeId": "cf-e-tint-output",
+          "sourceNodeId": "height-tint",
+          "sourcePortId": "value",
+          "targetNodeId": "output",
+          "targetPortId": "color"
+        },
+        {
+          "edgeId": "cf-e-alpha-output",
+          "sourceNodeId": "silhouette",
+          "sourcePortId": "alpha",
+          "targetNodeId": "output",
+          "targetPortId": "alpha"
+        }
+      ],
+      "parameters": [
+        {
+          "parameterId": "rootTint",
+          "displayName": "Root Tint",
+          "dataType": "color",
+          "defaultValue": [
+            0.36,
+            0.55,
+            0.25
+          ],
+          "inheritSource": "baseLayerColor"
+        },
+        {
+          "parameterId": "silhouette",
+          "displayName": "Silhouette",
+          "dataType": "texture2d",
+          "defaultValue": null,
+          "textureRole": "color"
+        }
+      ],
+      "metadata": {
+        "builtIn": true,
+        "builtInKey": "card-foliage"
+      }
+    },
+    {
+      "shaderDefinitionId": "wordlark:shader:card-foliage-2",
+      "definitionKind": "shader",
+      "displayName": "Card Foliage 2",
+      "targetKind": "mesh-surface",
+      "revision": 2,
+      "nodes": [
+        {
+          "nodeId": "uv",
+          "nodeType": "input.uv",
+          "position": {
+            "x": 48,
+            "y": 160
+          },
+          "settings": {}
+        },
+        {
+          "nodeId": "fill",
+          "nodeType": "input.parameter",
+          "position": {
+            "x": 256,
+            "y": 64
+          },
+          "settings": {
+            "parameterId": "fill"
+          }
+        },
+        {
+          "nodeId": "silhouette",
+          "nodeType": "input.material-texture",
+          "position": {
+            "x": 448,
+            "y": 260
+          },
+          "settings": {
+            "parameterId": "silhouette"
+          }
+        },
+        {
+          "nodeId": "output",
+          "nodeType": "output.surface",
+          "position": {
+            "x": 912,
+            "y": 160
+          },
+          "settings": {}
+        }
+      ],
+      "edges": [
+        {
+          "edgeId": "cf2-e-fill-output",
+          "sourceNodeId": "fill",
+          "sourcePortId": "value",
+          "targetNodeId": "output",
+          "targetPortId": "color"
+        },
+        {
+          "edgeId": "cf2-e-uv-silhouette",
+          "sourceNodeId": "uv",
+          "sourcePortId": "value",
+          "targetNodeId": "silhouette",
+          "targetPortId": "uv"
+        },
+        {
+          "edgeId": "cf2-e-alpha-output",
+          "sourceNodeId": "silhouette",
+          "sourcePortId": "alpha",
+          "targetNodeId": "output",
+          "targetPortId": "alpha"
+        }
+      ],
+      "parameters": [
+        {
+          "parameterId": "fill",
+          "displayName": "Fill",
+          "dataType": "color",
+          "defaultValue": [
+            0.43529411764705883,
+            0.5607843137254902,
+            0.3215686274509804
+          ],
+          "inheritSource": "baseLayerColor"
+        },
+        {
+          "parameterId": "silhouette",
+          "displayName": "Silhouette",
+          "dataType": "texture2d",
+          "defaultValue": null,
+          "textureRole": "color"
+        }
+      ],
+      "metadata": {
+        "builtIn": true,
+        "builtInKey": "card-foliage-2"
+      }
+    },
+    {
+      "shaderDefinitionId": "wordlark:shader:card-foliage-4",
+      "definitionKind": "shader",
+      "displayName": "Card Foliage 4",
+      "targetKind": "mesh-surface",
+      "revision": 5,
+      "nodes": [
+        {
+          "nodeId": "uv",
+          "nodeType": "input.uv",
+          "position": {
+            "x": 48,
+            "y": 200
+          },
+          "settings": {}
+        },
+        {
+          "nodeId": "tree-height",
+          "nodeType": "input.tree-height",
+          "position": {
+            "x": 48,
+            "y": 60
+          },
+          "settings": {}
+        },
+        {
+          "nodeId": "root-color",
+          "nodeType": "input.parameter",
+          "position": {
+            "x": 256,
+            "y": 24
+          },
+          "settings": {
+            "parameterId": "rootColor"
+          }
+        },
+        {
+          "nodeId": "tip-hue",
+          "nodeType": "color.hue-shift",
+          "position": {
+            "x": 448,
+            "y": 64
+          },
+          "settings": {
+            "shiftDegrees": -18,
+            "minDegrees": 50,
+            "maxDegrees": 150
+          }
+        },
+        {
+          "nodeId": "height-tint",
+          "nodeType": "math.lerp",
+          "position": {
+            "x": 672,
+            "y": 64
+          },
+          "settings": {}
+        },
+        {
+          "nodeId": "silhouette",
+          "nodeType": "input.material-texture",
+          "position": {
+            "x": 448,
+            "y": 280
+          },
+          "settings": {
+            "parameterId": "silhouette"
+          }
+        },
+        {
+          "nodeId": "output",
+          "nodeType": "output.surface",
+          "position": {
+            "x": 912,
+            "y": 160
+          },
+          "settings": {}
+        }
+      ],
+      "edges": [
+        {
+          "edgeId": "cf4-e-root-tiphue",
+          "sourceNodeId": "root-color",
+          "sourcePortId": "value",
+          "targetNodeId": "tip-hue",
+          "targetPortId": "color"
+        },
+        {
+          "edgeId": "cf4-e-root-tint",
+          "sourceNodeId": "root-color",
+          "sourcePortId": "value",
+          "targetNodeId": "height-tint",
+          "targetPortId": "a"
+        },
+        {
+          "edgeId": "cf4-e-tiphue-tint",
+          "sourceNodeId": "tip-hue",
+          "sourcePortId": "value",
+          "targetNodeId": "height-tint",
+          "targetPortId": "b"
+        },
+        {
+          "edgeId": "cf4-e-height-tint",
+          "sourceNodeId": "tree-height",
+          "sourcePortId": "value",
+          "targetNodeId": "height-tint",
+          "targetPortId": "alpha"
+        },
+        {
+          "edgeId": "cf4-e-uv-silhouette",
+          "sourceNodeId": "uv",
+          "sourcePortId": "value",
+          "targetNodeId": "silhouette",
+          "targetPortId": "uv"
+        },
+        {
+          "edgeId": "cf4-e-tint-output",
+          "sourceNodeId": "height-tint",
+          "sourcePortId": "value",
+          "targetNodeId": "output",
+          "targetPortId": "color"
+        },
+        {
+          "edgeId": "cf4-e-alpha-output",
+          "sourceNodeId": "silhouette",
+          "sourcePortId": "alpha",
+          "targetNodeId": "output",
+          "targetPortId": "alpha"
+        }
+      ],
+      "parameters": [
+        {
+          "parameterId": "rootColor",
+          "displayName": "Root Color",
+          "dataType": "color",
+          "defaultValue": [
+            0.1803921568627451,
+            0.4196078431372549,
+            0.12941176470588237
+          ],
+          "inheritSource": "baseLayerColor"
+        },
+        {
+          "parameterId": "silhouette",
+          "displayName": "Silhouette",
+          "dataType": "texture2d",
+          "defaultValue": null,
+          "textureRole": "color"
+        }
+      ],
+      "metadata": {
+        "builtIn": true,
+        "builtInKey": "card-foliage-4"
       }
     }
   ]
