@@ -111,5 +111,36 @@
   "lorePageId": "lore.entities.npcs.bippity-roo",
   "placedAssets": [],
   "folders": [],
-  "layoutSketch": null
+  "layoutSketch": null,
+  "volumes": [
+    {
+      "volumeId": "region-area-1783038665540-1",
+      "displayName": "Area 1",
+      "parentVolumeId": null,
+      "enabled": true,
+      "bounds": {
+        "kind": "box",
+        "center": [
+          13,
+          6,
+          -8
+        ],
+        "size": [
+          6,
+          12,
+          4
+        ]
+      },
+      "roles": [
+        "label"
+      ],
+      "labelKind": "zone",
+      "lorePageId": null,
+      "blockDirection": null,
+      "condition": null,
+      "trigger": null,
+      "navCost": null,
+      "color": null
+    }
+  ]
 }

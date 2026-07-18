@@ -28,6 +28,21 @@
         "relativeAssetPath": "assets/imported/cliff-crag.glb",
         "fileName": "cliff-crag.glb",
         "mimeType": null
+      },
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -3.598635673522949,
+            0,
+            -3.430930495262146
+          ],
+          "max": [
+            3.598635673522949,
+            6.035543262958527,
+            3.430930495262146
+          ]
+        }
       }
     },
     {
@@ -53,6 +68,21 @@
         "relativeAssetPath": "assets/imported/dock-platform-small.glb",
         "fileName": "dock-platform-small.glb",
         "mimeType": null
+      },
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -1.600000023841858,
+            -5,
+            -2
+          ],
+          "max": [
+            1.600000023841858,
+            1.1770479679107666,
+            2
+          ]
+        }
       }
     },
     {
@@ -78,6 +108,21 @@
         "relativeAssetPath": "assets/imported/dock-platform.glb",
         "fileName": "dock-platform.glb",
         "mimeType": null
+      },
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -2.0999999046325684,
+            -5,
+            -4
+          ],
+          "max": [
+            2.0999999046325684,
+            1.1756824254989624,
+            4.045149326324463
+          ]
+        }
       }
     },
     {
@@ -113,6 +158,21 @@
         "relativeAssetPath": "assets/imported/lavender-plant.glb",
         "fileName": "lavender-plant.glb",
         "mimeType": null
+      },
+      "collider": {
+        "shape": "none",
+        "localBounds": {
+          "min": [
+            -0.20646709203720093,
+            -0.01927538961172104,
+            -0.206649512052536
+          ],
+          "max": [
+            0.2119678407907486,
+            0.6054750084877014,
+            0.2043878436088562
+          ]
+        }
       }
     },
     {
@@ -148,6 +208,21 @@
         "relativeAssetPath": "assets/imported/lavender-plant-b.glb",
         "fileName": "lavender-plant-b.glb",
         "mimeType": null
+      },
+      "collider": {
+        "shape": "none",
+        "localBounds": {
+          "min": [
+            -0.17231494188308716,
+            -0.02238822542130947,
+            -0.20610855519771576
+          ],
+          "max": [
+            0.17249678075313568,
+            0.6377916932106018,
+            0.2090085744857788
+          ]
+        }
       }
     },
     {
@@ -173,6 +248,21 @@
         "relativeAssetPath": "assets/imported/cliff-edge-b.glb",
         "fileName": "cliff-edge-b.glb",
         "mimeType": null
+      },
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -6.5287251472473145,
+            -8.249584197998047,
+            -2.810279130935669
+          ],
+          "max": [
+            6.474574089050293,
+            0.3284364342689514,
+            1.1280326843261719
+          ]
+        }
       }
     },
     {
@@ -198,6 +288,21 @@
         "relativeAssetPath": "assets/imported/cliff-edge-a.glb",
         "fileName": "cliff-edge-a.glb",
         "mimeType": null
+      },
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -4.466854095458984,
+            -6.305013179779053,
+            -2.8107712268829346
+          ],
+          "max": [
+            4.535183429718018,
+            0.3148811161518097,
+            1.0560303926467896
+          ]
+        }
       }
     },
     {
@@ -223,6 +328,21 @@
         "relativeAssetPath": "assets/imported/cliff-edge-c.glb",
         "fileName": "cliff-edge-c.glb",
         "mimeType": null
+      },
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -2.981306791305542,
+            -5.257087230682373,
+            -2.7896766662597656
+          ],
+          "max": [
+            3.007570266723633,
+            0.32153069972991943,
+            1.0466406345367432
+          ]
+        }
       }
     },
     {
@@ -243,6 +363,21 @@
         "relativeAssetPath": "assets/imported/stone_cliff_1_v3.glb",
         "fileName": "stone_cliff_1_v3.glb",
         "mimeType": null
+      },
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -3.90205717086792,
+            -2.1816482543945312,
+            -2.022279739379883
+          ],
+          "max": [
+            6.218907833099365,
+            2.6383345127105713,
+            3.0986127853393555
+          ]
+        }
       }
     },
     {
@@ -263,6 +398,21 @@
         "relativeAssetPath": "assets/imported/dock_previz_v1.glb",
         "fileName": "dock_previz_v1.glb",
         "mimeType": null
+      },
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -1.6420764923095703,
+            -0.04074211046099663,
+            4.246010780334473
+          ],
+          "max": [
+            0.7781991362571716,
+            0.07071925699710846,
+            11.712903022766113
+          ]
+        }
       }
     },
     {
@@ -323,6 +473,21 @@
         "relativeAssetPath": "assets/imported/dock_previz_v2.glb",
         "fileName": "dock_previz_v2.glb",
         "mimeType": null
+      },
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -2.0134797256203996,
+            -0.04763959857555733,
+            4.233583186564829
+          ],
+          "max": [
+            1.2423761111940763,
+            0.09734810494029489,
+            11.724700867065621
+          ]
+        }
       }
     },
     {
@@ -348,6 +513,21 @@
         "relativeAssetPath": "assets/imported/dryad_statue_previz_v2.glb",
         "fileName": "dryad_statue_previz_v2.glb",
         "mimeType": null
+      },
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -2.9160603682335022,
+            -3.4933624899313145,
+            4.141913850654646
+          ],
+          "max": [
+            -1.3544539014897055,
+            2.1757273045455037,
+            5.150040020733371
+          ]
+        }
       }
     },
     {
@@ -397,6 +577,10 @@
         "relativeAssetPath": "assets/imported/test_tree_6.glb",
         "fileName": "test_tree_6.glb",
         "mimeType": null
+      },
+      "collider": {
+        "shape": "none",
+        "localBounds": null
       }
     },
     {
@@ -446,6 +630,10 @@
         "relativeAssetPath": "assets/imported/test_tree_7.glb",
         "fileName": "test_tree_7.glb",
         "mimeType": null
+      },
+      "collider": {
+        "shape": "none",
+        "localBounds": null
       }
     },
     {
@@ -471,6 +659,21 @@
         "relativeAssetPath": "assets/imported/dryad_statue_previz_v3.glb",
         "fileName": "dryad_statue_previz_v3.glb",
         "mimeType": null
+      },
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -0.7808032333718984,
+            0,
+            -0.5040630850393626
+          ],
+          "max": [
+            0.7808032333718984,
+            5.669089749209434,
+            0.5040630850393626
+          ]
+        }
       }
     },
     {
@@ -484,6 +687,108 @@
       "source": {
         "relativeAssetPath": "assets/imported/rock_formation_1.glb",
         "fileName": "rock_formation_1.glb",
+        "mimeType": null
+      },
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -0.6984055042266846,
+            0,
+            -0.5576310157775879
+          ],
+          "max": [
+            0.6984055042266846,
+            0.6000000238418579,
+            0.5576310157775879
+          ]
+        }
+      }
+    },
+    {
+      "definitionId": "asset:rock_1",
+      "definitionKind": "asset",
+      "displayName": "rock_1",
+      "assetKind": "model",
+      "surfaceSlots": [],
+      "deform": null,
+      "effect": null,
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -0.6145250802633413,
+            0.000007125927098172724,
+            -0.6334480976152648
+          ],
+          "max": [
+            0.6086172483180192,
+            0.8742675502366524,
+            0.5859493470139867
+          ]
+        }
+      },
+      "source": {
+        "relativeAssetPath": "assets/imported/rock_1.glb",
+        "fileName": "rock_1.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:station_bench_1_v1",
+      "definitionKind": "asset",
+      "displayName": "station_bench_1_v1",
+      "assetKind": "model",
+      "surfaceSlots": [],
+      "deform": null,
+      "effect": null,
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -1.066666603088379,
+            0,
+            -0.38124996423721313
+          ],
+          "max": [
+            1.066666603088379,
+            0.8999999761581421,
+            0.38333332538604736
+          ]
+        }
+      },
+      "source": {
+        "relativeAssetPath": "assets/imported/station_bench_1_v1.glb",
+        "fileName": "station_bench_1_v1.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:crate_whole_closed_1_v1",
+      "definitionKind": "asset",
+      "displayName": "crate_whole_closed_1_v1",
+      "assetKind": "model",
+      "surfaceSlots": [],
+      "deform": null,
+      "effect": null,
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -0.3057880401611328,
+            0,
+            -0.3057870864868164
+          ],
+          "max": [
+            0.3057880401611328,
+            0.6115741729736328,
+            0.3057870864868164
+          ]
+        }
+      },
+      "source": {
+        "relativeAssetPath": "assets/imported/crate_whole_closed_1_v1.glb",
+        "fileName": "crate_whole_closed_1_v1.glb",
         "mimeType": null
       }
     }
@@ -1101,7 +1406,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "c041967b-c44b-4174-9ad6-64bbe50b8dd1",
+            "layerId": "4983f03e-5278-42ad-99d7-56961e0ec5ba",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -1116,7 +1421,7 @@
             }
           },
           {
-            "layerId": "f56c7c2e-c3b2-41b6-8d6e-6a850efa05d2",
+            "layerId": "4359432d-7339-4620-912d-6ffc1de82b5d",
             "displayName": "Tall Grass",
             "enabled": true,
             "opacity": 1,
@@ -1134,7 +1439,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "b336a1f7-f48f-4b5b-8182-bc0a0592b736",
+            "layerId": "248f62e8-655b-4cba-9725-3cd08bf690db",
             "displayName": "Flowers",
             "enabled": true,
             "opacity": 0.7,
@@ -1152,7 +1457,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "3d0a58df-ea35-41fb-a09b-472f33dd101c",
+            "layerId": "1e497d35-26d5-4460-814d-9e9f484a9539",
             "displayName": "Warm Light",
             "enabled": true,
             "opacity": 0.5,
@@ -1181,7 +1486,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "a59ca0f7-15d6-41c9-9a8b-6bafb1316de5",
+            "layerId": "2356ad5c-8f97-4179-b4db-046267a0456c",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -1196,7 +1501,7 @@
             }
           },
           {
-            "layerId": "e33081ca-8083-4692-9247-6c16746d56a9",
+            "layerId": "1623145e-ad97-43ae-8063-05782f1ad885",
             "displayName": "Grass",
             "enabled": true,
             "opacity": 1,
@@ -1214,7 +1519,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "e307e569-6166-4356-a60d-26288e8803e3",
+            "layerId": "fb96d465-b0b2-4277-b40a-0dc5ce5db29f",
             "displayName": "Flowers",
             "enabled": true,
             "opacity": 0.45,
@@ -1246,7 +1551,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "ce3c349e-7201-4209-a204-02c0f8be110d",
+            "layerId": "c876fa85-8e5d-48e2-8ad6-d88d63401e46",
             "displayName": "Bark",
             "enabled": true,
             "opacity": 1,
@@ -1261,7 +1566,7 @@
             }
           },
           {
-            "layerId": "edb6fcaf-df06-4d8e-aaf4-f8ae434b3d3c",
+            "layerId": "2c0b9588-b7bd-4791-b75c-4fa05c5c0f95",
             "displayName": "Moss Tint",
             "enabled": true,
             "opacity": 0.45,
@@ -1290,7 +1595,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "28b9979e-6033-4b01-b9a3-c854da6db5dd",
+            "layerId": "e7039ce3-fe79-482e-aed0-2c233ae83775",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -1305,7 +1610,7 @@
             }
           },
           {
-            "layerId": "babb2a92-4bad-4735-9311-344f146b06f6",
+            "layerId": "30b24bee-7183-4e7b-80c2-f172d3e98358",
             "displayName": "Short Grass",
             "enabled": true,
             "opacity": 1,
@@ -1337,7 +1642,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "fd26d1cc-9ee9-4874-8f82-7a7ebd5272fa",
+            "layerId": "1fa548b4-c42a-481c-994d-1da67e09cbaf",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -1352,7 +1657,7 @@
             }
           },
           {
-            "layerId": "39175947-b7fb-42e2-a387-fc82002e1d87",
+            "layerId": "6fa60b34-bed1-45a6-83a8-e3cfb035facc",
             "displayName": "Clover Base",
             "enabled": true,
             "opacity": 0.85,
@@ -1370,7 +1675,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "d9ff51bd-01ef-48e0-9b61-69feab4572b8",
+            "layerId": "35596ea7-be81-47ef-bdb7-5058e82d501e",
             "displayName": "Tiny Blooms",
             "enabled": true,
             "opacity": 0.35,
@@ -1402,7 +1707,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "0a1a27c4-ff1b-493a-bad0-b81b2dbed6bf",
+            "layerId": "dd6a192d-e036-48f4-ac80-10e05b17b5ee",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -1417,7 +1722,7 @@
             }
           },
           {
-            "layerId": "6e820ccb-40be-4e92-91c1-fcd438732263",
+            "layerId": "aa646a00-f530-4adb-83cb-0955f85cbafc",
             "displayName": "Painterly Tufts",
             "enabled": true,
             "opacity": 0.95,
@@ -1435,7 +1740,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "b00eabe6-35d1-416f-9eb2-cf988b4f66cc",
+            "layerId": "7bc38a7d-cec2-4d28-8004-ca140f8bc31c",
             "displayName": "Tiny Blooms",
             "enabled": true,
             "opacity": 0.2,
@@ -1453,7 +1758,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "8cf04487-2469-4067-9947-f8e4a222afdb",
+            "layerId": "1630dcbc-53a2-402e-a7b4-b9fba6627b46",
             "displayName": "Warm Lift",
             "enabled": true,
             "opacity": 0.35,
@@ -1639,7 +1944,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "a5431a29-793c-4552-a91d-15bca8795bc4",
+            "layerId": "311b3c1a-4a44-4234-9d07-57dde1d12f72",
             "displayName": "UV Grid",
             "enabled": true,
             "opacity": 1,

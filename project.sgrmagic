@@ -129,7 +129,7 @@
   "contentLibraryId": "wordlark:content-library",
   "playerDefinition": {
     "definitionId": "wordlark:player:default",
-    "displayName": "Mimm",
+    "displayName": "Mim",
     "physicalProfile": {
       "height": 1.8,
       "radius": 0.35,
@@ -235,7 +235,7 @@
   "npcDefinitions": [
     {
       "definitionId": "42670c12-cecb-4484-944b-0697935173f9",
-      "displayName": "Testy McTesterson",
+      "displayName": "Bippity Roo",
       "interactionMode": "scripted",
       "lorePageId": null,
       "presentation": {
@@ -350,8 +350,8 @@
               "onEnterActions": [],
               "onCompleteActions": [
                 {
-                  "type": "advanceToNextScene",
-                  "targetId": "scene-1783109660782-1"
+                  "type": "setFlag",
+                  "targetId": "introduction_complete"
                 }
               ],
               "showInHud": false,
@@ -1073,14 +1073,38 @@
         },
         "arrival-station": {
           "itemPresences": [],
-          "npcPresences": [],
+          "npcPresences": [
+            {
+              "presenceId": "fac3c793-5487-4567-81c0-1dba7453d982",
+              "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9",
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  0,
+                  0,
+                  23.79676111819171
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            }
+          ],
           "playerPresence": {
             "presenceId": "d009bfe5-f0bd-4284-8cd6-64f388f811e6",
             "transform": {
               "position": [
+                -0.28402981253048964,
                 0,
-                0,
-                26.55021855368706
+                28.319343273122428
               ],
               "rotation": [
                 0,
@@ -1099,9 +1123,13 @@
               "instanceId": "placed-asset:dock_previz_v2-1784178409623-1",
               "assetDefinitionId": "asset:dock_previz_v2",
               "displayName": "dock_previz_v2",
-              "parentFolderId": null,
+              "parentFolderId": "scene-folder-1783830960362-2",
               "inspectable": null,
               "shaderOverrides": [],
+              "colliderOverride": {
+                "shape": "none",
+                "localBounds": null
+              },
               "shaderParameterOverrides": [],
               "transform": {
                 "position": [
@@ -1125,7 +1153,7 @@
               "instanceId": "placed-asset:test_tree_7-1784179928805-1",
               "assetDefinitionId": "asset:test_tree_7",
               "displayName": "test_tree_7",
-              "parentFolderId": null,
+              "parentFolderId": "scene-folder-1783830960362-2",
               "inspectable": null,
               "shaderOverrides": [],
               "shaderParameterOverrides": [],
@@ -1151,7 +1179,7 @@
               "instanceId": "placed-asset:dryad_statue_previz_v3-1784231488689-1",
               "assetDefinitionId": "asset:dryad_statue_previz_v3",
               "displayName": "dryad_statue_previz_v3",
-              "parentFolderId": null,
+              "parentFolderId": "scene-folder-1783830960362-2",
               "inspectable": null,
               "shaderOverrides": [],
               "surfaceSlotOverrides": [
@@ -1225,7 +1253,7 @@
               "instanceId": "placed-asset:rock_formation_1-1784233294715-1",
               "assetDefinitionId": "asset:rock_formation_1",
               "displayName": "rock_formation_1",
-              "parentFolderId": null,
+              "parentFolderId": "scene-folder-1783830960362-2",
               "inspectable": null,
               "shaderOverrides": [],
               "shaderParameterOverrides": [],
@@ -1251,27 +1279,9 @@
               "instanceId": "placed-asset:dryad_statue_previz_v3-1784237107244-1",
               "assetDefinitionId": "asset:dryad_statue_previz_v3",
               "displayName": "dryad_statue_previz_v3",
-              "parentFolderId": null,
+              "parentFolderId": "scene-folder-1783830960362-2",
               "inspectable": null,
               "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  1.413266725976436,
-                  -3.5283838670795884,
-                  25.237791737043175
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              },
               "surfaceSlotOverrides": [
                 {
                   "slotName": "stone",
@@ -1319,7 +1329,103 @@
                     }
                   }
                 }
-              ]
+              ],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  1.413266725976436,
+                  -3.5283838670795884,
+                  25.237791737043175
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:rock_1-1784260085859-1",
+              "assetDefinitionId": "asset:rock_1",
+              "displayName": "rock_1",
+              "parentFolderId": "scene-folder-1783830960362-2",
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  0,
+                  -0.1336472455508093,
+                  -5.0359801705966944
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:station_bench_1_v1-1784260385233-1",
+              "assetDefinitionId": "asset:station_bench_1_v1",
+              "displayName": "station_bench_1_v1",
+              "parentFolderId": "scene-folder-1783830960362-2",
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -11.979726327587258,
+                  0.03706311626947478,
+                  17.847459164046725
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:rock_formation_1-1784324425106-1",
+              "assetDefinitionId": "asset:rock_formation_1",
+              "displayName": "rock_formation_1",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  3.683526488735809,
+                  -0.06478251662935985,
+                  23.68838075241398
+                ],
+                "rotation": [
+                  0,
+                  -1.3822102470544686,
+                  0
+                ],
+                "scale": [
+                  4.006534451718614,
+                  3.4936596151403068,
+                  3.366313856415849
+                ]
+              }
             }
           ],
           "folders": [
