@@ -235,11 +235,27 @@
   "npcDefinitions": [
     {
       "definitionId": "42670c12-cecb-4484-944b-0697935173f9",
-      "displayName": "Bippity Roo",
+      "displayName": "Horace Pennyfeather",
       "interactionMode": "scripted",
       "lorePageId": null,
       "presentation": {
-        "modelAssetDefinitionId": null,
+        "modelAssetDefinitionId": "wordlark:character-model:Mim-rigged",
+        "modelHeight": 1.7,
+        "animationAssetBindings": {
+          "idle": "wordlark:character-animation:Mim-Idle_Loop",
+          "walk": "wordlark:character-animation:Mim-Walk_Loop",
+          "run": "wordlark:character-animation:Mim-Jog_Fwd_Loop"
+        }
+      }
+    },
+    {
+      "definitionId": "c6b350c6-855f-4e34-875d-09e4be601993",
+      "displayName": "Finnick Thorn",
+      "description": "Cheese shop owner.",
+      "interactionMode": "scripted",
+      "lorePageId": null,
+      "presentation": {
+        "modelAssetDefinitionId": "wordlark:character-model:finnick_thorn_v1",
         "modelHeight": 1.7,
         "animationAssetBindings": {
           "idle": null,
@@ -1014,31 +1030,7 @@
               }
             }
           ],
-          "npcPresences": [
-            {
-              "presenceId": "119dc389-9217-469f-93fc-1f79b5c0afb0",
-              "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9",
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  0,
-                  0,
-                  0
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            }
-          ],
+          "npcPresences": [],
           "playerPresence": null,
           "placedAssets": [
             {
@@ -1084,6 +1076,29 @@
                   0,
                   0,
                   23.79676111819171
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "presenceId": "8e3e3e99-b9a6-49aa-96cd-1fc9d30847e2",
+              "npcDefinitionId": "c6b350c6-855f-4e34-875d-09e4be601993",
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  11.81656868137779,
+                  0,
+                  20.450789647962303
                 ],
                 "rotation": [
                   0,
