@@ -2986,8 +2986,9 @@
     }
   ],
   "navMesh": {
-    "assetPath": "navmesh/arrival-station.navmesh.bin",
+    "assetPath": "assets/navmesh/arrival-station.navmesh.bin",
     "inputHash": "1fn1qrj",
-    "agentRadius": 0.45
+    "agentRadius": 0.45,
+    "sceneId": "scene:default"
   }
 }
