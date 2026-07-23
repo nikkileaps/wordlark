@@ -25,14 +25,15 @@
       "enabled": true,
       "config": {
         "loreSourceKind": "local",
-        "loreLocalPath": "",
+        "loreLocalPath": "/Users/nikki/projects/rackwick-lore",
         "loreRepositoryUrl": "",
         "loreRepositoryRef": "main",
         "maxEvidenceResults": 5,
-        "debugLogging": false,
+        "debugLogging": true,
         "tone": "",
-        "anthropicModel": "claude-opus-4-7",
-        "openAiVectorStoreId": "vs_69d16958aec48191b2fe258bd16bf028"
+        "anthropicModel": "claude-haiku-4-5",
+        "openAiVectorStoreId": "vs_69d16958aec48191b2fe258bd16bf028",
+        "anthropicSummaryModel": "claude-haiku-4-5"
       }
     },
     {
@@ -45,7 +46,7 @@
       "enabled": true,
       "config": {
         "settings": {
-          "backendDeploymentTargetId": "google-cloud-run",
+          "backendDeploymentTargetId": "local",
           "frontendDeploymentTargetId": "netlify",
           "workingDirectory": "/Users/nikki/projects/wordlark",
           "githubRepo": "nikkileaps/wordlark",
@@ -62,13 +63,23 @@
             "netlify": {
               "siteId": "2122920a-dbc2-443e-84ed-80743862033f",
               "siteName": "wordlark-prod"
-            }
+            },
+            "local": {}
           }
         },
         "versionedProjectIdentifiers": {
           "v1": "1dqlc"
         },
         "deployHistory": [
+          {
+            "runId": 29702105663,
+            "runUrl": "https://github.com/nikkileaps/wordlark/actions/runs/29702105663",
+            "ref": "main",
+            "headSha": "fc9f93ddada82c28a5b04dac5e005a6f86098a49",
+            "dispatchedAt": "2026-07-19T20:13:35.731Z",
+            "status": "queued",
+            "conclusion": null
+          },
           {
             "runId": 28758282340,
             "runUrl": "https://github.com/nikkileaps/wordlark/actions/runs/28758282340",
@@ -106,6 +117,18 @@
             "conclusion": null
           }
         ]
+      }
+    },
+    {
+      "identity": {
+        "id": "bc96f7e0-68aa-43bd-94d4-a508ffd0e875",
+        "schema": "PluginConfiguration",
+        "version": 1
+      },
+      "pluginId": "sugarlang",
+      "enabled": false,
+      "config": {
+        "targetLanguage": "es"
       }
     },
     {
@@ -148,11 +171,11 @@
       "blockedSpellTags": []
     },
     "presentation": {
-      "modelAssetDefinitionId": "wordlark:character-model:mim-game-ready-v1-rigged",
+      "modelAssetDefinitionId": "wordlark:character-model:Mim-rigged",
       "animationAssetBindings": {
-        "idle": "wordlark:character-animation:mim-game-ready-v1-Generated_Idle",
-        "walk": "wordlark:character-animation:mim-game-ready-v1-Generated_Walk",
-        "run": "wordlark:character-animation:mim-game-ready-v1-Generated_Run"
+        "idle": "wordlark:character-animation:Mim-Generated_Idle",
+        "walk": "wordlark:character-animation:Mim-Generated_Walk",
+        "run": "wordlark:character-animation:Mim-Generated_Run"
       }
     }
   },
@@ -239,12 +262,12 @@
       "interactionMode": "scripted",
       "lorePageId": null,
       "presentation": {
-        "modelAssetDefinitionId": "wordlark:character-model:Mim-rigged",
+        "modelAssetDefinitionId": "wordlark:character-model:Horace-Pennyfeather-rigged",
         "modelHeight": 1.7,
         "animationAssetBindings": {
-          "idle": "wordlark:character-animation:Mim-Idle_Loop",
-          "walk": "wordlark:character-animation:Mim-Walk_Loop",
-          "run": "wordlark:character-animation:Mim-Jog_Fwd_Loop"
+          "idle": "wordlark:character-animation:Horace-Pennyfeather-Generated_Idle",
+          "walk": "wordlark:character-animation:Horace-Pennyfeather-Generated_Walk",
+          "run": "wordlark:character-animation:Horace-Pennyfeather-Generated_Run"
         }
       }
     },
@@ -252,10 +275,42 @@
       "definitionId": "c6b350c6-855f-4e34-875d-09e4be601993",
       "displayName": "Finnick Thorn",
       "description": "Cheese shop owner.",
+      "interactionMode": "agent",
+      "lorePageId": "lore.entities.npcs.finnick_thorn",
+      "presentation": {
+        "modelAssetDefinitionId": "wordlark:character-model:Finnick-Thorn-rigged",
+        "modelHeight": 1.7,
+        "animationAssetBindings": {
+          "idle": "wordlark:character-animation:Finnick-Thorn-Generated_Idle",
+          "walk": "wordlark:character-animation:Finnick-Thorn-Generated_Walk",
+          "run": "wordlark:character-animation:Finnick-Thorn-Generated_Run"
+        }
+      }
+    },
+    {
+      "definitionId": "139daaec-a618-4053-b697-0ced0024d80d",
+      "displayName": "Snobby Racoon Lady",
+      "description": "A snobby racoon lady who is super rich and narcissistic.",
+      "interactionMode": "agent",
+      "lorePageId": null,
+      "presentation": {
+        "modelAssetDefinitionId": null,
+        "modelHeight": 1.7,
+        "animationAssetBindings": {
+          "idle": null,
+          "walk": null,
+          "run": null
+        }
+      }
+    },
+    {
+      "definitionId": "66013347-dc94-4518-898b-9dfd22ac7ced",
+      "displayName": "Bo",
+      "description": "Native of Earendale is an air whale pilot and handler.",
       "interactionMode": "scripted",
       "lorePageId": null,
       "presentation": {
-        "modelAssetDefinitionId": "wordlark:character-model:finnick_thorn_v1",
+        "modelAssetDefinitionId": null,
         "modelHeight": 1.7,
         "animationAssetBindings": {
           "idle": null,
@@ -336,6 +391,27 @@
       "interactionBinding": {
         "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9"
       }
+    },
+    {
+      "definitionId": "de62f5af-687c-48e6-b9c3-ee063670ab95",
+      "displayName": "Dialogue 3",
+      "startNodeId": "ae791958-15a0-443e-858a-d37c0b2124e8",
+      "nodes": [
+        {
+          "nodeId": "ae791958-15a0-443e-858a-d37c0b2124e8",
+          "displayName": "Bo - Luggage Mess",
+          "speakerId": "66013347-dc94-4518-898b-9dfd22ac7ced",
+          "text": "Yeah ... baggage claim is a bit of a mess today not sure what happened. ",
+          "next": [],
+          "graphPosition": {
+            "x": 80,
+            "y": 80
+          }
+        }
+      ],
+      "interactionBinding": {
+        "npcDefinitionId": null
+      }
     }
   ],
   "questDefinitions": [
@@ -372,13 +448,64 @@
               ],
               "showInHud": false,
               "graphPosition": {
-                "x": 80.66666666666667,
-                "y": 80
+                "x": -7.333333333333343,
+                "y": 10.666666666666664
+              }
+            },
+            {
+              "nodeId": "662ccab2-3b38-4123-990c-70291d6720e3",
+              "displayName": "Collect Suitcase",
+              "description": "Collect the suitcase.",
+              "nodeBehavior": "objective",
+              "objectiveSubtype": "collect",
+              "targetId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+              "count": 1,
+              "optional": false,
+              "autoStart": false,
+              "prerequisiteNodeIds": [
+                "028447aa-20cc-4c61-8ce1-57bff9246bf2",
+                "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668"
+              ],
+              "failTargetNodeIds": [],
+              "onEnterActions": [],
+              "onCompleteActions": [],
+              "showInHud": true,
+              "graphPosition": {
+                "x": 292,
+                "y": 24.666666666666657
+              }
+            },
+            {
+              "nodeId": "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668",
+              "displayName": "Talk to Bo",
+              "description": "Talk to Bo about your missing suitcase.",
+              "nodeBehavior": "objective",
+              "objectiveSubtype": "talk",
+              "targetId": "66013347-dc94-4518-898b-9dfd22ac7ced",
+              "count": 1,
+              "optional": false,
+              "dialogueDefinitionId": "de62f5af-687c-48e6-b9c3-ee063670ab95",
+              "autoStart": false,
+              "prerequisiteNodeIds": [],
+              "failTargetNodeIds": [],
+              "onEnterActions": [],
+              "onCompleteActions": [
+                {
+                  "type": "setFlag",
+                  "targetId": "talkedToDockWorker"
+                }
+              ],
+              "showInHud": true,
+              "graphPosition": {
+                "x": -8.666666666666671,
+                "y": 182
               }
             }
           ],
           "entryNodeIds": [
-            "028447aa-20cc-4c61-8ce1-57bff9246bf2"
+            "028447aa-20cc-4c61-8ce1-57bff9246bf2",
+            "662ccab2-3b38-4123-990c-70291d6720e3",
+            "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668"
           ]
         }
       ],
@@ -1096,9 +1223,55 @@
               "shaderParameterOverrides": [],
               "transform": {
                 "position": [
-                  11.81656868137779,
+                  -3.8284208423534647,
                   0,
-                  20.450789647962303
+                  17.13541370775326
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "presenceId": "2dbf0a9d-2d6c-4d35-af45-96824ceda719",
+              "npcDefinitionId": "139daaec-a618-4053-b697-0ced0024d80d",
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  8.549643397950312,
+                  0,
+                  19.10044393184615
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "presenceId": "78fe0af5-0cb7-4483-9faf-2c6a6e729cee",
+              "npcDefinitionId": "66013347-dc94-4518-898b-9dfd22ac7ced",
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  15.847908145699982,
+                  0,
+                  22.830002347029883
                 ],
                 "rotation": [
                   0,
@@ -1174,7 +1347,7 @@
               "shaderParameterOverrides": [],
               "transform": {
                 "position": [
-                  -10.596402196138467,
+                  -9.754294290755682,
                   0.5,
                   14.596905747755159
                 ],
@@ -1400,9 +1573,9 @@
               "shaderParameterOverrides": [],
               "transform": {
                 "position": [
-                  -11.979726327587258,
+                  7.633495977903912,
                   0.03706311626947478,
-                  17.847459164046725
+                  15.850771499009392
                 ],
                 "rotation": [
                   0,
@@ -1439,6 +1612,136 @@
                   4.006534451718614,
                   3.4936596151403068,
                   3.366313856415849
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:waiting_platform_1_v1-1784615850706-1",
+              "assetDefinitionId": "asset:waiting_platform_1_v1",
+              "displayName": "waiting_platform_1_v1",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  7.328187479283811,
+                  0.05225033898938314,
+                  15.672711236876705
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:crate_whole_closed_1_v1-1784616140238-1",
+              "assetDefinitionId": "asset:crate_whole_closed_1_v1",
+              "displayName": "crate_whole_closed_1_v1",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -1.4446781057780407,
+                  -0.018289255422863526,
+                  23.616881123074336
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:park_bench_1_v6-1784674714230-1",
+              "assetDefinitionId": "asset:park_bench_1_v6",
+              "displayName": "park_bench_1_v6",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -10.544395371241215,
+                  0.00358280765169694,
+                  19.09486748056721
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1.130949141961887,
+                  1.130949141961887,
+                  1.130949141961887
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:book-closed-basic-1-1784682568948-1",
+              "assetDefinitionId": "asset:book-closed-basic-1",
+              "displayName": "book-closed-basic-1",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -9.677265231234466,
+                  0.6204991463187752,
+                  19.344515224132053
+                ],
+                "rotation": [
+                  -1.7445216996739088,
+                  -0.01307393387652872,
+                  0.8507885313991779
+                ],
+                "scale": [
+                  1.182549680518313,
+                  1.182549680518313,
+                  1.182549680518313
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:street_light_1_v1-1784682756065-1",
+              "assetDefinitionId": "asset:street_light_1_v1",
+              "displayName": "street_light_1_v1",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -4.404102834573648,
+                  0.033499013268611044,
+                  14.426762063209022
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
                 ]
               }
             }

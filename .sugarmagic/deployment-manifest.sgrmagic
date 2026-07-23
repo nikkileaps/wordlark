@@ -1,60 +1,40 @@
 {
   "files": [
     {
-      "relativePath": "deployment/google-cloud-run/README.md",
-      "contentHash": "fnv1a-17b90160"
+      "relativePath": "deployment/local/README.md",
+      "contentHash": "fnv1a-e94fe3be"
     },
     {
-      "relativePath": "deployment/google-cloud-run/.env.example",
-      "contentHash": "fnv1a-1237ad4b"
+      "relativePath": "deployment/local/.env.example",
+      "contentHash": "fnv1a-5a87ba0"
     },
     {
-      "relativePath": "deployment/google-cloud-run/deploy.sh",
-      "contentHash": "fnv1a-77949266"
+      "relativePath": "deployment/local/docker-compose.yml",
+      "contentHash": "fnv1a-e618cfe6"
     },
     {
-      "relativePath": "deployment/google-cloud-run/deployment-plan.json",
-      "contentHash": "fnv1a-1b7a0600"
+      "relativePath": "deployment/local/.sugarmagic-empty-lore/.gitkeep",
+      "contentHash": "fnv1a-cc238607"
     },
     {
-      "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/package.json",
+      "relativePath": "deployment/local/deployment-plan.json",
+      "contentHash": "fnv1a-b098b051"
+    },
+    {
+      "relativePath": "deployment/local/services/sugarmagic-gateway/package.json",
       "contentHash": "fnv1a-38ce40b0"
     },
     {
-      "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/routes.json",
-      "contentHash": "fnv1a-498bd4ca"
+      "relativePath": "deployment/local/services/sugarmagic-gateway/routes.json",
+      "contentHash": "fnv1a-825f629e"
     },
     {
-      "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/server.mjs",
-      "contentHash": "fnv1a-ebd3ea5d"
+      "relativePath": "deployment/local/services/sugarmagic-gateway/server.mjs",
+      "contentHash": "fnv1a-7038383c"
     },
     {
-      "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/Dockerfile",
-      "contentHash": "fnv1a-e6f5a033"
-    },
-    {
-      "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/service.yaml",
-      "contentHash": "fnv1a-7069e6ef"
-    },
-    {
-      "relativePath": "deployment/google-cloud-run/terraform/main.tf",
-      "contentHash": "fnv1a-e33a5b59"
-    },
-    {
-      "relativePath": "deployment/google-cloud-run/terraform/variables.tf",
-      "contentHash": "fnv1a-b862e16b"
-    },
-    {
-      "relativePath": "deployment/google-cloud-run/terraform/outputs.tf",
-      "contentHash": "fnv1a-264318e"
-    },
-    {
-      "relativePath": "deployment/google-cloud-run/terraform/terraform.tfvars",
-      "contentHash": "fnv1a-8a841911"
-    },
-    {
-      "relativePath": "deployment/google-cloud-run/terraform/.gitignore",
-      "contentHash": "fnv1a-d43ef060"
+      "relativePath": "deployment/local/services/sugarmagic-gateway/Dockerfile",
+      "contentHash": "fnv1a-b69af9cb"
     },
     {
       "relativePath": "deployment/netlify/netlify.toml",
@@ -62,7 +42,7 @@
     },
     {
       "relativePath": "deployment/netlify/build-config.json",
-      "contentHash": "fnv1a-3b42b43e"
+      "contentHash": "fnv1a-9d930aa4"
     },
     {
       "relativePath": "deployment/netlify/README.md",
@@ -70,7 +50,7 @@
     },
     {
       "relativePath": ".sugarmagic/published-web/boot.json",
-      "contentHash": "fnv1a-31fbefb0"
+      "contentHash": "fnv1a-715ff0e6"
     },
     {
       "relativePath": ".sugarmagic/published-web/_headers",
@@ -90,7 +70,7 @@
     },
     {
       "relativePath": ".github/workflows/sugardeploy-deploy.yml",
-      "contentHash": "fnv1a-88acddb5"
+      "contentHash": "fnv1a-ab8c7f6c"
     }
   ]
 }

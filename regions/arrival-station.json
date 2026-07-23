@@ -101,7 +101,7 @@
     {
       "behaviorId": "region-behavior-1784324677651-1",
       "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9",
-      "displayName": "Bippity Roo Behavior",
+      "displayName": "Horace Supervise Dock",
       "tasks": [
         {
           "taskId": "region-behavior-task-1784324677651-1",
@@ -117,6 +117,30 @@
               "key": "introduction_complete",
               "valueType": "boolean",
               "value": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "behaviorId": "region-behavior-1784836358543-2",
+      "npcDefinitionId": "139daaec-a618-4053-b697-0ced0024d80d",
+      "displayName": "Snobby Raccoon Lady is Upset",
+      "tasks": [
+        {
+          "taskId": "region-behavior-task-1784836358543-2",
+          "displayName": "Default Task",
+          "description": "The snobby raccoon lady waiting at the docks was growing impatient but now she's really mad because something has spilled her trunk all over the place and some of her socks are missing.",
+          "targetAreaId": null,
+          "currentActivity": "idle",
+          "currentGoal": "idle",
+          "activation": {
+            "questDefinitionId": null,
+            "questStageId": null,
+            "worldFlagEquals": {
+              "key": "talkedToDockWorker",
+              "valueType": "boolean",
+              "value": "true"
             }
           }
         }

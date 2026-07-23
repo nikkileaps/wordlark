@@ -23,14 +23,15 @@
       "enabled": true,
       "config": {
         "loreSourceKind": "local",
-        "loreLocalPath": "",
+        "loreLocalPath": "/Users/nikki/projects/rackwick-lore",
         "loreRepositoryUrl": "",
         "loreRepositoryRef": "main",
         "maxEvidenceResults": 5,
-        "debugLogging": false,
+        "debugLogging": true,
         "tone": "",
-        "anthropicModel": "claude-opus-4-7",
-        "openAiVectorStoreId": "vs_69d16958aec48191b2fe258bd16bf028"
+        "anthropicModel": "claude-haiku-4-5",
+        "openAiVectorStoreId": "vs_69d16958aec48191b2fe258bd16bf028",
+        "anthropicSummaryModel": "claude-haiku-4-5"
       }
     },
     {
@@ -43,7 +44,7 @@
       "enabled": true,
       "config": {
         "settings": {
-          "backendDeploymentTargetId": "google-cloud-run",
+          "backendDeploymentTargetId": "local",
           "frontendDeploymentTargetId": "netlify",
           "workingDirectory": "/Users/nikki/projects/wordlark",
           "githubRepo": "nikkileaps/wordlark",
@@ -60,13 +61,23 @@
             "netlify": {
               "siteId": "2122920a-dbc2-443e-84ed-80743862033f",
               "siteName": "wordlark-prod"
-            }
+            },
+            "local": {}
           }
         },
         "versionedProjectIdentifiers": {
           "v1": "1dqlc"
         },
         "deployHistory": [
+          {
+            "runId": 29702105663,
+            "runUrl": "https://github.com/nikkileaps/wordlark/actions/runs/29702105663",
+            "ref": "main",
+            "headSha": "fc9f93ddada82c28a5b04dac5e005a6f86098a49",
+            "dispatchedAt": "2026-07-19T20:13:35.731Z",
+            "status": "queued",
+            "conclusion": null
+          },
           {
             "runId": 28758282340,
             "runUrl": "https://github.com/nikkileaps/wordlark/actions/runs/28758282340",
@@ -104,6 +115,18 @@
             "conclusion": null
           }
         ]
+      }
+    },
+    {
+      "identity": {
+        "id": "bc96f7e0-68aa-43bd-94d4-a508ffd0e875",
+        "schema": "PluginConfiguration",
+        "version": 1
+      },
+      "pluginId": "sugarlang",
+      "enabled": false,
+      "config": {
+        "targetLanguage": "es"
       }
     },
     {
@@ -235,7 +258,7 @@
       },
       "markers": [],
       "gameplayPlacements": [],
-      "lorePageId": "lore.entities.npcs.bippity-roo",
+      "lorePageId": "lore.locations.towns.town.earendale",
       "placedAssets": [],
       "folders": [],
       "layoutSketch": null,
@@ -374,7 +397,7 @@
         {
           "behaviorId": "region-behavior-1784324677651-1",
           "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9",
-          "displayName": "Bippity Roo Behavior",
+          "displayName": "Horace Supervise Dock",
           "tasks": [
             {
               "taskId": "region-behavior-task-1784324677651-1",
@@ -390,6 +413,30 @@
                   "key": "introduction_complete",
                   "valueType": "boolean",
                   "value": null
+                }
+              }
+            }
+          ]
+        },
+        {
+          "behaviorId": "region-behavior-1784836358543-2",
+          "npcDefinitionId": "139daaec-a618-4053-b697-0ced0024d80d",
+          "displayName": "Snobby Raccoon Lady is Upset",
+          "tasks": [
+            {
+              "taskId": "region-behavior-task-1784836358543-2",
+              "displayName": "Default Task",
+              "description": "The snobby raccoon lady waiting at the docks was growing impatient but now she's really mad because something has spilled her trunk all over the place and some of her socks are missing.",
+              "targetAreaId": null,
+              "currentActivity": "idle",
+              "currentGoal": "idle",
+              "activation": {
+                "questDefinitionId": null,
+                "questStageId": null,
+                "worldFlagEquals": {
+                  "key": "talkedToDockWorker",
+                  "valueType": "boolean",
+                  "value": "true"
                 }
               }
             }
@@ -3377,9 +3424,55 @@
               "shaderParameterOverrides": [],
               "transform": {
                 "position": [
-                  11.81656868137779,
+                  -3.8284208423534647,
                   0,
-                  20.450789647962303
+                  17.13541370775326
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "presenceId": "2dbf0a9d-2d6c-4d35-af45-96824ceda719",
+              "npcDefinitionId": "139daaec-a618-4053-b697-0ced0024d80d",
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  8.549643397950312,
+                  0,
+                  19.10044393184615
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "presenceId": "78fe0af5-0cb7-4483-9faf-2c6a6e729cee",
+              "npcDefinitionId": "66013347-dc94-4518-898b-9dfd22ac7ced",
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  15.847908145699982,
+                  0,
+                  22.830002347029883
                 ],
                 "rotation": [
                   0,
@@ -3455,7 +3548,7 @@
               "shaderParameterOverrides": [],
               "transform": {
                 "position": [
-                  -10.596402196138467,
+                  -9.754294290755682,
                   0.5,
                   14.596905747755159
                 ],
@@ -3681,9 +3774,9 @@
               "shaderParameterOverrides": [],
               "transform": {
                 "position": [
-                  -11.979726327587258,
+                  7.633495977903912,
                   0.03706311626947478,
-                  17.847459164046725
+                  15.850771499009392
                 ],
                 "rotation": [
                   0,
@@ -3720,6 +3813,136 @@
                   4.006534451718614,
                   3.4936596151403068,
                   3.366313856415849
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:waiting_platform_1_v1-1784615850706-1",
+              "assetDefinitionId": "asset:waiting_platform_1_v1",
+              "displayName": "waiting_platform_1_v1",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  7.328187479283811,
+                  0.05225033898938314,
+                  15.672711236876705
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:crate_whole_closed_1_v1-1784616140238-1",
+              "assetDefinitionId": "asset:crate_whole_closed_1_v1",
+              "displayName": "crate_whole_closed_1_v1",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -1.4446781057780407,
+                  -0.018289255422863526,
+                  23.616881123074336
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:park_bench_1_v6-1784674714230-1",
+              "assetDefinitionId": "asset:park_bench_1_v6",
+              "displayName": "park_bench_1_v6",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -10.544395371241215,
+                  0.00358280765169694,
+                  19.09486748056721
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1.130949141961887,
+                  1.130949141961887,
+                  1.130949141961887
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:book-closed-basic-1-1784682568948-1",
+              "assetDefinitionId": "asset:book-closed-basic-1",
+              "displayName": "book-closed-basic-1",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -9.677265231234466,
+                  0.6204991463187752,
+                  19.344515224132053
+                ],
+                "rotation": [
+                  -1.7445216996739088,
+                  -0.01307393387652872,
+                  0.8507885313991779
+                ],
+                "scale": [
+                  1.182549680518313,
+                  1.182549680518313,
+                  1.182549680518313
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:street_light_1_v1-1784682756065-1",
+              "assetDefinitionId": "asset:street_light_1_v1",
+              "displayName": "street_light_1_v1",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -4.404102834573648,
+                  0.033499013268611044,
+                  14.426762063209022
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
                 ]
               }
             }
@@ -4560,13 +4783,13 @@
           "shape": "auto-box",
           "localBounds": {
             "min": [
-              -0.3057880401611328,
-              0,
+              19.039775848388672,
+              0.001090407371520996,
               -0.3057870864868164
             ],
             "max": [
-              0.3057880401611328,
-              0.6115741729736328,
+              19.651351928710938,
+              0.6126645803451538,
               0.3057870864868164
             ]
           }
@@ -4574,6 +4797,206 @@
         "source": {
           "relativeAssetPath": "assets/imported/crate_whole_closed_1_v1.glb",
           "fileName": "crate_whole_closed_1_v1.glb",
+          "mimeType": null
+        }
+      },
+      {
+        "definitionId": "asset:waiting_platform_1_v1",
+        "definitionKind": "asset",
+        "displayName": "waiting_platform_1_v1",
+        "assetKind": "model",
+        "surfaceSlots": [
+          {
+            "slotName": "roof_ribs",
+            "slotIndex": 0,
+            "surface": null
+          },
+          {
+            "slotName": "TileRoof.010",
+            "slotIndex": 1,
+            "surface": null
+          },
+          {
+            "slotName": "TileRoof.011",
+            "slotIndex": 2,
+            "surface": null
+          },
+          {
+            "slotName": "TileRoof.012",
+            "slotIndex": 3,
+            "surface": null
+          },
+          {
+            "slotName": "TileRoof.013",
+            "slotIndex": 4,
+            "surface": null
+          },
+          {
+            "slotName": "TileRoof.014",
+            "slotIndex": 5,
+            "surface": null
+          },
+          {
+            "slotName": "TileRoof.015",
+            "slotIndex": 6,
+            "surface": null
+          },
+          {
+            "slotName": "TileRoof.016",
+            "slotIndex": 7,
+            "surface": null
+          },
+          {
+            "slotName": "TileRoof.017",
+            "slotIndex": 8,
+            "surface": null
+          },
+          {
+            "slotName": "TileRoof.018",
+            "slotIndex": 9,
+            "surface": null
+          },
+          {
+            "slotName": "TileRoof.019",
+            "slotIndex": 10,
+            "surface": null
+          },
+          {
+            "slotName": "support_beams",
+            "slotIndex": 11,
+            "surface": null
+          }
+        ],
+        "deform": null,
+        "effect": null,
+        "collider": {
+          "shape": "auto-box",
+          "localBounds": {
+            "min": [
+              -3.347513543368768,
+              9.370282327836321e-14,
+              -1.9729821186259966
+            ],
+            "max": [
+              3.3475139180582687,
+              5.1224451500847765,
+              1.972981234497801
+            ]
+          }
+        },
+        "source": {
+          "relativeAssetPath": "assets/imported/waiting_platform_1_v1.glb",
+          "fileName": "waiting_platform_1_v1.glb",
+          "mimeType": null
+        }
+      },
+      {
+        "definitionId": "asset:park_bench_1_v6",
+        "definitionKind": "asset",
+        "displayName": "park_bench_1_v6",
+        "assetKind": "model",
+        "surfaceSlots": [
+          {
+            "slotName": "bench_paint",
+            "slotIndex": 0,
+            "surface": null
+          }
+        ],
+        "deform": null,
+        "effect": null,
+        "collider": {
+          "shape": "auto-box",
+          "localBounds": {
+            "min": [
+              -1.0138568878173828,
+              0,
+              -0.3571016788482666
+            ],
+            "max": [
+              1.0138568878173828,
+              0.8898499563802034,
+              0.3571016788482666
+            ]
+          }
+        },
+        "source": {
+          "relativeAssetPath": "assets/imported/park_bench_1_v6.glb",
+          "fileName": "park_bench_1_v6.glb",
+          "mimeType": null
+        }
+      },
+      {
+        "definitionId": "asset:book-closed-basic-1",
+        "definitionKind": "asset",
+        "displayName": "book-closed-basic-1",
+        "assetKind": "model",
+        "surfaceSlots": [
+          {
+            "slotName": "Material",
+            "slotIndex": 0,
+            "surface": null
+          }
+        ],
+        "deform": null,
+        "effect": null,
+        "collider": {
+          "shape": "auto-box",
+          "localBounds": {
+            "min": [
+              -0.07599999755620956,
+              0.000752277672290802,
+              -0.02500000037252903
+            ],
+            "max": [
+              0.07599999755620956,
+              0.22975227981805801,
+              0.02500000037252903
+            ]
+          }
+        },
+        "source": {
+          "relativeAssetPath": "assets/imported/book-closed-basic-1.glb",
+          "fileName": "book-closed-basic-1.glb",
+          "mimeType": null
+        }
+      },
+      {
+        "definitionId": "asset:street_light_1_v1",
+        "definitionKind": "asset",
+        "displayName": "street_light_1_v1",
+        "assetKind": "model",
+        "surfaceSlots": [
+          {
+            "slotName": "wrought_iron",
+            "slotIndex": 0,
+            "surface": null
+          },
+          {
+            "slotName": "milk_glass",
+            "slotIndex": 1,
+            "surface": null
+          }
+        ],
+        "deform": null,
+        "effect": null,
+        "collider": {
+          "shape": "auto-box",
+          "localBounds": {
+            "min": [
+              -0.25802089971706543,
+              0,
+              -0.2580209055287428
+            ],
+            "max": [
+              0.258020899717065,
+              3.9383824334870496,
+              0.25802090552874324
+            ]
+          }
+        },
+        "source": {
+          "relativeAssetPath": "assets/imported/street_light_1_v1.glb",
+          "fileName": "street_light_1_v1.glb",
           "mimeType": null
         }
       }
@@ -4646,6 +5069,61 @@
           "mimeType": null
         },
         "rigId": null
+      },
+      {
+        "definitionId": "wordlark:character-model:mim_generated_v1",
+        "definitionKind": "character-model",
+        "displayName": "mim_generated_v1",
+        "source": {
+          "relativeAssetPath": "assets/character-models/mim_generated_v1.glb",
+          "fileName": "mim_generated_v1.glb",
+          "mimeType": null
+        },
+        "rigId": null
+      },
+      {
+        "definitionId": "wordlark:character-model:horace_pennyfeather_generated_v1",
+        "definitionKind": "character-model",
+        "displayName": "horace_pennyfeather_generated_v1",
+        "source": {
+          "relativeAssetPath": "assets/character-models/horace_pennyfeather_generated_v1.glb",
+          "fileName": "horace_pennyfeather_generated_v1.glb",
+          "mimeType": null
+        },
+        "rigId": null
+      },
+      {
+        "definitionId": "wordlark:character-model:finnick_thorn_generated_v1",
+        "definitionKind": "character-model",
+        "displayName": "finnick_thorn_generated_v1",
+        "source": {
+          "relativeAssetPath": "assets/character-models/finnick_thorn_generated_v1.glb",
+          "fileName": "finnick_thorn_generated_v1.glb",
+          "mimeType": null
+        },
+        "rigId": null
+      },
+      {
+        "definitionId": "wordlark:character-model:Horace-Pennyfeather-rigged",
+        "definitionKind": "character-model",
+        "displayName": "Horace-Pennyfeather (rigged)",
+        "source": {
+          "relativeAssetPath": "assets/character-models/Horace-Pennyfeather-rigged.glb",
+          "fileName": "Horace-Pennyfeather-rigged.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "rigId": "sugarmagic-humanoid-v1"
+      },
+      {
+        "definitionId": "wordlark:character-model:Finnick-Thorn-rigged",
+        "definitionKind": "character-model",
+        "displayName": "Finnick Thorn (rigged)",
+        "source": {
+          "relativeAssetPath": "assets/character-models/Finnick-Thorn-rigged.glb",
+          "fileName": "Finnick-Thorn-rigged.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "rigId": "sugarmagic-humanoid-v1"
       }
     ],
     "characterAnimationDefinitions": [
@@ -4764,6 +5242,167 @@
         },
         "clipNames": [
           "Jog_Fwd_Loop"
+        ]
+      },
+      {
+        "definitionId": "wordlark:character-animation:Mim-Generated_Idle",
+        "definitionKind": "character-animation",
+        "displayName": "Mim Generated_Idle",
+        "source": {
+          "relativeAssetPath": "assets/character-animations/Mim-Generated_Idle.glb",
+          "fileName": "Mim-Generated_Idle.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "clipNames": [
+          "Generated_Idle"
+        ]
+      },
+      {
+        "definitionId": "wordlark:character-animation:Mim-Generated_Walk",
+        "definitionKind": "character-animation",
+        "displayName": "Mim Generated_Walk",
+        "source": {
+          "relativeAssetPath": "assets/character-animations/Mim-Generated_Walk.glb",
+          "fileName": "Mim-Generated_Walk.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "clipNames": [
+          "Generated_Walk"
+        ]
+      },
+      {
+        "definitionId": "wordlark:character-animation:Mim-Generated_Run",
+        "definitionKind": "character-animation",
+        "displayName": "Mim Generated_Run",
+        "source": {
+          "relativeAssetPath": "assets/character-animations/Mim-Generated_Run.glb",
+          "fileName": "Mim-Generated_Run.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "clipNames": [
+          "Generated_Run"
+        ]
+      },
+      {
+        "definitionId": "wordlark:character-animation:Horace-Pennyfeather-Generated_Idle",
+        "definitionKind": "character-animation",
+        "displayName": "Horace-Pennyfeather Generated_Idle",
+        "source": {
+          "relativeAssetPath": "assets/character-animations/Horace-Pennyfeather-Generated_Idle.glb",
+          "fileName": "Horace-Pennyfeather-Generated_Idle.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "clipNames": [
+          "Generated_Idle"
+        ]
+      },
+      {
+        "definitionId": "wordlark:character-animation:Horace-Pennyfeather-Generated_Walk",
+        "definitionKind": "character-animation",
+        "displayName": "Horace-Pennyfeather Generated_Walk",
+        "source": {
+          "relativeAssetPath": "assets/character-animations/Horace-Pennyfeather-Generated_Walk.glb",
+          "fileName": "Horace-Pennyfeather-Generated_Walk.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "clipNames": [
+          "Generated_Walk"
+        ]
+      },
+      {
+        "definitionId": "wordlark:character-animation:Horace-Pennyfeather-Generated_Run",
+        "definitionKind": "character-animation",
+        "displayName": "Horace-Pennyfeather Generated_Run",
+        "source": {
+          "relativeAssetPath": "assets/character-animations/Horace-Pennyfeather-Generated_Run.glb",
+          "fileName": "Horace-Pennyfeather-Generated_Run.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "clipNames": [
+          "Generated_Run"
+        ]
+      },
+      {
+        "definitionId": "wordlark:character-animation:Finnick-Thorn-Generated_Idle",
+        "definitionKind": "character-animation",
+        "displayName": "Finnick Thorn Generated_Idle",
+        "source": {
+          "relativeAssetPath": "assets/character-animations/Finnick-Thorn-Generated_Idle.glb",
+          "fileName": "Finnick-Thorn-Generated_Idle.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "clipNames": [
+          "Generated_Idle"
+        ]
+      },
+      {
+        "definitionId": "wordlark:character-animation:Finnick-Thorn-Generated_Walk",
+        "definitionKind": "character-animation",
+        "displayName": "Finnick Thorn Generated_Walk",
+        "source": {
+          "relativeAssetPath": "assets/character-animations/Finnick-Thorn-Generated_Walk.glb",
+          "fileName": "Finnick-Thorn-Generated_Walk.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "clipNames": [
+          "Generated_Walk"
+        ]
+      },
+      {
+        "definitionId": "wordlark:character-animation:Finnick-Thorn-Generated_Run",
+        "definitionKind": "character-animation",
+        "displayName": "Finnick Thorn Generated_Run",
+        "source": {
+          "relativeAssetPath": "assets/character-animations/Finnick-Thorn-Generated_Run.glb",
+          "fileName": "Finnick-Thorn-Generated_Run.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "clipNames": [
+          "Generated_Run"
+        ]
+      }
+    ],
+    "animationLibraryDefinitions": [
+      {
+        "definitionId": "wordlark:animation-library:cozy-idle",
+        "definitionKind": "animation-library",
+        "displayName": "Cozy Idle",
+        "origin": "generated",
+        "source": {
+          "relativeAssetPath": "assets/animations/cozy-idle.glb",
+          "fileName": "cozy-idle.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "clipNames": [
+          "Generated_Idle"
+        ]
+      },
+      {
+        "definitionId": "wordlark:animation-library:cozy-walk",
+        "definitionKind": "animation-library",
+        "displayName": "Cozy Walk",
+        "origin": "generated",
+        "source": {
+          "relativeAssetPath": "assets/animations/cozy-walk.glb",
+          "fileName": "cozy-walk.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "clipNames": [
+          "Generated_Walk"
+        ]
+      },
+      {
+        "definitionId": "wordlark:animation-library:cozy-run",
+        "definitionKind": "animation-library",
+        "displayName": "Cozy Run",
+        "origin": "generated",
+        "source": {
+          "relativeAssetPath": "assets/animations/cozy-run.glb",
+          "fileName": "cozy-run.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "clipNames": [
+          "Generated_Run"
         ]
       }
     ],
@@ -5263,7 +5902,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "37a79554-d997-4895-8a42-c297fe6f77fe",
+              "layerId": "160839cf-5fd3-4002-b22c-d6dcb58f0f54",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -5278,7 +5917,7 @@
               }
             },
             {
-              "layerId": "4cf1f8c5-d03d-46a5-9e9e-07b33434b00c",
+              "layerId": "fabea7db-e2b4-4822-8cc0-9c17a8ab9308",
               "displayName": "Tall Grass",
               "enabled": true,
               "opacity": 1,
@@ -5296,7 +5935,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "a08f814b-4730-49ec-84b2-a25079f10ef0",
+              "layerId": "2e37899c-639c-4f08-a4dc-436e9698d714",
               "displayName": "Flowers",
               "enabled": true,
               "opacity": 0.7,
@@ -5314,7 +5953,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "531559d8-a113-4750-972f-d3377cbf368e",
+              "layerId": "f492cfd5-67e2-421e-99ff-35447d1957a4",
               "displayName": "Warm Light",
               "enabled": true,
               "opacity": 0.5,
@@ -5343,7 +5982,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "392c8d07-1d67-4c51-b1cb-b2399af21889",
+              "layerId": "4f9aa144-bb8c-4a51-8070-4e4306eca9d7",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -5358,7 +5997,7 @@
               }
             },
             {
-              "layerId": "1c61161c-c2bd-4822-923c-909429c3aaac",
+              "layerId": "46f4bb95-3ff2-42d2-9efb-c52f474c5c9f",
               "displayName": "Grass",
               "enabled": true,
               "opacity": 1,
@@ -5376,7 +6015,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "292010b6-8308-40bd-9e26-d12dc99ab8e1",
+              "layerId": "04b9d360-35e4-4126-95aa-cd104b76c9ec",
               "displayName": "Flowers",
               "enabled": true,
               "opacity": 0.45,
@@ -5408,7 +6047,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "4047eae2-c7e8-456c-8a43-9d70272d0249",
+              "layerId": "c7546e0d-37bb-441d-905b-04650cb423d8",
               "displayName": "Bark",
               "enabled": true,
               "opacity": 1,
@@ -5423,7 +6062,7 @@
               }
             },
             {
-              "layerId": "fee3e92c-60f7-45fd-a151-f4a982e286db",
+              "layerId": "1e508c6b-9faf-49dc-b31d-2c0aac97df47",
               "displayName": "Moss Tint",
               "enabled": true,
               "opacity": 0.45,
@@ -5452,7 +6091,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "b9c633c1-6ccb-4166-b7b8-d4e207c73397",
+              "layerId": "9bd557a2-ce4e-4ed6-be3d-c3a2fe0a22c6",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -5467,7 +6106,7 @@
               }
             },
             {
-              "layerId": "cc00fa53-7bb0-490e-b5b1-ea4f8b22675e",
+              "layerId": "7b237f1c-2bef-4e54-b300-71604a45b18c",
               "displayName": "Short Grass",
               "enabled": true,
               "opacity": 1,
@@ -5499,7 +6138,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "8e0daa69-ef75-43d9-b40e-e903ac08ef97",
+              "layerId": "b7016f7a-ef8c-4a9c-982f-72f01527c06c",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -5514,7 +6153,7 @@
               }
             },
             {
-              "layerId": "dfc07248-65df-41d4-933c-f3970451a8b4",
+              "layerId": "72a9ac07-78d2-4a9f-b4f8-683cd1b90cfc",
               "displayName": "Clover Base",
               "enabled": true,
               "opacity": 0.85,
@@ -5532,7 +6171,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "d5b413ec-96ad-4ca7-81f6-ae8bad1257ca",
+              "layerId": "1712fa82-a007-46fe-9502-f35d87a2139a",
               "displayName": "Tiny Blooms",
               "enabled": true,
               "opacity": 0.35,
@@ -5564,7 +6203,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "23d4a634-2ad6-4e2a-80f4-5b5c7cfc3dfb",
+              "layerId": "f7a52551-a648-4b8c-847e-386c95815500",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -5579,7 +6218,7 @@
               }
             },
             {
-              "layerId": "40dd0467-5f17-4d38-b4ec-a518a161b051",
+              "layerId": "f11a55aa-b13a-474d-8d6d-f476ab0fee00",
               "displayName": "Painterly Tufts",
               "enabled": true,
               "opacity": 0.95,
@@ -5597,7 +6236,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "e03c6087-ef6b-411e-be3f-f18329b87379",
+              "layerId": "92d92aff-f6e9-4b66-8fd1-45c3c3679f74",
               "displayName": "Tiny Blooms",
               "enabled": true,
               "opacity": 0.2,
@@ -5615,7 +6254,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "17036bc4-6bd6-4e50-8187-b4f3d4ba6e9f",
+              "layerId": "bbfdc873-7b57-486c-95f3-54c79e8016fe",
               "displayName": "Warm Lift",
               "enabled": true,
               "opacity": 0.35,
@@ -5801,7 +6440,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "6bb2704b-5bcc-4bb9-aa06-b7d658a34d0b",
+              "layerId": "38899ef4-0ef4-4002-af82-743e6ec708eb",
               "displayName": "UV Grid",
               "enabled": true,
               "opacity": 1,
@@ -17435,11 +18074,11 @@
       "blockedSpellTags": []
     },
     "presentation": {
-      "modelAssetDefinitionId": "wordlark:character-model:mim-game-ready-v1-rigged",
+      "modelAssetDefinitionId": "wordlark:character-model:Mim-rigged",
       "animationAssetBindings": {
-        "idle": "wordlark:character-animation:mim-game-ready-v1-Generated_Idle",
-        "walk": "wordlark:character-animation:mim-game-ready-v1-Generated_Walk",
-        "run": "wordlark:character-animation:mim-game-ready-v1-Generated_Run"
+        "idle": "wordlark:character-animation:Mim-Generated_Idle",
+        "walk": "wordlark:character-animation:Mim-Generated_Walk",
+        "run": "wordlark:character-animation:Mim-Generated_Run"
       }
     }
   },
@@ -17526,12 +18165,12 @@
       "interactionMode": "scripted",
       "lorePageId": null,
       "presentation": {
-        "modelAssetDefinitionId": "wordlark:character-model:Mim-rigged",
+        "modelAssetDefinitionId": "wordlark:character-model:Horace-Pennyfeather-rigged",
         "modelHeight": 1.7,
         "animationAssetBindings": {
-          "idle": "wordlark:character-animation:Mim-Idle_Loop",
-          "walk": "wordlark:character-animation:Mim-Walk_Loop",
-          "run": "wordlark:character-animation:Mim-Jog_Fwd_Loop"
+          "idle": "wordlark:character-animation:Horace-Pennyfeather-Generated_Idle",
+          "walk": "wordlark:character-animation:Horace-Pennyfeather-Generated_Walk",
+          "run": "wordlark:character-animation:Horace-Pennyfeather-Generated_Run"
         }
       }
     },
@@ -17539,10 +18178,42 @@
       "definitionId": "c6b350c6-855f-4e34-875d-09e4be601993",
       "displayName": "Finnick Thorn",
       "description": "Cheese shop owner.",
+      "interactionMode": "agent",
+      "lorePageId": "lore.entities.npcs.finnick_thorn",
+      "presentation": {
+        "modelAssetDefinitionId": "wordlark:character-model:Finnick-Thorn-rigged",
+        "modelHeight": 1.7,
+        "animationAssetBindings": {
+          "idle": "wordlark:character-animation:Finnick-Thorn-Generated_Idle",
+          "walk": "wordlark:character-animation:Finnick-Thorn-Generated_Walk",
+          "run": "wordlark:character-animation:Finnick-Thorn-Generated_Run"
+        }
+      }
+    },
+    {
+      "definitionId": "139daaec-a618-4053-b697-0ced0024d80d",
+      "displayName": "Snobby Racoon Lady",
+      "description": "A snobby racoon lady who is super rich and narcissistic.",
+      "interactionMode": "agent",
+      "lorePageId": null,
+      "presentation": {
+        "modelAssetDefinitionId": null,
+        "modelHeight": 1.7,
+        "animationAssetBindings": {
+          "idle": null,
+          "walk": null,
+          "run": null
+        }
+      }
+    },
+    {
+      "definitionId": "66013347-dc94-4518-898b-9dfd22ac7ced",
+      "displayName": "Bo",
+      "description": "Native of Earendale is an air whale pilot and handler.",
       "interactionMode": "scripted",
       "lorePageId": null,
       "presentation": {
-        "modelAssetDefinitionId": "wordlark:character-model:finnick_thorn_v1",
+        "modelAssetDefinitionId": null,
         "modelHeight": 1.7,
         "animationAssetBindings": {
           "idle": null,
@@ -17623,6 +18294,27 @@
       "interactionBinding": {
         "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9"
       }
+    },
+    {
+      "definitionId": "de62f5af-687c-48e6-b9c3-ee063670ab95",
+      "displayName": "Dialogue 3",
+      "startNodeId": "ae791958-15a0-443e-858a-d37c0b2124e8",
+      "nodes": [
+        {
+          "nodeId": "ae791958-15a0-443e-858a-d37c0b2124e8",
+          "displayName": "Bo - Luggage Mess",
+          "speakerId": "66013347-dc94-4518-898b-9dfd22ac7ced",
+          "text": "Yeah ... baggage claim is a bit of a mess today not sure what happened. ",
+          "next": [],
+          "graphPosition": {
+            "x": 80,
+            "y": 80
+          }
+        }
+      ],
+      "interactionBinding": {
+        "npcDefinitionId": null
+      }
     }
   ],
   "questDefinitions": [
@@ -17659,13 +18351,64 @@
               ],
               "showInHud": false,
               "graphPosition": {
-                "x": 80.66666666666667,
-                "y": 80
+                "x": -7.333333333333343,
+                "y": 10.666666666666664
+              }
+            },
+            {
+              "nodeId": "662ccab2-3b38-4123-990c-70291d6720e3",
+              "displayName": "Collect Suitcase",
+              "description": "Collect the suitcase.",
+              "nodeBehavior": "objective",
+              "objectiveSubtype": "collect",
+              "targetId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+              "count": 1,
+              "optional": false,
+              "autoStart": false,
+              "prerequisiteNodeIds": [
+                "028447aa-20cc-4c61-8ce1-57bff9246bf2",
+                "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668"
+              ],
+              "failTargetNodeIds": [],
+              "onEnterActions": [],
+              "onCompleteActions": [],
+              "showInHud": true,
+              "graphPosition": {
+                "x": 292,
+                "y": 24.666666666666657
+              }
+            },
+            {
+              "nodeId": "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668",
+              "displayName": "Talk to Bo",
+              "description": "Talk to Bo about your missing suitcase.",
+              "nodeBehavior": "objective",
+              "objectiveSubtype": "talk",
+              "targetId": "66013347-dc94-4518-898b-9dfd22ac7ced",
+              "count": 1,
+              "optional": false,
+              "dialogueDefinitionId": "de62f5af-687c-48e6-b9c3-ee063670ab95",
+              "autoStart": false,
+              "prerequisiteNodeIds": [],
+              "failTargetNodeIds": [],
+              "onEnterActions": [],
+              "onCompleteActions": [
+                {
+                  "type": "setFlag",
+                  "targetId": "talkedToDockWorker"
+                }
+              ],
+              "showInHud": true,
+              "graphPosition": {
+                "x": -8.666666666666671,
+                "y": 182
               }
             }
           ],
           "entryNodeIds": [
-            "028447aa-20cc-4c61-8ce1-57bff9246bf2"
+            "028447aa-20cc-4c61-8ce1-57bff9246bf2",
+            "662ccab2-3b38-4123-990c-70291d6720e3",
+            "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668"
           ]
         }
       ],
@@ -18206,7 +18949,19 @@
   },
   "gameTitle": "Wordlark Hollow",
   "assetSources": {
+    "assets/animations/cozy-idle.glb": "/assets/animations/cozy-idle.glb",
+    "assets/animations/cozy-run.glb": "/assets/animations/cozy-run.glb",
+    "assets/animations/cozy-walk.glb": "/assets/animations/cozy-walk.glb",
     "assets/audio/theme.mp3": "/assets/audio/theme.mp3",
+    "assets/character-animations/Finnick-Thorn-Generated_Idle.glb": "/assets/character-animations/Finnick-Thorn-Generated_Idle.glb",
+    "assets/character-animations/Finnick-Thorn-Generated_Run.glb": "/assets/character-animations/Finnick-Thorn-Generated_Run.glb",
+    "assets/character-animations/Finnick-Thorn-Generated_Walk.glb": "/assets/character-animations/Finnick-Thorn-Generated_Walk.glb",
+    "assets/character-animations/Horace-Pennyfeather-Generated_Idle.glb": "/assets/character-animations/Horace-Pennyfeather-Generated_Idle.glb",
+    "assets/character-animations/Horace-Pennyfeather-Generated_Run.glb": "/assets/character-animations/Horace-Pennyfeather-Generated_Run.glb",
+    "assets/character-animations/Horace-Pennyfeather-Generated_Walk.glb": "/assets/character-animations/Horace-Pennyfeather-Generated_Walk.glb",
+    "assets/character-animations/Mim-Generated_Idle.glb": "/assets/character-animations/Mim-Generated_Idle.glb",
+    "assets/character-animations/Mim-Generated_Run.glb": "/assets/character-animations/Mim-Generated_Run.glb",
+    "assets/character-animations/Mim-Generated_Walk.glb": "/assets/character-animations/Mim-Generated_Walk.glb",
     "assets/character-animations/Mim-Idle_Loop.glb": "/assets/character-animations/Mim-Idle_Loop.glb",
     "assets/character-animations/Mim-Jog_Fwd_Loop.glb": "/assets/character-animations/Mim-Jog_Fwd_Loop.glb",
     "assets/character-animations/Mim-Walk_Loop.glb": "/assets/character-animations/Mim-Walk_Loop.glb",
@@ -18216,11 +18971,17 @@
     "assets/character-animations/mim-game-ready-v1-Idle_Loop.glb": "/assets/character-animations/mim-game-ready-v1-Idle_Loop.glb",
     "assets/character-animations/mim-game-ready-v1-Jog_Fwd_Loop.glb": "/assets/character-animations/mim-game-ready-v1-Jog_Fwd_Loop.glb",
     "assets/character-animations/mim-game-ready-v1-Walk_Loop.glb": "/assets/character-animations/mim-game-ready-v1-Walk_Loop.glb",
+    "assets/character-models/Finnick-Thorn-rigged.glb": "/assets/character-models/Finnick-Thorn-rigged.glb",
+    "assets/character-models/Horace-Pennyfeather-rigged.glb": "/assets/character-models/Horace-Pennyfeather-rigged.glb",
     "assets/character-models/Mim-rigged.glb": "/assets/character-models/Mim-rigged.glb",
+    "assets/character-models/finnick_thorn_generated_v1.glb": "/assets/character-models/finnick_thorn_generated_v1.glb",
     "assets/character-models/finnick_thorn_v1.glb": "/assets/character-models/finnick_thorn_v1.glb",
+    "assets/character-models/horace_pennyfeather_generated_v1.glb": "/assets/character-models/horace_pennyfeather_generated_v1.glb",
     "assets/character-models/horace_pennyfeather_v1.glb": "/assets/character-models/horace_pennyfeather_v1.glb",
     "assets/character-models/mim-game-ready-v1-rigged.glb": "/assets/character-models/mim-game-ready-v1-rigged.glb",
     "assets/character-models/mim-game-ready-v1.glb": "/assets/character-models/mim-game-ready-v1.glb",
+    "assets/character-models/mim_generated_v1.glb": "/assets/character-models/mim_generated_v1.glb",
+    "assets/imported/book-closed-basic-1.glb": "/assets/imported/book-closed-basic-1.glb",
     "assets/imported/cliff-crag.glb": "/assets/imported/cliff-crag.glb",
     "assets/imported/cliff-edge-a.glb": "/assets/imported/cliff-edge-a.glb",
     "assets/imported/cliff-edge-b.glb": "/assets/imported/cliff-edge-b.glb",
@@ -18234,12 +18995,15 @@
     "assets/imported/dryad_statue_previz_v3.glb": "/assets/imported/dryad_statue_previz_v3.glb",
     "assets/imported/lavender-plant-b.glb": "/assets/imported/lavender-plant-b.glb",
     "assets/imported/lavender-plant.glb": "/assets/imported/lavender-plant.glb",
+    "assets/imported/park_bench_1_v6.glb": "/assets/imported/park_bench_1_v6.glb",
     "assets/imported/rock_1.glb": "/assets/imported/rock_1.glb",
     "assets/imported/rock_formation_1.glb": "/assets/imported/rock_formation_1.glb",
     "assets/imported/station_bench_1_v1.glb": "/assets/imported/station_bench_1_v1.glb",
     "assets/imported/stone_cliff_1_v3.glb": "/assets/imported/stone_cliff_1_v3.glb",
+    "assets/imported/street_light_1_v1.glb": "/assets/imported/street_light_1_v1.glb",
     "assets/imported/test_tree_6.glb": "/assets/imported/test_tree_6.glb",
     "assets/imported/test_tree_7.glb": "/assets/imported/test_tree_7.glb",
+    "assets/imported/waiting_platform_1_v1.glb": "/assets/imported/waiting_platform_1_v1.glb",
     "assets/navmesh/arrival-station.navmesh.bin": "/assets/navmesh/arrival-station.navmesh.bin",
     "assets/textures/foilagemakerleafsprite.png": "/assets/textures/foilagemakerleafsprite.png",
     "assets/textures/grass-clump-01.png": "/assets/textures/grass-clump-01.png",

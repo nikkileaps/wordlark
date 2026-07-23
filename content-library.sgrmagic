@@ -775,13 +775,13 @@
         "shape": "auto-box",
         "localBounds": {
           "min": [
-            -0.3057880401611328,
-            0,
+            19.039775848388672,
+            0.001090407371520996,
             -0.3057870864868164
           ],
           "max": [
-            0.3057880401611328,
-            0.6115741729736328,
+            19.651351928710938,
+            0.6126645803451538,
             0.3057870864868164
           ]
         }
@@ -789,6 +789,206 @@
       "source": {
         "relativeAssetPath": "assets/imported/crate_whole_closed_1_v1.glb",
         "fileName": "crate_whole_closed_1_v1.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:waiting_platform_1_v1",
+      "definitionKind": "asset",
+      "displayName": "waiting_platform_1_v1",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "roof_ribs",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "TileRoof.010",
+          "slotIndex": 1,
+          "surface": null
+        },
+        {
+          "slotName": "TileRoof.011",
+          "slotIndex": 2,
+          "surface": null
+        },
+        {
+          "slotName": "TileRoof.012",
+          "slotIndex": 3,
+          "surface": null
+        },
+        {
+          "slotName": "TileRoof.013",
+          "slotIndex": 4,
+          "surface": null
+        },
+        {
+          "slotName": "TileRoof.014",
+          "slotIndex": 5,
+          "surface": null
+        },
+        {
+          "slotName": "TileRoof.015",
+          "slotIndex": 6,
+          "surface": null
+        },
+        {
+          "slotName": "TileRoof.016",
+          "slotIndex": 7,
+          "surface": null
+        },
+        {
+          "slotName": "TileRoof.017",
+          "slotIndex": 8,
+          "surface": null
+        },
+        {
+          "slotName": "TileRoof.018",
+          "slotIndex": 9,
+          "surface": null
+        },
+        {
+          "slotName": "TileRoof.019",
+          "slotIndex": 10,
+          "surface": null
+        },
+        {
+          "slotName": "support_beams",
+          "slotIndex": 11,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -3.347513543368768,
+            9.370282327836321e-14,
+            -1.9729821186259966
+          ],
+          "max": [
+            3.3475139180582687,
+            5.1224451500847765,
+            1.972981234497801
+          ]
+        }
+      },
+      "source": {
+        "relativeAssetPath": "assets/imported/waiting_platform_1_v1.glb",
+        "fileName": "waiting_platform_1_v1.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:park_bench_1_v6",
+      "definitionKind": "asset",
+      "displayName": "park_bench_1_v6",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "bench_paint",
+          "slotIndex": 0,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -1.0138568878173828,
+            0,
+            -0.3571016788482666
+          ],
+          "max": [
+            1.0138568878173828,
+            0.8898499563802034,
+            0.3571016788482666
+          ]
+        }
+      },
+      "source": {
+        "relativeAssetPath": "assets/imported/park_bench_1_v6.glb",
+        "fileName": "park_bench_1_v6.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:book-closed-basic-1",
+      "definitionKind": "asset",
+      "displayName": "book-closed-basic-1",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "Material",
+          "slotIndex": 0,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -0.07599999755620956,
+            0.000752277672290802,
+            -0.02500000037252903
+          ],
+          "max": [
+            0.07599999755620956,
+            0.22975227981805801,
+            0.02500000037252903
+          ]
+        }
+      },
+      "source": {
+        "relativeAssetPath": "assets/imported/book-closed-basic-1.glb",
+        "fileName": "book-closed-basic-1.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:street_light_1_v1",
+      "definitionKind": "asset",
+      "displayName": "street_light_1_v1",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "wrought_iron",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "milk_glass",
+          "slotIndex": 1,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -0.25802089971706543,
+            0,
+            -0.2580209055287428
+          ],
+          "max": [
+            0.258020899717065,
+            3.9383824334870496,
+            0.25802090552874324
+          ]
+        }
+      },
+      "source": {
+        "relativeAssetPath": "assets/imported/street_light_1_v1.glb",
+        "fileName": "street_light_1_v1.glb",
         "mimeType": null
       }
     }
@@ -861,6 +1061,61 @@
         "mimeType": null
       },
       "rigId": null
+    },
+    {
+      "definitionId": "wordlark:character-model:mim_generated_v1",
+      "definitionKind": "character-model",
+      "displayName": "mim_generated_v1",
+      "source": {
+        "relativeAssetPath": "assets/character-models/mim_generated_v1.glb",
+        "fileName": "mim_generated_v1.glb",
+        "mimeType": null
+      },
+      "rigId": null
+    },
+    {
+      "definitionId": "wordlark:character-model:horace_pennyfeather_generated_v1",
+      "definitionKind": "character-model",
+      "displayName": "horace_pennyfeather_generated_v1",
+      "source": {
+        "relativeAssetPath": "assets/character-models/horace_pennyfeather_generated_v1.glb",
+        "fileName": "horace_pennyfeather_generated_v1.glb",
+        "mimeType": null
+      },
+      "rigId": null
+    },
+    {
+      "definitionId": "wordlark:character-model:finnick_thorn_generated_v1",
+      "definitionKind": "character-model",
+      "displayName": "finnick_thorn_generated_v1",
+      "source": {
+        "relativeAssetPath": "assets/character-models/finnick_thorn_generated_v1.glb",
+        "fileName": "finnick_thorn_generated_v1.glb",
+        "mimeType": null
+      },
+      "rigId": null
+    },
+    {
+      "definitionId": "wordlark:character-model:Horace-Pennyfeather-rigged",
+      "definitionKind": "character-model",
+      "displayName": "Horace-Pennyfeather (rigged)",
+      "source": {
+        "relativeAssetPath": "assets/character-models/Horace-Pennyfeather-rigged.glb",
+        "fileName": "Horace-Pennyfeather-rigged.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "rigId": "sugarmagic-humanoid-v1"
+    },
+    {
+      "definitionId": "wordlark:character-model:Finnick-Thorn-rigged",
+      "definitionKind": "character-model",
+      "displayName": "Finnick Thorn (rigged)",
+      "source": {
+        "relativeAssetPath": "assets/character-models/Finnick-Thorn-rigged.glb",
+        "fileName": "Finnick-Thorn-rigged.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "rigId": "sugarmagic-humanoid-v1"
     }
   ],
   "characterAnimationDefinitions": [
@@ -979,6 +1234,167 @@
       },
       "clipNames": [
         "Jog_Fwd_Loop"
+      ]
+    },
+    {
+      "definitionId": "wordlark:character-animation:Mim-Generated_Idle",
+      "definitionKind": "character-animation",
+      "displayName": "Mim Generated_Idle",
+      "source": {
+        "relativeAssetPath": "assets/character-animations/Mim-Generated_Idle.glb",
+        "fileName": "Mim-Generated_Idle.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Generated_Idle"
+      ]
+    },
+    {
+      "definitionId": "wordlark:character-animation:Mim-Generated_Walk",
+      "definitionKind": "character-animation",
+      "displayName": "Mim Generated_Walk",
+      "source": {
+        "relativeAssetPath": "assets/character-animations/Mim-Generated_Walk.glb",
+        "fileName": "Mim-Generated_Walk.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Generated_Walk"
+      ]
+    },
+    {
+      "definitionId": "wordlark:character-animation:Mim-Generated_Run",
+      "definitionKind": "character-animation",
+      "displayName": "Mim Generated_Run",
+      "source": {
+        "relativeAssetPath": "assets/character-animations/Mim-Generated_Run.glb",
+        "fileName": "Mim-Generated_Run.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Generated_Run"
+      ]
+    },
+    {
+      "definitionId": "wordlark:character-animation:Horace-Pennyfeather-Generated_Idle",
+      "definitionKind": "character-animation",
+      "displayName": "Horace-Pennyfeather Generated_Idle",
+      "source": {
+        "relativeAssetPath": "assets/character-animations/Horace-Pennyfeather-Generated_Idle.glb",
+        "fileName": "Horace-Pennyfeather-Generated_Idle.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Generated_Idle"
+      ]
+    },
+    {
+      "definitionId": "wordlark:character-animation:Horace-Pennyfeather-Generated_Walk",
+      "definitionKind": "character-animation",
+      "displayName": "Horace-Pennyfeather Generated_Walk",
+      "source": {
+        "relativeAssetPath": "assets/character-animations/Horace-Pennyfeather-Generated_Walk.glb",
+        "fileName": "Horace-Pennyfeather-Generated_Walk.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Generated_Walk"
+      ]
+    },
+    {
+      "definitionId": "wordlark:character-animation:Horace-Pennyfeather-Generated_Run",
+      "definitionKind": "character-animation",
+      "displayName": "Horace-Pennyfeather Generated_Run",
+      "source": {
+        "relativeAssetPath": "assets/character-animations/Horace-Pennyfeather-Generated_Run.glb",
+        "fileName": "Horace-Pennyfeather-Generated_Run.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Generated_Run"
+      ]
+    },
+    {
+      "definitionId": "wordlark:character-animation:Finnick-Thorn-Generated_Idle",
+      "definitionKind": "character-animation",
+      "displayName": "Finnick Thorn Generated_Idle",
+      "source": {
+        "relativeAssetPath": "assets/character-animations/Finnick-Thorn-Generated_Idle.glb",
+        "fileName": "Finnick-Thorn-Generated_Idle.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Generated_Idle"
+      ]
+    },
+    {
+      "definitionId": "wordlark:character-animation:Finnick-Thorn-Generated_Walk",
+      "definitionKind": "character-animation",
+      "displayName": "Finnick Thorn Generated_Walk",
+      "source": {
+        "relativeAssetPath": "assets/character-animations/Finnick-Thorn-Generated_Walk.glb",
+        "fileName": "Finnick-Thorn-Generated_Walk.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Generated_Walk"
+      ]
+    },
+    {
+      "definitionId": "wordlark:character-animation:Finnick-Thorn-Generated_Run",
+      "definitionKind": "character-animation",
+      "displayName": "Finnick Thorn Generated_Run",
+      "source": {
+        "relativeAssetPath": "assets/character-animations/Finnick-Thorn-Generated_Run.glb",
+        "fileName": "Finnick-Thorn-Generated_Run.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Generated_Run"
+      ]
+    }
+  ],
+  "animationLibraryDefinitions": [
+    {
+      "definitionId": "wordlark:animation-library:cozy-idle",
+      "definitionKind": "animation-library",
+      "displayName": "Cozy Idle",
+      "origin": "generated",
+      "source": {
+        "relativeAssetPath": "assets/animations/cozy-idle.glb",
+        "fileName": "cozy-idle.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Generated_Idle"
+      ]
+    },
+    {
+      "definitionId": "wordlark:animation-library:cozy-walk",
+      "definitionKind": "animation-library",
+      "displayName": "Cozy Walk",
+      "origin": "generated",
+      "source": {
+        "relativeAssetPath": "assets/animations/cozy-walk.glb",
+        "fileName": "cozy-walk.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Generated_Walk"
+      ]
+    },
+    {
+      "definitionId": "wordlark:animation-library:cozy-run",
+      "definitionKind": "animation-library",
+      "displayName": "Cozy Run",
+      "origin": "generated",
+      "source": {
+        "relativeAssetPath": "assets/animations/cozy-run.glb",
+        "fileName": "cozy-run.glb",
+        "mimeType": "model/gltf-binary"
+      },
+      "clipNames": [
+        "Generated_Run"
       ]
     }
   ],
@@ -1478,7 +1894,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "37a79554-d997-4895-8a42-c297fe6f77fe",
+            "layerId": "160839cf-5fd3-4002-b22c-d6dcb58f0f54",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -1493,7 +1909,7 @@
             }
           },
           {
-            "layerId": "4cf1f8c5-d03d-46a5-9e9e-07b33434b00c",
+            "layerId": "fabea7db-e2b4-4822-8cc0-9c17a8ab9308",
             "displayName": "Tall Grass",
             "enabled": true,
             "opacity": 1,
@@ -1511,7 +1927,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "a08f814b-4730-49ec-84b2-a25079f10ef0",
+            "layerId": "2e37899c-639c-4f08-a4dc-436e9698d714",
             "displayName": "Flowers",
             "enabled": true,
             "opacity": 0.7,
@@ -1529,7 +1945,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "531559d8-a113-4750-972f-d3377cbf368e",
+            "layerId": "f492cfd5-67e2-421e-99ff-35447d1957a4",
             "displayName": "Warm Light",
             "enabled": true,
             "opacity": 0.5,
@@ -1558,7 +1974,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "392c8d07-1d67-4c51-b1cb-b2399af21889",
+            "layerId": "4f9aa144-bb8c-4a51-8070-4e4306eca9d7",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -1573,7 +1989,7 @@
             }
           },
           {
-            "layerId": "1c61161c-c2bd-4822-923c-909429c3aaac",
+            "layerId": "46f4bb95-3ff2-42d2-9efb-c52f474c5c9f",
             "displayName": "Grass",
             "enabled": true,
             "opacity": 1,
@@ -1591,7 +2007,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "292010b6-8308-40bd-9e26-d12dc99ab8e1",
+            "layerId": "04b9d360-35e4-4126-95aa-cd104b76c9ec",
             "displayName": "Flowers",
             "enabled": true,
             "opacity": 0.45,
@@ -1623,7 +2039,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "4047eae2-c7e8-456c-8a43-9d70272d0249",
+            "layerId": "c7546e0d-37bb-441d-905b-04650cb423d8",
             "displayName": "Bark",
             "enabled": true,
             "opacity": 1,
@@ -1638,7 +2054,7 @@
             }
           },
           {
-            "layerId": "fee3e92c-60f7-45fd-a151-f4a982e286db",
+            "layerId": "1e508c6b-9faf-49dc-b31d-2c0aac97df47",
             "displayName": "Moss Tint",
             "enabled": true,
             "opacity": 0.45,
@@ -1667,7 +2083,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "b9c633c1-6ccb-4166-b7b8-d4e207c73397",
+            "layerId": "9bd557a2-ce4e-4ed6-be3d-c3a2fe0a22c6",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -1682,7 +2098,7 @@
             }
           },
           {
-            "layerId": "cc00fa53-7bb0-490e-b5b1-ea4f8b22675e",
+            "layerId": "7b237f1c-2bef-4e54-b300-71604a45b18c",
             "displayName": "Short Grass",
             "enabled": true,
             "opacity": 1,
@@ -1714,7 +2130,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "8e0daa69-ef75-43d9-b40e-e903ac08ef97",
+            "layerId": "b7016f7a-ef8c-4a9c-982f-72f01527c06c",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -1729,7 +2145,7 @@
             }
           },
           {
-            "layerId": "dfc07248-65df-41d4-933c-f3970451a8b4",
+            "layerId": "72a9ac07-78d2-4a9f-b4f8-683cd1b90cfc",
             "displayName": "Clover Base",
             "enabled": true,
             "opacity": 0.85,
@@ -1747,7 +2163,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "d5b413ec-96ad-4ca7-81f6-ae8bad1257ca",
+            "layerId": "1712fa82-a007-46fe-9502-f35d87a2139a",
             "displayName": "Tiny Blooms",
             "enabled": true,
             "opacity": 0.35,
@@ -1779,7 +2195,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "23d4a634-2ad6-4e2a-80f4-5b5c7cfc3dfb",
+            "layerId": "f7a52551-a648-4b8c-847e-386c95815500",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -1794,7 +2210,7 @@
             }
           },
           {
-            "layerId": "40dd0467-5f17-4d38-b4ec-a518a161b051",
+            "layerId": "f11a55aa-b13a-474d-8d6d-f476ab0fee00",
             "displayName": "Painterly Tufts",
             "enabled": true,
             "opacity": 0.95,
@@ -1812,7 +2228,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "e03c6087-ef6b-411e-be3f-f18329b87379",
+            "layerId": "92d92aff-f6e9-4b66-8fd1-45c3c3679f74",
             "displayName": "Tiny Blooms",
             "enabled": true,
             "opacity": 0.2,
@@ -1830,7 +2246,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "17036bc4-6bd6-4e50-8187-b4f3d4ba6e9f",
+            "layerId": "bbfdc873-7b57-486c-95f3-54c79e8016fe",
             "displayName": "Warm Lift",
             "enabled": true,
             "opacity": 0.35,
@@ -2016,7 +2432,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "6bb2704b-5bcc-4bb9-aa06-b7d658a34d0b",
+            "layerId": "38899ef4-0ef4-4002-af82-743e6ec708eb",
             "displayName": "UV Grid",
             "enabled": true,
             "opacity": 1,
