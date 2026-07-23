@@ -1,5 +1,8 @@
 {
   "serviceUnitId": "sugarmagic-gateway",
+  "targetId": "google-cloud-run",
+  "authMode": "supabase-jwt",
+  "containerPort": 8080,
   "label": "Sugarmagic Gateway",
   "owners": [
     "sugaragent"

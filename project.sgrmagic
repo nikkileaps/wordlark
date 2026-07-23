@@ -46,7 +46,7 @@
       "enabled": true,
       "config": {
         "settings": {
-          "backendDeploymentTargetId": "local",
+          "backendDeploymentTargetId": "google-cloud-run",
           "frontendDeploymentTargetId": "netlify",
           "workingDirectory": "/Users/nikki/projects/wordlark",
           "githubRepo": "nikkileaps/wordlark",
@@ -71,6 +71,15 @@
           "v1": "1dqlc"
         },
         "deployHistory": [
+          {
+            "runId": 30047619966,
+            "runUrl": "https://github.com/nikkileaps/wordlark/actions/runs/30047619966",
+            "ref": "main",
+            "headSha": "79dd61cc6a19692ebbb6733557cdc0b4ebc937a2",
+            "dispatchedAt": "2026-07-23T21:48:51.032Z",
+            "status": "queued",
+            "conclusion": null
+          },
           {
             "runId": 29702105663,
             "runUrl": "https://github.com/nikkileaps/wordlark/actions/runs/29702105663",

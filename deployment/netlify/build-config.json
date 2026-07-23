@@ -4,7 +4,7 @@
   "templateVersion": 1,
   "publishTargetId": "web",
   "frontendDeploymentTargetId": "netlify",
-  "backendDeploymentTargetId": "local",
+  "backendDeploymentTargetId": "google-cloud-run",
   "gameProjectSlug": "wordlark",
   "majorVersion": 1,
   "build": {

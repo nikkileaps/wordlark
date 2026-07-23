@@ -1894,7 +1894,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "160839cf-5fd3-4002-b22c-d6dcb58f0f54",
+            "layerId": "9a76d5a5-6958-4e33-8f37-45edc0ff35b8",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -1909,7 +1909,7 @@
             }
           },
           {
-            "layerId": "fabea7db-e2b4-4822-8cc0-9c17a8ab9308",
+            "layerId": "984e7859-1fb0-4927-9da0-994d9bd1ae51",
             "displayName": "Tall Grass",
             "enabled": true,
             "opacity": 1,
@@ -1927,7 +1927,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "2e37899c-639c-4f08-a4dc-436e9698d714",
+            "layerId": "b7120b8a-0a71-4b69-98ea-c90142437826",
             "displayName": "Flowers",
             "enabled": true,
             "opacity": 0.7,
@@ -1945,7 +1945,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "f492cfd5-67e2-421e-99ff-35447d1957a4",
+            "layerId": "c63cf8b0-bd41-4508-a0eb-df7f8945b5f9",
             "displayName": "Warm Light",
             "enabled": true,
             "opacity": 0.5,
@@ -1974,7 +1974,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "4f9aa144-bb8c-4a51-8070-4e4306eca9d7",
+            "layerId": "b544bafe-f7e9-4a77-acd2-edebc1b9bd0b",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -1989,7 +1989,7 @@
             }
           },
           {
-            "layerId": "46f4bb95-3ff2-42d2-9efb-c52f474c5c9f",
+            "layerId": "00ee4471-6c57-4e21-8116-7839a737d056",
             "displayName": "Grass",
             "enabled": true,
             "opacity": 1,
@@ -2007,7 +2007,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "04b9d360-35e4-4126-95aa-cd104b76c9ec",
+            "layerId": "63c4f5e5-2156-4ac9-86a2-ab36dd8550c8",
             "displayName": "Flowers",
             "enabled": true,
             "opacity": 0.45,
@@ -2039,7 +2039,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "c7546e0d-37bb-441d-905b-04650cb423d8",
+            "layerId": "c0de1238-e906-4384-81a7-681a95f2e9aa",
             "displayName": "Bark",
             "enabled": true,
             "opacity": 1,
@@ -2054,7 +2054,7 @@
             }
           },
           {
-            "layerId": "1e508c6b-9faf-49dc-b31d-2c0aac97df47",
+            "layerId": "0dcda12e-9d19-4727-b0f7-7c83b81e4208",
             "displayName": "Moss Tint",
             "enabled": true,
             "opacity": 0.45,
@@ -2083,7 +2083,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "9bd557a2-ce4e-4ed6-be3d-c3a2fe0a22c6",
+            "layerId": "efb69aae-9363-44fb-aaca-70bfe290295a",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -2098,7 +2098,7 @@
             }
           },
           {
-            "layerId": "7b237f1c-2bef-4e54-b300-71604a45b18c",
+            "layerId": "b7a885f1-1c31-45c1-8c0d-824a61a39d3e",
             "displayName": "Short Grass",
             "enabled": true,
             "opacity": 1,
@@ -2130,7 +2130,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "b7016f7a-ef8c-4a9c-982f-72f01527c06c",
+            "layerId": "2ad3717a-c38b-45ef-9bfd-35031d1d719e",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -2145,7 +2145,7 @@
             }
           },
           {
-            "layerId": "72a9ac07-78d2-4a9f-b4f8-683cd1b90cfc",
+            "layerId": "14c687a5-8876-42cf-b13b-49a6185852ba",
             "displayName": "Clover Base",
             "enabled": true,
             "opacity": 0.85,
@@ -2163,7 +2163,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "1712fa82-a007-46fe-9502-f35d87a2139a",
+            "layerId": "83fc94a0-fcc2-4db0-b39c-64ae1f212565",
             "displayName": "Tiny Blooms",
             "enabled": true,
             "opacity": 0.35,
@@ -2195,7 +2195,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "f7a52551-a648-4b8c-847e-386c95815500",
+            "layerId": "a35a3a38-f8c0-4c51-80c1-1486cf241129",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -2210,7 +2210,7 @@
             }
           },
           {
-            "layerId": "f11a55aa-b13a-474d-8d6d-f476ab0fee00",
+            "layerId": "b7bd4124-3119-4297-8b6f-268d918802d1",
             "displayName": "Painterly Tufts",
             "enabled": true,
             "opacity": 0.95,
@@ -2228,7 +2228,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "92d92aff-f6e9-4b66-8fd1-45c3c3679f74",
+            "layerId": "c2922b1b-2797-4958-ad7d-0cb43d8d6693",
             "displayName": "Tiny Blooms",
             "enabled": true,
             "opacity": 0.2,
@@ -2246,7 +2246,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "bbfdc873-7b57-486c-95f3-54c79e8016fe",
+            "layerId": "b94a1ab8-76c7-488b-9685-5a25ff9178ed",
             "displayName": "Warm Lift",
             "enabled": true,
             "opacity": 0.35,
@@ -2432,7 +2432,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "38899ef4-0ef4-4002-af82-743e6ec708eb",
+            "layerId": "90bb82f2-14eb-4a34-98c9-604fcbfaaa1c",
             "displayName": "UV Grid",
             "enabled": true,
             "opacity": 1,

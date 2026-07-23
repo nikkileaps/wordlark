@@ -23,9 +23,42 @@ permissions:
   id-token: write
 
 jobs:
+  deploy-backend:
+    name: Deploy backend to Cloud Run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.ref || github.ref }}
+      - name: Authenticate to GCP via WIF
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.SUGARMAGIC_WIF_PROVIDER }}
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v2
+      - name: Configure docker for Artifact Registry
+        run: gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
+      - name: Run deploy.sh
+        working-directory: deployment/google-cloud-run
+        env:
+          SUGARMAGIC_GCP_PROJECT_ID: wordlark-v1-1dqlc
+          SUGARMAGIC_GCP_REGION: us-central1
+          SUGARMAGIC_SERVICE_NAME_PREFIX: wordlark-v1-1dqlc
+          SUGARMAGIC_RUNTIME_SA_EMAIL: ${{ vars.SUGARMAGIC_RUNTIME_SA_EMAIL }}
+          SUGARMAGIC_ARTIFACT_REGISTRY_URL: us-central1-docker.pkg.dev/wordlark-v1-1dqlc/wordlark-v1-1dqlc
+          SUGARMAGIC_ALLOWED_ORIGINS: "https://*--wordlark-prod.netlify.app,https://wordlark-prod.netlify.app"
+          SUGARMAGIC_SUGARAGENT_ANTHROPIC_MODEL: "claude-haiku-4-5"
+          SUGARMAGIC_SUGARAGENT_OPENAI_VECTOR_STORE_ID: "vs_69d16958aec48191b2fe258bd16bf028"
+          SUGARMAGIC_SUGARAGENT_SUMMARY_MODEL: "claude-haiku-4-5"
+          SUGARMAGIC_SUGARPROFILE_SUPABASE_ANON_KEY: "sb_publishable_XgdRpHfF_nDBdYLc4x1mTg_0CPfYcVZ"
+          SUGARMAGIC_SUGARPROFILE_SUPABASE_URL: "https://fhhcmtbtozlxaboqhrla.supabase.co"
+        run: bash deploy.sh
+
   deploy-frontend:
     name: Deploy frontend to Netlify
     runs-on: ubuntu-latest
+    needs: deploy-backend
     steps:
       - name: Checkout game repo
         uses: actions/checkout@v4
@@ -51,6 +84,21 @@ jobs:
             echo "::error::.sugarmagic/published-web/boot.json missing — re-save the project in Studio and commit before re-dispatching."
             exit 1
           fi
+      - name: Authenticate to GCP via WIF
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.SUGARMAGIC_WIF_PROVIDER }}
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v2
+      - name: Resolve Cloud Run gateway URL
+        id: gateway
+        run: |
+          URL=$(gcloud run services describe wordlark-v1-1dqlc-sugarmagic-gateway --project wordlark-v1-1dqlc --region us-central1 --format 'value(status.url)')
+          if [ -z "$URL" ]; then
+            echo "::error::gcloud run services describe wordlark-v1-1dqlc-sugarmagic-gateway returned an empty URL. Is the gateway deployed? Run the backend job first."
+            exit 1
+          fi
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -70,9 +118,12 @@ jobs:
           NODE_ENV: production
           SUGARMAGIC_GAME_VERSION: ${{ steps.game-version.outputs.version }}
           VITE_SUGARMAGIC_GAME_MAJOR_VERSION: "1"
-          VITE_SUGARMAGIC_VERSIONED_SLUG: "wordlark"
+          VITE_SUGARMAGIC_VERSIONED_SLUG: "wordlark-v1-1dqlc"
           VITE_SUGARMAGIC_GIT_SHA: ${{ github.sha }}
           VITE_SUGARMAGIC_BUILD_TIMESTAMP: ${{ github.run_started_at }}
+          VITE_SUGARMAGIC_GATEWAY_URL: ${{ steps.gateway.outputs.url }}
+          VITE_SUGARMAGIC_SUGARAGENT_PROXY_BASE_URL: ${{ steps.gateway.outputs.url }}
+          VITE_SUGARMAGIC_SUGARLANG_PROXY_BASE_URL: ${{ steps.gateway.outputs.url }}
         run: pnpm --filter @sugarmagic/target-web build
       - name: Stage built bundle and boot.json
         run: |
