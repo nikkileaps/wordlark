@@ -125,7 +125,11 @@
             "status": "queued",
             "conclusion": null
           }
-        ]
+        ],
+        "publishSettings": {
+          "publishTargetId": "web",
+          "liveDomain": "game.wordlarkhollow.com"
+        }
       }
     },
     {

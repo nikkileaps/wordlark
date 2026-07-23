@@ -12,5 +12,6 @@ secret_names          = [
 ]
 allowed_origins       = [
   "https://*--wordlark-prod.netlify.app",
-  "https://wordlark-prod.netlify.app"
+  "https://wordlark-prod.netlify.app",
+  "https://game.wordlarkhollow.com"
 ]
