@@ -31,9 +31,12 @@
         "maxEvidenceResults": 5,
         "debugLogging": true,
         "tone": "",
-        "anthropicModel": "claude-haiku-4-5",
+        "anthropicModel": "claude-sonnet-4-5",
         "openAiVectorStoreId": "vs_69d16958aec48191b2fe258bd16bf028",
-        "anthropicSummaryModel": "claude-haiku-4-5"
+        "anthropicSummaryModel": "claude-haiku-4-5",
+        "moderationEnabled": true,
+        "worldPremise": "Wordlark Hollow is a cozy, fantastical little town in the region of Earendale. It exists in a fictional world where a dragon fell on Denver That Was on October 15, 1980 and transported everything in its circumference to  a giant stone head the size of the moon floating through space. Everyone that was transported was turned into an anthropromorphic animal. It is now 100 years after that event. Magic is real in the world of the Great Head and can be cast using a device called a caster. ",
+        "anthropicRegenModel": "claude-sonnet-4-5"
       }
     },
     {
@@ -1227,7 +1230,9 @@
                   1,
                   1
                 ]
-              }
+              },
+              "condition": null,
+              "placementLabel": null
             },
             {
               "presenceId": "8e3e3e99-b9a6-49aa-96cd-1fc9d30847e2",
@@ -1250,7 +1255,9 @@
                   1,
                   1
                 ]
-              }
+              },
+              "condition": null,
+              "placementLabel": null
             },
             {
               "presenceId": "2dbf0a9d-2d6c-4d35-af45-96824ceda719",
@@ -1273,7 +1280,9 @@
                   1,
                   1
                 ]
-              }
+              },
+              "condition": null,
+              "placementLabel": null
             },
             {
               "presenceId": "78fe0af5-0cb7-4483-9faf-2c6a6e729cee",
@@ -1296,7 +1305,9 @@
                   1,
                   1
                 ]
-              }
+              },
+              "condition": null,
+              "placementLabel": null
             }
           ],
           "playerPresence": {

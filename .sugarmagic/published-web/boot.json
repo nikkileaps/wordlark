@@ -29,9 +29,12 @@
         "maxEvidenceResults": 5,
         "debugLogging": true,
         "tone": "",
-        "anthropicModel": "claude-haiku-4-5",
+        "anthropicModel": "claude-sonnet-4-5",
         "openAiVectorStoreId": "vs_69d16958aec48191b2fe258bd16bf028",
-        "anthropicSummaryModel": "claude-haiku-4-5"
+        "anthropicSummaryModel": "claude-haiku-4-5",
+        "moderationEnabled": true,
+        "worldPremise": "Wordlark Hollow is a cozy, fantastical little town in the region of Earendale. It exists in a fictional world where a dragon fell on Denver That Was on October 15, 1980 and transported everything in its circumference to  a giant stone head the size of the moon floating through space. Everyone that was transported was turned into an anthropromorphic animal. It is now 100 years after that event. Magic is real in the world of the Great Head and can be cast using a device called a caster. ",
+        "anthropicRegenModel": "claude-sonnet-4-5"
       }
     },
     {
@@ -221,7 +224,8 @@
                   "valueType": "string",
                   "value": "bar"
                 }
-              }
+              },
+              "timeWindow": null
             }
           ]
         }
@@ -427,7 +431,8 @@
                   "valueType": "boolean",
                   "value": null
                 }
-              }
+              },
+              "timeWindow": null
             }
           ]
         },
@@ -451,7 +456,8 @@
                   "valueType": "boolean",
                   "value": "true"
                 }
-              }
+              },
+              "timeWindow": null
             }
           ]
         }
@@ -3428,7 +3434,9 @@
                   1,
                   1
                 ]
-              }
+              },
+              "condition": null,
+              "placementLabel": null
             },
             {
               "presenceId": "8e3e3e99-b9a6-49aa-96cd-1fc9d30847e2",
@@ -3451,7 +3459,9 @@
                   1,
                   1
                 ]
-              }
+              },
+              "condition": null,
+              "placementLabel": null
             },
             {
               "presenceId": "2dbf0a9d-2d6c-4d35-af45-96824ceda719",
@@ -3474,7 +3484,9 @@
                   1,
                   1
                 ]
-              }
+              },
+              "condition": null,
+              "placementLabel": null
             },
             {
               "presenceId": "78fe0af5-0cb7-4483-9faf-2c6a6e729cee",
@@ -3497,7 +3509,9 @@
                   1,
                   1
                 ]
-              }
+              },
+              "condition": null,
+              "placementLabel": null
             }
           ],
           "playerPresence": {
@@ -5915,7 +5929,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "dc03a677-40d8-41e4-91de-7d55a0da7bf5",
+              "layerId": "fb24d6cf-ce04-4c91-bbfd-814c6022f43e",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -5930,7 +5944,7 @@
               }
             },
             {
-              "layerId": "8ad329a2-e739-4dd6-9a30-ae3bd8ea9170",
+              "layerId": "ac05a14a-b0fc-48a7-ace3-de9fcb863b07",
               "displayName": "Tall Grass",
               "enabled": true,
               "opacity": 1,
@@ -5948,7 +5962,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "77a5fbe8-b803-4475-93f9-f99db420b546",
+              "layerId": "6eba3990-aa2f-4046-900f-5f70707582be",
               "displayName": "Flowers",
               "enabled": true,
               "opacity": 0.7,
@@ -5966,7 +5980,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "58bbfe60-0a86-40d2-a646-97a13965c6a8",
+              "layerId": "a8311123-5b52-4fe6-b712-8451899714fa",
               "displayName": "Warm Light",
               "enabled": true,
               "opacity": 0.5,
@@ -5995,7 +6009,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "52c0d6a5-9b4d-4f89-90de-cf794876d9b3",
+              "layerId": "f5ad9408-b016-44bf-bb0b-2d9c7957472f",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -6010,7 +6024,7 @@
               }
             },
             {
-              "layerId": "ae79d4cb-2557-47b6-b3e4-32a1975fb4ba",
+              "layerId": "66d4f052-6e63-432c-a769-741f29c7cbdd",
               "displayName": "Grass",
               "enabled": true,
               "opacity": 1,
@@ -6028,7 +6042,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "5688285a-a69d-4858-a80f-e939c2f1f081",
+              "layerId": "6a5cf4b9-782a-4a4c-9bdf-3839f86cf9a5",
               "displayName": "Flowers",
               "enabled": true,
               "opacity": 0.45,
@@ -6060,7 +6074,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "91a07710-eabf-4fc5-9c1f-c088269e5c0c",
+              "layerId": "addb2bef-f3c8-4cd5-9b2d-45fde8ff3f44",
               "displayName": "Bark",
               "enabled": true,
               "opacity": 1,
@@ -6075,7 +6089,7 @@
               }
             },
             {
-              "layerId": "363cfa34-ee92-4dcb-b1dc-5e81c25016fc",
+              "layerId": "04dc74c2-a423-4983-9b4d-26905f1ccf83",
               "displayName": "Moss Tint",
               "enabled": true,
               "opacity": 0.45,
@@ -6104,7 +6118,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "dbde6216-79bc-493d-8674-4c11f5b70401",
+              "layerId": "0accbd15-b365-40e5-a606-84f3824e3c2c",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -6119,7 +6133,7 @@
               }
             },
             {
-              "layerId": "2344dd08-2805-439c-83b3-e4777805e7e5",
+              "layerId": "42cf1fe5-0ef4-4fe6-87fa-dd37a2c3ee3a",
               "displayName": "Short Grass",
               "enabled": true,
               "opacity": 1,
@@ -6151,7 +6165,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "50433885-1781-41c2-97fb-07382b18cbec",
+              "layerId": "99fc3d4b-762b-4cce-bc5f-4d015d53d3c9",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -6166,7 +6180,7 @@
               }
             },
             {
-              "layerId": "32212e9e-a738-41df-aabb-e319d9818af0",
+              "layerId": "e020e905-f5bb-44d2-89ef-a64474b2d923",
               "displayName": "Clover Base",
               "enabled": true,
               "opacity": 0.85,
@@ -6184,7 +6198,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "87e35a75-5517-4b06-be82-3dfe5f26d560",
+              "layerId": "58b83c37-2706-480b-acc2-8be5326ceb97",
               "displayName": "Tiny Blooms",
               "enabled": true,
               "opacity": 0.35,
@@ -6216,7 +6230,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "2703c270-3743-4b2c-8806-ec7be922e379",
+              "layerId": "54ee53be-cec4-40f9-8d0b-f488a3cbeef8",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -6231,7 +6245,7 @@
               }
             },
             {
-              "layerId": "6f5f8b30-879b-47b6-81db-714a8345c235",
+              "layerId": "24f76dc2-3e96-41b4-9d88-6737ca98d121",
               "displayName": "Painterly Tufts",
               "enabled": true,
               "opacity": 0.95,
@@ -6249,7 +6263,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "b437f843-dc4c-472a-810c-30d15fc577e0",
+              "layerId": "5ed6e311-7f6a-47ae-8541-a348cd2b90e7",
               "displayName": "Tiny Blooms",
               "enabled": true,
               "opacity": 0.2,
@@ -6267,7 +6281,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "6d61436f-b646-4a98-960c-92283164af06",
+              "layerId": "5ffb8f9c-1583-4273-ab95-dd697c108034",
               "displayName": "Warm Lift",
               "enabled": true,
               "opacity": 0.35,
@@ -6453,7 +6467,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "9aec0eaf-b874-4793-a4e8-16133a8312c7",
+              "layerId": "e3f8fd37-6a94-43a5-a4cd-1c98c23be407",
               "displayName": "UV Grid",
               "enabled": true,
               "opacity": 1,

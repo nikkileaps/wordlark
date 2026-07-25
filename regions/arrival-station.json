@@ -118,7 +118,8 @@
               "valueType": "boolean",
               "value": null
             }
-          }
+          },
+          "timeWindow": null
         }
       ]
     },
@@ -142,7 +143,8 @@
               "valueType": "boolean",
               "value": "true"
             }
-          }
+          },
+          "timeWindow": null
         }
       ]
     }

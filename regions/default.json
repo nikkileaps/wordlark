@@ -58,7 +58,8 @@
               "valueType": "string",
               "value": "bar"
             }
-          }
+          },
+          "timeWindow": null
         }
       ]
     }

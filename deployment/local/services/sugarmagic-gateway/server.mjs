@@ -772,7 +772,10 @@ async function handleSugarAgentGenerate(req, res) {
   }
   const body = await readJsonBody(req);
   const purpose = typeof body["purpose"] === "string" ? body["purpose"].trim() : "";
-  const model = typeof body["model"] === "string" && body["model"].trim() ? body["model"].trim() : purpose === "summary" ? resolveEnv("SUGARMAGIC_SUGARAGENT_SUMMARY_MODEL", "claude-haiku-4-5") : resolveEnv("SUGARMAGIC_SUGARAGENT_ANTHROPIC_MODEL", "claude-haiku-4-5");
+  const model = purpose === "summary" ? resolveEnv("SUGARMAGIC_SUGARAGENT_SUMMARY_MODEL", "claude-haiku-4-5") : purpose === "regen" ? resolveEnv(
+    "SUGARMAGIC_SUGARAGENT_REGEN_MODEL",
+    resolveEnv("SUGARMAGIC_SUGARAGENT_ANTHROPIC_MODEL", "claude-haiku-4-5")
+  ) : resolveEnv("SUGARMAGIC_SUGARAGENT_ANTHROPIC_MODEL", "claude-haiku-4-5");
   logInfo("sugaragent.generate", { purpose: purpose || "dialogue", model });
   const systemPrompt = typeof body["systemPrompt"] === "string" ? body["systemPrompt"].trim() : "";
   const userPrompt = typeof body["userPrompt"] === "string" ? body["userPrompt"].trim() : "";
@@ -792,6 +795,24 @@ async function handleSugarAgentGenerate(req, res) {
       message: "userPrompt and one of systemPrompt or systemBlocks are required."
     });
     return;
+  }
+  {
+    const blocklistRaw = resolveEnv("SUGARMAGIC_SUGARAGENT_BLOCKLIST", "");
+    if (blocklistRaw) {
+      const blockTerms = blocklistRaw.split(",").map((t) => t.trim().toLowerCase()).filter(Boolean);
+      const loweredPrompt = userPrompt.toLowerCase();
+      const blockHit = blockTerms.find((t) => loweredPrompt.includes(t));
+      if (blockHit) {
+        logInfo("sugaragent.generate-blocklist-hit", { term: blockHit });
+        sendJson(res, 200, {
+          text: "I'm not sure I can help with that right now.",
+          requestId: null,
+          usage: { inputTokens: 0, outputTokens: 0, cacheReadInputTokens: 0, cacheCreationInputTokens: 0 },
+          model: "deterministic"
+        });
+        return;
+      }
+    }
   }
   const anthropicSystem = hasSystemBlocks ? systemBlocks.map((block) => ({
     type: "text",
@@ -842,6 +863,166 @@ async function handleSugarAgentGenerate(req, res) {
     },
     model: servedModel
   });
+}
+async function handleSugarAgentJudge(req, res) {
+  if (req.method !== "POST") {
+    sendMethodNotAllowed(res, ["POST", "OPTIONS"]);
+    return;
+  }
+  const body = await readJsonBody(req);
+  const replyText = typeof body["replyText"] === "string" ? body["replyText"].trim() : "";
+  const personaDigest = typeof body["personaDigest"] === "string" ? body["personaDigest"].trim() : "";
+  const responseIntent = typeof body["responseIntent"] === "string" ? body["responseIntent"].trim() : "chat";
+  const worldContext = typeof body["worldContext"] === "string" ? body["worldContext"].trim() : null;
+  const rawLoreContext = Array.isArray(body["loreContextSummary"]) ? body["loreContextSummary"].filter((e) => typeof e === "string") : [];
+  const worldPremise = typeof body["worldPremise"] === "string" ? body["worldPremise"].trim() : "";
+  if (!replyText) {
+    sendJson(res, 400, { ok: false, error: "InvalidRequest", message: "replyText is required." });
+    return;
+  }
+  const model = resolveEnv("SUGARMAGIC_SUGARAGENT_JUDGE_MODEL", "claude-haiku-4-5");
+  const baseUrl = resolveEnv("SUGARMAGIC_SUGARAGENT_JUDGE_BASE_URL", "https://api.anthropic.com");
+  const loreContextLines = rawLoreContext.map((e, i) => `[${i + 1}] ${e.slice(0, 300)}`).join("\n");
+  const judgeUserPrompt = (worldPremise ? `World premise:
+${worldPremise}
+
+` : "") + `NPC persona summary (this is the NPC's established identity \u2014 treat all facts here as in-world):
+${personaDigest || "(none)"}
+
+Response intent: ${responseIntent}
+
+` + (worldContext ? `World context right now:
+${worldContext}
+
+` : "") + (loreContextLines ? `Lore context available to this NPC:
+${loreContextLines}
+
+` : "") + `NPC reply to score:
+"${replyText}"
+
+Rubric (each must PASS for overall pass):
+1. IN-CHARACTER: The reply matches the NPC persona voice, temperament, and knowledge level.
+2. WORLD-GROUNDED: The reply does not introduce facts incompatible with the world premise or the NPC persona. Facts stated in either are established and must not be flagged as violations.
+3. SAFETY: No out-of-character references to the real world, game mechanics, AI/developer, or secrets.
+
+Use the score_reply tool.`;
+  const judgeSystemPrompt = "You are a quality reviewer for NPC dialogue in a cozy fantasy RPG. Score the NPC reply strictly against the rubric. The world premise and NPC persona define what is real in this world \u2014 any fact stated there is in-world by definition and must never be flagged as a violation. Flag any violation that a player would notice as immersion-breaking or unsafe. Be strict on SAFETY; be reasonable on IN-CHARACTER (minor voice slips are ok if the content is sound).";
+  const tool = {
+    name: "score_reply",
+    description: "Record the verdict for an NPC reply against the rubric.",
+    input_schema: {
+      type: "object",
+      properties: {
+        passed: {
+          type: "boolean",
+          description: "true only when ALL rubric dimensions pass"
+        },
+        violations: {
+          type: "array",
+          items: { type: "string" },
+          description: 'List of failed dimension labels, e.g. ["IN-CHARACTER", "SAFETY"]. Empty when passed.'
+        },
+        repairHint: {
+          type: ["string", "null"],
+          description: "One-line instruction for how to fix the reply, or null when passed."
+        }
+      },
+      required: ["passed", "violations", "repairHint"]
+    }
+  };
+  const startedAt = Date.now();
+  const { payload } = await requestJson(
+    baseUrl.replace(/\/+$/, "") + "/v1/messages",
+    {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-api-key": requireEnv("SUGARMAGIC_ANTHROPIC_API_KEY"),
+        "anthropic-version": "2023-06-01"
+      },
+      body: JSON.stringify({
+        model,
+        max_tokens: 512,
+        system: judgeSystemPrompt,
+        tools: [tool],
+        tool_choice: { type: "tool", name: "score_reply" },
+        messages: [{ role: "user", content: judgeUserPrompt }]
+      })
+    },
+    "Anthropic judge request"
+  );
+  const toolUseBlock = Array.isArray(payload?.content) ? payload.content.find((block) => block?.type === "tool_use" && block.name === "score_reply") : null;
+  if (!toolUseBlock || typeof toolUseBlock.input !== "object" || !toolUseBlock.input) {
+    throw new Error("Judge response did not include a score_reply tool call.");
+  }
+  const input = toolUseBlock.input;
+  const passed = input["passed"] === true;
+  const violations = Array.isArray(input["violations"]) ? input["violations"].filter((v) => typeof v === "string") : [];
+  const repairHint = typeof input["repairHint"] === "string" ? input["repairHint"].trim() || null : null;
+  logInfo("sugaragent.judge", {
+    passed,
+    violations,
+    repairHint,
+    model,
+    durationMs: Date.now() - startedAt,
+    responseIntent
+  });
+  sendJson(res, 200, { passed, violations, repairHint });
+}
+async function handleSugarAgentModerate(req, res) {
+  if (req.method !== "POST") {
+    sendMethodNotAllowed(res, ["POST", "OPTIONS"]);
+    return;
+  }
+  const body = await readJsonBody(req);
+  const text = typeof body["text"] === "string" ? body["text"].trim() : "";
+  if (!text) {
+    sendJson(res, 400, { ok: false, error: "InvalidRequest", message: "text is required." });
+    return;
+  }
+  const blocklist = resolveEnv("SUGARMAGIC_SUGARAGENT_BLOCKLIST", "");
+  if (blocklist) {
+    const terms = blocklist.split(",").map((t) => t.trim().toLowerCase()).filter(Boolean);
+    const lowered = text.toLowerCase();
+    const hitTerm = terms.find((t) => lowered.includes(t));
+    if (hitTerm) {
+      logInfo("sugaragent.blocklist-hit", { term: hitTerm });
+      sendJson(res, 200, { flagged: true, categories: ["blocklist"], blocklisted: true });
+      return;
+    }
+  }
+  const moderationBaseUrl = resolveEnv(
+    "SUGARMAGIC_MODERATION_BASE_URL",
+    "https://api.openai.com"
+  );
+  try {
+    const startedAt = Date.now();
+    const { payload } = await requestJson(
+      moderationBaseUrl.replace(/\/+$/, "") + "/v1/moderations",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: "Bearer " + requireEnv("SUGARMAGIC_OPENAI_API_KEY")
+        },
+        body: JSON.stringify({ input: text })
+      },
+      "OpenAI moderation request"
+    );
+    const result = payload;
+    const topResult = result?.results?.[0];
+    const flagged = topResult?.flagged === true;
+    const categories = flagged && topResult?.categories ? Object.entries(topResult.categories).filter(([, v]) => v === true).map(([k]) => k) : [];
+    if (flagged) {
+      logInfo("sugaragent.moderation-flagged", { categories, durationMs: Date.now() - startedAt });
+    }
+    sendJson(res, 200, { flagged, categories, blocklisted: false });
+  } catch (error) {
+    logError("sugaragent.moderation-error", error, {
+      text: text.slice(0, 40)
+    });
+    sendJson(res, 200, { flagged: false, categories: [], blocklisted: false, error: "moderation-unavailable" });
+  }
 }
 async function handleSugarAgentSearch(req, res) {
   if (req.method !== "POST") {
@@ -1388,6 +1569,16 @@ var server = createServer(async (req, res) => {
       await handleSugarAgentGenerate(req, res);
       return;
     }
+    if (match.routeId === "sugaragent-generate" && path === match.path + "/judge") {
+      logInfo("gateway:dispatch", { routeId: match.routeId, path });
+      await handleSugarAgentJudge(req, res);
+      return;
+    }
+    if (match.routeId === "sugaragent-generate" && path === match.path + "/moderate") {
+      logInfo("gateway:dispatch", { routeId: match.routeId, path });
+      await handleSugarAgentModerate(req, res);
+      return;
+    }
     if (match.routeId === "sugaragent-retrieve" && path === match.path + "/search") {
       logInfo("gateway:dispatch", {
         routeId: match.routeId,
@@ -1483,12 +1674,14 @@ if (process.argv[1] === __gatewayFilename) {
 export {
   authorizeBearer,
   handleSugarAgentGenerate,
+  handleSugarAgentJudge,
   handleSugarAgentLoreIngest,
   handleSugarAgentLorePages,
   handleSugarAgentLorePing,
   handleSugarAgentLoreProbe,
   handleSugarAgentLoreResolve,
   handleSugarAgentLoreStatus,
+  handleSugarAgentModerate,
   handleSugarAgentSearch,
   initGateway,
   logError,
