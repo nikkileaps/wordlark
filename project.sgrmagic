@@ -142,9 +142,10 @@
         "version": 1
       },
       "pluginId": "sugarlang",
-      "enabled": false,
+      "enabled": true,
       "config": {
-        "targetLanguage": "es"
+        "targetLanguage": "es",
+        "debugBandOverride": "A1"
       }
     },
     {
@@ -275,7 +276,7 @@
     {
       "definitionId": "42670c12-cecb-4484-944b-0697935173f9",
       "displayName": "Horace Pennyfeather",
-      "interactionMode": "scripted",
+      "interactionMode": "agent",
       "lorePageId": null,
       "presentation": {
         "modelAssetDefinitionId": "wordlark:character-model:Horace-Pennyfeather-rigged",
@@ -347,6 +348,13 @@
           "displayName": "Hello",
           "speakerId": "42670c12-cecb-4484-944b-0697935173f9",
           "text": "Hello! I'm the Station Manager how can I help?",
+          "intent": {
+            "mustConveyFacts": [
+              "The speaker is the Station Manager. He wants to know if the player needs help."
+            ],
+            "beat": "friendly greeting",
+            "voiceNote": "warm but busy"
+          },
           "next": [
             {
               "targetNodeId": "b057fb78-3f59-4fd2-8934-40eb401e28a3"
@@ -418,10 +426,39 @@
           "displayName": "Bo - Luggage Mess",
           "speakerId": "66013347-dc94-4518-898b-9dfd22ac7ced",
           "text": "Yeah ... baggage claim is a bit of a mess today not sure what happened. ",
-          "next": [],
+          "intent": {
+            "mustConveyFacts": [
+              "Baggage claim is chaotic today."
+            ],
+            "beat": "impatient",
+            "voiceNote": "warm but busy"
+          },
+          "next": [
+            {
+              "targetNodeId": "7699e27d-db70-41de-b6b3-12d3b276dc13"
+            }
+          ],
           "graphPosition": {
             "x": 80,
             "y": 80
+          }
+        },
+        {
+          "nodeId": "7699e27d-db70-41de-b6b3-12d3b276dc13",
+          "displayName": "Upset Lady",
+          "speakerId": "66013347-dc94-4518-898b-9dfd22ac7ced",
+          "text": "I think that lady is pretty upset though.",
+          "intent": {
+            "mustConveyFacts": [
+              "Lady at dock is upset."
+            ],
+            "beat": "dry humor",
+            "voiceNote": "warm dry humor"
+          },
+          "next": [],
+          "graphPosition": {
+            "x": 346,
+            "y": 96.66666666666666
           }
         }
       ],
@@ -445,9 +482,9 @@
             {
               "nodeId": "028447aa-20cc-4c61-8ce1-57bff9246bf2",
               "displayName": "Talk to Station Manager",
-              "description": "Talk to the station manager about picking up luggage.",
+              "description": "Fill out \"customs form\" language assessment.",
               "nodeBehavior": "objective",
-              "objectiveSubtype": "talk",
+              "objectiveSubtype": "assessment",
               "targetId": "42670c12-cecb-4484-944b-0697935173f9",
               "count": 1,
               "optional": false,
@@ -462,7 +499,7 @@
                   "targetId": "introduction_complete"
                 }
               ],
-              "showInHud": false,
+              "showInHud": true,
               "graphPosition": {
                 "x": -7.333333333333343,
                 "y": 10.666666666666664
@@ -1617,7 +1654,7 @@
               "instanceId": "placed-asset:rock_formation_1-1784324425106-1",
               "assetDefinitionId": "asset:rock_formation_1",
               "displayName": "rock_formation_1",
-              "parentFolderId": null,
+              "parentFolderId": "scene-folder-1783830960362-2",
               "inspectable": null,
               "shaderOverrides": [],
               "shaderParameterOverrides": [],
@@ -1643,7 +1680,7 @@
               "instanceId": "placed-asset:waiting_platform_1_v1-1784615850706-1",
               "assetDefinitionId": "asset:waiting_platform_1_v1",
               "displayName": "waiting_platform_1_v1",
-              "parentFolderId": null,
+              "parentFolderId": "scene-folder-1783830960362-2",
               "inspectable": null,
               "shaderOverrides": [],
               "shaderParameterOverrides": [],
@@ -1669,7 +1706,7 @@
               "instanceId": "placed-asset:crate_whole_closed_1_v1-1784616140238-1",
               "assetDefinitionId": "asset:crate_whole_closed_1_v1",
               "displayName": "crate_whole_closed_1_v1",
-              "parentFolderId": null,
+              "parentFolderId": "scene-folder-1783830960362-2",
               "inspectable": null,
               "shaderOverrides": [],
               "shaderParameterOverrides": [],
@@ -1695,7 +1732,7 @@
               "instanceId": "placed-asset:park_bench_1_v6-1784674714230-1",
               "assetDefinitionId": "asset:park_bench_1_v6",
               "displayName": "park_bench_1_v6",
-              "parentFolderId": null,
+              "parentFolderId": "scene-folder-1783830960362-2",
               "inspectable": null,
               "shaderOverrides": [],
               "shaderParameterOverrides": [],
@@ -1747,7 +1784,7 @@
               "instanceId": "placed-asset:street_light_1_v1-1784682756065-1",
               "assetDefinitionId": "asset:street_light_1_v1",
               "displayName": "street_light_1_v1",
-              "parentFolderId": null,
+              "parentFolderId": "scene-folder-1783830960362-2",
               "inspectable": null,
               "shaderOverrides": [],
               "shaderParameterOverrides": [],
@@ -1766,6 +1803,204 @@
                   1,
                   1,
                   1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:rock_formation_1-1785208281418-1",
+              "assetDefinitionId": "asset:rock_formation_1",
+              "displayName": "rock_formation_1 Copy",
+              "parentFolderId": "scene-folder-1783830960362-2",
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -3.9082219259239683,
+                  -0.21326563862501258,
+                  24.49900872513433
+                ],
+                "rotation": [
+                  0,
+                  1.0204301481280886,
+                  0
+                ],
+                "scale": [
+                  2.1169153268267693,
+                  2.7110103158154017,
+                  2.1169153268267693
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:cliff-edge-a-1785213963220-1",
+              "assetDefinitionId": "asset:cliff-edge-a",
+              "displayName": "cliff-edge-a",
+              "parentFolderId": "scene-folder-1783830960362-2",
+              "inspectable": null,
+              "shaderOverrides": [],
+              "surfaceSlotOverrides": [
+                {
+                  "slotName": "Grass",
+                  "surface": {
+                    "kind": "inline",
+                    "surface": {
+                      "layers": [
+                        {
+                          "layerId": "85b2926a-c4ff-49a0-9f93-636e569ca6f1",
+                          "displayName": "Base",
+                          "enabled": true,
+                          "opacity": 1,
+                          "mask": {
+                            "kind": "always"
+                          },
+                          "kind": "appearance",
+                          "blendMode": "base",
+                          "content": {
+                            "kind": "material",
+                            "materialDefinitionId": "wordlark:material:material-1783620672561-1",
+                            "shaderOverrideDefinitionId": null,
+                            "tiling": null
+                          }
+                        }
+                      ],
+                      "context": "universal"
+                    }
+                  }
+                }
+              ],
+              "colliderOverride": {
+                "shape": "none",
+                "localBounds": null
+              },
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -16.20380839571842,
+                  -0.35546943909003703,
+                  26.048328110833186
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:cliff-edge-b-1785214103064-1",
+              "assetDefinitionId": "asset:cliff-edge-b",
+              "displayName": "cliff-edge-b",
+              "parentFolderId": "scene-folder-1783830960362-2",
+              "inspectable": null,
+              "shaderOverrides": [],
+              "surfaceSlotOverrides": [
+                {
+                  "slotName": "Grass",
+                  "surface": {
+                    "kind": "inline",
+                    "surface": {
+                      "layers": [
+                        {
+                          "layerId": "bbf20af6-327c-4ad2-b2a4-ac3eb1df1c03",
+                          "displayName": "Base",
+                          "enabled": true,
+                          "opacity": 1,
+                          "mask": {
+                            "kind": "always"
+                          },
+                          "kind": "appearance",
+                          "blendMode": "base",
+                          "content": {
+                            "kind": "material",
+                            "materialDefinitionId": "wordlark:material:material-1783620672561-1",
+                            "shaderOverrideDefinitionId": null,
+                            "tiling": null
+                          }
+                        }
+                      ],
+                      "context": "universal"
+                    }
+                  }
+                }
+              ],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -7.358858656651275,
+                  -0.2452530567461353,
+                  27.468931236638216
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1.6596965429185042
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:cliff-edge-b-1785214755966-1",
+              "assetDefinitionId": "asset:cliff-edge-b",
+              "displayName": "cliff-edge-b Copy",
+              "parentFolderId": "scene-folder-1783830960362-2",
+              "inspectable": null,
+              "shaderOverrides": [],
+              "surfaceSlotOverrides": [
+                {
+                  "slotName": "Grass",
+                  "surface": {
+                    "kind": "inline",
+                    "surface": {
+                      "layers": [
+                        {
+                          "layerId": "bbf20af6-327c-4ad2-b2a4-ac3eb1df1c03",
+                          "displayName": "Base",
+                          "enabled": true,
+                          "opacity": 1,
+                          "mask": {
+                            "kind": "always"
+                          },
+                          "kind": "appearance",
+                          "blendMode": "base",
+                          "content": {
+                            "kind": "material",
+                            "materialDefinitionId": "wordlark:material:material-1783620672561-1",
+                            "shaderOverrideDefinitionId": null,
+                            "tiling": null
+                          }
+                        }
+                      ],
+                      "context": "universal"
+                    }
+                  }
+                }
+              ],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  12.72462555453116,
+                  -0.39292627614253073,
+                  27.85657240659368
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1.9455376505298463,
+                  1,
+                  1.6596965429185042
                 ]
               }
             }

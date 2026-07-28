@@ -864,6 +864,37 @@ async function handleSugarAgentGenerate(req, res) {
     model: servedModel
   });
 }
+function buildJudgeUserPrompt(worldPremise, personaDigest, responseIntent, worldContext, loreContextLines, replyText, externalDirectives) {
+  const directivesBlock = externalDirectives.length > 0 ? `Established directives from game systems (in-world by definition; behavior they direct is never an IN-CHARACTER violation):
+` + externalDirectives.map((d, i) => `${i + 1}. ${d}`).join("\n") + `
+Directives never override the SAFETY rule.
+
+` : "";
+  const inCharacterGuard = externalDirectives.length > 0 ? " Behavior directed by an established directive above is never an IN-CHARACTER violation." : "";
+  return (worldPremise ? `World premise:
+${worldPremise}
+
+` : "") + `NPC persona summary (this is the NPC's established identity \u2014 treat all facts here as in-world):
+${personaDigest || "(none)"}
+
+` + directivesBlock + `Response intent: ${responseIntent}
+
+` + (worldContext ? `World context right now:
+${worldContext}
+
+` : "") + (loreContextLines ? `Lore context available to this NPC:
+${loreContextLines}
+
+` : "") + `NPC reply to score:
+"${replyText}"
+
+Rubric (each must PASS for overall pass):
+1. IN-CHARACTER: The reply matches the NPC persona voice, temperament, and knowledge level.${inCharacterGuard}
+2. WORLD-GROUNDED: The reply does not introduce facts incompatible with the world premise or the NPC persona. Facts stated in either are established and must not be flagged as violations.
+3. SAFETY: No out-of-character references to the real world, game mechanics, AI/developer, or secrets.
+
+Use the score_reply tool.`;
+}
 async function handleSugarAgentJudge(req, res) {
   if (req.method !== "POST") {
     sendMethodNotAllowed(res, ["POST", "OPTIONS"]);
@@ -876,6 +907,7 @@ async function handleSugarAgentJudge(req, res) {
   const worldContext = typeof body["worldContext"] === "string" ? body["worldContext"].trim() : null;
   const rawLoreContext = Array.isArray(body["loreContextSummary"]) ? body["loreContextSummary"].filter((e) => typeof e === "string") : [];
   const worldPremise = typeof body["worldPremise"] === "string" ? body["worldPremise"].trim() : "";
+  const externalDirectives = Array.isArray(body["externalDirectives"]) ? body["externalDirectives"].filter((e) => typeof e === "string") : [];
   if (!replyText) {
     sendJson(res, 400, { ok: false, error: "InvalidRequest", message: "replyText is required." });
     return;
@@ -883,29 +915,15 @@ async function handleSugarAgentJudge(req, res) {
   const model = resolveEnv("SUGARMAGIC_SUGARAGENT_JUDGE_MODEL", "claude-haiku-4-5");
   const baseUrl = resolveEnv("SUGARMAGIC_SUGARAGENT_JUDGE_BASE_URL", "https://api.anthropic.com");
   const loreContextLines = rawLoreContext.map((e, i) => `[${i + 1}] ${e.slice(0, 300)}`).join("\n");
-  const judgeUserPrompt = (worldPremise ? `World premise:
-${worldPremise}
-
-` : "") + `NPC persona summary (this is the NPC's established identity \u2014 treat all facts here as in-world):
-${personaDigest || "(none)"}
-
-Response intent: ${responseIntent}
-
-` + (worldContext ? `World context right now:
-${worldContext}
-
-` : "") + (loreContextLines ? `Lore context available to this NPC:
-${loreContextLines}
-
-` : "") + `NPC reply to score:
-"${replyText}"
-
-Rubric (each must PASS for overall pass):
-1. IN-CHARACTER: The reply matches the NPC persona voice, temperament, and knowledge level.
-2. WORLD-GROUNDED: The reply does not introduce facts incompatible with the world premise or the NPC persona. Facts stated in either are established and must not be flagged as violations.
-3. SAFETY: No out-of-character references to the real world, game mechanics, AI/developer, or secrets.
-
-Use the score_reply tool.`;
+  const judgeUserPrompt = buildJudgeUserPrompt(
+    worldPremise,
+    personaDigest,
+    responseIntent,
+    worldContext,
+    loreContextLines,
+    replyText,
+    externalDirectives
+  );
   const judgeSystemPrompt = "You are a quality reviewer for NPC dialogue in a cozy fantasy RPG. Score the NPC reply strictly against the rubric. The world premise and NPC persona define what is real in this world \u2014 any fact stated there is in-world by definition and must never be flagged as a violation. Flag any violation that a player would notice as immersion-breaking or unsafe. Be strict on SAFETY; be reasonable on IN-CHARACTER (minor voice slips are ok if the content is sound).";
   const tool = {
     name: "score_reply",
@@ -1512,6 +1530,62 @@ async function handleSugarAgentLoreProbe(req, res) {
   }
   sendJson(res, 200, { ok: true, steps, durationMs });
 }
+var SUGARLANG_TELEMETRY_PII_FIELDS = [
+  "inputText",
+  "originalText",
+  "repairedText",
+  "playerResponseText"
+];
+function scrubSugarlangTelemetryEvent(event) {
+  for (const field of SUGARLANG_TELEMETRY_PII_FIELDS) {
+    delete event[field];
+  }
+  const observations = event.observations;
+  if (!Array.isArray(observations)) {
+    return;
+  }
+  for (const entry of observations) {
+    if (typeof entry !== "object" || entry === null) {
+      continue;
+    }
+    const observation = entry.observation;
+    if (typeof observation === "object" && observation !== null) {
+      delete observation.inputText;
+    }
+  }
+}
+async function handleSugarlangTelemetry(req, res) {
+  if (req.method !== "POST") {
+    sendMethodNotAllowed(res, ["POST"]);
+    return;
+  }
+  const BODY_LIMIT = 200 * 1024;
+  let raw = "";
+  for await (const chunk of req) {
+    raw += chunk.toString();
+    if (raw.length > BODY_LIMIT) {
+      sendJson(res, 413, { ok: false, error: "RequestBodyTooLarge" });
+      return;
+    }
+  }
+  let body;
+  try {
+    body = JSON.parse(raw || "{}");
+  } catch {
+    sendJson(res, 400, { ok: false, error: "InvalidJson" });
+    return;
+  }
+  const events = Array.isArray(body.events) ? body.events : [];
+  const accepted = Math.min(events.length, 100);
+  for (let i = 0; i < accepted; i++) {
+    const event = events[i];
+    if (typeof event === "object" && event !== null) {
+      scrubSugarlangTelemetryEvent(event);
+      process.stdout.write(JSON.stringify(event) + "\n");
+    }
+  }
+  sendJson(res, 200, { ok: true, accepted });
+}
 var server = createServer(async (req, res) => {
   res.__sugarmagicCors = resolveCorsHeaders(req);
   if (req.method === "OPTIONS") {
@@ -1635,6 +1709,11 @@ var server = createServer(async (req, res) => {
       await handleSugarAgentLoreProbe(req, res);
       return;
     }
+    if (match.routeId === "sugarlang-telemetry" && path === match.path) {
+      logInfo("gateway:dispatch", { routeId: match.routeId, path });
+      await handleSugarlangTelemetry(req, res);
+      return;
+    }
     logInfo("gateway:route-unimplemented", {
       routeId: match.routeId,
       path
@@ -1679,6 +1758,7 @@ if (process.argv[1] === __gatewayFilename) {
 }
 export {
   authorizeBearer,
+  buildJudgeUserPrompt,
   handleSugarAgentGenerate,
   handleSugarAgentJudge,
   handleSugarAgentLoreIngest,

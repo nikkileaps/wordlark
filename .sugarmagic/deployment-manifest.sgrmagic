@@ -10,7 +10,7 @@
     },
     {
       "relativePath": "deployment/google-cloud-run/deploy.sh",
-      "contentHash": "fnv1a-4ee7cb2"
+      "contentHash": "fnv1a-7e153848"
     },
     {
       "relativePath": "deployment/google-cloud-run/deployment-plan.json",
@@ -26,7 +26,7 @@
     },
     {
       "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/server.mjs",
-      "contentHash": "fnv1a-728599f5"
+      "contentHash": "fnv1a-68b3cb1d"
     },
     {
       "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/Dockerfile",
@@ -70,7 +70,7 @@
     },
     {
       "relativePath": ".sugarmagic/published-web/boot.json",
-      "contentHash": "fnv1a-4ebd9f54"
+      "contentHash": "fnv1a-13cbf320"
     },
     {
       "relativePath": ".sugarmagic/published-web/_headers",
@@ -90,7 +90,7 @@
     },
     {
       "relativePath": ".github/workflows/sugardeploy-deploy.yml",
-      "contentHash": "fnv1a-f1a1eaa8"
+      "contentHash": "fnv1a-f2e4ac5b"
     }
   ]
 }

@@ -1894,7 +1894,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "fb24d6cf-ce04-4c91-bbfd-814c6022f43e",
+            "layerId": "7a1d4aaa-3523-4866-8091-4077997f3dcb",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -1909,7 +1909,7 @@
             }
           },
           {
-            "layerId": "ac05a14a-b0fc-48a7-ace3-de9fcb863b07",
+            "layerId": "24f72356-426c-451e-abc9-ec7efc839a32",
             "displayName": "Tall Grass",
             "enabled": true,
             "opacity": 1,
@@ -1927,7 +1927,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "6eba3990-aa2f-4046-900f-5f70707582be",
+            "layerId": "78fe262e-9eff-4227-8484-37ed2d6acc04",
             "displayName": "Flowers",
             "enabled": true,
             "opacity": 0.7,
@@ -1945,7 +1945,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "a8311123-5b52-4fe6-b712-8451899714fa",
+            "layerId": "feaf4638-c61e-4746-9f10-04c47a01fa61",
             "displayName": "Warm Light",
             "enabled": true,
             "opacity": 0.5,
@@ -1974,7 +1974,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "f5ad9408-b016-44bf-bb0b-2d9c7957472f",
+            "layerId": "87762218-fec3-420c-ae7a-b69577501c9b",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -1989,7 +1989,7 @@
             }
           },
           {
-            "layerId": "66d4f052-6e63-432c-a769-741f29c7cbdd",
+            "layerId": "0e9b9a3c-88f2-4e7b-b835-5c7e973b2b0b",
             "displayName": "Grass",
             "enabled": true,
             "opacity": 1,
@@ -2007,7 +2007,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "6a5cf4b9-782a-4a4c-9bdf-3839f86cf9a5",
+            "layerId": "93232547-466e-4189-ae5b-990af0ad3c8e",
             "displayName": "Flowers",
             "enabled": true,
             "opacity": 0.45,
@@ -2039,7 +2039,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "addb2bef-f3c8-4cd5-9b2d-45fde8ff3f44",
+            "layerId": "e0d22c3e-01ec-4a9c-a89a-b4c1d00e07ee",
             "displayName": "Bark",
             "enabled": true,
             "opacity": 1,
@@ -2054,7 +2054,7 @@
             }
           },
           {
-            "layerId": "04dc74c2-a423-4983-9b4d-26905f1ccf83",
+            "layerId": "f33bf449-fee8-4145-95a8-9b793d5ba22e",
             "displayName": "Moss Tint",
             "enabled": true,
             "opacity": 0.45,
@@ -2083,7 +2083,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "0accbd15-b365-40e5-a606-84f3824e3c2c",
+            "layerId": "b0e4c7f8-2d97-4646-b5ce-eb0d08ef1631",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -2098,7 +2098,7 @@
             }
           },
           {
-            "layerId": "42cf1fe5-0ef4-4fe6-87fa-dd37a2c3ee3a",
+            "layerId": "ab7fba6c-2b4f-48f5-b27a-3c8b4ee6fac6",
             "displayName": "Short Grass",
             "enabled": true,
             "opacity": 1,
@@ -2130,7 +2130,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "99fc3d4b-762b-4cce-bc5f-4d015d53d3c9",
+            "layerId": "86b2f47d-e51d-4cad-bf64-cf84c3294672",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -2145,7 +2145,7 @@
             }
           },
           {
-            "layerId": "e020e905-f5bb-44d2-89ef-a64474b2d923",
+            "layerId": "ad1c7f18-19a4-4e01-b99e-1d96225c4c5a",
             "displayName": "Clover Base",
             "enabled": true,
             "opacity": 0.85,
@@ -2163,7 +2163,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "58b83c37-2706-480b-acc2-8be5326ceb97",
+            "layerId": "ee99dae3-46d5-4896-be5f-68c0a5cc484d",
             "displayName": "Tiny Blooms",
             "enabled": true,
             "opacity": 0.35,
@@ -2195,7 +2195,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "54ee53be-cec4-40f9-8d0b-f488a3cbeef8",
+            "layerId": "1d78bfa2-34c2-4fa0-9ad9-fae76edb7ca0",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -2210,7 +2210,7 @@
             }
           },
           {
-            "layerId": "24f76dc2-3e96-41b4-9d88-6737ca98d121",
+            "layerId": "826335f9-0c04-4ae4-abff-22fe40f4f22e",
             "displayName": "Painterly Tufts",
             "enabled": true,
             "opacity": 0.95,
@@ -2228,7 +2228,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "5ed6e311-7f6a-47ae-8541-a348cd2b90e7",
+            "layerId": "f56d4734-8d71-4176-84b4-f859b1004f7c",
             "displayName": "Tiny Blooms",
             "enabled": true,
             "opacity": 0.2,
@@ -2246,7 +2246,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "5ffb8f9c-1583-4273-ab95-dd697c108034",
+            "layerId": "6d8c6fd1-b625-43f1-b2bb-6263d7a00233",
             "displayName": "Warm Lift",
             "enabled": true,
             "opacity": 0.35,
@@ -2432,7 +2432,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "e3f8fd37-6a94-43a5-a4cd-1c98c23be407",
+            "layerId": "80bdd2c6-7a7f-4505-a02c-a0cd3ac86273",
             "displayName": "UV Grid",
             "enabled": true,
             "opacity": 1,
@@ -2950,7 +2950,7 @@
         {
           "shaderDefinitionId": "wordlark:shader:cloud-shadows",
           "order": 1,
-          "enabled": false,
+          "enabled": true,
           "parameterOverrides": [
             {
               "parameterId": "scale",
@@ -2958,15 +2958,15 @@
             },
             {
               "parameterId": "speedX",
-              "value": 1
+              "value": 0.1
             },
             {
               "parameterId": "speedZ",
-              "value": 0.3
+              "value": 0.1
             },
             {
               "parameterId": "coverage",
-              "value": 0.4
+              "value": 0.25
             },
             {
               "parameterId": "softness",
@@ -2992,7 +2992,7 @@
         "sun": {
           "azimuthDeg": 225,
           "elevationDeg": 45,
-          "color": 16777215,
+          "color": 16766366,
           "intensity": 1,
           "shadows": {
             "enabled": true,
@@ -3001,13 +3001,13 @@
             "strength": 1,
             "softness": 0.5,
             "bias": -0.0001,
-            "normalBias": 0.05
+            "normalBias": 0.02
           }
         },
         "rim": {
           "azimuthDeg": 45,
           "elevationDeg": 25,
-          "color": 16777215,
+          "color": 13489908,
           "intensity": 0.4
         },
         "ambient": {
@@ -3024,11 +3024,11 @@
           "heightFalloff": 1
         },
         "cloudShadows": {
-          "enabled": false,
+          "enabled": true,
           "scale": 0.04,
-          "speedX": 1,
-          "speedZ": 0.3,
-          "coverage": 0.4,
+          "speedX": 0.1,
+          "speedZ": 0.1,
+          "coverage": 0.25,
           "softness": 0.15,
           "darkness": 0.35,
           "shadowColor": [
@@ -3046,24 +3046,34 @@
         "sky": {
           "enabled": true,
           "mode": "gradient",
-          "topColor": 4210752,
-          "bottomColor": 2763306,
-          "horizonBlend": 0.5,
-          "gradientExponent": 1.5,
-          "saturation": 1,
+          "topColor": 7232158,
+          "bottomColor": 16768168,
+          "gradientMidEnabled": true,
+          "gradientMidColor": 15246776,
+          "gradientMidPosition": 0.35,
+          "horizonBlend": 0.1,
+          "gradientExponent": 1.2,
+          "saturation": 1.1,
           "nebulaDensity": 0.7,
           "nebulaSpeed": 1,
           "riftEnabled": true,
           "riftIntensity": 1,
           "riftPulseSpeed": 1,
           "riftSwirlStrength": 1.5,
-          "cloudsEnabled": false,
+          "cloudsEnabled": true,
           "cloudCoverage": 0.48,
           "cloudSoftness": 0.12,
           "cloudOpacity": 0.55,
           "cloudScale": 2.2,
           "cloudSpeed": 0.25,
-          "cloudDirectionDegrees": 18
+          "cloudDirectionDegrees": 18,
+          "cloudColor": 16773856,
+          "undercastEnabled": true,
+          "undercastColor": 16771276,
+          "undercastShadowColor": 13209512,
+          "undercastCoverage": 0.34,
+          "undercastScale": 0.4,
+          "undercastOpacity": 0.95
         }
       },
       "backdrop": {
