@@ -70,7 +70,7 @@
     },
     {
       "relativePath": ".sugarmagic/published-web/boot.json",
-      "contentHash": "fnv1a-fa03c98a"
+      "contentHash": "fnv1a-af2ea2c4"
     },
     {
       "relativePath": ".sugarmagic/published-web/_headers",
@@ -91,6 +91,10 @@
     {
       "relativePath": "deployment/supabase/migrations/0002_sugarlang_learning.sql",
       "contentHash": "fnv1a-ea04d799"
+    },
+    {
+      "relativePath": "deployment/supabase/migrations/0003_sugarlang_learner_posterior.sql",
+      "contentHash": "fnv1a-3873e138"
     },
     {
       "relativePath": ".github/workflows/sugardeploy-deploy.yml",
