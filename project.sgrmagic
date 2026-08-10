@@ -145,7 +145,534 @@
       "enabled": true,
       "config": {
         "targetLanguage": "es",
-        "debugBandOverride": "A1"
+        "debugBandOverride": "A1",
+        "teachPlans": {
+          "version": "090.11.1",
+          "lang": "es",
+          "scenes": [
+            {
+              "sceneId": "arrival-station",
+              "contentHash": "b673a06127cc438376cbaee0e8931b6a52791522e836b1f57b7ffa6cbef21a6d",
+              "fromSceneContext": true,
+              "bands": [
+                {
+                  "band": "A1",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "competency",
+                        "competencyId": "greet",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "estación",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "maleta",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "competency",
+                        "competencyId": "introduce-self",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "bienvenido",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "aguardar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "piloto",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "ballena",
+                        "lang": "es"
+                      }
+                    ]
+                  },
+                  "posture": "anchored"
+                },
+                {
+                  "band": "A2",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "estación",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "maleta",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "esperar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "competency",
+                        "competencyId": "make-small-talk",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "anchored"
+                },
+                {
+                  "band": "B1",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "llegar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "estación",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "maleta",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "aguardar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "piloto",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "queso",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "supported"
+                },
+                {
+                  "band": "B2",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "llegar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "estación",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "maleta",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "aguardar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "piloto",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "ballena",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "target-dominant"
+                },
+                {
+                  "band": "C1",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "llegar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "estación",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "maleta",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "aguardar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "competency",
+                        "competencyId": "infer-what-is-left-unsaid",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "competency",
+                        "competencyId": "read-a-silence",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "target-dominant"
+                },
+                {
+                  "band": "C2",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "llegar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "estación",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "maleta",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "aguardar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "piloto",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "ballena",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "target-only"
+                }
+              ]
+            },
+            {
+              "sceneId": "default",
+              "contentHash": "3041b95fc87ba0268d93d5cd15a6e089bb669696b2a128662a85a415547542f7",
+              "fromSceneContext": true,
+              "bands": [
+                {
+                  "band": "A1",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "competency",
+                        "competencyId": "greet",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "competency",
+                        "competencyId": "introduce-self",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "pueblo",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "agua",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "resolver",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "transporte",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "balneario",
+                        "lang": "es"
+                      }
+                    ]
+                  },
+                  "posture": "anchored"
+                },
+                {
+                  "band": "A2",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "pueblo",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "isla",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "agua",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "visitar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "balneario",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "resolver",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "transporte",
+                        "lang": "es"
+                      }
+                    ]
+                  },
+                  "posture": "supported"
+                },
+                {
+                  "band": "B1",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "pueblo",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "isla",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "visitar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "agua",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "balneario",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "esperar",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "supported"
+                },
+                {
+                  "band": "B2",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "pueblo",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "isla",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "balneario",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "corazón",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "visitar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "esperar",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "target-dominant"
+                },
+                {
+                  "band": "C1",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "pueblo",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "isla",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "balneario",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "corazón",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "visitar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "esperar",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "target-only"
+                },
+                {
+                  "band": "C2",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "pueblo",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "isla",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "balneario",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "corazón",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "esperar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "visitar",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "target-only"
+                }
+              ]
+            }
+          ],
+          "dialogueScenes": [
+            {
+              "dialogueDefinitionId": "5040b419-9f95-44f3-8d25-bcc6d95d8b29",
+              "sceneId": "arrival-station"
+            },
+            {
+              "dialogueDefinitionId": "d728d566-1d68-49bf-8589-fafae61b3ea9",
+              "sceneId": "arrival-station"
+            }
+          ]
+        },
+        "fileBackedAssetPaths": [
+          "assets/sugarlang/scene-contexts.json",
+          "assets/sugarlang/variants.json"
+        ]
       }
     },
     {
@@ -222,7 +749,7 @@
   "itemDefinitions": [
     {
       "definitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
-      "displayName": "Suitcase",
+      "displayName": "Handbook",
       "category": "misc",
       "inventory": {
         "stackable": false,
@@ -230,13 +757,13 @@
         "giftable": false
       },
       "presentation": {
-        "modelAssetDefinitionId": null,
-        "thumbnailAssetPath": null
+        "modelAssetDefinitionId": "asset:book-closed-basic-1",
+        "thumbnailAssetPath": "assets/thumbnails/d90d83e7-1398-4ca2-9131-7e7cf4f89cab.png"
       },
       "interactionView": {
-        "kind": "none",
-        "title": "",
-        "body": "",
+        "kind": "examine",
+        "title": "Handbook for the Recently Transported",
+        "body": "by Hensel VonCliffenwald\n\nHave you been recently transported to the Great Head? Want to know where the latest and greatest hangouts are? Still trying to get the hang of the Flying spell? Read on dear traveler! Hensel VonCliffenwald will tell you everything you need to know.",
         "consumeLabel": "Use",
         "documentDefinitionId": null,
         "castableInvocation": {
@@ -269,6 +796,31 @@
           "args": {}
         }
       }
+    },
+    {
+      "definitionId": "3ad23d81-9851-4827-aff5-0780e76e24ec",
+      "displayName": "Suitcase",
+      "category": "misc",
+      "inventory": {
+        "stackable": false,
+        "maxStack": 1,
+        "giftable": false
+      },
+      "presentation": {
+        "modelAssetDefinitionId": "asset:suitcase_2_v1",
+        "thumbnailAssetPath": null
+      },
+      "interactionView": {
+        "kind": "none",
+        "title": "",
+        "body": "",
+        "consumeLabel": "Use",
+        "documentDefinitionId": null,
+        "castableInvocation": {
+          "id": "",
+          "args": {}
+        }
+      }
     }
   ],
   "documentDefinitions": [],
@@ -276,7 +828,7 @@
     {
       "definitionId": "42670c12-cecb-4484-944b-0697935173f9",
       "displayName": "Horace Pennyfeather",
-      "interactionMode": "agent",
+      "interactionMode": "scripted",
       "lorePageId": null,
       "presentation": {
         "modelAssetDefinitionId": "wordlark:character-model:Horace-Pennyfeather-rigged",
@@ -340,14 +892,14 @@
   "dialogueDefinitions": [
     {
       "definitionId": "5040b419-9f95-44f3-8d25-bcc6d95d8b29",
-      "displayName": "Dialogue 1",
+      "displayName": "Welcome from Horace",
       "startNodeId": "3f5d230f-fa3b-4888-991d-c79b2fdd5c64",
       "nodes": [
         {
           "nodeId": "3f5d230f-fa3b-4888-991d-c79b2fdd5c64",
           "displayName": "Hello",
           "speakerId": "42670c12-cecb-4484-944b-0697935173f9",
-          "text": "Hello! I'm the Station Manager how can I help?",
+          "text": "Welcome to Wordlark Hollow!",
           "intent": {
             "mustConveyFacts": [
               "The speaker is the Station Manager. He wants to know if the player needs help."
@@ -357,43 +909,58 @@
           },
           "next": [
             {
-              "targetNodeId": "b057fb78-3f59-4fd2-8934-40eb401e28a3"
-            }
-          ],
-          "graphPosition": {
-            "x": 80,
-            "y": 80
-          }
-        },
-        {
-          "nodeId": "b057fb78-3f59-4fd2-8934-40eb401e28a3",
-          "displayName": "Introduction",
-          "speakerId": "e095b3b2-3351-403a-abe1-88861fa489ad",
-          "text": "I'm looking for my luggage. Where do we pick it up?",
-          "next": [
-            {
               "targetNodeId": "ff0b5fd6-5ac2-4ad9-8d48-11cd1ade6e45"
             }
           ],
           "graphPosition": {
-            "x": 383.67789462988367,
-            "y": 95.1273687954072
+            "x": -10.666666666666671,
+            "y": 58.666666666666664
           }
         },
         {
           "nodeId": "ff0b5fd6-5ac2-4ad9-8d48-11cd1ade6e45",
-          "displayName": "Luggage Huh",
+          "displayName": "I am Horace",
           "speakerId": "42670c12-cecb-4484-944b-0697935173f9",
-          "text": "Luggage is unloaded here at the dock. It should be over there. Good luck to ya. I 've got a schedule to maintain you see?",
+          "text": "I'm Horace Pennyfeather, Station Manager. If you need anything just hollar.",
+          "next": [
+            {
+              "targetNodeId": "5b3bed66-fc34-40fd-92ac-d4b1baecd63a"
+            }
+          ],
+          "graphPosition": {
+            "x": 246.55238095238093,
+            "y": 44.82736879540721
+          }
+        },
+        {
+          "nodeId": "5b3bed66-fc34-40fd-92ac-d4b1baecd63a",
+          "displayName": "Thanks",
+          "speakerId": "e095b3b2-3351-403a-abe1-88861fa489ad",
+          "text": "Thanks! I think I just need to find my suitcase. Do you know where it might be?",
+          "next": [
+            {
+              "targetNodeId": "5015ca7d-be4f-47be-b32d-b4838495dbf4"
+            }
+          ],
+          "graphPosition": {
+            "x": 504.18095238095236,
+            "y": 62.89047619047621
+          }
+        },
+        {
+          "nodeId": "5015ca7d-be4f-47be-b32d-b4838495dbf4",
+          "displayName": "Node 4",
+          "speakerId": "42670c12-cecb-4484-944b-0697935173f9",
+          "text": "Hmmm usually they're here waiting for you, but there seems to be some irregularity today. Most unusual. You may want to check up at the station while I look into it.",
           "next": [],
           "graphPosition": {
-            "x": 648.6666666666666,
-            "y": 121.12736879540721
+            "x": 776.2202765688005,
+            "y": 82.4275775181244
           }
         }
       ],
       "interactionBinding": {
-        "npcDefinitionId": null
+        "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9"
       }
     },
     {
@@ -470,64 +1037,16 @@
   "questDefinitions": [
     {
       "definitionId": "7d8625b2-3652-4e65-a68b-9cb47f15c33a",
-      "displayName": "Find the Luggage",
-      "description": "Quest description...",
+      "displayName": "Welcome Introduction",
+      "description": "The first quest of the game. A welcome and introduction quest to familiarize the player with the game a bit.",
       "startStageId": "65868df1-f29e-423a-86a0-597e77377943",
       "stageDefinitions": [
         {
           "stageId": "65868df1-f29e-423a-86a0-597e77377943",
           "displayName": "Start",
           "nextStageId": null,
+          "timeOfDay": "afternoon",
           "nodeDefinitions": [
-            {
-              "nodeId": "028447aa-20cc-4c61-8ce1-57bff9246bf2",
-              "displayName": "Talk to Station Manager",
-              "description": "Fill out \"customs form\" language assessment.",
-              "nodeBehavior": "objective",
-              "objectiveSubtype": "assessment",
-              "targetId": "42670c12-cecb-4484-944b-0697935173f9",
-              "count": 1,
-              "optional": false,
-              "dialogueDefinitionId": "d728d566-1d68-49bf-8589-fafae61b3ea9",
-              "autoStart": false,
-              "prerequisiteNodeIds": [],
-              "failTargetNodeIds": [],
-              "onEnterActions": [],
-              "onCompleteActions": [
-                {
-                  "type": "setFlag",
-                  "targetId": "introduction_complete"
-                }
-              ],
-              "showInHud": true,
-              "graphPosition": {
-                "x": -7.333333333333343,
-                "y": 10.666666666666664
-              }
-            },
-            {
-              "nodeId": "662ccab2-3b38-4123-990c-70291d6720e3",
-              "displayName": "Collect Suitcase",
-              "description": "Collect the suitcase.",
-              "nodeBehavior": "objective",
-              "objectiveSubtype": "collect",
-              "targetId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
-              "count": 1,
-              "optional": false,
-              "autoStart": false,
-              "prerequisiteNodeIds": [
-                "028447aa-20cc-4c61-8ce1-57bff9246bf2",
-                "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668"
-              ],
-              "failTargetNodeIds": [],
-              "onEnterActions": [],
-              "onCompleteActions": [],
-              "showInHud": true,
-              "graphPosition": {
-                "x": 292,
-                "y": 24.666666666666657
-              }
-            },
             {
               "nodeId": "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668",
               "displayName": "Talk to Bo",
@@ -550,15 +1069,87 @@
               ],
               "showInHud": true,
               "graphPosition": {
-                "x": -8.666666666666671,
-                "y": 182
+                "x": 217.08185739759185,
+                "y": 191.99985970243856
+              }
+            },
+            {
+              "nodeId": "0322fc1b-c883-435f-abb4-7aceaa067aa0",
+              "displayName": "Objective",
+              "description": "Collect suitcase",
+              "nodeBehavior": "objective",
+              "objectiveSubtype": "collect",
+              "targetId": "3ad23d81-9851-4827-aff5-0780e76e24ec",
+              "count": 1,
+              "optional": false,
+              "autoStart": false,
+              "prerequisiteNodeIds": [
+                "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668",
+                "205d4d80-e81c-469e-85f8-0295ba38d5a7"
+              ],
+              "failTargetNodeIds": [],
+              "onEnterActions": [],
+              "onCompleteActions": [],
+              "showInHud": true,
+              "graphPosition": {
+                "x": 566.4609523809523,
+                "y": 30.812380952380977
+              }
+            },
+            {
+              "nodeId": "205d4d80-e81c-469e-85f8-0295ba38d5a7",
+              "displayName": "Objective",
+              "description": "Welcome",
+              "nodeBehavior": "objective",
+              "objectiveSubtype": "talk",
+              "targetId": "42670c12-cecb-4484-944b-0697935173f9",
+              "count": 1,
+              "optional": false,
+              "dialogueDefinitionId": "5040b419-9f95-44f3-8d25-bcc6d95d8b29",
+              "autoStart": false,
+              "prerequisiteNodeIds": [
+                "6d77b65c-2dc0-426b-ab25-7d9f2c77b5d4"
+              ],
+              "failTargetNodeIds": [],
+              "onEnterActions": [],
+              "onCompleteActions": [
+                {
+                  "type": "moveNpc"
+                }
+              ],
+              "showInHud": true,
+              "graphPosition": {
+                "x": 212.0017116424467,
+                "y": 18.203666324829243
+              }
+            },
+            {
+              "nodeId": "6d77b65c-2dc0-426b-ab25-7d9f2c77b5d4",
+              "displayName": "Objective",
+              "description": "Take the language assessment.",
+              "nodeBehavior": "objective",
+              "objectiveSubtype": "assessment",
+              "targetId": "42670c12-cecb-4484-944b-0697935173f9",
+              "count": 1,
+              "optional": false,
+              "autoStart": false,
+              "prerequisiteNodeIds": [],
+              "failTargetNodeIds": [],
+              "onEnterActions": [],
+              "onCompleteActions": [],
+              "showInHud": true,
+              "eventName": "sugarlang.placement.completed",
+              "graphPosition": {
+                "x": -196.01509079915928,
+                "y": 63.23220477257071
               }
             }
           ],
           "entryNodeIds": [
-            "028447aa-20cc-4c61-8ce1-57bff9246bf2",
-            "662ccab2-3b38-4123-990c-70291d6720e3",
-            "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668"
+            "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668",
+            "0322fc1b-c883-435f-abb4-7aceaa067aa0",
+            "205d4d80-e81c-469e-85f8-0295ba38d5a7",
+            "6d77b65c-2dc0-426b-ab25-7d9f2c77b5d4"
           ]
         }
       ],
@@ -1244,7 +1835,56 @@
           "assetAppearanceOverrides": {}
         },
         "arrival-station": {
-          "itemPresences": [],
+          "itemPresences": [
+            {
+              "presenceId": "ee24e114-85e4-4d2a-bc0e-bafcda3691c4",
+              "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+              "quantity": 1,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -11.44616089976463,
+                  0.5901045448114219,
+                  19.324857884928115
+                ],
+                "rotation": [
+                  -1.5407792815096668,
+                  -0.02788381031405726,
+                  -0.9609310479200881
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "presenceId": "e1b5d2f0-ad65-438a-9dd2-56639d3f16e0",
+              "itemDefinitionId": "3ad23d81-9851-4827-aff5-0780e76e24ec",
+              "quantity": 1,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -7.845582883428927,
+                  0.18082335729000776,
+                  19.611042836236788
+                ],
+                "rotation": [
+                  -1.3391238632436748,
+                  -0.004287834346092615,
+                  -0.2966473850591107
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            }
+          ],
           "npcPresences": [
             {
               "presenceId": "fac3c793-5487-4567-81c0-1dba7453d982",
@@ -1255,7 +1895,7 @@
                 "position": [
                   0,
                   0,
-                  23.79676111819171
+                  23.00749271474486
                 ],
                 "rotation": [
                   0,
@@ -1278,9 +1918,9 @@
               "shaderParameterOverrides": [],
               "transform": {
                 "position": [
-                  -3.8284208423534647,
+                  -3.329848870426665,
                   0,
-                  17.13541370775326
+                  14.135935632231483
                 ],
                 "rotation": [
                   0,
@@ -1755,32 +2395,6 @@
               }
             },
             {
-              "instanceId": "placed-asset:book-closed-basic-1-1784682568948-1",
-              "assetDefinitionId": "asset:book-closed-basic-1",
-              "displayName": "book-closed-basic-1",
-              "parentFolderId": null,
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -9.677265231234466,
-                  0.6204991463187752,
-                  19.344515224132053
-                ],
-                "rotation": [
-                  -1.7445216996739088,
-                  -0.01307393387652872,
-                  0.8507885313991779
-                ],
-                "scale": [
-                  1.182549680518313,
-                  1.182549680518313,
-                  1.182549680518313
-                ]
-              }
-            },
-            {
               "instanceId": "placed-asset:street_light_1_v1-1784682756065-1",
               "assetDefinitionId": "asset:street_light_1_v1",
               "displayName": "street_light_1_v1",
@@ -1929,10 +2543,14 @@
                   }
                 }
               ],
+              "colliderOverride": {
+                "shape": "none",
+                "localBounds": null
+              },
               "shaderParameterOverrides": [],
               "transform": {
                 "position": [
-                  -7.358858656651275,
+                  -7.580842467514623,
                   -0.2452530567461353,
                   27.468931236638216
                 ],
@@ -2001,6 +2619,240 @@
                   1.9455376505298463,
                   1,
                   1.6596965429185042
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:test_tree_7-1785251418662-1",
+              "assetDefinitionId": "asset:test_tree_7",
+              "displayName": "test_tree_7",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -17.399666398043664,
+                  0.5,
+                  -8.816260718324685
+                ],
+                "rotation": [
+                  0,
+                  -0.7856186936211537,
+                  0
+                ],
+                "scale": [
+                  1.2669249638740985,
+                  0.8499716623615414,
+                  1.3286621967067083
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:test_tree_6-1785251465728-1",
+              "assetDefinitionId": "asset:test_tree_6",
+              "displayName": "test_tree_6",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -16.692843174140695,
+                  0.5,
+                  2.0557377947620648
+                ],
+                "rotation": [
+                  0,
+                  -1.6210399991315432,
+                  0
+                ],
+                "scale": [
+                  1.5895583267001387,
+                  1.2426177710744486,
+                  1.5895583267001387
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:test_tree_6-1785251516845-2",
+              "assetDefinitionId": "asset:test_tree_6",
+              "displayName": "test_tree_6",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  0,
+                  0.5,
+                  0
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:mountain-far-c-1785256557832-1",
+              "assetDefinitionId": "asset:mountain-far-c",
+              "displayName": "mountain-far-c",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -197.16668505334658,
+                  -26.559299468679463,
+                  -491.1061668400727
+                ],
+                "rotation": [
+                  0,
+                  1.1357095509559365,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:mountain-peak-b-1785256685536-1",
+              "assetDefinitionId": "asset:mountain-peak-b",
+              "displayName": "mountain-peak-b",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -133.36066566982205,
+                  -25.109763285299618,
+                  -128.77670710995432
+                ],
+                "rotation": [
+                  0,
+                  0.33664410969943753,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:mountain-far-c-1785256850914-2",
+              "assetDefinitionId": "asset:mountain-far-c",
+              "displayName": "mountain-far-c Copy",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -56.77758875503869,
+                  -26.559299468679463,
+                  -490.1061668400727
+                ],
+                "rotation": [
+                  0,
+                  1.1357095509559365,
+                  0
+                ],
+                "scale": [
+                  1,
+                  0.7523089953959944,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:mountain-far-c-1785256899197-3",
+              "assetDefinitionId": "asset:mountain-far-c",
+              "displayName": "mountain-far-c Copy",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  273.37184043835816,
+                  -26.559299468679463,
+                  -490.1061668400727
+                ],
+                "rotation": [
+                  0,
+                  1.1357095509559365,
+                  0
+                ],
+                "scale": [
+                  3.715856918752331,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:mountain-far-c Copy-1785256923330-1",
+              "assetDefinitionId": "asset:mountain-far-c",
+              "displayName": "mountain-far-c Copy Copy",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  194.81331257772558,
+                  -42.98598400144303,
+                  -751.4358945834749
+                ],
+                "rotation": [
+                  0,
+                  1.705541946236881,
+                  0
+                ],
+                "scale": [
+                  3.715856918752331,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:mountain-ridge-a-1785257035162-1",
+              "assetDefinitionId": "asset:mountain-ridge-a",
+              "displayName": "mountain-ridge-a",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  225.62549060997284,
+                  -32.629329942328816,
+                  -269.355997917318
+                ],
+                "rotation": [
+                  0,
+                  -1.8893985574936152,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
                 ]
               }
             }

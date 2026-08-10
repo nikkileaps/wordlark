@@ -991,6 +991,161 @@
         "fileName": "street_light_1_v1.glb",
         "mimeType": null
       }
+    },
+    {
+      "definitionId": "asset:mountain-far-c",
+      "definitionKind": "asset",
+      "displayName": "mountain-far-c",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "RockDark",
+          "slotIndex": 0,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -128.21771240234375,
+            0,
+            -93.69197082519531
+          ],
+          "max": [
+            128.21771240234375,
+            53.959232330322266,
+            93.69197082519531
+          ]
+        }
+      },
+      "source": {
+        "relativeAssetPath": "assets/imported/mountain-far-c.glb",
+        "fileName": "mountain-far-c.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:mountain-peak-b",
+      "definitionKind": "asset",
+      "displayName": "mountain-peak-b",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "Rock",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "RockDark",
+          "slotIndex": 1,
+          "surface": null
+        },
+        {
+          "slotName": "Snow",
+          "slotIndex": 2,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -70.19432830810547,
+            0,
+            -50.59498596191406
+          ],
+          "max": [
+            70.19432830810547,
+            111.5887222290039,
+            50.59498596191406
+          ]
+        }
+      },
+      "source": {
+        "relativeAssetPath": "assets/imported/mountain-peak-b.glb",
+        "fileName": "mountain-peak-b.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:mountain-ridge-a",
+      "definitionKind": "asset",
+      "displayName": "mountain-ridge-a",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "Rock",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "Snow",
+          "slotIndex": 1,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -112.65797424316406,
+            0,
+            -58.33306884765625
+          ],
+          "max": [
+            112.65797424316406,
+            82.75397491455078,
+            58.33306884765625
+          ]
+        }
+      },
+      "source": {
+        "relativeAssetPath": "assets/imported/mountain-ridge-a.glb",
+        "fileName": "mountain-ridge-a.glb",
+        "mimeType": null
+      }
+    },
+    {
+      "definitionId": "asset:suitcase_2_v1",
+      "definitionKind": "asset",
+      "displayName": "suitcase_2_v1",
+      "assetKind": "model",
+      "surfaceSlots": [
+        {
+          "slotName": "suitcase_1",
+          "slotIndex": 0,
+          "surface": null
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "collider": {
+        "shape": "none",
+        "localBounds": {
+          "min": [
+            -0.2469058541633693,
+            0,
+            -0.20971609988274054
+          ],
+          "max": [
+            0.2469058541633693,
+            0.17852633703169118,
+            0.20971609988274054
+          ]
+        }
+      },
+      "source": {
+        "relativeAssetPath": "assets/imported/suitcase_2_v1.glb",
+        "fileName": "suitcase_2_v1.glb",
+        "mimeType": null
+      }
     }
   ],
   "audioClipDefinitions": [
@@ -1894,7 +2049,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "7a1d4aaa-3523-4866-8091-4077997f3dcb",
+            "layerId": "2c798c03-04b6-4bfa-acca-c5d120e5efd5",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -1909,7 +2064,7 @@
             }
           },
           {
-            "layerId": "24f72356-426c-451e-abc9-ec7efc839a32",
+            "layerId": "66f0517b-7967-4639-8910-c40dabe579ce",
             "displayName": "Tall Grass",
             "enabled": true,
             "opacity": 1,
@@ -1927,7 +2082,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "78fe262e-9eff-4227-8484-37ed2d6acc04",
+            "layerId": "1355e9da-eae2-492f-b629-dfb5adde849a",
             "displayName": "Flowers",
             "enabled": true,
             "opacity": 0.7,
@@ -1945,7 +2100,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "feaf4638-c61e-4746-9f10-04c47a01fa61",
+            "layerId": "c302e9f3-512e-4e76-95c4-4c58d18066ec",
             "displayName": "Warm Light",
             "enabled": true,
             "opacity": 0.5,
@@ -1974,7 +2129,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "87762218-fec3-420c-ae7a-b69577501c9b",
+            "layerId": "4cb491a7-b09a-4a50-921f-b4cacbbdb858",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -1989,7 +2144,7 @@
             }
           },
           {
-            "layerId": "0e9b9a3c-88f2-4e7b-b835-5c7e973b2b0b",
+            "layerId": "bc581b43-e145-49a2-bd14-58c1d60cc3e6",
             "displayName": "Grass",
             "enabled": true,
             "opacity": 1,
@@ -2007,7 +2162,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "93232547-466e-4189-ae5b-990af0ad3c8e",
+            "layerId": "8dd51083-a208-4283-b41b-2a8a7137154a",
             "displayName": "Flowers",
             "enabled": true,
             "opacity": 0.45,
@@ -2039,7 +2194,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "e0d22c3e-01ec-4a9c-a89a-b4c1d00e07ee",
+            "layerId": "adfba148-4715-409a-8c33-0007246c9377",
             "displayName": "Bark",
             "enabled": true,
             "opacity": 1,
@@ -2054,7 +2209,7 @@
             }
           },
           {
-            "layerId": "f33bf449-fee8-4145-95a8-9b793d5ba22e",
+            "layerId": "4d4ba30b-68d4-4034-99fe-464b65ded295",
             "displayName": "Moss Tint",
             "enabled": true,
             "opacity": 0.45,
@@ -2083,7 +2238,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "b0e4c7f8-2d97-4646-b5ce-eb0d08ef1631",
+            "layerId": "3a7bff21-b269-46fd-9e5a-682608ed5a54",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -2098,7 +2253,7 @@
             }
           },
           {
-            "layerId": "ab7fba6c-2b4f-48f5-b27a-3c8b4ee6fac6",
+            "layerId": "21772022-23d1-47f1-8055-21d5375045df",
             "displayName": "Short Grass",
             "enabled": true,
             "opacity": 1,
@@ -2130,7 +2285,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "86b2f47d-e51d-4cad-bf64-cf84c3294672",
+            "layerId": "f5285275-c8b1-4a0a-87c2-f8c0f5f622d6",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -2145,7 +2300,7 @@
             }
           },
           {
-            "layerId": "ad1c7f18-19a4-4e01-b99e-1d96225c4c5a",
+            "layerId": "c25d39ff-3894-4fc9-85f9-1c48d9961772",
             "displayName": "Clover Base",
             "enabled": true,
             "opacity": 0.85,
@@ -2163,7 +2318,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "ee99dae3-46d5-4896-be5f-68c0a5cc484d",
+            "layerId": "6484731e-a90c-49cd-934d-dc6f72278f93",
             "displayName": "Tiny Blooms",
             "enabled": true,
             "opacity": 0.35,
@@ -2195,7 +2350,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "1d78bfa2-34c2-4fa0-9ad9-fae76edb7ca0",
+            "layerId": "c17c85fe-b80d-44a4-9709-881e231f2345",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -2210,7 +2365,7 @@
             }
           },
           {
-            "layerId": "826335f9-0c04-4ae4-abff-22fe40f4f22e",
+            "layerId": "5b0c6ff2-72f6-4a97-af6f-cffc472b270f",
             "displayName": "Painterly Tufts",
             "enabled": true,
             "opacity": 0.95,
@@ -2228,7 +2383,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "f56d4734-8d71-4176-84b4-f859b1004f7c",
+            "layerId": "6db53ba8-09d1-4d79-b55b-68563e978dda",
             "displayName": "Tiny Blooms",
             "enabled": true,
             "opacity": 0.2,
@@ -2246,7 +2401,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "6d8c6fd1-b625-43f1-b2bb-6263d7a00233",
+            "layerId": "f842a06d-976e-4780-b853-568735211ac0",
             "displayName": "Warm Lift",
             "enabled": true,
             "opacity": 0.35,
@@ -2432,7 +2587,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "80bdd2c6-7a7f-4505-a02c-a0cd3ac86273",
+            "layerId": "46cbc521-c0d2-4ebc-bf25-9f3332d03fac",
             "displayName": "UV Grid",
             "enabled": true,
             "opacity": 1,
@@ -2932,18 +3087,18 @@
             {
               "parameterId": "color",
               "value": [
-                0.16470588235294117,
-                0.16470588235294117,
-                0.16470588235294117
+                0.803921568627451,
+                0.8392156862745098,
+                0.9568627450980393
               ]
             },
             {
               "parameterId": "density",
-              "value": 0.008
+              "value": 0.001
             },
             {
               "parameterId": "heightFalloff",
-              "value": 1
+              "value": 0.04
             }
           ]
         },
@@ -2985,6 +3140,25 @@
               ]
             }
           ]
+        },
+        {
+          "shaderDefinitionId": "wordlark:shader:bloom",
+          "order": 2,
+          "enabled": true,
+          "parameterOverrides": [
+            {
+              "parameterId": "strength",
+              "value": 1
+            },
+            {
+              "parameterId": "radius",
+              "value": 0.8
+            },
+            {
+              "parameterId": "threshold",
+              "value": 0
+            }
+          ]
         }
       ],
       "lighting": {
@@ -2993,7 +3167,7 @@
           "azimuthDeg": 225,
           "elevationDeg": 45,
           "color": 16766366,
-          "intensity": 1,
+          "intensity": 1.25,
           "shadows": {
             "enabled": true,
             "quality": "high",
@@ -3011,17 +3185,17 @@
           "intensity": 0.4
         },
         "ambient": {
-          "mode": "flat",
+          "mode": "sky-driven",
           "color": 16777215,
-          "intensity": 0.75
+          "intensity": 1.7
         }
       },
       "atmosphere": {
         "fog": {
           "enabled": false,
-          "density": 0.008,
-          "color": 2763306,
-          "heightFalloff": 1
+          "density": 0.001,
+          "color": 13489908,
+          "heightFalloff": 0.04
         },
         "cloudShadows": {
           "enabled": true,
@@ -12770,7 +12944,7 @@
       "definitionKind": "shader",
       "displayName": "Fog Tint",
       "targetKind": "post-process",
-      "revision": 2,
+      "revision": 3,
       "nodes": [
         {
           "nodeId": "scene-color",
@@ -12956,6 +13130,55 @@
           "settings": {}
         },
         {
+          "nodeId": "sky-near",
+          "nodeType": "input.constant-float",
+          "position": {
+            "x": 288,
+            "y": 816
+          },
+          "settings": {
+            "value": 940
+          }
+        },
+        {
+          "nodeId": "sky-far",
+          "nodeType": "input.constant-float",
+          "position": {
+            "x": 288,
+            "y": 896
+          },
+          "settings": {
+            "value": 992
+          }
+        },
+        {
+          "nodeId": "sky-fade",
+          "nodeType": "math.smoothstep",
+          "position": {
+            "x": 720,
+            "y": 856
+          },
+          "settings": {}
+        },
+        {
+          "nodeId": "sky-gate",
+          "nodeType": "math.subtract",
+          "position": {
+            "x": 1120,
+            "y": 856
+          },
+          "settings": {}
+        },
+        {
+          "nodeId": "masked-by-sky",
+          "nodeType": "math.multiply",
+          "position": {
+            "x": 1420,
+            "y": 560
+          },
+          "settings": {}
+        },
+        {
           "nodeId": "mix",
           "nodeType": "math.lerp",
           "position": {
@@ -13095,6 +13318,55 @@
           "targetPortId": "b"
         },
         {
+          "edgeId": "edge-sky-near-edge0",
+          "sourceNodeId": "sky-near",
+          "sourcePortId": "value",
+          "targetNodeId": "sky-fade",
+          "targetPortId": "edge0"
+        },
+        {
+          "edgeId": "edge-sky-far-edge1",
+          "sourceNodeId": "sky-far",
+          "sourcePortId": "value",
+          "targetNodeId": "sky-fade",
+          "targetPortId": "edge1"
+        },
+        {
+          "edgeId": "edge-depth-sky-fade-x",
+          "sourceNodeId": "scene-depth",
+          "sourcePortId": "value",
+          "targetNodeId": "sky-fade",
+          "targetPortId": "x"
+        },
+        {
+          "edgeId": "edge-one-sky-gate-a",
+          "sourceNodeId": "one",
+          "sourcePortId": "value",
+          "targetNodeId": "sky-gate",
+          "targetPortId": "a"
+        },
+        {
+          "edgeId": "edge-sky-fade-sky-gate-b",
+          "sourceNodeId": "sky-fade",
+          "sourcePortId": "value",
+          "targetNodeId": "sky-gate",
+          "targetPortId": "b"
+        },
+        {
+          "edgeId": "edge-masked-by-sky-a",
+          "sourceNodeId": "combined-mask",
+          "sourcePortId": "value",
+          "targetNodeId": "masked-by-sky",
+          "targetPortId": "a"
+        },
+        {
+          "edgeId": "edge-masked-by-sky-b",
+          "sourceNodeId": "sky-gate",
+          "sourcePortId": "value",
+          "targetNodeId": "masked-by-sky",
+          "targetPortId": "b"
+        },
+        {
           "edgeId": "edge-scene-mix",
           "sourceNodeId": "scene-color",
           "sourcePortId": "value",
@@ -13110,7 +13382,7 @@
         },
         {
           "edgeId": "edge-mask-mix",
-          "sourceNodeId": "combined-mask",
+          "sourceNodeId": "masked-by-sky",
           "sourcePortId": "value",
           "targetNodeId": "mix",
           "targetPortId": "alpha"

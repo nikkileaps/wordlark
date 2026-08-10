@@ -2865,7 +2865,6 @@
       "inspectable": null,
       "shaderOverrides": [],
       "shaderParameterOverrides": [],
-      "brushed": true,
       "transform": {
         "position": [
           -5.110383610584558,
@@ -2892,7 +2891,6 @@
       "inspectable": null,
       "shaderOverrides": [],
       "shaderParameterOverrides": [],
-      "brushed": true,
       "transform": {
         "position": [
           -5.900981109008159,
@@ -2919,7 +2917,6 @@
       "inspectable": null,
       "shaderOverrides": [],
       "shaderParameterOverrides": [],
-      "brushed": true,
       "transform": {
         "position": [
           -5.231268825182153,
@@ -2946,7 +2943,6 @@
       "inspectable": null,
       "shaderOverrides": [],
       "shaderParameterOverrides": [],
-      "brushed": true,
       "transform": {
         "position": [
           -4.30068368920856,
@@ -2962,6 +2958,96 @@
           1.0772376002874808,
           1.0772376002874808,
           1.0772376002874808
+        ]
+      }
+    },
+    {
+      "instanceId": "placed-asset:stone_cliff_1_v3-1785254919011-1",
+      "assetDefinitionId": "asset:stone_cliff_1_v3",
+      "displayName": "stone_cliff_1_v3 Copy",
+      "parentFolderId": "scene-folder-1783830960362-2",
+      "inspectable": null,
+      "shaderOverrides": [],
+      "surfaceSlotOverrides": [
+        {
+          "slotName": "stone",
+          "surface": {
+            "kind": "inline",
+            "surface": {
+              "layers": [
+                {
+                  "layerId": "e1508ab4-802e-4eb2-baad-6309b73b9f4e",
+                  "displayName": "Base",
+                  "enabled": true,
+                  "opacity": 1,
+                  "mask": {
+                    "kind": "always"
+                  },
+                  "kind": "appearance",
+                  "blendMode": "base",
+                  "content": {
+                    "kind": "color",
+                    "color": 7829888
+                  }
+                },
+                {
+                  "layerId": "76f84082-ee72-4a21-a212-34a732aa11bc",
+                  "displayName": "Appearance",
+                  "enabled": true,
+                  "opacity": 0.8,
+                  "mask": {
+                    "kind": "world-position-gradient",
+                    "axis": "y",
+                    "min": 0.16,
+                    "max": 0.38,
+                    "fade": 0.24,
+                    "space": "local"
+                  },
+                  "kind": "appearance",
+                  "blendMode": "mix",
+                  "content": {
+                    "kind": "color",
+                    "color": 12893871
+                  }
+                },
+                {
+                  "layerId": "ea896d27-0120-476c-929a-325aec3ada22",
+                  "displayName": "Prairie Tall Dense Grass",
+                  "enabled": true,
+                  "opacity": 1,
+                  "mask": {
+                    "kind": "painted",
+                    "maskTextureId": "mask-texture:mask-1784007002803-1"
+                  },
+                  "kind": "appearance",
+                  "blendMode": "mix",
+                  "content": {
+                    "kind": "surface",
+                    "surfaceDefinitionId": "wordlark:surface:ce1efbc5-2cbf-4ee7-877d-7d09f07fd8d6"
+                  }
+                }
+              ],
+              "context": "universal"
+            }
+          }
+        }
+      ],
+      "shaderParameterOverrides": [],
+      "transform": {
+        "position": [
+          -58.04709061033453,
+          -8.060004161746342,
+          -47.03254008736934
+        ],
+        "rotation": [
+          0,
+          0.5608618538280863,
+          3.923015436664146
+        ],
+        "scale": [
+          4.068023702590307,
+          5.359232385223804,
+          18.603864954242987
         ]
       }
     }

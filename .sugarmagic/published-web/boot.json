@@ -144,7 +144,534 @@
       "enabled": true,
       "config": {
         "targetLanguage": "es",
-        "debugBandOverride": "A1"
+        "debugBandOverride": "A1",
+        "teachPlans": {
+          "version": "090.11.1",
+          "lang": "es",
+          "scenes": [
+            {
+              "sceneId": "arrival-station",
+              "contentHash": "b673a06127cc438376cbaee0e8931b6a52791522e836b1f57b7ffa6cbef21a6d",
+              "fromSceneContext": true,
+              "bands": [
+                {
+                  "band": "A1",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "competency",
+                        "competencyId": "greet",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "estación",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "maleta",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "competency",
+                        "competencyId": "introduce-self",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "bienvenido",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "aguardar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "piloto",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "ballena",
+                        "lang": "es"
+                      }
+                    ]
+                  },
+                  "posture": "anchored"
+                },
+                {
+                  "band": "A2",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "estación",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "maleta",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "esperar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "competency",
+                        "competencyId": "make-small-talk",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "anchored"
+                },
+                {
+                  "band": "B1",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "llegar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "estación",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "maleta",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "aguardar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "piloto",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "queso",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "supported"
+                },
+                {
+                  "band": "B2",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "llegar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "estación",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "maleta",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "aguardar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "piloto",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "ballena",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "target-dominant"
+                },
+                {
+                  "band": "C1",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "llegar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "estación",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "maleta",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "aguardar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "competency",
+                        "competencyId": "infer-what-is-left-unsaid",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "competency",
+                        "competencyId": "read-a-silence",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "target-dominant"
+                },
+                {
+                  "band": "C2",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "llegar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "estación",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "maleta",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "aguardar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "piloto",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "ballena",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "target-only"
+                }
+              ]
+            },
+            {
+              "sceneId": "default",
+              "contentHash": "3041b95fc87ba0268d93d5cd15a6e089bb669696b2a128662a85a415547542f7",
+              "fromSceneContext": true,
+              "bands": [
+                {
+                  "band": "A1",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "competency",
+                        "competencyId": "greet",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "competency",
+                        "competencyId": "introduce-self",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "pueblo",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "agua",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "resolver",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "transporte",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "balneario",
+                        "lang": "es"
+                      }
+                    ]
+                  },
+                  "posture": "anchored"
+                },
+                {
+                  "band": "A2",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "pueblo",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "isla",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "agua",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "visitar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "balneario",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "resolver",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "transporte",
+                        "lang": "es"
+                      }
+                    ]
+                  },
+                  "posture": "supported"
+                },
+                {
+                  "band": "B1",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "pueblo",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "isla",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "visitar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "agua",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "balneario",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "esperar",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "supported"
+                },
+                {
+                  "band": "B2",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "pueblo",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "isla",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "balneario",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "corazón",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "visitar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "esperar",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "target-dominant"
+                },
+                {
+                  "band": "C1",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "pueblo",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "isla",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "balneario",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "corazón",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "visitar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "esperar",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "target-only"
+                },
+                {
+                  "band": "C2",
+                  "slate": {
+                    "introduce": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "pueblo",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "isla",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "balneario",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "corazón",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "esperar",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "visitar",
+                        "lang": "es"
+                      }
+                    ],
+                    "reinforce": [],
+                    "avoid": []
+                  },
+                  "posture": "target-only"
+                }
+              ]
+            }
+          ],
+          "dialogueScenes": [
+            {
+              "dialogueDefinitionId": "5040b419-9f95-44f3-8d25-bcc6d95d8b29",
+              "sceneId": "arrival-station"
+            },
+            {
+              "dialogueDefinitionId": "d728d566-1d68-49bf-8589-fafae61b3ea9",
+              "sceneId": "arrival-station"
+            }
+          ]
+        },
+        "fileBackedAssetPaths": [
+          "assets/sugarlang/scene-contexts.json",
+          "assets/sugarlang/variants.json"
+        ]
       }
     },
     {
@@ -3180,7 +3707,6 @@
           "inspectable": null,
           "shaderOverrides": [],
           "shaderParameterOverrides": [],
-          "brushed": true,
           "transform": {
             "position": [
               -5.110383610584558,
@@ -3207,7 +3733,6 @@
           "inspectable": null,
           "shaderOverrides": [],
           "shaderParameterOverrides": [],
-          "brushed": true,
           "transform": {
             "position": [
               -5.900981109008159,
@@ -3234,7 +3759,6 @@
           "inspectable": null,
           "shaderOverrides": [],
           "shaderParameterOverrides": [],
-          "brushed": true,
           "transform": {
             "position": [
               -5.231268825182153,
@@ -3261,7 +3785,6 @@
           "inspectable": null,
           "shaderOverrides": [],
           "shaderParameterOverrides": [],
-          "brushed": true,
           "transform": {
             "position": [
               -4.30068368920856,
@@ -3277,6 +3800,96 @@
               1.0772376002874808,
               1.0772376002874808,
               1.0772376002874808
+            ]
+          }
+        },
+        {
+          "instanceId": "placed-asset:stone_cliff_1_v3-1785254919011-1",
+          "assetDefinitionId": "asset:stone_cliff_1_v3",
+          "displayName": "stone_cliff_1_v3 Copy",
+          "parentFolderId": "scene-folder-1783830960362-2",
+          "inspectable": null,
+          "shaderOverrides": [],
+          "surfaceSlotOverrides": [
+            {
+              "slotName": "stone",
+              "surface": {
+                "kind": "inline",
+                "surface": {
+                  "layers": [
+                    {
+                      "layerId": "e1508ab4-802e-4eb2-baad-6309b73b9f4e",
+                      "displayName": "Base",
+                      "enabled": true,
+                      "opacity": 1,
+                      "mask": {
+                        "kind": "always"
+                      },
+                      "kind": "appearance",
+                      "blendMode": "base",
+                      "content": {
+                        "kind": "color",
+                        "color": 7829888
+                      }
+                    },
+                    {
+                      "layerId": "76f84082-ee72-4a21-a212-34a732aa11bc",
+                      "displayName": "Appearance",
+                      "enabled": true,
+                      "opacity": 0.8,
+                      "mask": {
+                        "kind": "world-position-gradient",
+                        "axis": "y",
+                        "min": 0.16,
+                        "max": 0.38,
+                        "fade": 0.24,
+                        "space": "local"
+                      },
+                      "kind": "appearance",
+                      "blendMode": "mix",
+                      "content": {
+                        "kind": "color",
+                        "color": 12893871
+                      }
+                    },
+                    {
+                      "layerId": "ea896d27-0120-476c-929a-325aec3ada22",
+                      "displayName": "Prairie Tall Dense Grass",
+                      "enabled": true,
+                      "opacity": 1,
+                      "mask": {
+                        "kind": "painted",
+                        "maskTextureId": "mask-texture:mask-1784007002803-1"
+                      },
+                      "kind": "appearance",
+                      "blendMode": "mix",
+                      "content": {
+                        "kind": "surface",
+                        "surfaceDefinitionId": "wordlark:surface:ce1efbc5-2cbf-4ee7-877d-7d09f07fd8d6"
+                      }
+                    }
+                  ],
+                  "context": "universal"
+                }
+              }
+            }
+          ],
+          "shaderParameterOverrides": [],
+          "transform": {
+            "position": [
+              -58.04709061033453,
+              -8.060004161746342,
+              -47.03254008736934
+            ],
+            "rotation": [
+              0,
+              0.5608618538280863,
+              3.923015436664146
+            ],
+            "scale": [
+              4.068023702590307,
+              5.359232385223804,
+              18.603864954242987
             ]
           }
         }
@@ -3527,7 +4140,56 @@
           "assetAppearanceOverrides": {}
         },
         "arrival-station": {
-          "itemPresences": [],
+          "itemPresences": [
+            {
+              "presenceId": "ee24e114-85e4-4d2a-bc0e-bafcda3691c4",
+              "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+              "quantity": 1,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -11.44616089976463,
+                  0.5901045448114219,
+                  19.324857884928115
+                ],
+                "rotation": [
+                  -1.5407792815096668,
+                  -0.02788381031405726,
+                  -0.9609310479200881
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "presenceId": "e1b5d2f0-ad65-438a-9dd2-56639d3f16e0",
+              "itemDefinitionId": "3ad23d81-9851-4827-aff5-0780e76e24ec",
+              "quantity": 1,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -7.845582883428927,
+                  0.18082335729000776,
+                  19.611042836236788
+                ],
+                "rotation": [
+                  -1.3391238632436748,
+                  -0.004287834346092615,
+                  -0.2966473850591107
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            }
+          ],
           "npcPresences": [
             {
               "presenceId": "fac3c793-5487-4567-81c0-1dba7453d982",
@@ -3538,7 +4200,7 @@
                 "position": [
                   0,
                   0,
-                  23.79676111819171
+                  23.00749271474486
                 ],
                 "rotation": [
                   0,
@@ -3561,9 +4223,9 @@
               "shaderParameterOverrides": [],
               "transform": {
                 "position": [
-                  -3.8284208423534647,
+                  -3.329848870426665,
                   0,
-                  17.13541370775326
+                  14.135935632231483
                 ],
                 "rotation": [
                   0,
@@ -4038,32 +4700,6 @@
               }
             },
             {
-              "instanceId": "placed-asset:book-closed-basic-1-1784682568948-1",
-              "assetDefinitionId": "asset:book-closed-basic-1",
-              "displayName": "book-closed-basic-1",
-              "parentFolderId": null,
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -9.677265231234466,
-                  0.6204991463187752,
-                  19.344515224132053
-                ],
-                "rotation": [
-                  -1.7445216996739088,
-                  -0.01307393387652872,
-                  0.8507885313991779
-                ],
-                "scale": [
-                  1.182549680518313,
-                  1.182549680518313,
-                  1.182549680518313
-                ]
-              }
-            },
-            {
               "instanceId": "placed-asset:street_light_1_v1-1784682756065-1",
               "assetDefinitionId": "asset:street_light_1_v1",
               "displayName": "street_light_1_v1",
@@ -4212,10 +4848,14 @@
                   }
                 }
               ],
+              "colliderOverride": {
+                "shape": "none",
+                "localBounds": null
+              },
               "shaderParameterOverrides": [],
               "transform": {
                 "position": [
-                  -7.358858656651275,
+                  -7.580842467514623,
                   -0.2452530567461353,
                   27.468931236638216
                 ],
@@ -4286,6 +4926,240 @@
                   1.6596965429185042
                 ]
               }
+            },
+            {
+              "instanceId": "placed-asset:test_tree_7-1785251418662-1",
+              "assetDefinitionId": "asset:test_tree_7",
+              "displayName": "test_tree_7",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -17.399666398043664,
+                  0.5,
+                  -8.816260718324685
+                ],
+                "rotation": [
+                  0,
+                  -0.7856186936211537,
+                  0
+                ],
+                "scale": [
+                  1.2669249638740985,
+                  0.8499716623615414,
+                  1.3286621967067083
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:test_tree_6-1785251465728-1",
+              "assetDefinitionId": "asset:test_tree_6",
+              "displayName": "test_tree_6",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -16.692843174140695,
+                  0.5,
+                  2.0557377947620648
+                ],
+                "rotation": [
+                  0,
+                  -1.6210399991315432,
+                  0
+                ],
+                "scale": [
+                  1.5895583267001387,
+                  1.2426177710744486,
+                  1.5895583267001387
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:test_tree_6-1785251516845-2",
+              "assetDefinitionId": "asset:test_tree_6",
+              "displayName": "test_tree_6",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  0,
+                  0.5,
+                  0
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:mountain-far-c-1785256557832-1",
+              "assetDefinitionId": "asset:mountain-far-c",
+              "displayName": "mountain-far-c",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -197.16668505334658,
+                  -26.559299468679463,
+                  -491.1061668400727
+                ],
+                "rotation": [
+                  0,
+                  1.1357095509559365,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:mountain-peak-b-1785256685536-1",
+              "assetDefinitionId": "asset:mountain-peak-b",
+              "displayName": "mountain-peak-b",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -133.36066566982205,
+                  -25.109763285299618,
+                  -128.77670710995432
+                ],
+                "rotation": [
+                  0,
+                  0.33664410969943753,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:mountain-far-c-1785256850914-2",
+              "assetDefinitionId": "asset:mountain-far-c",
+              "displayName": "mountain-far-c Copy",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -56.77758875503869,
+                  -26.559299468679463,
+                  -490.1061668400727
+                ],
+                "rotation": [
+                  0,
+                  1.1357095509559365,
+                  0
+                ],
+                "scale": [
+                  1,
+                  0.7523089953959944,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:mountain-far-c-1785256899197-3",
+              "assetDefinitionId": "asset:mountain-far-c",
+              "displayName": "mountain-far-c Copy",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  273.37184043835816,
+                  -26.559299468679463,
+                  -490.1061668400727
+                ],
+                "rotation": [
+                  0,
+                  1.1357095509559365,
+                  0
+                ],
+                "scale": [
+                  3.715856918752331,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:mountain-far-c Copy-1785256923330-1",
+              "assetDefinitionId": "asset:mountain-far-c",
+              "displayName": "mountain-far-c Copy Copy",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  194.81331257772558,
+                  -42.98598400144303,
+                  -751.4358945834749
+                ],
+                "rotation": [
+                  0,
+                  1.705541946236881,
+                  0
+                ],
+                "scale": [
+                  3.715856918752331,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:mountain-ridge-a-1785257035162-1",
+              "assetDefinitionId": "asset:mountain-ridge-a",
+              "displayName": "mountain-ridge-a",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  225.62549060997284,
+                  -32.629329942328816,
+                  -269.355997917318
+                ],
+                "rotation": [
+                  0,
+                  -1.8893985574936152,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
             }
           ],
           "folders": [
@@ -4345,7 +5219,7 @@
     }
   ],
   "scenesUiLabel": "Scene",
-  "activeRegionId": "arrival-station",
+  "activeRegionId": "default",
   "activeEnvironmentId": null,
   "contentLibrary": {
     "identity": {
@@ -5340,6 +6214,161 @@
           "fileName": "street_light_1_v1.glb",
           "mimeType": null
         }
+      },
+      {
+        "definitionId": "asset:mountain-far-c",
+        "definitionKind": "asset",
+        "displayName": "mountain-far-c",
+        "assetKind": "model",
+        "surfaceSlots": [
+          {
+            "slotName": "RockDark",
+            "slotIndex": 0,
+            "surface": null
+          }
+        ],
+        "deform": null,
+        "effect": null,
+        "collider": {
+          "shape": "auto-box",
+          "localBounds": {
+            "min": [
+              -128.21771240234375,
+              0,
+              -93.69197082519531
+            ],
+            "max": [
+              128.21771240234375,
+              53.959232330322266,
+              93.69197082519531
+            ]
+          }
+        },
+        "source": {
+          "relativeAssetPath": "assets/imported/mountain-far-c.glb",
+          "fileName": "mountain-far-c.glb",
+          "mimeType": null
+        }
+      },
+      {
+        "definitionId": "asset:mountain-peak-b",
+        "definitionKind": "asset",
+        "displayName": "mountain-peak-b",
+        "assetKind": "model",
+        "surfaceSlots": [
+          {
+            "slotName": "Rock",
+            "slotIndex": 0,
+            "surface": null
+          },
+          {
+            "slotName": "RockDark",
+            "slotIndex": 1,
+            "surface": null
+          },
+          {
+            "slotName": "Snow",
+            "slotIndex": 2,
+            "surface": null
+          }
+        ],
+        "deform": null,
+        "effect": null,
+        "collider": {
+          "shape": "auto-box",
+          "localBounds": {
+            "min": [
+              -70.19432830810547,
+              0,
+              -50.59498596191406
+            ],
+            "max": [
+              70.19432830810547,
+              111.5887222290039,
+              50.59498596191406
+            ]
+          }
+        },
+        "source": {
+          "relativeAssetPath": "assets/imported/mountain-peak-b.glb",
+          "fileName": "mountain-peak-b.glb",
+          "mimeType": null
+        }
+      },
+      {
+        "definitionId": "asset:mountain-ridge-a",
+        "definitionKind": "asset",
+        "displayName": "mountain-ridge-a",
+        "assetKind": "model",
+        "surfaceSlots": [
+          {
+            "slotName": "Rock",
+            "slotIndex": 0,
+            "surface": null
+          },
+          {
+            "slotName": "Snow",
+            "slotIndex": 1,
+            "surface": null
+          }
+        ],
+        "deform": null,
+        "effect": null,
+        "collider": {
+          "shape": "auto-box",
+          "localBounds": {
+            "min": [
+              -112.65797424316406,
+              0,
+              -58.33306884765625
+            ],
+            "max": [
+              112.65797424316406,
+              82.75397491455078,
+              58.33306884765625
+            ]
+          }
+        },
+        "source": {
+          "relativeAssetPath": "assets/imported/mountain-ridge-a.glb",
+          "fileName": "mountain-ridge-a.glb",
+          "mimeType": null
+        }
+      },
+      {
+        "definitionId": "asset:suitcase_2_v1",
+        "definitionKind": "asset",
+        "displayName": "suitcase_2_v1",
+        "assetKind": "model",
+        "surfaceSlots": [
+          {
+            "slotName": "suitcase_1",
+            "slotIndex": 0,
+            "surface": null
+          }
+        ],
+        "deform": null,
+        "effect": null,
+        "collider": {
+          "shape": "none",
+          "localBounds": {
+            "min": [
+              -0.2469058541633693,
+              0,
+              -0.20971609988274054
+            ],
+            "max": [
+              0.2469058541633693,
+              0.17852633703169118,
+              0.20971609988274054
+            ]
+          }
+        },
+        "source": {
+          "relativeAssetPath": "assets/imported/suitcase_2_v1.glb",
+          "fileName": "suitcase_2_v1.glb",
+          "mimeType": null
+        }
       }
     ],
     "audioClipDefinitions": [
@@ -6243,7 +7272,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "7a1d4aaa-3523-4866-8091-4077997f3dcb",
+              "layerId": "2c798c03-04b6-4bfa-acca-c5d120e5efd5",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -6258,7 +7287,7 @@
               }
             },
             {
-              "layerId": "24f72356-426c-451e-abc9-ec7efc839a32",
+              "layerId": "66f0517b-7967-4639-8910-c40dabe579ce",
               "displayName": "Tall Grass",
               "enabled": true,
               "opacity": 1,
@@ -6276,7 +7305,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "78fe262e-9eff-4227-8484-37ed2d6acc04",
+              "layerId": "1355e9da-eae2-492f-b629-dfb5adde849a",
               "displayName": "Flowers",
               "enabled": true,
               "opacity": 0.7,
@@ -6294,7 +7323,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "feaf4638-c61e-4746-9f10-04c47a01fa61",
+              "layerId": "c302e9f3-512e-4e76-95c4-4c58d18066ec",
               "displayName": "Warm Light",
               "enabled": true,
               "opacity": 0.5,
@@ -6323,7 +7352,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "87762218-fec3-420c-ae7a-b69577501c9b",
+              "layerId": "4cb491a7-b09a-4a50-921f-b4cacbbdb858",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -6338,7 +7367,7 @@
               }
             },
             {
-              "layerId": "0e9b9a3c-88f2-4e7b-b835-5c7e973b2b0b",
+              "layerId": "bc581b43-e145-49a2-bd14-58c1d60cc3e6",
               "displayName": "Grass",
               "enabled": true,
               "opacity": 1,
@@ -6356,7 +7385,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "93232547-466e-4189-ae5b-990af0ad3c8e",
+              "layerId": "8dd51083-a208-4283-b41b-2a8a7137154a",
               "displayName": "Flowers",
               "enabled": true,
               "opacity": 0.45,
@@ -6388,7 +7417,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "e0d22c3e-01ec-4a9c-a89a-b4c1d00e07ee",
+              "layerId": "adfba148-4715-409a-8c33-0007246c9377",
               "displayName": "Bark",
               "enabled": true,
               "opacity": 1,
@@ -6403,7 +7432,7 @@
               }
             },
             {
-              "layerId": "f33bf449-fee8-4145-95a8-9b793d5ba22e",
+              "layerId": "4d4ba30b-68d4-4034-99fe-464b65ded295",
               "displayName": "Moss Tint",
               "enabled": true,
               "opacity": 0.45,
@@ -6432,7 +7461,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "b0e4c7f8-2d97-4646-b5ce-eb0d08ef1631",
+              "layerId": "3a7bff21-b269-46fd-9e5a-682608ed5a54",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -6447,7 +7476,7 @@
               }
             },
             {
-              "layerId": "ab7fba6c-2b4f-48f5-b27a-3c8b4ee6fac6",
+              "layerId": "21772022-23d1-47f1-8055-21d5375045df",
               "displayName": "Short Grass",
               "enabled": true,
               "opacity": 1,
@@ -6479,7 +7508,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "86b2f47d-e51d-4cad-bf64-cf84c3294672",
+              "layerId": "f5285275-c8b1-4a0a-87c2-f8c0f5f622d6",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -6494,7 +7523,7 @@
               }
             },
             {
-              "layerId": "ad1c7f18-19a4-4e01-b99e-1d96225c4c5a",
+              "layerId": "c25d39ff-3894-4fc9-85f9-1c48d9961772",
               "displayName": "Clover Base",
               "enabled": true,
               "opacity": 0.85,
@@ -6512,7 +7541,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "ee99dae3-46d5-4896-be5f-68c0a5cc484d",
+              "layerId": "6484731e-a90c-49cd-934d-dc6f72278f93",
               "displayName": "Tiny Blooms",
               "enabled": true,
               "opacity": 0.35,
@@ -6544,7 +7573,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "1d78bfa2-34c2-4fa0-9ad9-fae76edb7ca0",
+              "layerId": "c17c85fe-b80d-44a4-9709-881e231f2345",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -6559,7 +7588,7 @@
               }
             },
             {
-              "layerId": "826335f9-0c04-4ae4-abff-22fe40f4f22e",
+              "layerId": "5b0c6ff2-72f6-4a97-af6f-cffc472b270f",
               "displayName": "Painterly Tufts",
               "enabled": true,
               "opacity": 0.95,
@@ -6577,7 +7606,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "f56d4734-8d71-4176-84b4-f859b1004f7c",
+              "layerId": "6db53ba8-09d1-4d79-b55b-68563e978dda",
               "displayName": "Tiny Blooms",
               "enabled": true,
               "opacity": 0.2,
@@ -6595,7 +7624,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "6d8c6fd1-b625-43f1-b2bb-6263d7a00233",
+              "layerId": "f842a06d-976e-4780-b853-568735211ac0",
               "displayName": "Warm Lift",
               "enabled": true,
               "opacity": 0.35,
@@ -6781,7 +7810,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "80bdd2c6-7a7f-4505-a02c-a0cd3ac86273",
+              "layerId": "46cbc521-c0d2-4ebc-bf25-9f3332d03fac",
               "displayName": "UV Grid",
               "enabled": true,
               "opacity": 1,
@@ -7281,18 +8310,18 @@
               {
                 "parameterId": "color",
                 "value": [
-                  0.16470588235294117,
-                  0.16470588235294117,
-                  0.16470588235294117
+                  0.803921568627451,
+                  0.8392156862745098,
+                  0.9568627450980393
                 ]
               },
               {
                 "parameterId": "density",
-                "value": 0.008
+                "value": 0.001
               },
               {
                 "parameterId": "heightFalloff",
-                "value": 1
+                "value": 0.04
               }
             ]
           },
@@ -7334,6 +8363,25 @@
                 ]
               }
             ]
+          },
+          {
+            "shaderDefinitionId": "wordlark:shader:bloom",
+            "order": 2,
+            "enabled": true,
+            "parameterOverrides": [
+              {
+                "parameterId": "strength",
+                "value": 1
+              },
+              {
+                "parameterId": "radius",
+                "value": 0.8
+              },
+              {
+                "parameterId": "threshold",
+                "value": 0
+              }
+            ]
           }
         ],
         "lighting": {
@@ -7342,7 +8390,7 @@
             "azimuthDeg": 225,
             "elevationDeg": 45,
             "color": 16766366,
-            "intensity": 1,
+            "intensity": 1.25,
             "shadows": {
               "enabled": true,
               "quality": "high",
@@ -7360,17 +8408,17 @@
             "intensity": 0.4
           },
           "ambient": {
-            "mode": "flat",
+            "mode": "sky-driven",
             "color": 16777215,
-            "intensity": 0.75
+            "intensity": 1.7
           }
         },
         "atmosphere": {
           "fog": {
             "enabled": false,
-            "density": 0.008,
-            "color": 2763306,
-            "heightFalloff": 1
+            "density": 0.001,
+            "color": 13489908,
+            "heightFalloff": 0.04
           },
           "cloudShadows": {
             "enabled": true,
@@ -17119,7 +18167,7 @@
         "definitionKind": "shader",
         "displayName": "Fog Tint",
         "targetKind": "post-process",
-        "revision": 2,
+        "revision": 3,
         "nodes": [
           {
             "nodeId": "scene-color",
@@ -17305,6 +18353,55 @@
             "settings": {}
           },
           {
+            "nodeId": "sky-near",
+            "nodeType": "input.constant-float",
+            "position": {
+              "x": 288,
+              "y": 816
+            },
+            "settings": {
+              "value": 940
+            }
+          },
+          {
+            "nodeId": "sky-far",
+            "nodeType": "input.constant-float",
+            "position": {
+              "x": 288,
+              "y": 896
+            },
+            "settings": {
+              "value": 992
+            }
+          },
+          {
+            "nodeId": "sky-fade",
+            "nodeType": "math.smoothstep",
+            "position": {
+              "x": 720,
+              "y": 856
+            },
+            "settings": {}
+          },
+          {
+            "nodeId": "sky-gate",
+            "nodeType": "math.subtract",
+            "position": {
+              "x": 1120,
+              "y": 856
+            },
+            "settings": {}
+          },
+          {
+            "nodeId": "masked-by-sky",
+            "nodeType": "math.multiply",
+            "position": {
+              "x": 1420,
+              "y": 560
+            },
+            "settings": {}
+          },
+          {
             "nodeId": "mix",
             "nodeType": "math.lerp",
             "position": {
@@ -17444,6 +18541,55 @@
             "targetPortId": "b"
           },
           {
+            "edgeId": "edge-sky-near-edge0",
+            "sourceNodeId": "sky-near",
+            "sourcePortId": "value",
+            "targetNodeId": "sky-fade",
+            "targetPortId": "edge0"
+          },
+          {
+            "edgeId": "edge-sky-far-edge1",
+            "sourceNodeId": "sky-far",
+            "sourcePortId": "value",
+            "targetNodeId": "sky-fade",
+            "targetPortId": "edge1"
+          },
+          {
+            "edgeId": "edge-depth-sky-fade-x",
+            "sourceNodeId": "scene-depth",
+            "sourcePortId": "value",
+            "targetNodeId": "sky-fade",
+            "targetPortId": "x"
+          },
+          {
+            "edgeId": "edge-one-sky-gate-a",
+            "sourceNodeId": "one",
+            "sourcePortId": "value",
+            "targetNodeId": "sky-gate",
+            "targetPortId": "a"
+          },
+          {
+            "edgeId": "edge-sky-fade-sky-gate-b",
+            "sourceNodeId": "sky-fade",
+            "sourcePortId": "value",
+            "targetNodeId": "sky-gate",
+            "targetPortId": "b"
+          },
+          {
+            "edgeId": "edge-masked-by-sky-a",
+            "sourceNodeId": "combined-mask",
+            "sourcePortId": "value",
+            "targetNodeId": "masked-by-sky",
+            "targetPortId": "a"
+          },
+          {
+            "edgeId": "edge-masked-by-sky-b",
+            "sourceNodeId": "sky-gate",
+            "sourcePortId": "value",
+            "targetNodeId": "masked-by-sky",
+            "targetPortId": "b"
+          },
+          {
             "edgeId": "edge-scene-mix",
             "sourceNodeId": "scene-color",
             "sourcePortId": "value",
@@ -17459,7 +18605,7 @@
           },
           {
             "edgeId": "edge-mask-mix",
-            "sourceNodeId": "combined-mask",
+            "sourceNodeId": "masked-by-sky",
             "sourcePortId": "value",
             "targetNodeId": "mix",
             "targetPortId": "alpha"
@@ -18459,7 +19605,7 @@
   "itemDefinitions": [
     {
       "definitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
-      "displayName": "Suitcase",
+      "displayName": "Handbook",
       "category": "misc",
       "inventory": {
         "stackable": false,
@@ -18467,13 +19613,13 @@
         "giftable": false
       },
       "presentation": {
-        "modelAssetDefinitionId": null,
-        "thumbnailAssetPath": null
+        "modelAssetDefinitionId": "asset:book-closed-basic-1",
+        "thumbnailAssetPath": "assets/thumbnails/d90d83e7-1398-4ca2-9131-7e7cf4f89cab.png"
       },
       "interactionView": {
-        "kind": "none",
-        "title": "",
-        "body": "",
+        "kind": "examine",
+        "title": "Handbook for the Recently Transported",
+        "body": "by Hensel VonCliffenwald\n\nHave you been recently transported to the Great Head? Want to know where the latest and greatest hangouts are? Still trying to get the hang of the Flying spell? Read on dear traveler! Hensel VonCliffenwald will tell you everything you need to know.",
         "consumeLabel": "Use",
         "documentDefinitionId": null,
         "castableInvocation": {
@@ -18506,6 +19652,31 @@
           "args": {}
         }
       }
+    },
+    {
+      "definitionId": "3ad23d81-9851-4827-aff5-0780e76e24ec",
+      "displayName": "Suitcase",
+      "category": "misc",
+      "inventory": {
+        "stackable": false,
+        "maxStack": 1,
+        "giftable": false
+      },
+      "presentation": {
+        "modelAssetDefinitionId": "asset:suitcase_2_v1",
+        "thumbnailAssetPath": null
+      },
+      "interactionView": {
+        "kind": "none",
+        "title": "",
+        "body": "",
+        "consumeLabel": "Use",
+        "documentDefinitionId": null,
+        "castableInvocation": {
+          "id": "",
+          "args": {}
+        }
+      }
     }
   ],
   "documentDefinitions": [],
@@ -18513,7 +19684,7 @@
     {
       "definitionId": "42670c12-cecb-4484-944b-0697935173f9",
       "displayName": "Horace Pennyfeather",
-      "interactionMode": "agent",
+      "interactionMode": "scripted",
       "lorePageId": null,
       "presentation": {
         "modelAssetDefinitionId": "wordlark:character-model:Horace-Pennyfeather-rigged",
@@ -18577,14 +19748,14 @@
   "dialogueDefinitions": [
     {
       "definitionId": "5040b419-9f95-44f3-8d25-bcc6d95d8b29",
-      "displayName": "Dialogue 1",
+      "displayName": "Welcome from Horace",
       "startNodeId": "3f5d230f-fa3b-4888-991d-c79b2fdd5c64",
       "nodes": [
         {
           "nodeId": "3f5d230f-fa3b-4888-991d-c79b2fdd5c64",
           "displayName": "Hello",
           "speakerId": "42670c12-cecb-4484-944b-0697935173f9",
-          "text": "Hello! I'm the Station Manager how can I help?",
+          "text": "Welcome to Wordlark Hollow!",
           "intent": {
             "mustConveyFacts": [
               "The speaker is the Station Manager. He wants to know if the player needs help."
@@ -18594,43 +19765,58 @@
           },
           "next": [
             {
-              "targetNodeId": "b057fb78-3f59-4fd2-8934-40eb401e28a3"
-            }
-          ],
-          "graphPosition": {
-            "x": 80,
-            "y": 80
-          }
-        },
-        {
-          "nodeId": "b057fb78-3f59-4fd2-8934-40eb401e28a3",
-          "displayName": "Introduction",
-          "speakerId": "e095b3b2-3351-403a-abe1-88861fa489ad",
-          "text": "I'm looking for my luggage. Where do we pick it up?",
-          "next": [
-            {
               "targetNodeId": "ff0b5fd6-5ac2-4ad9-8d48-11cd1ade6e45"
             }
           ],
           "graphPosition": {
-            "x": 383.67789462988367,
-            "y": 95.1273687954072
+            "x": -10.666666666666671,
+            "y": 58.666666666666664
           }
         },
         {
           "nodeId": "ff0b5fd6-5ac2-4ad9-8d48-11cd1ade6e45",
-          "displayName": "Luggage Huh",
+          "displayName": "I am Horace",
           "speakerId": "42670c12-cecb-4484-944b-0697935173f9",
-          "text": "Luggage is unloaded here at the dock. It should be over there. Good luck to ya. I 've got a schedule to maintain you see?",
+          "text": "I'm Horace Pennyfeather, Station Manager. If you need anything just hollar.",
+          "next": [
+            {
+              "targetNodeId": "5b3bed66-fc34-40fd-92ac-d4b1baecd63a"
+            }
+          ],
+          "graphPosition": {
+            "x": 246.55238095238093,
+            "y": 44.82736879540721
+          }
+        },
+        {
+          "nodeId": "5b3bed66-fc34-40fd-92ac-d4b1baecd63a",
+          "displayName": "Thanks",
+          "speakerId": "e095b3b2-3351-403a-abe1-88861fa489ad",
+          "text": "Thanks! I think I just need to find my suitcase. Do you know where it might be?",
+          "next": [
+            {
+              "targetNodeId": "5015ca7d-be4f-47be-b32d-b4838495dbf4"
+            }
+          ],
+          "graphPosition": {
+            "x": 504.18095238095236,
+            "y": 62.89047619047621
+          }
+        },
+        {
+          "nodeId": "5015ca7d-be4f-47be-b32d-b4838495dbf4",
+          "displayName": "Node 4",
+          "speakerId": "42670c12-cecb-4484-944b-0697935173f9",
+          "text": "Hmmm usually they're here waiting for you, but there seems to be some irregularity today. Most unusual. You may want to check up at the station while I look into it.",
           "next": [],
           "graphPosition": {
-            "x": 648.6666666666666,
-            "y": 121.12736879540721
+            "x": 776.2202765688005,
+            "y": 82.4275775181244
           }
         }
       ],
       "interactionBinding": {
-        "npcDefinitionId": null
+        "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9"
       }
     },
     {
@@ -18707,64 +19893,16 @@
   "questDefinitions": [
     {
       "definitionId": "7d8625b2-3652-4e65-a68b-9cb47f15c33a",
-      "displayName": "Find the Luggage",
-      "description": "Quest description...",
+      "displayName": "Welcome Introduction",
+      "description": "The first quest of the game. A welcome and introduction quest to familiarize the player with the game a bit.",
       "startStageId": "65868df1-f29e-423a-86a0-597e77377943",
       "stageDefinitions": [
         {
           "stageId": "65868df1-f29e-423a-86a0-597e77377943",
           "displayName": "Start",
           "nextStageId": null,
+          "timeOfDay": "afternoon",
           "nodeDefinitions": [
-            {
-              "nodeId": "028447aa-20cc-4c61-8ce1-57bff9246bf2",
-              "displayName": "Talk to Station Manager",
-              "description": "Fill out \"customs form\" language assessment.",
-              "nodeBehavior": "objective",
-              "objectiveSubtype": "assessment",
-              "targetId": "42670c12-cecb-4484-944b-0697935173f9",
-              "count": 1,
-              "optional": false,
-              "dialogueDefinitionId": "d728d566-1d68-49bf-8589-fafae61b3ea9",
-              "autoStart": false,
-              "prerequisiteNodeIds": [],
-              "failTargetNodeIds": [],
-              "onEnterActions": [],
-              "onCompleteActions": [
-                {
-                  "type": "setFlag",
-                  "targetId": "introduction_complete"
-                }
-              ],
-              "showInHud": true,
-              "graphPosition": {
-                "x": -7.333333333333343,
-                "y": 10.666666666666664
-              }
-            },
-            {
-              "nodeId": "662ccab2-3b38-4123-990c-70291d6720e3",
-              "displayName": "Collect Suitcase",
-              "description": "Collect the suitcase.",
-              "nodeBehavior": "objective",
-              "objectiveSubtype": "collect",
-              "targetId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
-              "count": 1,
-              "optional": false,
-              "autoStart": false,
-              "prerequisiteNodeIds": [
-                "028447aa-20cc-4c61-8ce1-57bff9246bf2",
-                "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668"
-              ],
-              "failTargetNodeIds": [],
-              "onEnterActions": [],
-              "onCompleteActions": [],
-              "showInHud": true,
-              "graphPosition": {
-                "x": 292,
-                "y": 24.666666666666657
-              }
-            },
             {
               "nodeId": "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668",
               "displayName": "Talk to Bo",
@@ -18787,15 +19925,87 @@
               ],
               "showInHud": true,
               "graphPosition": {
-                "x": -8.666666666666671,
-                "y": 182
+                "x": 217.08185739759185,
+                "y": 191.99985970243856
+              }
+            },
+            {
+              "nodeId": "0322fc1b-c883-435f-abb4-7aceaa067aa0",
+              "displayName": "Objective",
+              "description": "Collect suitcase",
+              "nodeBehavior": "objective",
+              "objectiveSubtype": "collect",
+              "targetId": "3ad23d81-9851-4827-aff5-0780e76e24ec",
+              "count": 1,
+              "optional": false,
+              "autoStart": false,
+              "prerequisiteNodeIds": [
+                "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668",
+                "205d4d80-e81c-469e-85f8-0295ba38d5a7"
+              ],
+              "failTargetNodeIds": [],
+              "onEnterActions": [],
+              "onCompleteActions": [],
+              "showInHud": true,
+              "graphPosition": {
+                "x": 566.4609523809523,
+                "y": 30.812380952380977
+              }
+            },
+            {
+              "nodeId": "205d4d80-e81c-469e-85f8-0295ba38d5a7",
+              "displayName": "Objective",
+              "description": "Welcome",
+              "nodeBehavior": "objective",
+              "objectiveSubtype": "talk",
+              "targetId": "42670c12-cecb-4484-944b-0697935173f9",
+              "count": 1,
+              "optional": false,
+              "dialogueDefinitionId": "5040b419-9f95-44f3-8d25-bcc6d95d8b29",
+              "autoStart": false,
+              "prerequisiteNodeIds": [
+                "6d77b65c-2dc0-426b-ab25-7d9f2c77b5d4"
+              ],
+              "failTargetNodeIds": [],
+              "onEnterActions": [],
+              "onCompleteActions": [
+                {
+                  "type": "moveNpc"
+                }
+              ],
+              "showInHud": true,
+              "graphPosition": {
+                "x": 212.0017116424467,
+                "y": 18.203666324829243
+              }
+            },
+            {
+              "nodeId": "6d77b65c-2dc0-426b-ab25-7d9f2c77b5d4",
+              "displayName": "Objective",
+              "description": "Take the language assessment.",
+              "nodeBehavior": "objective",
+              "objectiveSubtype": "assessment",
+              "targetId": "42670c12-cecb-4484-944b-0697935173f9",
+              "count": 1,
+              "optional": false,
+              "autoStart": false,
+              "prerequisiteNodeIds": [],
+              "failTargetNodeIds": [],
+              "onEnterActions": [],
+              "onCompleteActions": [],
+              "showInHud": true,
+              "eventName": "sugarlang.placement.completed",
+              "graphPosition": {
+                "x": -196.01509079915928,
+                "y": 63.23220477257071
               }
             }
           ],
           "entryNodeIds": [
-            "028447aa-20cc-4c61-8ce1-57bff9246bf2",
-            "662ccab2-3b38-4123-990c-70291d6720e3",
-            "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668"
+            "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668",
+            "0322fc1b-c883-435f-abb4-7aceaa067aa0",
+            "205d4d80-e81c-469e-85f8-0295ba38d5a7",
+            "6d77b65c-2dc0-426b-ab25-7d9f2c77b5d4"
           ]
         }
       ],
@@ -19382,16 +20592,22 @@
     "assets/imported/dryad_statue_previz_v3.glb": "/assets/imported/dryad_statue_previz_v3.glb",
     "assets/imported/lavender-plant-b.glb": "/assets/imported/lavender-plant-b.glb",
     "assets/imported/lavender-plant.glb": "/assets/imported/lavender-plant.glb",
+    "assets/imported/mountain-far-c.glb": "/assets/imported/mountain-far-c.glb",
+    "assets/imported/mountain-peak-b.glb": "/assets/imported/mountain-peak-b.glb",
+    "assets/imported/mountain-ridge-a.glb": "/assets/imported/mountain-ridge-a.glb",
     "assets/imported/park_bench_1_v6.glb": "/assets/imported/park_bench_1_v6.glb",
     "assets/imported/rock_1.glb": "/assets/imported/rock_1.glb",
     "assets/imported/rock_formation_1.glb": "/assets/imported/rock_formation_1.glb",
     "assets/imported/station_bench_1_v1.glb": "/assets/imported/station_bench_1_v1.glb",
     "assets/imported/stone_cliff_1_v3.glb": "/assets/imported/stone_cliff_1_v3.glb",
     "assets/imported/street_light_1_v1.glb": "/assets/imported/street_light_1_v1.glb",
+    "assets/imported/suitcase_2_v1.glb": "/assets/imported/suitcase_2_v1.glb",
     "assets/imported/test_tree_6.glb": "/assets/imported/test_tree_6.glb",
     "assets/imported/test_tree_7.glb": "/assets/imported/test_tree_7.glb",
     "assets/imported/waiting_platform_1_v1.glb": "/assets/imported/waiting_platform_1_v1.glb",
     "assets/navmesh/arrival-station.navmesh.bin": "/assets/navmesh/arrival-station.navmesh.bin",
+    "assets/sugarlang/scene-contexts.json": "/assets/sugarlang/scene-contexts.json",
+    "assets/sugarlang/variants.json": "/assets/sugarlang/variants.json",
     "assets/textures/foilagemakerleafsprite.png": "/assets/textures/foilagemakerleafsprite.png",
     "assets/textures/grass-clump-01.png": "/assets/textures/grass-clump-01.png",
     "assets/textures/grass-clump-03.png": "/assets/textures/grass-clump-03.png",
@@ -19405,6 +20621,7 @@
     "assets/textures/ground_normal.png": "/assets/textures/ground_normal.png",
     "assets/textures/ground_roughness.png": "/assets/textures/ground_roughness.png",
     "assets/textures/leavestexture01_transparency.png": "/assets/textures/leavestexture01_transparency.png",
+    "assets/thumbnails/d90d83e7-1398-4ca2-9131-7e7cf4f89cab.png": "/assets/thumbnails/d90d83e7-1398-4ca2-9131-7e7cf4f89cab.png",
     "masks/mask-1784007002803-1.png": "/masks/mask-1784007002803-1.png"
   },
   "defaultGameSavePayload": null

@@ -1,0 +1,350 @@
+{
+  "schemaVersion": 1,
+  "promptVersion": "conjugation.concepts.0",
+  "sceneContextModels": [
+    {
+      "sceneId": "default",
+      "contentHash": "3041b95fc87ba0268d93d5cd15a6e089bb669696b2a128662a85a415547542f7",
+      "promptVersion": "conjugation.concepts.0",
+      "supportLanguage": "en",
+      "prose": "Earendale is a small floating town of 57 permanent residents, located on a chunk of land that broke off from the ear of the Great Head and accessible only by air transport. The town is known for the Wordlark Hollow Resort and Spa just outside its borders, where hot springs attract hundreds of seasonal visitors. People come from across the Great Head hoping wordlarks will visit them at the springs to help resolve matters of the heart.",
+      "concepts": [
+        {
+          "label": "air",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.locations.towns.town.earendale",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "bird",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.locations.towns.town.earendale",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "floating",
+          "pos": "verb",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.locations.towns.town.earendale",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "heart",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.locations.towns.town.earendale",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "hope",
+          "pos": "verb",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.locations.towns.town.earendale",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "hot spring",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.locations.towns.town.earendale",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "island",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.locations.towns.town.earendale",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "relax",
+          "pos": "verb",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.locations.towns.town.earendale",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "resident",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.locations.towns.town.earendale",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "resolve",
+          "pos": "verb",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.locations.towns.town.earendale",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "resort",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.locations.towns.town.earendale",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "spa",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.locations.towns.town.earendale",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "town",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.locations.towns.town.earendale",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "transport",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.locations.towns.town.earendale",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "visit",
+          "pos": "verb",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.locations.towns.town.earendale",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "water",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.locations.towns.town.earendale",
+              "kind": "lore"
+            }
+          ]
+        }
+      ],
+      "extractedAtMs": 1785714033192,
+      "extractedByModel": "gateway-resolved",
+      "reviewFlag": false
+    },
+    {
+      "sceneId": "arrival-station",
+      "contentHash": "b673a06127cc438376cbaee0e8931b6a52791522e836b1f57b7ffa6cbef21a6d",
+      "promptVersion": "conjugation.concepts.0",
+      "supportLanguage": "en",
+      "prose": "The player arrives at Wordlark Hollow's arrival station, where Horace Pennyfeather, the Station Manager, greets them. There's an unexpected irregularity—someone who should be waiting hasn't arrived—and Horace suggests checking the station while he investigates. The player carries a suitcase and handbook, and notable local characters include Finnick Thorn, a prairie dog cheesemonger passionate about his craft, and Bo, an air whale pilot.",
+      "concepts": [
+        {
+          "label": "arrive",
+          "pos": "verb",
+          "provenance": [
+            {
+              "sourceId": "dialogue:42670c12-cecb-4484-944b-0697935173f9",
+              "kind": "npc"
+            },
+            {
+              "sourceId": "region:arrival-station",
+              "kind": "region"
+            }
+          ]
+        },
+        {
+          "label": "cheese",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.entities.npcs.finnick_thorn",
+              "kind": "lore"
+            },
+            {
+              "sourceId": "npc:c6b350c6-855f-4e34-875d-09e4be601993",
+              "kind": "npc"
+            }
+          ]
+        },
+        {
+          "label": "dock",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "region:arrival-station",
+              "kind": "region"
+            }
+          ]
+        },
+        {
+          "label": "greet",
+          "pos": "verb",
+          "provenance": [
+            {
+              "sourceId": "dialogue:42670c12-cecb-4484-944b-0697935173f9",
+              "kind": "npc"
+            }
+          ]
+        },
+        {
+          "label": "handbook",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "item:d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+              "kind": "item"
+            }
+          ]
+        },
+        {
+          "label": "manager",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "dialogue:42670c12-cecb-4484-944b-0697935173f9",
+              "kind": "npc"
+            }
+          ]
+        },
+        {
+          "label": "pilot",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "npc:66013347-dc94-4518-898b-9dfd22ac7ced",
+              "kind": "npc"
+            }
+          ]
+        },
+        {
+          "label": "sell",
+          "pos": "verb",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.entities.npcs.finnick_thorn",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "shop",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.entities.npcs.finnick_thorn",
+              "kind": "lore"
+            },
+            {
+              "sourceId": "npc:c6b350c6-855f-4e34-875d-09e4be601993",
+              "kind": "npc"
+            }
+          ]
+        },
+        {
+          "label": "station",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "dialogue:42670c12-cecb-4484-944b-0697935173f9",
+              "kind": "npc"
+            },
+            {
+              "sourceId": "region:arrival-station",
+              "kind": "region"
+            }
+          ]
+        },
+        {
+          "label": "suitcase",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "item:3ad23d81-9851-4827-aff5-0780e76e24ec",
+              "kind": "item"
+            }
+          ]
+        },
+        {
+          "label": "wait",
+          "pos": "verb",
+          "provenance": [
+            {
+              "sourceId": "dialogue:42670c12-cecb-4484-944b-0697935173f9",
+              "kind": "npc"
+            }
+          ]
+        },
+        {
+          "label": "welcome",
+          "pos": "verb",
+          "provenance": [
+            {
+              "sourceId": "dialogue:42670c12-cecb-4484-944b-0697935173f9",
+              "kind": "npc"
+            },
+            {
+              "sourceId": "quest:7d8625b2-3652-4e65-a68b-9cb47f15c33a",
+              "kind": "quest"
+            }
+          ]
+        },
+        {
+          "label": "whale",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "npc:66013347-dc94-4518-898b-9dfd22ac7ced",
+              "kind": "npc"
+            }
+          ]
+        }
+      ],
+      "extractedAtMs": 1785714024582,
+      "extractedByModel": "gateway-resolved",
+      "reviewFlag": false
+    }
+  ]
+}

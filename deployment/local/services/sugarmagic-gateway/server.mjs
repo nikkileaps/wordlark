@@ -210,6 +210,7 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, extname, join, relative } from "node:path";
 import {
+  createHash,
   timingSafeEqual as timingSafeEqual2
 } from "node:crypto";
 var _routes = [];
@@ -664,6 +665,28 @@ async function listVectorStoreFiles(vectorStoreId) {
   }
   return items;
 }
+function isLoreVectorStoreFile(item) {
+  const attributes = item["attributes"];
+  if (typeof attributes !== "object" || attributes === null) return false;
+  const pageId = attributes["page_id"];
+  return typeof pageId === "string" && pageId.length > 0;
+}
+async function sweepNonLoreVectorStoreFiles(vectorStoreId) {
+  const files = await listVectorStoreFiles(vectorStoreId);
+  const removed = [];
+  let failed = 0;
+  for (const item of files) {
+    const id = item["id"];
+    if (typeof id !== "string" || isLoreVectorStoreFile(item)) continue;
+    try {
+      await deleteVectorStoreFile(vectorStoreId, id);
+      removed.push(id);
+    } catch {
+      failed += 1;
+    }
+  }
+  return { removed, failed };
+}
 async function deleteVectorStoreFile(vectorStoreId, vectorStoreFileId) {
   await requestJson(
     "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/files/" + vectorStoreFileId,
@@ -676,12 +699,78 @@ async function deleteVectorStoreFile(vectorStoreId, vectorStoreFileId) {
     "OpenAI vector store file delete"
   );
 }
-async function uploadChunkToVectorStore(vectorStoreId, chunk, onProgress = null) {
-  onProgress?.({
-    phase: "uploading",
-    currentChunkId: chunk.chunkId,
-    message: "Uploading chunk " + chunk.chunkId
-  });
+var MAX_FILES_PER_BATCH = 2e3;
+var UPLOAD_CONCURRENCY = 8;
+var BATCH_INDEX_DEADLINE_MS = 30 * 60 * 1e3;
+var BATCH_POLL_INTERVAL_MS = 2e3;
+function chunkContentHash(chunk) {
+  return createHash("sha256").update(chunk.embeddingText, "utf8").digest("hex");
+}
+function chunkAttributes(chunk) {
+  return {
+    page_id: chunk.pageId,
+    chunk_id: chunk.chunkId,
+    section_slug: chunk.sectionSlug,
+    section_heading: chunk.sectionHeading,
+    title: chunk.title,
+    relative_path: chunk.relativePath,
+    content_hash: chunkContentHash(chunk)
+  };
+}
+function indexedChunksByAddress(files) {
+  const byAddress = /* @__PURE__ */ new Map();
+  for (const file of files) {
+    if (!isLoreVectorStoreFile(file)) continue;
+    const id = file["id"];
+    const attributes = file["attributes"];
+    const chunkId = attributes["chunk_id"];
+    if (typeof id !== "string" || typeof chunkId !== "string") continue;
+    const hash = attributes["content_hash"];
+    const status = file["status"];
+    const entry = {
+      fileId: id,
+      contentHash: typeof hash === "string" ? hash : "",
+      status: typeof status === "string" ? status : "unknown"
+    };
+    byAddress.set(chunkId, [...byAddress.get(chunkId) ?? [], entry]);
+  }
+  return byAddress;
+}
+function planIncrementalIngest(chunks, indexed) {
+  const upload = [];
+  const unchanged = [];
+  const remove = [];
+  const duplicateAddresses = [];
+  const seen = /* @__PURE__ */ new Set();
+  for (const chunk of chunks) {
+    if (seen.has(chunk.chunkId)) {
+      duplicateAddresses.push(chunk.chunkId);
+      continue;
+    }
+    seen.add(chunk.chunkId);
+    const entries = indexed.get(chunk.chunkId) ?? [];
+    const hash = chunkContentHash(chunk);
+    const usable = entries.filter(
+      (entry) => entry.status === "completed" && entry.contentHash === hash
+    );
+    if (usable.length > 0) {
+      unchanged.push(chunk);
+      const keep = usable[0].fileId;
+      for (const entry of entries) {
+        if (entry.fileId !== keep) remove.push(entry.fileId);
+      }
+    } else {
+      upload.push(chunk);
+      for (const entry of entries) remove.push(entry.fileId);
+    }
+  }
+  for (const [chunkId, entries] of indexed) {
+    if (seen.has(chunkId)) continue;
+    for (const entry of entries) remove.push(entry.fileId);
+  }
+  return { upload, unchanged, remove, duplicateAddresses };
+}
+async function uploadChunkFile(chunk) {
   const fileUpload = new FormData();
   fileUpload.append("purpose", "user_data");
   fileUpload.append(
@@ -696,68 +785,108 @@ async function uploadChunkToVectorStore(vectorStoreId, chunk, onProgress = null)
     },
     body: fileUpload
   });
-  const uploadPayload = await parseApiJsonResponse(
+  const payload = await parseApiJsonResponse(
     uploadResponse,
     "OpenAI file upload"
   );
-  const attachResponse = await fetch(
-    "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/files",
-    {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: "Bearer " + requireEnv("SUGARMAGIC_OPENAI_API_KEY")
-      },
-      body: JSON.stringify({
-        file_id: uploadPayload["id"],
-        attributes: {
-          page_id: chunk.pageId,
-          chunk_id: chunk.chunkId,
-          section_slug: chunk.sectionSlug,
-          section_heading: chunk.sectionHeading,
-          title: chunk.title,
-          relative_path: chunk.relativePath
-        }
-      })
+  const fileId = payload["id"];
+  if (typeof fileId !== "string") {
+    throw new Error("OpenAI file upload returned no id for chunk " + chunk.chunkId);
+  }
+  return fileId;
+}
+async function mapWithConcurrency(items, limit, worker) {
+  const results = new Array(items.length);
+  let next = 0;
+  let aborted = false;
+  async function runner() {
+    while (!aborted) {
+      const index = next;
+      next += 1;
+      if (index >= items.length) return;
+      try {
+        results[index] = await worker(items[index], index);
+      } catch (error) {
+        aborted = true;
+        throw error;
+      }
     }
+  }
+  await Promise.all(
+    Array.from({ length: Math.max(1, Math.min(limit, items.length)) }, runner)
   );
-  const vectorStoreFile = await parseApiJsonResponse(
-    attachResponse,
-    "OpenAI vector store file attach"
-  );
-  let attempts = 0;
-  while (attempts < 30) {
-    onProgress?.({
-      phase: "waiting-for-indexing",
-      currentChunkId: chunk.chunkId,
-      message: "Waiting for indexing for " + chunk.chunkId
-    });
-    const statusResponse = await fetch(
-      "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/files/" + vectorStoreFile["id"],
+  return results;
+}
+async function attachChunkBatch(vectorStoreId, entries, onProgress = null) {
+  const batchId = await withOpenAIRetry("attach-batch-create", async () => {
+    const createResponse = await fetch(
+      "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/file_batches",
       {
-        method: "GET",
+        method: "POST",
         headers: {
+          "content-type": "application/json",
           authorization: "Bearer " + requireEnv("SUGARMAGIC_OPENAI_API_KEY")
-        }
+        },
+        body: JSON.stringify({
+          files: entries.map((entry) => ({
+            file_id: entry.fileId,
+            attributes: chunkAttributes(entry.chunk)
+          }))
+        })
       }
     );
-    const statusPayload = await parseApiJsonResponse(
-      statusResponse,
-      "OpenAI vector store file status"
+    const batch = await parseApiJsonResponse(
+      createResponse,
+      "OpenAI vector store file batch create"
     );
-    if (statusPayload["status"] === "completed") {
-      return vectorStoreFile;
+    const id = batch["id"];
+    if (typeof id !== "string") {
+      throw new Error("OpenAI file batch create returned no id.");
     }
-    if (statusPayload["status"] === "failed" || statusPayload["status"] === "cancelled") {
-      throw new Error(
-        "Vector store file processing failed for " + chunk.chunkId + " with status " + statusPayload["status"]
+    return id;
+  });
+  const deadline = Date.now() + BATCH_INDEX_DEADLINE_MS;
+  while (Date.now() < deadline) {
+    let payload;
+    try {
+      const statusResponse = await fetch(
+        "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/file_batches/" + batchId,
+        {
+          method: "GET",
+          headers: {
+            authorization: "Bearer " + requireEnv("SUGARMAGIC_OPENAI_API_KEY")
+          }
+        }
       );
+      payload = await parseApiJsonResponse(
+        statusResponse,
+        "OpenAI vector store file batch status"
+      );
+    } catch (error) {
+      logInfo("ingest:batch-status-retry", {
+        batchId,
+        reason: error instanceof Error ? error.message : String(error)
+      });
+      await new Promise((resolve) => setTimeout(resolve, BATCH_POLL_INTERVAL_MS));
+      continue;
     }
-    await new Promise((resolve) => setTimeout(resolve, 1e3));
-    attempts += 1;
+    const counts = payload["file_counts"] ?? {};
+    const completed = typeof counts["completed"] === "number" ? counts["completed"] : 0;
+    const failed = typeof counts["failed"] === "number" ? counts["failed"] : 0;
+    onProgress?.(completed, entries.length);
+    const status = payload["status"];
+    if (status === "completed" || status === "failed" || status === "cancelled") {
+      if (status !== "completed" || failed > 0) {
+        throw new Error(
+          "Vector store file batch " + String(status) + ": " + completed + " indexed, " + failed + " failed of " + entries.length + " files."
+        );
+      }
+      return completed;
+    }
+    await new Promise((resolve) => setTimeout(resolve, BATCH_POLL_INTERVAL_MS));
   }
   throw new Error(
-    "Timed out waiting for vector store processing for chunk " + chunk.chunkId
+    "Timed out waiting for vector store batch indexing after " + Math.round(BATCH_INDEX_DEADLINE_MS / 6e4) + " minutes."
   );
 }
 function findManagedRoute(path) {
@@ -772,10 +901,23 @@ async function handleSugarAgentGenerate(req, res) {
   }
   const body = await readJsonBody(req);
   const purpose = typeof body["purpose"] === "string" ? body["purpose"].trim() : "";
-  const model = purpose === "summary" ? resolveEnv("SUGARMAGIC_SUGARAGENT_SUMMARY_MODEL", "claude-haiku-4-5") : purpose === "regen" ? resolveEnv(
-    "SUGARMAGIC_SUGARAGENT_REGEN_MODEL",
-    resolveEnv("SUGARMAGIC_SUGARAGENT_ANTHROPIC_MODEL", "claude-haiku-4-5")
-  ) : resolveEnv("SUGARMAGIC_SUGARAGENT_ANTHROPIC_MODEL", "claude-haiku-4-5");
+  const dialogueModel = () => resolveEnv("SUGARMAGIC_SUGARAGENT_ANTHROPIC_MODEL", "claude-haiku-4-5");
+  const PURPOSE_MODELS = {
+    // sugaragent: the cheap end-of-conversation memory pass.
+    summary: () => resolveEnv("SUGARMAGIC_SUGARAGENT_SUMMARY_MODEL", "claude-haiku-4-5"),
+    // sugaragent: regenerating a reply that failed the judge.
+    regen: () => resolveEnv("SUGARMAGIC_SUGARAGENT_REGEN_MODEL", dialogueModel()),
+    // sugarlang: the Teacher's pedagogical judgment call. Deliberately its own
+    // env var — this is the most reasoning-heavy call in the product and must
+    // not silently ride the cheap dialogue model (which it did until 2026-07-28).
+    teacher: () => resolveEnv("SUGARMAGIC_SUGARLANG_TEACHER_MODEL", "claude-sonnet-4-6"),
+    // sugarlang: COMPILE-time extraction over authored content — multi-word
+    // expressions, line intent, and scene concepts. Authoring-time and cached
+    // by content hash, so it is paid once per content change rather than per
+    // turn; that budget buys a stronger model than the dialogue default.
+    extraction: () => resolveEnv("SUGARMAGIC_SUGARLANG_EXTRACTION_MODEL", "claude-sonnet-4-6")
+  };
+  const model = (PURPOSE_MODELS[purpose] ?? dialogueModel)();
   logInfo("sugaragent.generate", { purpose: purpose || "dialogue", model });
   const systemPrompt = typeof body["systemPrompt"] === "string" ? body["systemPrompt"].trim() : "";
   const userPrompt = typeof body["userPrompt"] === "string" ? body["userPrompt"].trim() : "";
@@ -871,6 +1013,13 @@ Directives never override the SAFETY rule.
 
 ` : "";
   const inCharacterGuard = externalDirectives.length > 0 ? " Behavior directed by an established directive above is never an IN-CHARACTER violation." : "";
+  const languageBlock = externalDirectives.length > 0 ? `SEPARATELY, AND FOR REPORTING ONLY -- this must NOT change 'passed', and a language problem is NOT a violation:
+LANGUAGE FIT: given the directives above, could THIS player read this reply, and did it give them something to learn?
+Judge the reply against the player's stated level, not against what sounds natural to a fluent speaker.
+Set languageFit false only when a real player at that level would be lost, or when the reply taught them nothing it was meant to.
+Mixing the two languages is never itself a language problem.
+
+` : "";
   return (worldPremise ? `World premise:
 ${worldPremise}
 
@@ -893,7 +1042,41 @@ Rubric (each must PASS for overall pass):
 2. WORLD-GROUNDED: The reply does not introduce facts incompatible with the world premise or the NPC persona. Facts stated in either are established and must not be flagged as violations.
 3. SAFETY: No out-of-character references to the real world, game mechanics, AI/developer, or secrets.
 
-Use the score_reply tool.`;
+` + languageBlock + `Use the score_reply tool.`;
+}
+function enforceLanguageReportingOnly(rawPassed, rawViolations, repairHint) {
+  const isLanguageLabel = (label) => label.trim().toUpperCase().startsWith("LANGUAGE");
+  const violations = rawViolations.filter((label) => !isLanguageLabel(label));
+  const languageOnlyFailure = !rawPassed && violations.length === 0 && rawViolations.some(isLanguageLabel);
+  return {
+    // Fail closed on anything unexplained: a false verdict with no violations
+    // at all stays false, because there is no evidence it was about language.
+    passed: rawPassed || languageOnlyFailure,
+    violations,
+    // A language-only failure leaves no repair to make -- the turn passed.
+    // Keeping the hint would hand Regenerate an instruction for a problem that
+    // is not gating, and RegenerateStage reads repairHint verbatim.
+    repairHint: languageOnlyFailure ? null : repairHint,
+    languageOnlyFailure
+  };
+}
+function buildLanguageToolFields(hasLanguageDirectives) {
+  if (!hasLanguageDirectives) {
+    return { properties: {}, required: [] };
+  }
+  return {
+    properties: {
+      languageFit: {
+        type: "boolean",
+        description: "Could this specific player read the reply, and did it teach them what it was meant to? Judge it against the player's stated level, not against fluent-speaker taste. This must NOT affect 'passed', and must NOT be listed in 'violations'."
+      },
+      languageNote: {
+        type: ["string", "null"],
+        description: "One line naming the language problem, or null when languageFit is true. Say what a player at their level would trip on."
+      }
+    },
+    required: ["languageFit", "languageNote"]
+  };
 }
 async function handleSugarAgentJudge(req, res) {
   if (req.method !== "POST") {
@@ -924,7 +1107,9 @@ async function handleSugarAgentJudge(req, res) {
     replyText,
     externalDirectives
   );
+  const hasLanguageDirectives = externalDirectives.length > 0;
   const judgeSystemPrompt = "You are a quality reviewer for NPC dialogue in a cozy fantasy RPG. Score the NPC reply strictly against the rubric. The world premise and NPC persona define what is real in this world \u2014 any fact stated there is in-world by definition and must never be flagged as a violation. Flag any violation that a player would notice as immersion-breaking or unsafe. Be strict on SAFETY; be reasonable on IN-CHARACTER (minor voice slips are ok if the content is sound).";
+  const { properties: languageToolProperties, required: languageToolRequired } = buildLanguageToolFields(hasLanguageDirectives);
   const tool = {
     name: "score_reply",
     description: "Record the verdict for an NPC reply against the rubric.",
@@ -943,9 +1128,10 @@ async function handleSugarAgentJudge(req, res) {
         repairHint: {
           type: ["string", "null"],
           description: "One-line instruction for how to fix the reply, or null when passed."
-        }
+        },
+        ...languageToolProperties
       },
-      required: ["passed", "violations", "repairHint"]
+      required: ["passed", "violations", "repairHint", ...languageToolRequired]
     }
   };
   const startedAt = Date.now();
@@ -974,18 +1160,30 @@ async function handleSugarAgentJudge(req, res) {
     throw new Error("Judge response did not include a score_reply tool call.");
   }
   const input = toolUseBlock.input;
-  const passed = input["passed"] === true;
-  const violations = Array.isArray(input["violations"]) ? input["violations"].filter((v) => typeof v === "string") : [];
+  const rawPassed = input["passed"] === true;
+  const rawViolations = Array.isArray(input["violations"]) ? input["violations"].filter((v) => typeof v === "string") : [];
   const repairHint = typeof input["repairHint"] === "string" ? input["repairHint"].trim() || null : null;
+  const languageFit = hasLanguageDirectives ? input["languageFit"] !== false : void 0;
+  const languageNote = hasLanguageDirectives && typeof input["languageNote"] === "string" ? input["languageNote"].trim() || null : null;
+  const { passed, violations, repairHint: effectiveRepairHint, languageOnlyFailure } = enforceLanguageReportingOnly(rawPassed, rawViolations, repairHint);
   logInfo("sugaragent.judge", {
     passed,
+    rawPassed,
     violations,
-    repairHint,
+    languageOnlyFailure,
+    repairHint: effectiveRepairHint,
+    languageFit,
+    languageNote,
     model,
     durationMs: Date.now() - startedAt,
     responseIntent
   });
-  sendJson(res, 200, { passed, violations, repairHint });
+  sendJson(res, 200, {
+    passed,
+    violations,
+    repairHint: effectiveRepairHint,
+    ...languageFit === void 0 ? {} : { languageFit, languageNote }
+  });
 }
 async function handleSugarAgentModerate(req, res) {
   if (req.method !== "POST") {
@@ -1051,6 +1249,7 @@ async function handleSugarAgentSearch(req, res) {
   const query = typeof body["query"] === "string" ? body["query"].trim() : "";
   const vectorStoreId = typeof body["vectorStoreId"] === "string" && body["vectorStoreId"].trim() ? body["vectorStoreId"].trim() : resolveEnv("SUGARMAGIC_SUGARAGENT_OPENAI_VECTOR_STORE_ID");
   const maxResults = typeof body["maxResults"] === "number" && Number.isFinite(body["maxResults"]) ? Math.max(1, Math.min(8, Math.floor(body["maxResults"]))) : 4;
+  const scoreThreshold = typeof body["scoreThreshold"] === "number" && Number.isFinite(body["scoreThreshold"]) ? Math.max(0, Math.min(1, body["scoreThreshold"])) : 0.3;
   if (!query || !vectorStoreId) {
     sendJson(res, 400, {
       ok: false,
@@ -1070,6 +1269,7 @@ async function handleSugarAgentSearch(req, res) {
       body: JSON.stringify({
         query,
         max_num_results: maxResults,
+        ranking_options: { score_threshold: scoreThreshold },
         filters: body["filters"] && typeof body["filters"] === "object" && !Array.isArray(body["filters"]) ? body["filters"] : void 0
       })
     },
@@ -1094,6 +1294,19 @@ async function handleSugarAgentLoreStatus(req, res) {
   }
   const lore = readLorePages();
   const vectorStoreId = resolveEnv("SUGARMAGIC_SUGARAGENT_OPENAI_VECTOR_STORE_ID") || null;
+  let store = null;
+  if (vectorStoreId) {
+    try {
+      const files = await listVectorStoreFiles(vectorStoreId);
+      const loreFiles = files.filter(isLoreVectorStoreFile);
+      store = {
+        fileCount: files.length,
+        loreFileCount: loreFiles.length,
+        nonLoreFileCount: files.length - loreFiles.length
+      };
+    } catch {
+    }
+  }
   sendJson(res, 200, {
     ok: true,
     sourceKind: lore.source.sourceKind,
@@ -1102,6 +1315,7 @@ async function handleSugarAgentLoreStatus(req, res) {
     vectorStoreId,
     pageCount: lore.pages.length,
     chunkCount: lore.chunks.length,
+    store,
     warnings: lore.warnings,
     ingest: { ..._loreIngestState }
   });
@@ -1214,33 +1428,107 @@ async function runIngestWork(vectorStoreId, mode, lore) {
         });
       }
     }
-    let uploadedCount = 0;
-    for (const chunk of lore.chunks) {
-      await withOpenAIRetry(
-        "upload-chunk-" + chunk.chunkId,
-        () => uploadChunkToVectorStore(vectorStoreId, chunk, (progress) => {
-          updateLoreIngestState({
-            phase: progress.phase,
-            currentChunkId: progress.currentChunkId ?? null,
-            message: progress.message,
-            uploadedCount
-          });
-        })
-      );
-      uploadedCount += 1;
+    let pending = lore.chunks;
+    let staleFileIds = [];
+    if (mode !== "overwrite") {
       updateLoreIngestState({
-        phase: "uploading",
-        currentChunkId: chunk.chunkId,
-        uploadedCount,
-        message: "Uploaded " + uploadedCount + " / " + lore.chunks.length + " chunks."
+        phase: "comparing",
+        message: "Checking which chunks have changed."
       });
+      const indexed = indexedChunksByAddress(
+        await withOpenAIRetry(
+          "list-vector-store-files",
+          () => listVectorStoreFiles(vectorStoreId)
+        )
+      );
+      const plan = planIncrementalIngest(lore.chunks, indexed);
+      pending = plan.upload;
+      staleFileIds = plan.remove;
+      logInfo("ingest:plan", {
+        toUpload: plan.upload.length,
+        unchanged: plan.unchanged.length,
+        toRemove: plan.remove.length,
+        duplicateAddresses: plan.duplicateAddresses.length
+      });
+      for (const address of plan.duplicateAddresses) {
+        lore.warnings.push(
+          "Two sections share the chunk address " + address + "; rename one heading or only one will be indexed."
+        );
+      }
+      updateLoreIngestState({ chunkCount: pending.length });
+      if (pending.length === 0 && staleFileIds.length === 0) {
+        updateLoreIngestState({
+          active: false,
+          phase: "completed",
+          currentChunkId: null,
+          uploadedCount: 0,
+          message: "Nothing to do -- all " + lore.chunks.length + " chunks are already indexed.",
+          completedAt: (/* @__PURE__ */ new Date()).toISOString()
+        });
+        return;
+      }
+    }
+    const total = pending.length;
+    let uploadedCount = 0;
+    const uploaded = await mapWithConcurrency(
+      pending,
+      UPLOAD_CONCURRENCY,
+      async (chunk) => {
+        const fileId = await withOpenAIRetry(
+          "upload-chunk-" + chunk.chunkId,
+          () => uploadChunkFile(chunk)
+        );
+        uploadedCount += 1;
+        updateLoreIngestState({
+          phase: "uploading",
+          currentChunkId: chunk.chunkId,
+          uploadedCount,
+          message: "Uploaded " + uploadedCount + " / " + total + " chunks."
+        });
+        return { fileId, chunk };
+      }
+    );
+    let indexedCount = 0;
+    for (let start = 0; start < uploaded.length; start += MAX_FILES_PER_BATCH) {
+      const slice = uploaded.slice(start, start + MAX_FILES_PER_BATCH);
+      const batchBase = indexedCount;
+      updateLoreIngestState({
+        phase: "waiting-for-indexing",
+        currentChunkId: slice[0]?.chunk.chunkId ?? null,
+        uploadedCount: indexedCount,
+        message: "Indexing " + slice.length + " chunks (" + indexedCount + " / " + total + " done)."
+      });
+      const indexed = await attachChunkBatch(vectorStoreId, slice, (indexedInBatch) => {
+        updateLoreIngestState({
+          phase: "waiting-for-indexing",
+          uploadedCount: batchBase + indexedInBatch,
+          message: "Indexed " + (batchBase + indexedInBatch) + " / " + total + " chunks."
+        });
+      });
+      indexedCount += indexed;
+    }
+    uploadedCount = indexedCount;
+    let removedStale = 0;
+    for (const fileId of staleFileIds) {
+      try {
+        await withOpenAIRetry(
+          "delete-stale-file",
+          () => deleteVectorStoreFile(vectorStoreId, fileId)
+        );
+        removedStale += 1;
+      } catch (removeErr) {
+        logInfo("ingest:stale-delete-failed", {
+          fileId,
+          reason: removeErr instanceof Error ? removeErr.message : String(removeErr)
+        });
+      }
     }
     updateLoreIngestState({
       active: false,
       phase: "completed",
       currentChunkId: null,
       uploadedCount,
-      message: "Completed lore ingest.",
+      message: "Completed lore ingest: " + uploadedCount + " chunk(s) indexed" + (removedStale > 0 ? ", " + removedStale + " stale removed" : "") + ".",
       completedAt: (/* @__PURE__ */ new Date()).toISOString()
     });
   } catch (error) {
@@ -1266,7 +1554,7 @@ async function handleSugarAgentLoreIngest(req, res) {
     return;
   }
   const body = await readJsonBody(req);
-  const mode = "overwrite";
+  const mode = body["mode"] === "overwrite" ? "overwrite" : "incremental";
   const vectorStoreId = typeof body["vectorStoreId"] === "string" && body["vectorStoreId"].trim() ? body["vectorStoreId"].trim() : resolveEnv("SUGARMAGIC_SUGARAGENT_OPENAI_VECTOR_STORE_ID");
   if (!vectorStoreId) {
     sendJson(res, 400, {
@@ -1418,6 +1706,17 @@ async function handleSugarAgentLoreProbe(req, res) {
   let uploadedFileId = null;
   const authHeader = { authorization: "Bearer " + apiKey };
   try {
+    const swept = await sweepNonLoreVectorStoreFiles(vectorStoreId);
+    steps["sweep"] = {
+      ok: true,
+      removed: swept.removed.length,
+      failed: swept.failed,
+      fileIds: swept.removed
+    };
+  } catch (err) {
+    steps["sweep"] = { ok: false, error: err instanceof Error ? err.message : String(err) };
+  }
+  try {
     const form = new FormData();
     form.append("purpose", "user_data");
     form.append(
@@ -1445,83 +1744,92 @@ async function handleSugarAgentLoreProbe(req, res) {
     sendJson(res, 502, { ok: false, failedAt: "upload", error: "no file id in response", steps, durationMs: Date.now() - startMs });
     return;
   }
-  try {
-    const attachRes = await fetch(
-      "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/files",
-      {
-        method: "POST",
-        headers: { "content-type": "application/json", ...authHeader },
-        body: JSON.stringify({ file_id: uploadedFileId })
-      }
-    );
-    await parseApiJsonResponse(attachRes, "probe:attach");
-    steps["attach"] = { ok: true };
-  } catch (err) {
-    steps["attach"] = { ok: false, error: err instanceof Error ? err.message : String(err) };
-    sendJson(res, 502, { ok: false, failedAt: "attach", error: steps["attach"], steps, durationMs: Date.now() - startMs });
-    return;
-  }
-  const deadline = startMs + 9e4;
-  let indexed = false;
-  let lastStatus = "unknown";
-  try {
-    while (Date.now() < deadline) {
-      await new Promise((r) => setTimeout(r, 2e3));
-      const statusRes = await fetch(
-        "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/files/" + uploadedFileId,
-        { method: "GET", headers: authHeader }
-      );
-      const statusPayload = await parseApiJsonResponse(statusRes, "probe:status");
-      lastStatus = typeof statusPayload["status"] === "string" ? statusPayload["status"] : "unknown";
-      if (lastStatus === "completed") {
-        indexed = true;
-        break;
-      }
-      if (lastStatus === "failed" || lastStatus === "cancelled") break;
-    }
-    steps["index"] = indexed ? { ok: true, status: lastStatus } : { ok: false, error: "Timed out or failed waiting for indexing: " + lastStatus };
-  } catch (err) {
-    steps["index"] = { ok: false, error: err instanceof Error ? err.message : String(err) };
-  }
-  if (!indexed) {
-    sendJson(res, 502, { ok: false, failedAt: "index", steps, durationMs: Date.now() - startMs });
-    return;
-  }
   let hitFound = false;
+  let cleanupDone = false;
+  const cleanupProbeFile = async () => {
+    if (cleanupDone || !uploadedFileId) return;
+    cleanupDone = true;
+    try {
+      await fetch(
+        "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/files/" + uploadedFileId,
+        { method: "DELETE", headers: authHeader }
+      );
+      await fetch("https://api.openai.com/v1/files/" + uploadedFileId, {
+        method: "DELETE",
+        headers: authHeader
+      });
+      steps["cleanup"] = { ok: true };
+    } catch (err) {
+      steps["cleanup"] = { ok: false, error: err instanceof Error ? err.message : String(err) };
+    }
+  };
   try {
-    const searchRes = await fetch(
-      "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/search",
-      {
-        method: "POST",
-        headers: { "content-type": "application/json", ...authHeader },
-        body: JSON.stringify({ query: probePhrase, max_num_results: 4 })
+    try {
+      const attachRes = await fetch(
+        "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/files",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json", ...authHeader },
+          body: JSON.stringify({ file_id: uploadedFileId })
+        }
+      );
+      await parseApiJsonResponse(attachRes, "probe:attach");
+      steps["attach"] = { ok: true };
+    } catch (err) {
+      steps["attach"] = { ok: false, error: err instanceof Error ? err.message : String(err) };
+      sendJson(res, 502, { ok: false, failedAt: "attach", error: steps["attach"], steps, durationMs: Date.now() - startMs });
+      return;
+    }
+    const deadline = startMs + 9e4;
+    let indexed = false;
+    let lastStatus = "unknown";
+    try {
+      while (Date.now() < deadline) {
+        await new Promise((r) => setTimeout(r, 2e3));
+        const statusRes = await fetch(
+          "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/files/" + uploadedFileId,
+          { method: "GET", headers: authHeader }
+        );
+        const statusPayload = await parseApiJsonResponse(statusRes, "probe:status");
+        lastStatus = typeof statusPayload["status"] === "string" ? statusPayload["status"] : "unknown";
+        if (lastStatus === "completed") {
+          indexed = true;
+          break;
+        }
+        if (lastStatus === "failed" || lastStatus === "cancelled") break;
       }
-    );
-    const searchPayload = await parseApiJsonResponse(searchRes, "probe:search");
-    const hits = Array.isArray(searchPayload.data) ? searchPayload.data : [];
-    hitFound = hits.some(
-      (h) => Array.isArray(h["content"]) && h["content"].some(
-        (c) => typeof c["text"] === "string" && c["text"].includes(probePhrase)
-      )
-    );
-    steps["search"] = { ok: true, hits: hits.length, hitFound };
-  } catch (err) {
-    steps["search"] = { ok: false, error: err instanceof Error ? err.message : String(err) };
-    sendJson(res, 502, { ok: false, failedAt: "search", steps, durationMs: Date.now() - startMs });
-    return;
-  }
-  try {
-    await fetch(
-      "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/files/" + uploadedFileId,
-      { method: "DELETE", headers: authHeader }
-    );
-    await fetch("https://api.openai.com/v1/files/" + uploadedFileId, {
-      method: "DELETE",
-      headers: authHeader
-    });
-    steps["cleanup"] = { ok: true };
-  } catch (err) {
-    steps["cleanup"] = { ok: false, error: err instanceof Error ? err.message : String(err) };
+      steps["index"] = indexed ? { ok: true, status: lastStatus } : { ok: false, error: "Timed out or failed waiting for indexing: " + lastStatus };
+    } catch (err) {
+      steps["index"] = { ok: false, error: err instanceof Error ? err.message : String(err) };
+    }
+    if (!indexed) {
+      sendJson(res, 502, { ok: false, failedAt: "index", steps, durationMs: Date.now() - startMs });
+      return;
+    }
+    try {
+      const searchRes = await fetch(
+        "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/search",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json", ...authHeader },
+          body: JSON.stringify({ query: probePhrase, max_num_results: 4 })
+        }
+      );
+      const searchPayload = await parseApiJsonResponse(searchRes, "probe:search");
+      const hits = Array.isArray(searchPayload.data) ? searchPayload.data : [];
+      hitFound = hits.some(
+        (h) => Array.isArray(h["content"]) && h["content"].some(
+          (c) => typeof c["text"] === "string" && c["text"].includes(probePhrase)
+        )
+      );
+      steps["search"] = { ok: true, hits: hits.length, hitFound };
+    } catch (err) {
+      steps["search"] = { ok: false, error: err instanceof Error ? err.message : String(err) };
+      sendJson(res, 502, { ok: false, failedAt: "search", steps, durationMs: Date.now() - startMs });
+      return;
+    }
+  } finally {
+    await cleanupProbeFile();
   }
   const durationMs = Date.now() - startMs;
   if (!hitFound) {
@@ -1751,8 +2059,13 @@ if (process.argv[1] === __gatewayFilename) {
   });
 }
 export {
+  attachChunkBatch,
   authorizeBearer,
   buildJudgeUserPrompt,
+  buildLanguageToolFields,
+  chunkAttributes,
+  chunkContentHash,
+  enforceLanguageReportingOnly,
   handleSugarAgentGenerate,
   handleSugarAgentJudge,
   handleSugarAgentLoreIngest,
@@ -1763,11 +2076,15 @@ export {
   handleSugarAgentLoreStatus,
   handleSugarAgentModerate,
   handleSugarAgentSearch,
+  indexedChunksByAddress,
   initGateway,
+  isLoreVectorStoreFile,
   logError,
   logInfo,
+  mapWithConcurrency,
   normalizePath,
   parseFrontmatter,
+  planIncrementalIngest,
   readLorePages,
   resetLoreIngestState,
   resolveAllowedOrigin,
