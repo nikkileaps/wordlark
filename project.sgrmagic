@@ -165,6 +165,11 @@
                         "lang": "es"
                       },
                       {
+                        "kind": "competency",
+                        "competencyId": "introduce-self",
+                        "lang": "es"
+                      },
+                      {
                         "kind": "vocabulary",
                         "lemmaId": "estación",
                         "lang": "es"
@@ -172,11 +177,6 @@
                       {
                         "kind": "vocabulary",
                         "lemmaId": "maleta",
-                        "lang": "es"
-                      },
-                      {
-                        "kind": "competency",
-                        "competencyId": "introduce-self",
                         "lang": "es"
                       },
                       {
@@ -222,7 +222,7 @@
                       },
                       {
                         "kind": "vocabulary",
-                        "lemmaId": "esperar",
+                        "lemmaId": "llegar",
                         "lang": "es"
                       },
                       {
@@ -232,9 +232,20 @@
                       }
                     ],
                     "reinforce": [],
-                    "avoid": []
+                    "avoid": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "ballena",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "queso",
+                        "lang": "es"
+                      }
+                    ]
                   },
-                  "posture": "anchored"
+                  "posture": "supported"
                 },
                 {
                   "band": "B1",
@@ -302,12 +313,12 @@
                       },
                       {
                         "kind": "vocabulary",
-                        "lemmaId": "piloto",
+                        "lemmaId": "ballena",
                         "lang": "es"
                       },
                       {
                         "kind": "vocabulary",
-                        "lemmaId": "ballena",
+                        "lemmaId": "piloto",
                         "lang": "es"
                       }
                     ],
@@ -342,19 +353,19 @@
                       },
                       {
                         "kind": "competency",
-                        "competencyId": "infer-what-is-left-unsaid",
+                        "competencyId": "detect-an-evasion",
                         "lang": "es"
                       },
                       {
                         "kind": "competency",
-                        "competencyId": "read-a-silence",
+                        "competencyId": "infer-what-is-left-unsaid",
                         "lang": "es"
                       }
                     ],
                     "reinforce": [],
                     "avoid": []
                   },
-                  "posture": "target-dominant"
+                  "posture": "target-only"
                 },
                 {
                   "band": "C2",
@@ -437,12 +448,12 @@
                       },
                       {
                         "kind": "vocabulary",
-                        "lemmaId": "transporte",
+                        "lemmaId": "balneario",
                         "lang": "es"
                       },
                       {
                         "kind": "vocabulary",
-                        "lemmaId": "balneario",
+                        "lemmaId": "transporte",
                         "lang": "es"
                       }
                     ]
@@ -521,7 +532,7 @@
                       },
                       {
                         "kind": "vocabulary",
-                        "lemmaId": "balneario",
+                        "lemmaId": "residente",
                         "lang": "es"
                       },
                       {
@@ -556,17 +567,12 @@
                       },
                       {
                         "kind": "vocabulary",
-                        "lemmaId": "corazón",
-                        "lang": "es"
-                      },
-                      {
-                        "kind": "vocabulary",
                         "lemmaId": "visitar",
                         "lang": "es"
                       },
                       {
                         "kind": "vocabulary",
-                        "lemmaId": "esperar",
+                        "lemmaId": "corazón",
                         "lang": "es"
                       }
                     ],

@@ -165,6 +165,11 @@
                         "lang": "es"
                       },
                       {
+                        "kind": "competency",
+                        "competencyId": "introduce-self",
+                        "lang": "es"
+                      },
+                      {
                         "kind": "vocabulary",
                         "lemmaId": "estación",
                         "lang": "es"
@@ -172,11 +177,6 @@
                       {
                         "kind": "vocabulary",
                         "lemmaId": "maleta",
-                        "lang": "es"
-                      },
-                      {
-                        "kind": "competency",
-                        "competencyId": "introduce-self",
                         "lang": "es"
                       },
                       {
@@ -222,7 +222,7 @@
                       },
                       {
                         "kind": "vocabulary",
-                        "lemmaId": "esperar",
+                        "lemmaId": "llegar",
                         "lang": "es"
                       },
                       {
@@ -232,9 +232,20 @@
                       }
                     ],
                     "reinforce": [],
-                    "avoid": []
+                    "avoid": [
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "ballena",
+                        "lang": "es"
+                      },
+                      {
+                        "kind": "vocabulary",
+                        "lemmaId": "queso",
+                        "lang": "es"
+                      }
+                    ]
                   },
-                  "posture": "anchored"
+                  "posture": "supported"
                 },
                 {
                   "band": "B1",
@@ -302,12 +313,12 @@
                       },
                       {
                         "kind": "vocabulary",
-                        "lemmaId": "piloto",
+                        "lemmaId": "ballena",
                         "lang": "es"
                       },
                       {
                         "kind": "vocabulary",
-                        "lemmaId": "ballena",
+                        "lemmaId": "piloto",
                         "lang": "es"
                       }
                     ],
@@ -342,19 +353,19 @@
                       },
                       {
                         "kind": "competency",
-                        "competencyId": "infer-what-is-left-unsaid",
+                        "competencyId": "detect-an-evasion",
                         "lang": "es"
                       },
                       {
                         "kind": "competency",
-                        "competencyId": "read-a-silence",
+                        "competencyId": "infer-what-is-left-unsaid",
                         "lang": "es"
                       }
                     ],
                     "reinforce": [],
                     "avoid": []
                   },
-                  "posture": "target-dominant"
+                  "posture": "target-only"
                 },
                 {
                   "band": "C2",
@@ -437,12 +448,12 @@
                       },
                       {
                         "kind": "vocabulary",
-                        "lemmaId": "transporte",
+                        "lemmaId": "balneario",
                         "lang": "es"
                       },
                       {
                         "kind": "vocabulary",
-                        "lemmaId": "balneario",
+                        "lemmaId": "transporte",
                         "lang": "es"
                       }
                     ]
@@ -521,7 +532,7 @@
                       },
                       {
                         "kind": "vocabulary",
-                        "lemmaId": "balneario",
+                        "lemmaId": "residente",
                         "lang": "es"
                       },
                       {
@@ -556,17 +567,12 @@
                       },
                       {
                         "kind": "vocabulary",
-                        "lemmaId": "corazón",
-                        "lang": "es"
-                      },
-                      {
-                        "kind": "vocabulary",
                         "lemmaId": "visitar",
                         "lang": "es"
                       },
                       {
                         "kind": "vocabulary",
-                        "lemmaId": "esperar",
+                        "lemmaId": "corazón",
                         "lang": "es"
                       }
                     ],
@@ -7273,7 +7279,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "ef0b3134-2ec0-46b5-8125-abc4d98a3d87",
+              "layerId": "0ee861b2-adde-4459-9b8d-bba7ada4eb88",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -7288,7 +7294,7 @@
               }
             },
             {
-              "layerId": "95e4549a-dd7b-4763-bd4c-620aaa9f5967",
+              "layerId": "2125a8c8-fb68-4dd7-9d12-de9183ce00fd",
               "displayName": "Tall Grass",
               "enabled": true,
               "opacity": 1,
@@ -7306,7 +7312,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "7d339d13-4ffa-4097-bee5-3a09fb249fdf",
+              "layerId": "bcde8298-a875-4a90-84ac-eafa3e54b80c",
               "displayName": "Flowers",
               "enabled": true,
               "opacity": 0.7,
@@ -7324,7 +7330,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "8ef78d0a-25bf-4e25-aa62-eb563e71e729",
+              "layerId": "cbfae009-f2f4-46ea-af34-bd7995401619",
               "displayName": "Warm Light",
               "enabled": true,
               "opacity": 0.5,
@@ -7353,7 +7359,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "cb8a13aa-5ddc-4130-a63e-f8dc13ecae8c",
+              "layerId": "e8454a41-6c76-48e1-9593-a6d79d222e60",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -7368,7 +7374,7 @@
               }
             },
             {
-              "layerId": "bf42b27e-83a1-49a1-bab6-7e7637dc8d07",
+              "layerId": "c4698062-1c2d-4424-89d9-333c3196d3ca",
               "displayName": "Grass",
               "enabled": true,
               "opacity": 1,
@@ -7386,7 +7392,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "7b2080a5-bb70-4f21-be80-648f3cb53d9a",
+              "layerId": "8a948764-cd0a-4ce8-accf-ea9a57f8a35c",
               "displayName": "Flowers",
               "enabled": true,
               "opacity": 0.45,
@@ -7418,7 +7424,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "142e1336-2ab2-49f6-8f11-021d596e89b0",
+              "layerId": "cac4dbd7-4a55-4fcd-b009-4264b1a183ac",
               "displayName": "Bark",
               "enabled": true,
               "opacity": 1,
@@ -7433,7 +7439,7 @@
               }
             },
             {
-              "layerId": "9549174f-a0b8-4ada-9739-2ad06a3378a0",
+              "layerId": "3e8e56b0-0ce8-4d76-a652-7f2f456acdfe",
               "displayName": "Moss Tint",
               "enabled": true,
               "opacity": 0.45,
@@ -7462,7 +7468,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "285decd6-8cd6-4ccc-a8ef-8aa33d53b8bd",
+              "layerId": "0d1a9320-a7d6-4b20-9407-fa516e0e0bec",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -7477,7 +7483,7 @@
               }
             },
             {
-              "layerId": "8e1cebd6-de3c-4eda-aa95-c58bb23561be",
+              "layerId": "e1714c6b-d523-4593-a8b8-86713b743919",
               "displayName": "Short Grass",
               "enabled": true,
               "opacity": 1,
@@ -7509,7 +7515,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "1bcb333b-ef58-4c10-8a67-9d6a6edc1516",
+              "layerId": "0241417f-43b4-4b29-8cb4-e0193319c32a",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -7524,7 +7530,7 @@
               }
             },
             {
-              "layerId": "638f2d13-de5d-4f4d-a9b4-93fde622a33f",
+              "layerId": "cb0a49ff-9bc8-48e1-8b06-f75f17e1a038",
               "displayName": "Clover Base",
               "enabled": true,
               "opacity": 0.85,
@@ -7542,7 +7548,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "7c5e10ae-5c31-4ee0-bd4d-58999a41d2ac",
+              "layerId": "dbb68418-b7a5-42fc-b03a-63597005a8f6",
               "displayName": "Tiny Blooms",
               "enabled": true,
               "opacity": 0.35,
@@ -7574,7 +7580,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "79040afe-e416-4c1e-ac2f-4e2f3b4c5f8f",
+              "layerId": "63385d8d-8947-40a3-bbc8-56dbfb3ded59",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -7589,7 +7595,7 @@
               }
             },
             {
-              "layerId": "2f2340eb-039e-4ea5-924e-157f0bcee604",
+              "layerId": "b8d1dfb3-afb3-467f-8421-67af435fa583",
               "displayName": "Painterly Tufts",
               "enabled": true,
               "opacity": 0.95,
@@ -7607,7 +7613,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "808be382-4316-4629-9456-fc917f7110aa",
+              "layerId": "3cc2e4da-a7d2-40f8-b520-29cf1628021c",
               "displayName": "Tiny Blooms",
               "enabled": true,
               "opacity": 0.2,
@@ -7625,7 +7631,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "55b2b15c-3691-4e3f-aed5-be1a41cad5c7",
+              "layerId": "deccdc7d-3753-4c80-a749-f988da0f8d0b",
               "displayName": "Warm Lift",
               "enabled": true,
               "opacity": 0.35,
@@ -7811,7 +7817,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "3277236e-27c8-42af-806c-7597fcd562f7",
+              "layerId": "b7daef69-ac0f-4fd6-9821-1fce1c0ae3b7",
               "displayName": "UV Grid",
               "enabled": true,
               "opacity": 1,
