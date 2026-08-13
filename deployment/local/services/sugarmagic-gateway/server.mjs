@@ -213,6 +213,8 @@ import {
   createHash,
   timingSafeEqual as timingSafeEqual2
 } from "node:crypto";
+var SOFT_PAGE_CHUNK_SLUG = "_page";
+var GATEWAY_DEFAULT_SCORE_THRESHOLD = 0.3;
 var _routes = [];
 var _serviceUnitId = "";
 var _targetId = "";
@@ -445,6 +447,15 @@ function parseFrontmatter(raw) {
     body
   };
 }
+function readCanonLevel(metadata, relativePath, warnings) {
+  const raw = (metadata["canon_level"] ?? "").trim().toLowerCase();
+  if (!raw) return "hard";
+  if (raw === "hard" || raw === "soft") return raw;
+  warnings.push(
+    "Lore page " + relativePath + ' has canon_level "' + raw + '", which is not hard or soft. Indexed as hard.'
+  );
+  return "hard";
+}
 function splitLoreSections(markdown) {
   const lines = markdown.split("\n");
   const sections = [];
@@ -595,6 +606,20 @@ function readLorePages() {
       body,
       sections
     });
+    const canonLevel = readCanonLevel(metadata, relativePath, warnings);
+    if (canonLevel === "soft") {
+      chunks.push({
+        pageId,
+        chunkId: pageId + "#" + SOFT_PAGE_CHUNK_SLUG,
+        title,
+        sectionHeading: title,
+        sectionSlug: SOFT_PAGE_CHUNK_SLUG,
+        relativePath,
+        embeddingText: ["Page ID: " + pageId, "Title: " + title].join("\n\n"),
+        canonLevel
+      });
+      continue;
+    }
     for (const section of sections) {
       if (isSecretSection(section)) continue;
       const chunkId = pageId + "#" + section.slug;
@@ -611,7 +636,8 @@ function readLorePages() {
         sectionHeading: section.heading,
         sectionSlug: section.slug,
         relativePath,
-        embeddingText
+        embeddingText,
+        canonLevel
       });
     }
   }
@@ -714,6 +740,7 @@ function chunkAttributes(chunk) {
     section_heading: chunk.sectionHeading,
     title: chunk.title,
     relative_path: chunk.relativePath,
+    canon_level: chunk.canonLevel,
     content_hash: chunkContentHash(chunk)
   };
 }
@@ -1249,7 +1276,7 @@ async function handleSugarAgentSearch(req, res) {
   const query = typeof body["query"] === "string" ? body["query"].trim() : "";
   const vectorStoreId = typeof body["vectorStoreId"] === "string" && body["vectorStoreId"].trim() ? body["vectorStoreId"].trim() : resolveEnv("SUGARMAGIC_SUGARAGENT_OPENAI_VECTOR_STORE_ID");
   const maxResults = typeof body["maxResults"] === "number" && Number.isFinite(body["maxResults"]) ? Math.max(1, Math.min(8, Math.floor(body["maxResults"]))) : 4;
-  const scoreThreshold = typeof body["scoreThreshold"] === "number" && Number.isFinite(body["scoreThreshold"]) ? Math.max(0, Math.min(1, body["scoreThreshold"])) : 0.3;
+  const scoreThreshold = typeof body["scoreThreshold"] === "number" && Number.isFinite(body["scoreThreshold"]) ? Math.max(0, Math.min(1, body["scoreThreshold"])) : GATEWAY_DEFAULT_SCORE_THRESHOLD;
   if (!query || !vectorStoreId) {
     sendJson(res, 400, {
       ok: false,
@@ -2059,6 +2086,7 @@ if (process.argv[1] === __gatewayFilename) {
   });
 }
 export {
+  GATEWAY_DEFAULT_SCORE_THRESHOLD,
   attachChunkBatch,
   authorizeBearer,
   buildJudgeUserPrompt,
@@ -2085,6 +2113,7 @@ export {
   normalizePath,
   parseFrontmatter,
   planIncrementalIngest,
+  readCanonLevel,
   readLorePages,
   resetLoreIngestState,
   resolveAllowedOrigin,

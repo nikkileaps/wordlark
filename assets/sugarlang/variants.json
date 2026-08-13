@@ -410,6 +410,36 @@
     {
       "key": {
         "lang": "es",
+        "band": "A1",
+        "contentHash": "item:d90d83e7-1398-4ca2-9131-7e7cf4f89cab:body|by Hensel VonCliffenwald\n\nHave you been recently transported to the Great Head? Want to know where the latest and greatest hangouts are? Still trying to get the hang of the Flying spell? Read on dear traveler! Hensel VonCliffenwald will tell you everything you need to know.|{}",
+        "variantPromptVersion": "conjugation.6.0"
+      },
+      "variant": {
+        "source": {
+          "kind": "item-view",
+          "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+          "field": "body"
+        },
+        "lang": "es",
+        "band": "A1",
+        "text": "by Hensel VonCliffenwald\n\nHave you been recently transportado to the Great Head? Want to know where the latest and greatest hangouts are? Still trying to get the hang of el spell de Flying? Read on, dear traveler! Hensel VonCliffenwald will tell you everything tú necesitas to know.",
+        "verdict": {
+          "envelopePasses": true,
+          "ratioPasses": true,
+          "voiceRetentionScore": 1,
+          "fidelityPasses": true,
+          "overallPasses": true
+        },
+        "reviewFlag": false,
+        "generatedAtMs": 1786467766703,
+        "generatedByModel": "graded-text-adapt",
+        "contentHash": "item:d90d83e7-1398-4ca2-9131-7e7cf4f89cab:body|by Hensel VonCliffenwald\n\nHave you been recently transported to the Great Head? Want to know where the latest and greatest hangouts are? Still trying to get the hang of the Flying spell? Read on dear traveler! Hensel VonCliffenwald will tell you everything you need to know.|{}",
+        "promptVersion": "conjugation.6.0"
+      }
+    },
+    {
+      "key": {
+        "lang": "es",
         "band": "A2",
         "contentHash": "3f5d230f-fa3b-4888-991d-c79b2fdd5c64|Welcome to Wordlark Hollow!|{}",
         "variantPromptVersion": "conjugation.6.0"
@@ -932,6 +962,36 @@
         "generatedAtMs": 1786405570844,
         "generatedByModel": "graded-text-adapt",
         "contentHash": "ff0b5fd6-5ac2-4ad9-8d48-11cd1ade6e45|I'm Horace Pennyfeather, Station Manager. If you need anything just hollar.|{}",
+        "promptVersion": "conjugation.6.0"
+      }
+    },
+    {
+      "key": {
+        "lang": "es",
+        "band": "A2",
+        "contentHash": "item:d90d83e7-1398-4ca2-9131-7e7cf4f89cab:body|by Hensel VonCliffenwald\n\nHave you been recently transported to the Great Head? Want to know where the latest and greatest hangouts are? Still trying to get the hang of the Flying spell? Read on dear traveler! Hensel VonCliffenwald will tell you everything you need to know.|{}",
+        "variantPromptVersion": "conjugation.6.0"
+      },
+      "variant": {
+        "source": {
+          "kind": "item-view",
+          "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+          "field": "body"
+        },
+        "lang": "es",
+        "band": "A2",
+        "text": "por Hensel VonCliffenwald\n\n¿Tú has been transported recientemente to the Great Head? ¿Tú quieres saber where están the latest and greatest hangouts? ¿Todavía tú estás trying to get the hang of the Flying spell? ¡Sigue leyendo, dear traveler! Hensel VonCliffenwald will tell you todo lo que tú necesitas saber.",
+        "verdict": {
+          "envelopePasses": true,
+          "ratioPasses": true,
+          "voiceRetentionScore": 1,
+          "fidelityPasses": true,
+          "overallPasses": true
+        },
+        "reviewFlag": false,
+        "generatedAtMs": 1786467767597,
+        "generatedByModel": "graded-text-adapt",
+        "contentHash": "item:d90d83e7-1398-4ca2-9131-7e7cf4f89cab:body|by Hensel VonCliffenwald\n\nHave you been recently transported to the Great Head? Want to know where the latest and greatest hangouts are? Still trying to get the hang of the Flying spell? Read on dear traveler! Hensel VonCliffenwald will tell you everything you need to know.|{}",
         "promptVersion": "conjugation.6.0"
       }
     },
@@ -1546,6 +1606,36 @@
     {
       "key": {
         "lang": "es",
+        "band": "B1",
+        "contentHash": "item:d90d83e7-1398-4ca2-9131-7e7cf4f89cab:body|by Hensel VonCliffenwald\n\nHave you been recently transported to the Great Head? Want to know where the latest and greatest hangouts are? Still trying to get the hang of the Flying spell? Read on dear traveler! Hensel VonCliffenwald will tell you everything you need to know.|{}",
+        "variantPromptVersion": "conjugation.6.0"
+      },
+      "variant": {
+        "source": {
+          "kind": "item-view",
+          "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+          "field": "body"
+        },
+        "lang": "es",
+        "band": "B1",
+        "text": "por Hensel VonCliffenwald\n\n¿Te han transportado recientemente a la Gran Cabeza? ¿Quieres saber dónde están los mejores lugares de moda? ¿Todavía intentas dominar el hechizo de Vuelo? ¡Sigue leyendo, querido viajero! Hensel VonCliffenwald te dirá todo lo que necesitas saber.",
+        "verdict": {
+          "envelopePasses": true,
+          "ratioPasses": true,
+          "voiceRetentionScore": 1,
+          "fidelityPasses": true,
+          "overallPasses": true
+        },
+        "reviewFlag": false,
+        "generatedAtMs": 1786467767342,
+        "generatedByModel": "graded-text-adapt",
+        "contentHash": "item:d90d83e7-1398-4ca2-9131-7e7cf4f89cab:body|by Hensel VonCliffenwald\n\nHave you been recently transported to the Great Head? Want to know where the latest and greatest hangouts are? Still trying to get the hang of the Flying spell? Read on dear traveler! Hensel VonCliffenwald will tell you everything you need to know.|{}",
+        "promptVersion": "conjugation.6.0"
+      }
+    },
+    {
+      "key": {
+        "lang": "es",
         "band": "B2",
         "contentHash": "3f5d230f-fa3b-4888-991d-c79b2fdd5c64|Welcome to Wordlark Hollow!|{}",
         "variantPromptVersion": "conjugation.6.0"
@@ -2154,6 +2244,36 @@
     {
       "key": {
         "lang": "es",
+        "band": "B2",
+        "contentHash": "item:d90d83e7-1398-4ca2-9131-7e7cf4f89cab:body|by Hensel VonCliffenwald\n\nHave you been recently transported to the Great Head? Want to know where the latest and greatest hangouts are? Still trying to get the hang of the Flying spell? Read on dear traveler! Hensel VonCliffenwald will tell you everything you need to know.|{}",
+        "variantPromptVersion": "conjugation.6.0"
+      },
+      "variant": {
+        "source": {
+          "kind": "item-view",
+          "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+          "field": "body"
+        },
+        "lang": "es",
+        "band": "B2",
+        "text": "por Hensel VonCliffenwald\n\n¿Te han transportado recientemente a la Gran Cabeza? ¿Quieres saber dónde están los mejores lugares de moda? ¿Todavía intentas dominar el hechizo de Vuelo? ¡Sigue leyendo, querido viajero! Hensel VonCliffenwald te contará todo lo que necesitas saber.",
+        "verdict": {
+          "envelopePasses": true,
+          "ratioPasses": true,
+          "voiceRetentionScore": 1,
+          "fidelityPasses": true,
+          "overallPasses": true
+        },
+        "reviewFlag": false,
+        "generatedAtMs": 1786467767724,
+        "generatedByModel": "graded-text-adapt",
+        "contentHash": "item:d90d83e7-1398-4ca2-9131-7e7cf4f89cab:body|by Hensel VonCliffenwald\n\nHave you been recently transported to the Great Head? Want to know where the latest and greatest hangouts are? Still trying to get the hang of the Flying spell? Read on dear traveler! Hensel VonCliffenwald will tell you everything you need to know.|{}",
+        "promptVersion": "conjugation.6.0"
+      }
+    },
+    {
+      "key": {
+        "lang": "es",
         "band": "C1",
         "contentHash": "3f5d230f-fa3b-4888-991d-c79b2fdd5c64|Welcome to Wordlark Hollow!|{}",
         "variantPromptVersion": "conjugation.6.0"
@@ -2696,6 +2816,36 @@
         "generatedAtMs": 1786405569673,
         "generatedByModel": "graded-text-adapt",
         "contentHash": "ff0b5fd6-5ac2-4ad9-8d48-11cd1ade6e45|I'm Horace Pennyfeather, Station Manager. If you need anything just hollar.|{}",
+        "promptVersion": "conjugation.6.0"
+      }
+    },
+    {
+      "key": {
+        "lang": "es",
+        "band": "C1",
+        "contentHash": "item:d90d83e7-1398-4ca2-9131-7e7cf4f89cab:body|by Hensel VonCliffenwald\n\nHave you been recently transported to the Great Head? Want to know where the latest and greatest hangouts are? Still trying to get the hang of the Flying spell? Read on dear traveler! Hensel VonCliffenwald will tell you everything you need to know.|{}",
+        "variantPromptVersion": "conjugation.6.0"
+      },
+      "variant": {
+        "source": {
+          "kind": "item-view",
+          "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+          "field": "body"
+        },
+        "lang": "es",
+        "band": "C1",
+        "text": "por Hensel VonCliffenwald\n\n¿Te han transportado recientemente a la Gran Cabeza? ¿Quieres saber dónde están los lugares de moda más recientes y populares? ¿Aún intentas dominar el hechizo de Vuelo? ¡Sigue leyendo, querido viajero! Hensel VonCliffenwald te contará todo lo que necesitas saber.",
+        "verdict": {
+          "envelopePasses": true,
+          "ratioPasses": true,
+          "voiceRetentionScore": 1,
+          "fidelityPasses": true,
+          "overallPasses": true
+        },
+        "reviewFlag": false,
+        "generatedAtMs": 1786467767414,
+        "generatedByModel": "graded-text-adapt",
+        "contentHash": "item:d90d83e7-1398-4ca2-9131-7e7cf4f89cab:body|by Hensel VonCliffenwald\n\nHave you been recently transported to the Great Head? Want to know where the latest and greatest hangouts are? Still trying to get the hang of the Flying spell? Read on dear traveler! Hensel VonCliffenwald will tell you everything you need to know.|{}",
         "promptVersion": "conjugation.6.0"
       }
     },
@@ -3304,6 +3454,36 @@
         "generatedAtMs": 1786405570276,
         "generatedByModel": "graded-text-adapt",
         "contentHash": "ff0b5fd6-5ac2-4ad9-8d48-11cd1ade6e45|I'm Horace Pennyfeather, Station Manager. If you need anything just hollar.|{}",
+        "promptVersion": "conjugation.6.0"
+      }
+    },
+    {
+      "key": {
+        "lang": "es",
+        "band": "C2",
+        "contentHash": "item:d90d83e7-1398-4ca2-9131-7e7cf4f89cab:body|by Hensel VonCliffenwald\n\nHave you been recently transported to the Great Head? Want to know where the latest and greatest hangouts are? Still trying to get the hang of the Flying spell? Read on dear traveler! Hensel VonCliffenwald will tell you everything you need to know.|{}",
+        "variantPromptVersion": "conjugation.6.0"
+      },
+      "variant": {
+        "source": {
+          "kind": "item-view",
+          "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+          "field": "body"
+        },
+        "lang": "es",
+        "band": "C2",
+        "text": "por Hensel VonCliffenwald\n\n¿Te han transportado recientemente a la Gran Cabeza? ¿Quieres saber dónde están los lugares de moda más recientes y mejores? ¿Aún intentas dominar el hechizo de Vuelo? ¡Sigue leyendo, querido viajero! Hensel VonCliffenwald te dirá todo lo que necesitas saber.",
+        "verdict": {
+          "envelopePasses": true,
+          "ratioPasses": true,
+          "voiceRetentionScore": 1,
+          "fidelityPasses": true,
+          "overallPasses": true
+        },
+        "reviewFlag": false,
+        "generatedAtMs": 1786467767297,
+        "generatedByModel": "graded-text-adapt",
+        "contentHash": "item:d90d83e7-1398-4ca2-9131-7e7cf4f89cab:body|by Hensel VonCliffenwald\n\nHave you been recently transported to the Great Head? Want to know where the latest and greatest hangouts are? Still trying to get the hang of the Flying spell? Read on dear traveler! Hensel VonCliffenwald will tell you everything you need to know.|{}",
         "promptVersion": "conjugation.6.0"
       }
     }

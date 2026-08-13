@@ -919,49 +919,49 @@
             }
           ],
           "graphPosition": {
-            "x": -10.666666666666671,
-            "y": 58.666666666666664
+            "x": 191.27011969837133,
+            "y": 88.79101774964607
           }
         },
         {
           "nodeId": "ff0b5fd6-5ac2-4ad9-8d48-11cd1ade6e45",
           "displayName": "I am Horace",
           "speakerId": "42670c12-cecb-4484-944b-0697935173f9",
-          "text": "I'm Horace Pennyfeather, Station Manager. If you need anything just hollar.",
+          "text": "I'm Horace Pennyfeather, Station Manager, and you must be Mim! Your Aunt Eloise is expecting you at the resort. If you need anything just hollar.",
           "next": [
             {
               "targetNodeId": "5b3bed66-fc34-40fd-92ac-d4b1baecd63a"
             }
           ],
           "graphPosition": {
-            "x": 246.55238095238093,
-            "y": 44.82736879540721
+            "x": 481.3960783921928,
+            "y": 64.97051803353767
           }
         },
         {
           "nodeId": "5b3bed66-fc34-40fd-92ac-d4b1baecd63a",
           "displayName": "Thanks",
           "speakerId": "e095b3b2-3351-403a-abe1-88861fa489ad",
-          "text": "Thanks! I think I just need to find my suitcase. Do you know where it might be?",
+          "text": "Thanks! Can you tell me where I can find my suitcase?",
           "next": [
             {
               "targetNodeId": "5015ca7d-be4f-47be-b32d-b4838495dbf4"
             }
           ],
           "graphPosition": {
-            "x": 504.18095238095236,
-            "y": 62.89047619047621
+            "x": 756.1676965789989,
+            "y": 62.73745444084362
           }
         },
         {
           "nodeId": "5015ca7d-be4f-47be-b32d-b4838495dbf4",
           "displayName": "Node 4",
           "speakerId": "42670c12-cecb-4484-944b-0697935173f9",
-          "text": "Hmmm usually they're here waiting for you, but there seems to be some irregularity today. Most unusual. You may want to check up at the station while I look into it.",
+          "text": "Usually they're here waiting for you, but there seems to be some irregularity today. It's been a most unusual. You may want to check up at the station while I look into it. If they don't have it up there then come and find me.",
           "next": [],
           "graphPosition": {
-            "x": 776.2202765688005,
-            "y": 82.4275775181244
+            "x": 1034.8492355962424,
+            "y": 90.54258443334044
           }
         }
       ],
@@ -1043,7 +1043,7 @@
   "questDefinitions": [
     {
       "definitionId": "7d8625b2-3652-4e65-a68b-9cb47f15c33a",
-      "displayName": "Welcome Introduction",
+      "displayName": "Introduction",
       "description": "The first quest of the game. A welcome and introduction quest to familiarize the player with the game a bit.",
       "startStageId": "65868df1-f29e-423a-86a0-597e77377943",
       "stageDefinitions": [
@@ -1053,55 +1053,6 @@
           "nextStageId": null,
           "timeOfDay": "afternoon",
           "nodeDefinitions": [
-            {
-              "nodeId": "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668",
-              "displayName": "Talk to Bo",
-              "description": "Talk to Bo about your missing suitcase.",
-              "nodeBehavior": "objective",
-              "objectiveSubtype": "talk",
-              "targetId": "66013347-dc94-4518-898b-9dfd22ac7ced",
-              "count": 1,
-              "optional": false,
-              "dialogueDefinitionId": "de62f5af-687c-48e6-b9c3-ee063670ab95",
-              "autoStart": false,
-              "prerequisiteNodeIds": [],
-              "failTargetNodeIds": [],
-              "onEnterActions": [],
-              "onCompleteActions": [
-                {
-                  "type": "setFlag",
-                  "targetId": "talkedToDockWorker"
-                }
-              ],
-              "showInHud": true,
-              "graphPosition": {
-                "x": 217.08185739759185,
-                "y": 191.99985970243856
-              }
-            },
-            {
-              "nodeId": "0322fc1b-c883-435f-abb4-7aceaa067aa0",
-              "displayName": "Objective",
-              "description": "Collect suitcase",
-              "nodeBehavior": "objective",
-              "objectiveSubtype": "collect",
-              "targetId": "3ad23d81-9851-4827-aff5-0780e76e24ec",
-              "count": 1,
-              "optional": false,
-              "autoStart": false,
-              "prerequisiteNodeIds": [
-                "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668",
-                "205d4d80-e81c-469e-85f8-0295ba38d5a7"
-              ],
-              "failTargetNodeIds": [],
-              "onEnterActions": [],
-              "onCompleteActions": [],
-              "showInHud": true,
-              "graphPosition": {
-                "x": 566.4609523809523,
-                "y": 30.812380952380977
-              }
-            },
             {
               "nodeId": "205d4d80-e81c-469e-85f8-0295ba38d5a7",
               "displayName": "Objective",
@@ -1125,8 +1076,8 @@
               ],
               "showInHud": true,
               "graphPosition": {
-                "x": 212.0017116424467,
-                "y": 18.203666324829243
+                "x": 135.02211033125107,
+                "y": 61.058289735185575
               }
             },
             {
@@ -1152,8 +1103,6 @@
             }
           ],
           "entryNodeIds": [
-            "23e1c6a1-5dbb-48f4-82d5-29a5cfb04668",
-            "0322fc1b-c883-435f-abb4-7aceaa067aa0",
             "205d4d80-e81c-469e-85f8-0295ba38d5a7",
             "6d77b65c-2dc0-426b-ab25-7d9f2c77b5d4"
           ]
