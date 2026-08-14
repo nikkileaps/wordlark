@@ -328,6 +328,24 @@ function logInfo(message, payload) {
   const suffix = payload && typeof payload === "object" ? " " + JSON.stringify(payload) : payload != null ? " " + String(payload) : "";
   console.log("[sugardeploy] " + message + suffix);
 }
+function callerUserId(req) {
+  const user = req.user;
+  return typeof user?.userId === "string" ? user.userId : null;
+}
+function logModelUsage(usage) {
+  setImmediate(() => {
+    try {
+      process.stdout.write(
+        JSON.stringify({
+          kind: "gateway.model-usage",
+          timestamp: Date.now(),
+          ...usage
+        }) + "\n"
+      );
+    } catch {
+    }
+  });
+}
 function logError(message, error, payload) {
   const details = {
     ...payload && typeof payload === "object" ? payload : {},
@@ -1026,6 +1044,7 @@ async function handleSugarAgentGenerate(req, res) {
     text: block.text,
     ...block.cache ? { cache_control: { type: "ephemeral" } } : {}
   })) : systemPrompt;
+  const generateStartedAt = Date.now();
   const { payload, headers } = await requestJson(
     "https://api.anthropic.com/v1/messages",
     {
@@ -1059,6 +1078,18 @@ async function handleSugarAgentGenerate(req, res) {
     return typeof value === "number" && Number.isFinite(value) ? value : 0;
   };
   const servedModel = typeof payload.model === "string" && payload.model.trim().length > 0 ? payload.model : model;
+  logModelUsage({
+    vendor: "anthropic",
+    purpose: purpose || "generate",
+    model: servedModel,
+    userId: callerUserId(req),
+    latencyMs: Date.now() - generateStartedAt,
+    ok: true,
+    inputTokens: usageNumber("input_tokens"),
+    outputTokens: usageNumber("output_tokens"),
+    cacheReadInputTokens: usageNumber("cache_read_input_tokens"),
+    cacheCreationInputTokens: usageNumber("cache_creation_input_tokens")
+  });
   sendJson(res, 200, {
     text,
     requestId: headers.get("request-id"),
@@ -1243,6 +1274,23 @@ async function handleSugarAgentJudge(req, res) {
     durationMs: Date.now() - startedAt,
     responseIntent
   });
+  const judgeUsage = payload.usage ?? {};
+  const judgeUsageNumber = (key) => {
+    const value = judgeUsage[key];
+    return typeof value === "number" && Number.isFinite(value) ? value : 0;
+  };
+  logModelUsage({
+    vendor: "anthropic",
+    purpose: "judge",
+    model,
+    userId: callerUserId(req),
+    latencyMs: Date.now() - startedAt,
+    ok: true,
+    inputTokens: judgeUsageNumber("input_tokens"),
+    outputTokens: judgeUsageNumber("output_tokens"),
+    cacheReadInputTokens: judgeUsageNumber("cache_read_input_tokens"),
+    cacheCreationInputTokens: judgeUsageNumber("cache_creation_input_tokens")
+  });
   sendJson(res, 200, {
     passed,
     violations,
@@ -1297,6 +1345,13 @@ async function handleSugarAgentModerate(req, res) {
     if (flagged) {
       logInfo("sugaragent.moderation-flagged", { categories, durationMs: Date.now() - startedAt });
     }
+    logModelUsage({
+      vendor: "openai",
+      purpose: "moderation",
+      userId: callerUserId(req),
+      latencyMs: Date.now() - startedAt,
+      ok: true
+    });
     sendJson(res, 200, { flagged, categories, blocklisted: false });
   } catch (error) {
     logError("sugaragent.moderation-error", error, {
@@ -1323,6 +1378,7 @@ async function handleSugarAgentSearch(req, res) {
     });
     return;
   }
+  const searchStartedAt = Date.now();
   const { payload, headers } = await requestJson(
     "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/search",
     {
@@ -1347,6 +1403,13 @@ async function handleSugarAgentSearch(req, res) {
     attributes: result?.["attributes"] && typeof result["attributes"] === "object" ? result["attributes"] : {},
     text: Array.isArray(result?.["content"]) ? result["content"].filter((item) => item?.type === "text" && typeof item.text === "string").map((item) => item.text.trim()).filter(Boolean).join("\n\n") : ""
   })) : [];
+  logModelUsage({
+    vendor: "openai",
+    purpose: "lore-search",
+    userId: callerUserId(req),
+    latencyMs: Date.now() - searchStartedAt,
+    ok: true
+  });
   sendJson(res, 200, {
     results,
     requestId: headers.get("x-request-id")
@@ -2147,6 +2210,7 @@ export {
   isLoreVectorStoreFile,
   logError,
   logInfo,
+  logModelUsage,
   mapWithConcurrency,
   normalizePath,
   parseFrontmatter,
