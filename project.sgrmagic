@@ -835,7 +835,7 @@
       "definitionId": "42670c12-cecb-4484-944b-0697935173f9",
       "displayName": "Horace Pennyfeather",
       "interactionMode": "scripted",
-      "lorePageId": null,
+      "lorePageId": "lore.entities.npcs.horace_pennyfeather",
       "presentation": {
         "modelAssetDefinitionId": "wordlark:character-model:Horace-Pennyfeather-rigged",
         "modelHeight": 1.7,
@@ -864,12 +864,12 @@
     },
     {
       "definitionId": "139daaec-a618-4053-b697-0ced0024d80d",
-      "displayName": "Snobby Racoon Lady",
+      "displayName": "Penelope McCrick",
       "description": "A snobby racoon lady who is super rich and narcissistic.",
       "interactionMode": "agent",
-      "lorePageId": null,
+      "lorePageId": "lore.entities.npcs.penelope_mccrick",
       "presentation": {
-        "modelAssetDefinitionId": null,
+        "modelAssetDefinitionId": "wordlark:character-model:penelope_mccrick_generated_v1",
         "modelHeight": 1.7,
         "animationAssetBindings": {
           "idle": null,
@@ -880,17 +880,17 @@
     },
     {
       "definitionId": "66013347-dc94-4518-898b-9dfd22ac7ced",
-      "displayName": "Bo",
+      "displayName": "Bo Greyfoot",
       "description": "Native of Earendale is an air whale pilot and handler.",
-      "interactionMode": "scripted",
-      "lorePageId": null,
+      "interactionMode": "agent",
+      "lorePageId": "lore.entities.npcs.bo_greyfoot",
       "presentation": {
-        "modelAssetDefinitionId": null,
+        "modelAssetDefinitionId": "wordlark:character-model:Bo-Greyfoot-rigged",
         "modelHeight": 1.7,
         "animationAssetBindings": {
-          "idle": null,
-          "walk": null,
-          "run": null
+          "idle": "wordlark:character-animation:Bo-Greyfoot-Generated_Idle",
+          "walk": "wordlark:character-animation:Bo-Greyfoot-Generated_Walk",
+          "run": "wordlark:character-animation:Bo-Greyfoot-Generated_Run"
         }
       }
     }
@@ -1071,7 +1071,8 @@
               "onEnterActions": [],
               "onCompleteActions": [
                 {
-                  "type": "moveNpc"
+                  "type": "setFlag",
+                  "targetId": "horace_intro_complete"
                 }
               ],
               "showInHud": true,
@@ -1848,9 +1849,9 @@
               "shaderParameterOverrides": [],
               "transform": {
                 "position": [
+                  -0.33260616542648824,
                   0,
-                  0,
-                  23.00749271474486
+                  25.036540016040817
                 ],
                 "rotation": [
                   0,
@@ -2307,7 +2308,7 @@
               "shaderParameterOverrides": [],
               "transform": {
                 "position": [
-                  -1.4446781057780407,
+                  19.46214240712027,
                   -0.018289255422863526,
                   23.616881123074336
                 ],
@@ -2499,8 +2500,19 @@
                 }
               ],
               "colliderOverride": {
-                "shape": "none",
-                "localBounds": null
+                "shape": "auto-box",
+                "localBounds": {
+                  "min": [
+                    -6.5287251472473145,
+                    -8.249584197998047,
+                    -2.810279130935669
+                  ],
+                  "max": [
+                    6.474574089050293,
+                    0.3284364342689514,
+                    1.1280326843261719
+                  ]
+                }
               },
               "shaderParameterOverrides": [],
               "transform": {
@@ -2802,6 +2814,84 @@
                 "rotation": [
                   0,
                   -1.8893985574936152,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:rail_1_v1-1786665565855-1",
+              "assetDefinitionId": "asset:rail_1_v1",
+              "displayName": "rail_1_v1",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -1.4100427819391819,
+                  -0.02385400902360979,
+                  30.571957846684267
+                ],
+                "rotation": [
+                  0,
+                  -1.5199792104555638,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:rail_1_v1-1786665706897-2",
+              "assetDefinitionId": "asset:rail_1_v1",
+              "displayName": "rail_1_v1 Copy",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  0.5526135709565827,
+                  -0.02385400902360979,
+                  30.23403987168751
+                ],
+                "rotation": [
+                  0,
+                  -1.5199792104555638,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:crate_whole_closed_1_v1-1786665959013-1",
+              "assetDefinitionId": "asset:crate_whole_closed_1_v1",
+              "displayName": "crate_whole_closed_1_v1 Copy",
+              "parentFolderId": "scene-folder-1783830960362-2",
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -0.37093709897572014,
+                  -0.018289255422863526,
+                  31.565614604581647
+                ],
+                "rotation": [
+                  0,
+                  0,
                   0
                 ],
                 "scale": [

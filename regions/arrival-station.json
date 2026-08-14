@@ -106,17 +106,17 @@
         {
           "taskId": "region-behavior-task-1784324677651-1",
           "displayName": "Supervise Unloading Task",
-          "description": "As Station Manager Bippity Roo needs to supervise the unloading of the baggage and cargo.",
-          "targetAreaId": "19ee5054-2398-41ef-9a58-1cb61cbe3f7d",
+          "description": "As Station Manager Horace needs to supervise the unloading of the baggage and cargo.",
+          "targetAreaId": "0fc5d33e-49bb-49a4-a8d3-20add315a954",
           "currentActivity": "idle",
           "currentGoal": "idle",
           "activation": {
             "questDefinitionId": null,
             "questStageId": null,
             "worldFlagEquals": {
-              "key": "introduction_complete",
+              "key": "horace_intro_complete",
               "valueType": "boolean",
-              "value": null
+              "value": "true"
             }
           },
           "timeWindow": null
@@ -3213,7 +3213,7 @@
   ],
   "navMesh": {
     "assetPath": "assets/navmesh/arrival-station.navmesh.bin",
-    "inputHash": "1fn1qrj",
+    "inputHash": "a05jwr",
     "agentRadius": 0.45,
     "sceneId": "scene:default"
   }

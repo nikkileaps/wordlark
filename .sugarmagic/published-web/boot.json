@@ -955,17 +955,17 @@
             {
               "taskId": "region-behavior-task-1784324677651-1",
               "displayName": "Supervise Unloading Task",
-              "description": "As Station Manager Bippity Roo needs to supervise the unloading of the baggage and cargo.",
-              "targetAreaId": "19ee5054-2398-41ef-9a58-1cb61cbe3f7d",
+              "description": "As Station Manager Horace needs to supervise the unloading of the baggage and cargo.",
+              "targetAreaId": "0fc5d33e-49bb-49a4-a8d3-20add315a954",
               "currentActivity": "idle",
               "currentGoal": "idle",
               "activation": {
                 "questDefinitionId": null,
                 "questStageId": null,
                 "worldFlagEquals": {
-                  "key": "introduction_complete",
+                  "key": "horace_intro_complete",
                   "valueType": "boolean",
-                  "value": null
+                  "value": "true"
                 }
               },
               "timeWindow": null
@@ -4062,7 +4062,7 @@
       ],
       "navMesh": {
         "assetPath": "assets/navmesh/arrival-station.navmesh.bin",
-        "inputHash": "1fn1qrj",
+        "inputHash": "a05jwr",
         "agentRadius": 0.45,
         "sceneId": "scene:default"
       }
@@ -4205,9 +4205,9 @@
               "shaderParameterOverrides": [],
               "transform": {
                 "position": [
+                  -0.33260616542648824,
                   0,
-                  0,
-                  23.00749271474486
+                  25.036540016040817
                 ],
                 "rotation": [
                   0,
@@ -4664,7 +4664,7 @@
               "shaderParameterOverrides": [],
               "transform": {
                 "position": [
-                  -1.4446781057780407,
+                  19.46214240712027,
                   -0.018289255422863526,
                   23.616881123074336
                 ],
@@ -4856,8 +4856,19 @@
                 }
               ],
               "colliderOverride": {
-                "shape": "none",
-                "localBounds": null
+                "shape": "auto-box",
+                "localBounds": {
+                  "min": [
+                    -6.5287251472473145,
+                    -8.249584197998047,
+                    -2.810279130935669
+                  ],
+                  "max": [
+                    6.474574089050293,
+                    0.3284364342689514,
+                    1.1280326843261719
+                  ]
+                }
               },
               "shaderParameterOverrides": [],
               "transform": {
@@ -5167,6 +5178,84 @@
                   1
                 ]
               }
+            },
+            {
+              "instanceId": "placed-asset:rail_1_v1-1786665565855-1",
+              "assetDefinitionId": "asset:rail_1_v1",
+              "displayName": "rail_1_v1",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -1.4100427819391819,
+                  -0.02385400902360979,
+                  30.571957846684267
+                ],
+                "rotation": [
+                  0,
+                  -1.5199792104555638,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:rail_1_v1-1786665706897-2",
+              "assetDefinitionId": "asset:rail_1_v1",
+              "displayName": "rail_1_v1 Copy",
+              "parentFolderId": null,
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  0.5526135709565827,
+                  -0.02385400902360979,
+                  30.23403987168751
+                ],
+                "rotation": [
+                  0,
+                  -1.5199792104555638,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            },
+            {
+              "instanceId": "placed-asset:crate_whole_closed_1_v1-1786665959013-1",
+              "assetDefinitionId": "asset:crate_whole_closed_1_v1",
+              "displayName": "crate_whole_closed_1_v1 Copy",
+              "parentFolderId": "scene-folder-1783830960362-2",
+              "inspectable": null,
+              "shaderOverrides": [],
+              "shaderParameterOverrides": [],
+              "transform": {
+                "position": [
+                  -0.37093709897572014,
+                  -0.018289255422863526,
+                  31.565614604581647
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              }
             }
           ],
           "folders": [
@@ -5226,7 +5315,7 @@
     }
   ],
   "scenesUiLabel": "Scene",
-  "activeRegionId": "default",
+  "activeRegionId": "arrival-station",
   "activeEnvironmentId": null,
   "contentLibrary": {
     "identity": {
@@ -6005,13 +6094,13 @@
           "shape": "auto-box",
           "localBounds": {
             "min": [
-              19.039775848388672,
-              0.001090407371520996,
+              -0.3057880401611328,
+              0,
               -0.3057870864868164
             ],
             "max": [
-              19.651351928710938,
-              0.6126645803451538,
+              0.3057880401611328,
+              0.6115741729736328,
               0.3057870864868164
             ]
           }
@@ -6376,6 +6465,56 @@
           "fileName": "suitcase_2_v1.glb",
           "mimeType": null
         }
+      },
+      {
+        "definitionId": "asset:rail_1_v1",
+        "definitionKind": "asset",
+        "displayName": "rail_1_v1",
+        "assetKind": "model",
+        "surfaceSlots": [
+          {
+            "slotName": "wood_1.038",
+            "slotIndex": 0,
+            "surface": null
+          },
+          {
+            "slotName": "wood_1.039",
+            "slotIndex": 1,
+            "surface": null
+          },
+          {
+            "slotName": "wood_1.040",
+            "slotIndex": 2,
+            "surface": null
+          },
+          {
+            "slotName": "wood_1.041",
+            "slotIndex": 3,
+            "surface": null
+          }
+        ],
+        "deform": null,
+        "effect": null,
+        "collider": {
+          "shape": "auto-box",
+          "localBounds": {
+            "min": [
+              -0.8899456426410536,
+              2.4844730051043484e-8,
+              -0.0828937132557298
+            ],
+            "max": [
+              0.8899456478139722,
+              1.221100431678528,
+              0.08289371325552516
+            ]
+          }
+        },
+        "source": {
+          "relativeAssetPath": "assets/imported/rail_1_v1.glb",
+          "fileName": "rail_1_v1.glb",
+          "mimeType": null
+        }
       }
     ],
     "audioClipDefinitions": [
@@ -6498,6 +6637,39 @@
         "source": {
           "relativeAssetPath": "assets/character-models/Finnick-Thorn-rigged.glb",
           "fileName": "Finnick-Thorn-rigged.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "rigId": "sugarmagic-humanoid-v1"
+      },
+      {
+        "definitionId": "wordlark:character-model:penelope_mccrick_generated_v1",
+        "definitionKind": "character-model",
+        "displayName": "penelope_mccrick_generated_v1",
+        "source": {
+          "relativeAssetPath": "assets/character-models/penelope_mccrick_generated_v1.glb",
+          "fileName": "penelope_mccrick_generated_v1.glb",
+          "mimeType": null
+        },
+        "rigId": null
+      },
+      {
+        "definitionId": "wordlark:character-model:bo_greyfoot_generated_v1",
+        "definitionKind": "character-model",
+        "displayName": "bo_greyfoot_generated_v1",
+        "source": {
+          "relativeAssetPath": "assets/character-models/bo_greyfoot_generated_v1.glb",
+          "fileName": "bo_greyfoot_generated_v1.glb",
+          "mimeType": null
+        },
+        "rigId": null
+      },
+      {
+        "definitionId": "wordlark:character-model:Bo-Greyfoot-rigged",
+        "definitionKind": "character-model",
+        "displayName": "Bo-Greyfoot (rigged)",
+        "source": {
+          "relativeAssetPath": "assets/character-models/Bo-Greyfoot-rigged.glb",
+          "fileName": "Bo-Greyfoot-rigged.glb",
           "mimeType": "model/gltf-binary"
         },
         "rigId": "sugarmagic-humanoid-v1"
@@ -6732,6 +6904,45 @@
         "source": {
           "relativeAssetPath": "assets/character-animations/Finnick-Thorn-Generated_Run.glb",
           "fileName": "Finnick-Thorn-Generated_Run.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "clipNames": [
+          "Generated_Run"
+        ]
+      },
+      {
+        "definitionId": "wordlark:character-animation:Bo-Greyfoot-Generated_Idle",
+        "definitionKind": "character-animation",
+        "displayName": "Bo-Greyfoot Generated_Idle",
+        "source": {
+          "relativeAssetPath": "assets/character-animations/Bo-Greyfoot-Generated_Idle.glb",
+          "fileName": "Bo-Greyfoot-Generated_Idle.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "clipNames": [
+          "Generated_Idle"
+        ]
+      },
+      {
+        "definitionId": "wordlark:character-animation:Bo-Greyfoot-Generated_Walk",
+        "definitionKind": "character-animation",
+        "displayName": "Bo-Greyfoot Generated_Walk",
+        "source": {
+          "relativeAssetPath": "assets/character-animations/Bo-Greyfoot-Generated_Walk.glb",
+          "fileName": "Bo-Greyfoot-Generated_Walk.glb",
+          "mimeType": "model/gltf-binary"
+        },
+        "clipNames": [
+          "Generated_Walk"
+        ]
+      },
+      {
+        "definitionId": "wordlark:character-animation:Bo-Greyfoot-Generated_Run",
+        "definitionKind": "character-animation",
+        "displayName": "Bo-Greyfoot Generated_Run",
+        "source": {
+          "relativeAssetPath": "assets/character-animations/Bo-Greyfoot-Generated_Run.glb",
+          "fileName": "Bo-Greyfoot-Generated_Run.glb",
           "mimeType": "model/gltf-binary"
         },
         "clipNames": [
@@ -7279,7 +7490,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "d7ece7df-682d-4410-874c-a970ba5eddc9",
+              "layerId": "35d0c34a-214b-4529-8b1a-87b2134c1c16",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -7294,7 +7505,7 @@
               }
             },
             {
-              "layerId": "b35fcea6-43fb-45b8-9ee0-b6ccababf415",
+              "layerId": "65e733d3-3d63-4dbf-8d51-569e58bfc161",
               "displayName": "Tall Grass",
               "enabled": true,
               "opacity": 1,
@@ -7312,7 +7523,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "27a1b32f-a78a-4fb4-8dbc-e31cc6c680dc",
+              "layerId": "ed6f6d2a-8419-420c-bab3-88734447324e",
               "displayName": "Flowers",
               "enabled": true,
               "opacity": 0.7,
@@ -7330,7 +7541,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "afd2723c-5f9b-476d-8cf0-0c1254d6c00e",
+              "layerId": "ff1dfd19-1d2f-4933-95e7-a5dfd2f6f3c1",
               "displayName": "Warm Light",
               "enabled": true,
               "opacity": 0.5,
@@ -7359,7 +7570,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "b4aa18a9-d5e2-4e79-9070-7ec1870fd448",
+              "layerId": "71c5bf04-3cb6-4d5c-be17-5ccf2f67c2a0",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -7374,7 +7585,7 @@
               }
             },
             {
-              "layerId": "dbe1f03d-facd-47e7-b6cc-ffbaadc3e906",
+              "layerId": "fb40523d-abf1-4b72-bcc3-5cc62f562bca",
               "displayName": "Grass",
               "enabled": true,
               "opacity": 1,
@@ -7392,7 +7603,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "063fcfb9-7255-4b20-b5c9-697fed900ec8",
+              "layerId": "47a728ec-b24d-4312-b989-385e5aaa4364",
               "displayName": "Flowers",
               "enabled": true,
               "opacity": 0.45,
@@ -7424,7 +7635,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "cef19e5a-8516-4fda-b409-49cf534d4091",
+              "layerId": "95ad7dc6-47b9-40e5-976e-fceeef242a0e",
               "displayName": "Bark",
               "enabled": true,
               "opacity": 1,
@@ -7439,7 +7650,7 @@
               }
             },
             {
-              "layerId": "ac0da2b8-72f0-42a5-92e0-dc2f1031f2bf",
+              "layerId": "936a132a-2916-459d-9fe9-3b6062194da6",
               "displayName": "Moss Tint",
               "enabled": true,
               "opacity": 0.45,
@@ -7468,7 +7679,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "087f9213-5aad-4a4d-96fc-08faba8139cd",
+              "layerId": "56fd1240-8b02-4733-807c-dce156907e91",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -7483,7 +7694,7 @@
               }
             },
             {
-              "layerId": "c46dcb0e-505d-4ace-adb1-2e7d65436d8c",
+              "layerId": "954b1906-5933-4415-9c49-74b9755f266c",
               "displayName": "Short Grass",
               "enabled": true,
               "opacity": 1,
@@ -7515,7 +7726,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "1a7bab74-6942-445f-ac55-564ff7dc5a7c",
+              "layerId": "8d607216-1d3a-43b7-bd81-83bd84c00956",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -7530,7 +7741,7 @@
               }
             },
             {
-              "layerId": "b0a9492b-7225-4f55-a5d0-279fd9ccc66b",
+              "layerId": "3b4ace9a-72ab-47a3-aad5-2ba3c5bcc0fc",
               "displayName": "Clover Base",
               "enabled": true,
               "opacity": 0.85,
@@ -7548,7 +7759,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "f511316c-7dcf-4778-9e0c-874d6a389442",
+              "layerId": "e503ec16-6301-48d7-997b-69d2591e41f7",
               "displayName": "Tiny Blooms",
               "enabled": true,
               "opacity": 0.35,
@@ -7580,7 +7791,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "bb7a1ac8-434d-4c64-b7b6-c1b5b6bcfe94",
+              "layerId": "53ee3007-1fc0-4857-8b15-274c27aabfe4",
               "displayName": "Ground",
               "enabled": true,
               "opacity": 1,
@@ -7595,7 +7806,7 @@
               }
             },
             {
-              "layerId": "f20f396c-89e2-4416-96c1-f285450f94f5",
+              "layerId": "7541705f-b68a-4691-b882-5e6474098716",
               "displayName": "Painterly Tufts",
               "enabled": true,
               "opacity": 0.95,
@@ -7613,7 +7824,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "a8568aef-8946-4415-aab7-1c0f31ffcffe",
+              "layerId": "8da6f7f1-abdc-4e07-aacf-337187ebe08e",
               "displayName": "Tiny Blooms",
               "enabled": true,
               "opacity": 0.2,
@@ -7631,7 +7842,7 @@
               "textureBindings": {}
             },
             {
-              "layerId": "23689249-5e40-4654-84b3-4589585bb1d8",
+              "layerId": "57ab61ac-676c-472a-afa3-a53850b3f415",
               "displayName": "Warm Lift",
               "enabled": true,
               "opacity": 0.35,
@@ -7817,7 +8028,7 @@
         "surface": {
           "layers": [
             {
-              "layerId": "afd7f453-5ec2-44c2-8c27-0dc47fff6f56",
+              "layerId": "d54f8b55-5b90-4ac9-9542-a31d6db2bccf",
               "displayName": "UV Grid",
               "enabled": true,
               "opacity": 1,
@@ -19692,7 +19903,7 @@
       "definitionId": "42670c12-cecb-4484-944b-0697935173f9",
       "displayName": "Horace Pennyfeather",
       "interactionMode": "scripted",
-      "lorePageId": null,
+      "lorePageId": "lore.entities.npcs.horace_pennyfeather",
       "presentation": {
         "modelAssetDefinitionId": "wordlark:character-model:Horace-Pennyfeather-rigged",
         "modelHeight": 1.7,
@@ -19721,12 +19932,12 @@
     },
     {
       "definitionId": "139daaec-a618-4053-b697-0ced0024d80d",
-      "displayName": "Snobby Racoon Lady",
+      "displayName": "Penelope McCrick",
       "description": "A snobby racoon lady who is super rich and narcissistic.",
       "interactionMode": "agent",
-      "lorePageId": null,
+      "lorePageId": "lore.entities.npcs.penelope_mccrick",
       "presentation": {
-        "modelAssetDefinitionId": null,
+        "modelAssetDefinitionId": "wordlark:character-model:penelope_mccrick_generated_v1",
         "modelHeight": 1.7,
         "animationAssetBindings": {
           "idle": null,
@@ -19737,17 +19948,17 @@
     },
     {
       "definitionId": "66013347-dc94-4518-898b-9dfd22ac7ced",
-      "displayName": "Bo",
+      "displayName": "Bo Greyfoot",
       "description": "Native of Earendale is an air whale pilot and handler.",
-      "interactionMode": "scripted",
-      "lorePageId": null,
+      "interactionMode": "agent",
+      "lorePageId": "lore.entities.npcs.bo_greyfoot",
       "presentation": {
-        "modelAssetDefinitionId": null,
+        "modelAssetDefinitionId": "wordlark:character-model:Bo-Greyfoot-rigged",
         "modelHeight": 1.7,
         "animationAssetBindings": {
-          "idle": null,
-          "walk": null,
-          "run": null
+          "idle": "wordlark:character-animation:Bo-Greyfoot-Generated_Idle",
+          "walk": "wordlark:character-animation:Bo-Greyfoot-Generated_Walk",
+          "run": "wordlark:character-animation:Bo-Greyfoot-Generated_Run"
         }
       }
     }
@@ -19928,7 +20139,8 @@
               "onEnterActions": [],
               "onCompleteActions": [
                 {
-                  "type": "moveNpc"
+                  "type": "setFlag",
+                  "targetId": "horace_intro_complete"
                 }
               ],
               "showInHud": true,
@@ -20506,6 +20718,9 @@
     "assets/animations/cozy-run.glb": "/assets/animations/cozy-run.glb",
     "assets/animations/cozy-walk.glb": "/assets/animations/cozy-walk.glb",
     "assets/audio/theme.mp3": "/assets/audio/theme.mp3",
+    "assets/character-animations/Bo-Greyfoot-Generated_Idle.glb": "/assets/character-animations/Bo-Greyfoot-Generated_Idle.glb",
+    "assets/character-animations/Bo-Greyfoot-Generated_Run.glb": "/assets/character-animations/Bo-Greyfoot-Generated_Run.glb",
+    "assets/character-animations/Bo-Greyfoot-Generated_Walk.glb": "/assets/character-animations/Bo-Greyfoot-Generated_Walk.glb",
     "assets/character-animations/Finnick-Thorn-Generated_Idle.glb": "/assets/character-animations/Finnick-Thorn-Generated_Idle.glb",
     "assets/character-animations/Finnick-Thorn-Generated_Run.glb": "/assets/character-animations/Finnick-Thorn-Generated_Run.glb",
     "assets/character-animations/Finnick-Thorn-Generated_Walk.glb": "/assets/character-animations/Finnick-Thorn-Generated_Walk.glb",
@@ -20524,9 +20739,11 @@
     "assets/character-animations/mim-game-ready-v1-Idle_Loop.glb": "/assets/character-animations/mim-game-ready-v1-Idle_Loop.glb",
     "assets/character-animations/mim-game-ready-v1-Jog_Fwd_Loop.glb": "/assets/character-animations/mim-game-ready-v1-Jog_Fwd_Loop.glb",
     "assets/character-animations/mim-game-ready-v1-Walk_Loop.glb": "/assets/character-animations/mim-game-ready-v1-Walk_Loop.glb",
+    "assets/character-models/Bo-Greyfoot-rigged.glb": "/assets/character-models/Bo-Greyfoot-rigged.glb",
     "assets/character-models/Finnick-Thorn-rigged.glb": "/assets/character-models/Finnick-Thorn-rigged.glb",
     "assets/character-models/Horace-Pennyfeather-rigged.glb": "/assets/character-models/Horace-Pennyfeather-rigged.glb",
     "assets/character-models/Mim-rigged.glb": "/assets/character-models/Mim-rigged.glb",
+    "assets/character-models/bo_greyfoot_generated_v1.glb": "/assets/character-models/bo_greyfoot_generated_v1.glb",
     "assets/character-models/finnick_thorn_generated_v1.glb": "/assets/character-models/finnick_thorn_generated_v1.glb",
     "assets/character-models/finnick_thorn_v1.glb": "/assets/character-models/finnick_thorn_v1.glb",
     "assets/character-models/horace_pennyfeather_generated_v1.glb": "/assets/character-models/horace_pennyfeather_generated_v1.glb",
@@ -20534,6 +20751,7 @@
     "assets/character-models/mim-game-ready-v1-rigged.glb": "/assets/character-models/mim-game-ready-v1-rigged.glb",
     "assets/character-models/mim-game-ready-v1.glb": "/assets/character-models/mim-game-ready-v1.glb",
     "assets/character-models/mim_generated_v1.glb": "/assets/character-models/mim_generated_v1.glb",
+    "assets/character-models/penelope_mccrick_generated_v1.glb": "/assets/character-models/penelope_mccrick_generated_v1.glb",
     "assets/imported/book-closed-basic-1.glb": "/assets/imported/book-closed-basic-1.glb",
     "assets/imported/cliff-crag.glb": "/assets/imported/cliff-crag.glb",
     "assets/imported/cliff-edge-a.glb": "/assets/imported/cliff-edge-a.glb",
@@ -20552,6 +20770,7 @@
     "assets/imported/mountain-peak-b.glb": "/assets/imported/mountain-peak-b.glb",
     "assets/imported/mountain-ridge-a.glb": "/assets/imported/mountain-ridge-a.glb",
     "assets/imported/park_bench_1_v6.glb": "/assets/imported/park_bench_1_v6.glb",
+    "assets/imported/rail_1_v1.glb": "/assets/imported/rail_1_v1.glb",
     "assets/imported/rock_1.glb": "/assets/imported/rock_1.glb",
     "assets/imported/rock_formation_1.glb": "/assets/imported/rock_formation_1.glb",
     "assets/imported/station_bench_1_v1.glb": "/assets/imported/station_bench_1_v1.glb",

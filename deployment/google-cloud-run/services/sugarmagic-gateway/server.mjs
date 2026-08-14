@@ -170,8 +170,46 @@ async function verifySupabaseJwt(req) {
 // src/deployment/gateway/lore-designation.ts
 var PERSONA_CARD_SECTION_SLUGS = ["persona", "voice"];
 var SECRETS_SECTION_SLUG = "secrets";
+var RELATIONSHIPS_SECTION_SLUG = "relationships";
 function isPersonaCardSection(section) {
   return PERSONA_CARD_SECTION_SLUGS.includes(section.slug);
+}
+function isRelationshipsSection(section) {
+  return section.slug === RELATIONSHIPS_SECTION_SLUG;
+}
+var LINKED_NAME = /^(?:[-*]\s+)?\[([^\]]+)\]\(([^)]+)\)\s*(.*)$/;
+function stripLeadingSeparator(text) {
+  return text.replace(/^(--|\u2014|:)\s*/, "").trim();
+}
+function parseRelationshipEntries(content) {
+  const entries = [];
+  for (const rawLine of content.split("\n")) {
+    const line = rawLine.trim();
+    if (line.length === 0) continue;
+    const linked = LINKED_NAME.exec(line);
+    if (linked) {
+      entries.push({
+        name: linked[1].trim(),
+        pageId: linked[2].trim() || null,
+        description: stripLeadingSeparator(linked[3] ?? "")
+      });
+      continue;
+    }
+    const previous = entries[entries.length - 1];
+    if (previous) {
+      previous.description = previous.description ? `${previous.description} ${line}` : line;
+    }
+  }
+  return entries;
+}
+function findRelationshipEntry(entries, target) {
+  const pageId = target.pageId?.trim() ?? "";
+  const title = target.title?.trim().toLowerCase() ?? "";
+  for (const entry of entries) {
+    if (pageId && entry.pageId === pageId) return entry;
+    if (title && entry.name.trim().toLowerCase() === title) return entry;
+  }
+  return null;
 }
 function isSecretSection(section) {
   return section.slug === SECRETS_SECTION_SLUG;

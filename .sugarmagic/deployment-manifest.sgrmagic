@@ -26,7 +26,7 @@
     },
     {
       "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/server.mjs",
-      "contentHash": "fnv1a-388012d7"
+      "contentHash": "fnv1a-b24bc722"
     },
     {
       "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/Dockerfile",
@@ -70,7 +70,7 @@
     },
     {
       "relativePath": ".sugarmagic/published-web/boot.json",
-      "contentHash": "fnv1a-e746eee0"
+      "contentHash": "fnv1a-aea28f40"
     },
     {
       "relativePath": ".sugarmagic/published-web/_headers",
