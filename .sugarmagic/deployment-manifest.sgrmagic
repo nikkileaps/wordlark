@@ -2,7 +2,7 @@
   "files": [
     {
       "relativePath": "deployment/google-cloud-run/README.md",
-      "contentHash": "fnv1a-17b90160"
+      "contentHash": "fnv1a-9d1d2112"
     },
     {
       "relativePath": "deployment/google-cloud-run/.env.example",
@@ -14,7 +14,7 @@
     },
     {
       "relativePath": "deployment/google-cloud-run/deployment-plan.json",
-      "contentHash": "fnv1a-1b7a0600"
+      "contentHash": "fnv1a-e6143290"
     },
     {
       "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/package.json",
@@ -22,7 +22,7 @@
     },
     {
       "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/routes.json",
-      "contentHash": "fnv1a-7c95ed8e"
+      "contentHash": "fnv1a-c367c1c1"
     },
     {
       "relativePath": "deployment/google-cloud-run/services/sugarmagic-gateway/server.mjs",
@@ -70,7 +70,7 @@
     },
     {
       "relativePath": ".sugarmagic/published-web/boot.json",
-      "contentHash": "fnv1a-aea28f40"
+      "contentHash": "fnv1a-c6d74f93"
     },
     {
       "relativePath": ".sugarmagic/published-web/_headers",

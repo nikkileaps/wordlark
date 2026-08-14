@@ -24,7 +24,8 @@
       "routes": [
         "/api/sugaragent/generate",
         "/api/sugaragent/lore",
-        "/api/sugaragent/retrieve"
+        "/api/sugaragent/retrieve",
+        "/api/sugarlang/telemetry"
       ]
     }
   ],

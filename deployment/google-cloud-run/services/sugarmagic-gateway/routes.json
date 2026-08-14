@@ -5,7 +5,8 @@
   "containerPort": 8080,
   "label": "Sugarmagic Gateway",
   "owners": [
-    "sugaragent"
+    "sugaragent",
+    "sugarlang"
   ],
   "routes": [
     {
@@ -23,6 +24,12 @@
     {
       "routeId": "sugaragent-retrieve",
       "path": "/api/sugaragent/retrieve",
+      "protocol": "http-json",
+      "consumer": "browser-runtime"
+    },
+    {
+      "routeId": "sugarlang-telemetry",
+      "path": "/api/sugarlang/telemetry",
       "protocol": "http-json",
       "consumer": "browser-runtime"
     }
