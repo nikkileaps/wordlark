@@ -1102,7 +1102,7 @@ async function handleSugarAgentGenerate(req, res) {
     model: servedModel
   });
 }
-function buildJudgeUserPrompt(worldPremise, personaDigest, responseIntent, worldContext, loreContextLines, replyText, externalDirectives) {
+function buildJudgeUserPrompt(context, replyText, externalDirectives) {
   const directivesBlock = externalDirectives.length > 0 ? `Established directives from game systems (in-world by definition; behavior they direct is never an IN-CHARACTER violation):
 ` + externalDirectives.map((d, i) => `${i + 1}. ${d}`).join("\n") + `
 Directives never override the SAFETY rule.
@@ -1116,21 +1116,11 @@ Set languageFit false only when a real player at that level would be lost, or wh
 Mixing the two languages is never itself a language problem.
 
 ` : "";
-  return (worldPremise ? `World premise:
-${worldPremise}
+  return `Everything below, up to the reply, is exactly what the NPC was given to write this turn -- its identity, what it knows, what it remembers, the conversation so far, and its instructions. Treat every fact stated in it as true in this world.
 
-` : "") + `NPC persona summary (this is the NPC's established identity \u2014 treat all facts here as in-world):
-${personaDigest || "(none)"}
+${context}
 
-` + directivesBlock + `Response intent: ${responseIntent}
-
-` + (worldContext ? `World context right now:
-${worldContext}
-
-` : "") + (loreContextLines ? `Lore context available to this NPC:
-${loreContextLines}
-
-` : "") + `NPC reply to score:
+` + directivesBlock + `NPC reply to score:
 "${replyText}"
 
 Rubric (each must PASS for overall pass):
@@ -1181,25 +1171,24 @@ async function handleSugarAgentJudge(req, res) {
   }
   const body = await readJsonBody(req);
   const replyText = typeof body["replyText"] === "string" ? body["replyText"].trim() : "";
-  const personaDigest = typeof body["personaDigest"] === "string" ? body["personaDigest"].trim() : "";
-  const responseIntent = typeof body["responseIntent"] === "string" ? body["responseIntent"].trim() : "chat";
-  const worldContext = typeof body["worldContext"] === "string" ? body["worldContext"].trim() : null;
-  const rawLoreContext = Array.isArray(body["loreContextSummary"]) ? body["loreContextSummary"].filter((e) => typeof e === "string") : [];
-  const worldPremise = typeof body["worldPremise"] === "string" ? body["worldPremise"].trim() : "";
+  const judgeContext = typeof body["context"] === "string" ? body["context"].trim() : "";
   const externalDirectives = Array.isArray(body["externalDirectives"]) ? body["externalDirectives"].filter((e) => typeof e === "string") : [];
   if (!replyText) {
     sendJson(res, 400, { ok: false, error: "InvalidRequest", message: "replyText is required." });
     return;
   }
+  if (!judgeContext) {
+    sendJson(res, 400, {
+      ok: false,
+      error: "InvalidRequest",
+      message: "context is required: send the prompt the generator was given (GeneratePromptResult.judgeContext)."
+    });
+    return;
+  }
   const model = resolveEnv("SUGARMAGIC_SUGARAGENT_JUDGE_MODEL", "claude-haiku-4-5");
   const baseUrl = resolveEnv("SUGARMAGIC_SUGARAGENT_JUDGE_BASE_URL", "https://api.anthropic.com");
-  const loreContextLines = rawLoreContext.map((e, i) => `[${i + 1}] ${e.slice(0, 300)}`).join("\n");
   const judgeUserPrompt = buildJudgeUserPrompt(
-    worldPremise,
-    personaDigest,
-    responseIntent,
-    worldContext,
-    loreContextLines,
+    judgeContext,
     replyText,
     externalDirectives
   );
@@ -1272,7 +1261,10 @@ async function handleSugarAgentJudge(req, res) {
     languageNote,
     model,
     durationMs: Date.now() - startedAt,
-    responseIntent
+    // How much grounding the judge actually held. The failure this route was
+    // built wrong around -- scoring a reply against far less than the writer
+    // saw -- is invisible in a verdict but obvious in this number (#185).
+    contextChars: judgeContext.length
   });
   const judgeUsage = payload.usage ?? {};
   const judgeUsageNumber = (key) => {
