@@ -467,6 +467,59 @@ async function requestJson(url, options, label) {
     headers: response.headers
   };
 }
+var UNSUPPORTED_SCHEMA_KEYWORDS = /* @__PURE__ */ new Set([
+  "minimum",
+  "maximum",
+  "exclusiveMinimum",
+  "exclusiveMaximum",
+  "multipleOf",
+  "minLength",
+  "maxLength",
+  "pattern",
+  "minItems",
+  "maxItems",
+  "uniqueItems",
+  "minProperties",
+  "maxProperties"
+]);
+var SCHEMA_NAME_MAPS = /* @__PURE__ */ new Set(["properties", "$defs", "definitions"]);
+function sanitizeSchemaNode(node) {
+  if (Array.isArray(node)) {
+    return node.map(sanitizeSchemaNode);
+  }
+  if (!node || typeof node !== "object") {
+    return node;
+  }
+  const result = {};
+  for (const [key, value] of Object.entries(node)) {
+    if (UNSUPPORTED_SCHEMA_KEYWORDS.has(key)) {
+      continue;
+    }
+    if (SCHEMA_NAME_MAPS.has(key) && value && typeof value === "object") {
+      const mapped = {};
+      for (const [name, child] of Object.entries(value)) {
+        mapped[name] = sanitizeSchemaNode(child);
+      }
+      result[key] = mapped;
+      continue;
+    }
+    result[key] = sanitizeSchemaNode(value);
+  }
+  if (result["type"] === "object" || result["properties"] !== void 0) {
+    result["additionalProperties"] = false;
+  }
+  return result;
+}
+function toStructuredOutputSchema(schema) {
+  if (!schema || typeof schema !== "object" || Array.isArray(schema)) {
+    return null;
+  }
+  const sanitized = sanitizeSchemaNode(schema);
+  if (!sanitized || typeof sanitized !== "object") {
+    return null;
+  }
+  return sanitized;
+}
 function slugify(value) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "section";
 }
@@ -998,7 +1051,12 @@ async function handleSugarAgentGenerate(req, res) {
     // expressions, line intent, and scene concepts. Authoring-time and cached
     // by content hash, so it is paid once per content change rather than per
     // turn; that budget buys a stronger model than the dialogue default.
-    extraction: () => resolveEnv("SUGARMAGIC_SUGARLANG_EXTRACTION_MODEL", "claude-sonnet-4-6")
+    //
+    // MUST SUPPORT STRUCTURED OUTPUTS. Extraction sends a schema so the reply
+    // cannot be unparseable JSON, and a model without that support ignores the
+    // schema and puts the pass back to repairing whatever it gets. Sonnet 4.6,
+    // the previous default, is not on that list.
+    extraction: () => resolveEnv("SUGARMAGIC_SUGARLANG_EXTRACTION_MODEL", "claude-sonnet-5")
   };
   const model = (PURPOSE_MODELS[purpose] ?? dialogueModel)();
   logInfo("sugaragent.generate", { purpose: purpose || "dialogue", model });
@@ -1044,6 +1102,10 @@ async function handleSugarAgentGenerate(req, res) {
     text: block.text,
     ...block.cache ? { cache_control: { type: "ephemeral" } } : {}
   })) : systemPrompt;
+  const outputSchema = toStructuredOutputSchema(body["outputSchema"]);
+  if (outputSchema) {
+    logInfo("sugaragent.generate-structured-output", { purpose: purpose || "dialogue", model });
+  }
   const generateStartedAt = Date.now();
   const { payload, headers } = await requestJson(
     "https://api.anthropic.com/v1/messages",
@@ -1063,7 +1125,13 @@ async function handleSugarAgentGenerate(req, res) {
             role: "user",
             content: userPrompt
           }
-        ]
+        ],
+        ...outputSchema ? {
+          output_config: {
+            format: { type: "json_schema", schema: outputSchema }
+          },
+          thinking: { type: "disabled" }
+        } : {}
       })
     },
     "Anthropic request"
@@ -1093,6 +1161,13 @@ async function handleSugarAgentGenerate(req, res) {
   sendJson(res, 200, {
     text,
     requestId: headers.get("request-id"),
+    // WHY THE MODEL STOPPED. A reply cut off at `max_tokens` and a reply the
+    // model simply wrote badly are indistinguishable from the text alone: both
+    // arrive as something that will not parse. The scene-context pass failed
+    // for days reported as "invalid JSON" when every one of those replies was
+    // complete-but-truncated, and the parser error was the only clue anyone
+    // had. Callers branch on this instead of guessing from a parser message.
+    stopReason: typeof payload.stop_reason === "string" ? payload.stop_reason : null,
     usage: {
       inputTokens: usageNumber("input_tokens"),
       outputTokens: usageNumber("output_tokens"),
@@ -2221,5 +2296,6 @@ export {
   sendJson,
   sendMethodNotAllowed,
   server,
-  splitLoreSections
+  splitLoreSections,
+  toStructuredOutputSchema
 };

@@ -467,6 +467,59 @@ async function requestJson(url, options, label) {
     headers: response.headers
   };
 }
+var UNSUPPORTED_SCHEMA_KEYWORDS = /* @__PURE__ */ new Set([
+  "minimum",
+  "maximum",
+  "exclusiveMinimum",
+  "exclusiveMaximum",
+  "multipleOf",
+  "minLength",
+  "maxLength",
+  "pattern",
+  "minItems",
+  "maxItems",
+  "uniqueItems",
+  "minProperties",
+  "maxProperties"
+]);
+var SCHEMA_NAME_MAPS = /* @__PURE__ */ new Set(["properties", "$defs", "definitions"]);
+function sanitizeSchemaNode(node) {
+  if (Array.isArray(node)) {
+    return node.map(sanitizeSchemaNode);
+  }
+  if (!node || typeof node !== "object") {
+    return node;
+  }
+  const result = {};
+  for (const [key, value] of Object.entries(node)) {
+    if (UNSUPPORTED_SCHEMA_KEYWORDS.has(key)) {
+      continue;
+    }
+    if (SCHEMA_NAME_MAPS.has(key) && value && typeof value === "object") {
+      const mapped = {};
+      for (const [name, child] of Object.entries(value)) {
+        mapped[name] = sanitizeSchemaNode(child);
+      }
+      result[key] = mapped;
+      continue;
+    }
+    result[key] = sanitizeSchemaNode(value);
+  }
+  if (result["type"] === "object" || result["properties"] !== void 0) {
+    result["additionalProperties"] = false;
+  }
+  return result;
+}
+function toStructuredOutputSchema(schema) {
+  if (!schema || typeof schema !== "object" || Array.isArray(schema)) {
+    return null;
+  }
+  const sanitized = sanitizeSchemaNode(schema);
+  if (!sanitized || typeof sanitized !== "object") {
+    return null;
+  }
+  return sanitized;
+}
 function slugify(value) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "section";
 }
@@ -998,7 +1051,12 @@ async function handleSugarAgentGenerate(req, res) {
     // expressions, line intent, and scene concepts. Authoring-time and cached
     // by content hash, so it is paid once per content change rather than per
     // turn; that budget buys a stronger model than the dialogue default.
-    extraction: () => resolveEnv("SUGARMAGIC_SUGARLANG_EXTRACTION_MODEL", "claude-sonnet-4-6")
+    //
+    // MUST SUPPORT STRUCTURED OUTPUTS. Extraction sends a schema so the reply
+    // cannot be unparseable JSON, and a model without that support ignores the
+    // schema and puts the pass back to repairing whatever it gets. Sonnet 4.6,
+    // the previous default, is not on that list.
+    extraction: () => resolveEnv("SUGARMAGIC_SUGARLANG_EXTRACTION_MODEL", "claude-sonnet-5")
   };
   const model = (PURPOSE_MODELS[purpose] ?? dialogueModel)();
   logInfo("sugaragent.generate", { purpose: purpose || "dialogue", model });
@@ -1044,6 +1102,10 @@ async function handleSugarAgentGenerate(req, res) {
     text: block.text,
     ...block.cache ? { cache_control: { type: "ephemeral" } } : {}
   })) : systemPrompt;
+  const outputSchema = toStructuredOutputSchema(body["outputSchema"]);
+  if (outputSchema) {
+    logInfo("sugaragent.generate-structured-output", { purpose: purpose || "dialogue", model });
+  }
   const generateStartedAt = Date.now();
   const { payload, headers } = await requestJson(
     "https://api.anthropic.com/v1/messages",
@@ -1063,7 +1125,13 @@ async function handleSugarAgentGenerate(req, res) {
             role: "user",
             content: userPrompt
           }
-        ]
+        ],
+        ...outputSchema ? {
+          output_config: {
+            format: { type: "json_schema", schema: outputSchema }
+          },
+          thinking: { type: "disabled" }
+        } : {}
       })
     },
     "Anthropic request"
@@ -1116,7 +1184,7 @@ Set languageFit false only when a real player at that level would be lost, or wh
 Mixing the two languages is never itself a language problem.
 
 ` : "";
-  return `Everything below, up to the reply, is exactly what the NPC was given to write this turn -- its identity, what it knows, what it remembers, the conversation so far, and its instructions. Treat every fact stated in it as true in this world.
+  return `Everything below, up to the reply, is what the NPC knew when it wrote this turn -- its identity, what it knows, what it remembers, what was retrieved for it, and the conversation so far. Treat every fact stated in it as true in this world.
 
 ${context}
 
@@ -1125,7 +1193,7 @@ ${context}
 
 Rubric (each must PASS for overall pass):
 1. IN-CHARACTER: The reply matches the NPC persona voice, temperament, and knowledge level.${inCharacterGuard}
-2. WORLD-GROUNDED: The reply does not introduce facts incompatible with the world premise or the NPC persona. Facts stated in either are established and must not be flagged as violations.
+2. WORLD-GROUNDED: The reply does not introduce facts incompatible with what the NPC knew, above. Anything stated there is established and must not be flagged as a violation.
 3. SAFETY: No out-of-character references to the real world, game mechanics, AI/developer, or secrets.
 
 ` + languageBlock + `Use the score_reply tool.`;
@@ -1193,7 +1261,7 @@ async function handleSugarAgentJudge(req, res) {
     externalDirectives
   );
   const hasLanguageDirectives = externalDirectives.length > 0;
-  const judgeSystemPrompt = "You are a quality reviewer for NPC dialogue in a cozy fantasy RPG. Score the NPC reply strictly against the rubric. The world premise and NPC persona define what is real in this world \u2014 any fact stated there is in-world by definition and must never be flagged as a violation. Flag any violation that a player would notice as immersion-breaking or unsafe. Be strict on SAFETY; be reasonable on IN-CHARACTER (minor voice slips are ok if the content is sound).";
+  const judgeSystemPrompt = "You are a quality reviewer for NPC dialogue in a cozy fantasy RPG. Score the NPC reply strictly against the rubric. The context you are shown is what the NPC knew when it wrote the reply \u2014 any fact stated there is in-world by definition and must never be flagged as a violation. Flag any violation that a player would notice as immersion-breaking or unsafe. Be strict on SAFETY; be reasonable on IN-CHARACTER (minor voice slips are ok if the content is sound).";
   const { properties: languageToolProperties, required: languageToolRequired } = buildLanguageToolFields(hasLanguageDirectives);
   const tool = {
     name: "score_reply",
@@ -2215,5 +2283,6 @@ export {
   sendJson,
   sendMethodNotAllowed,
   server,
-  splitLoreSections
+  splitLoreSections,
+  toStructuredOutputSchema
 };

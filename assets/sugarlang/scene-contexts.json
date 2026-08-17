@@ -3,162 +3,32 @@
   "promptVersion": "conjugation.concepts.0",
   "sceneContextModels": [
     {
-      "sceneId": "default",
-      "contentHash": "0690b8e7076d5d2ec5ca59027b877981adf823e96c14b87c026323361ee81703",
-      "promptVersion": "conjugation.concepts.0",
-      "supportLanguage": "en",
-      "prose": "This content concerns Earendale, a small floating island town of 57 residents that broke off from the ear of a giant landform called the Great Head. The town is home to magical birds called wordlarks near hot springs, and a resort and spa that draws hundreds of visitors seeking emotional healing. A Handbook item is also present, likely serving as a reference tool for the player.",
-      "concepts": [
-        {
-          "label": "air transport",
-          "provenance": [
-            {
-              "sourceId": "lore:lore.locations.towns.town.earendale",
-              "kind": "lore"
-            }
-          ]
-        },
-        {
-          "label": "bird",
-          "pos": "noun",
-          "provenance": [
-            {
-              "sourceId": "lore:lore.locations.towns.town.earendale",
-              "kind": "lore"
-            }
-          ]
-        },
-        {
-          "label": "earendale",
-          "pos": "proper-noun",
-          "provenance": [
-            {
-              "sourceId": "lore:lore.locations.towns.town.earendale",
-              "kind": "lore"
-            }
-          ]
-        },
-        {
-          "label": "floating island",
-          "provenance": [
-            {
-              "sourceId": "lore:lore.locations.towns.town.earendale",
-              "kind": "lore"
-            }
-          ]
-        },
-        {
-          "label": "handbook",
-          "pos": "noun",
-          "provenance": [
-            {
-              "sourceId": "item:d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
-              "kind": "item"
-            }
-          ]
-        },
-        {
-          "label": "hot spring",
-          "provenance": [
-            {
-              "sourceId": "lore:lore.locations.towns.town.earendale",
-              "kind": "lore"
-            }
-          ]
-        },
-        {
-          "label": "population",
-          "pos": "noun",
-          "provenance": [
-            {
-              "sourceId": "lore:lore.locations.towns.town.earendale",
-              "kind": "lore"
-            }
-          ]
-        },
-        {
-          "label": "relax",
-          "pos": "verb",
-          "provenance": [
-            {
-              "sourceId": "lore:lore.locations.towns.town.earendale",
-              "kind": "lore"
-            }
-          ]
-        },
-        {
-          "label": "resort",
-          "pos": "noun",
-          "provenance": [
-            {
-              "sourceId": "lore:lore.locations.towns.town.earendale",
-              "kind": "lore"
-            }
-          ]
-        },
-        {
-          "label": "spa",
-          "pos": "noun",
-          "provenance": [
-            {
-              "sourceId": "lore:lore.locations.towns.town.earendale",
-              "kind": "lore"
-            }
-          ]
-        },
-        {
-          "label": "travel",
-          "pos": "verb",
-          "provenance": [
-            {
-              "sourceId": "lore:lore.locations.towns.town.earendale",
-              "kind": "lore"
-            }
-          ]
-        },
-        {
-          "label": "visit",
-          "pos": "verb",
-          "provenance": [
-            {
-              "sourceId": "lore:lore.locations.towns.town.earendale",
-              "kind": "lore"
-            }
-          ]
-        }
-      ],
-      "extractedAtMs": 1786515208453,
-      "extractedByModel": "gateway-resolved",
-      "reviewFlag": false
-    },
-    {
       "sceneId": "arrival-station",
-      "contentHash": "318aa1ec4254fed3689037e9a98fb5bee2344b3af3df918c9f7baa4388c7effd",
+      "contentHash": "31540ea168b99ef0bdce4d08d3d71317dcf67543dfd4dc0ea040daf4eac14a69",
       "promptVersion": "conjugation.concepts.0",
       "supportLanguage": "en",
-      "prose": "The player has just arrived at Wordlark Hollow's Arrival Station, where Horace Pennyfeather, the Station Manager, greets them and welcomes them to town. Something is irregular today — the people who were supposed to be waiting for the player are nowhere to be found — and Horace suggests checking further into the station. The scene also introduces colorful townsfolk including Finnick Thorn, an anthropomorphic prairie dog who runs a cheese shop, and hints at the broader world of Earendale.",
+      "prose": "The player character Mim arrives by train at Wordlark Hollow, a mountain resort village, and is welcomed by Station Manager Horace Pennyfeather. Mim's aunt Eloise was supposed to meet her but hasn't shown up, so Horace sends Mim to check the station while he investigates. Along the way we're introduced to the village's colorful residents: Bo Greyfoot, a practical air whale handler; Finnick Thorn, an enthusiastic cheese shop owner; and Penelope McCrick, a wealthy, snobbish widow — while Mim carries her suitcase and a handbook.",
       "concepts": [
+        {
+          "label": "air whale",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.entities.npcs.bo_greyfoot",
+              "kind": "lore"
+            },
+            {
+              "sourceId": "npc:66013347-dc94-4518-898b-9dfd22ac7ced",
+              "kind": "npc"
+            }
+          ]
+        },
         {
           "label": "arrive",
           "pos": "verb",
           "provenance": [
             {
-              "sourceId": "dialogue:42670c12-cecb-4484-944b-0697935173f9",
-              "kind": "npc"
-            },
-            {
-              "sourceId": "region:arrival-station",
-              "kind": "region"
-            }
-          ]
-        },
-        {
-          "label": "check",
-          "pos": "verb",
-          "provenance": [
-            {
-              "sourceId": "dialogue:42670c12-cecb-4484-944b-0697935173f9",
-              "kind": "npc"
+              "sourceId": "quest:7d8625b2-3652-4e65-a68b-9cb47f15c33a",
+              "kind": "quest"
             }
           ]
         },
@@ -172,26 +42,6 @@
             },
             {
               "sourceId": "npc:c6b350c6-855f-4e34-875d-09e4be601993",
-              "kind": "npc"
-            }
-          ]
-        },
-        {
-          "label": "dock",
-          "pos": "noun",
-          "provenance": [
-            {
-              "sourceId": "region:arrival-station",
-              "kind": "region"
-            }
-          ]
-        },
-        {
-          "label": "greet",
-          "pos": "verb",
-          "provenance": [
-            {
-              "sourceId": "dialogue:42670c12-cecb-4484-944b-0697935173f9",
               "kind": "npc"
             }
           ]
@@ -211,48 +61,64 @@
           "pos": "verb",
           "provenance": [
             {
-              "sourceId": "dialogue:42670c12-cecb-4484-944b-0697935173f9",
-              "kind": "npc"
-            },
-            {
               "sourceId": "quest:7d8625b2-3652-4e65-a68b-9cb47f15c33a",
               "kind": "quest"
             }
           ]
         },
         {
-          "label": "manager",
+          "label": "mountain",
           "pos": "noun",
           "provenance": [
             {
-              "sourceId": "dialogue:42670c12-cecb-4484-944b-0697935173f9",
-              "kind": "npc"
-            },
-            {
-              "sourceId": "npc:42670c12-cecb-4484-944b-0697935173f9",
-              "kind": "npc"
+              "sourceId": "lore:lore.entities.npcs.bo_greyfoot",
+              "kind": "lore"
             }
           ]
         },
         {
-          "label": "pilot",
+          "label": "owl",
           "pos": "noun",
           "provenance": [
             {
-              "sourceId": "npc:66013347-dc94-4518-898b-9dfd22ac7ced",
-              "kind": "npc"
+              "sourceId": "lore:lore.entities.npcs.horace_pennyfeather",
+              "kind": "lore"
             }
           ]
         },
         {
-          "label": "sell",
-          "pos": "verb",
+          "label": "prairie dog",
           "provenance": [
             {
               "sourceId": "lore:lore.entities.npcs.finnick_thorn",
               "kind": "lore"
             }
           ]
+        },
+        {
+          "label": "raccoon",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.entities.npcs.penelope_mccrick",
+              "kind": "lore"
+            },
+            {
+              "sourceId": "npc:139daaec-a618-4053-b697-0ced0024d80d",
+              "kind": "npc"
+            }
+          ]
+        },
+        {
+          "label": "search",
+          "pos": "verb",
+          "provenance": [
+            {
+              "sourceId": "quest:7d8625b2-3652-4e65-a68b-9cb47f15c33a",
+              "kind": "quest"
+            }
+          ],
+          "mustComprehend": true
         },
         {
           "label": "shop",
@@ -273,12 +139,21 @@
           "pos": "noun",
           "provenance": [
             {
-              "sourceId": "dialogue:42670c12-cecb-4484-944b-0697935173f9",
-              "kind": "npc"
+              "sourceId": "lore:lore.entities.npcs.horace_pennyfeather",
+              "kind": "lore"
             },
             {
               "sourceId": "region:arrival-station",
               "kind": "region"
+            }
+          ]
+        },
+        {
+          "label": "station manager",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.entities.npcs.horace_pennyfeather",
+              "kind": "lore"
             }
           ]
         },
@@ -293,11 +168,59 @@
           ]
         },
         {
-          "label": "wait",
-          "pos": "verb",
+          "label": "tea",
+          "pos": "noun",
           "provenance": [
             {
-              "sourceId": "dialogue:42670c12-cecb-4484-944b-0697935173f9",
+              "sourceId": "lore:lore.entities.npcs.penelope_mccrick",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "tiger",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.entities.npcs.bo_greyfoot",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "train",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.entities.npcs.horace_pennyfeather",
+              "kind": "lore"
+            },
+            {
+              "sourceId": "region:arrival-station",
+              "kind": "region"
+            }
+          ]
+        },
+        {
+          "label": "village",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.entities.npcs.finnick_thorn",
+              "kind": "lore"
+            }
+          ]
+        },
+        {
+          "label": "wealth",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "lore:lore.entities.npcs.penelope_mccrick",
+              "kind": "lore"
+            },
+            {
+              "sourceId": "npc:139daaec-a618-4053-b697-0ced0024d80d",
               "kind": "npc"
             }
           ]
@@ -307,17 +230,45 @@
           "pos": "verb",
           "provenance": [
             {
-              "sourceId": "dialogue:42670c12-cecb-4484-944b-0697935173f9",
-              "kind": "npc"
-            },
-            {
               "sourceId": "quest:7d8625b2-3652-4e65-a68b-9cb47f15c33a",
               "kind": "quest"
             }
           ]
         }
       ],
-      "extractedAtMs": 1786515200065,
+      "extractedAtMs": 1786979267299,
+      "extractedByModel": "gateway-resolved",
+      "reviewFlag": true
+    },
+    {
+      "sceneId": "default",
+      "contentHash": "7e6850c5b4762f28b28fbeda1eba0fc4f5b8215b3b1fb32a8bca7a66cd7bc292",
+      "promptVersion": "conjugation.concepts.0",
+      "supportLanguage": "en",
+      "prose": "This content consists of a generic handbook item and an unnamed default game region, both apparently placeholder or introductory content without specific narrative detail. There is no clear activity or characters described, just an item labeled 'Handbook' and an area called 'Area 1'.",
+      "concepts": [
+        {
+          "label": "handbook",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "item:d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+              "kind": "item"
+            }
+          ]
+        },
+        {
+          "label": "region",
+          "pos": "noun",
+          "provenance": [
+            {
+              "sourceId": "region:default",
+              "kind": "region"
+            }
+          ]
+        }
+      ],
+      "extractedAtMs": 1786979271436,
       "extractedByModel": "gateway-resolved",
       "reviewFlag": false
     }
