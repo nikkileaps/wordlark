@@ -111,13 +111,13 @@
           "currentActivity": "idle",
           "currentGoal": "idle",
           "activation": {
-            "questDefinitionId": null,
-            "questStageId": null,
-            "worldFlagEquals": {
-              "key": "horace_intro_complete",
-              "valueType": "boolean",
-              "value": "true"
-            }
+            "questDefinitionId": "7d8625b2-3652-4e65-a68b-9cb47f15c33a",
+            "questStageId": "65868df1-f29e-423a-86a0-597e77377943",
+            "nodeCompleted": {
+              "questDefinitionId": "7d8625b2-3652-4e65-a68b-9cb47f15c33a",
+              "nodeId": "205d4d80-e81c-469e-85f8-0295ba38d5a7"
+            },
+            "worldFlagEquals": null
           },
           "timeWindow": null
         }
@@ -138,8 +138,9 @@
           "activation": {
             "questDefinitionId": null,
             "questStageId": null,
+            "nodeCompleted": null,
             "worldFlagEquals": {
-              "key": "talkedToDockWorker",
+              "worldFlagId": "89a839da-8850-4675-803d-1806df576703",
               "valueType": "boolean",
               "value": "true"
             }

@@ -37,33 +37,7 @@
       }
     }
   ],
-  "behaviors": [
-    {
-      "behaviorId": "region-behavior-1783038574090-1",
-      "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9",
-      "displayName": "Testy McTesterson Behavior",
-      "tasks": [
-        {
-          "taskId": "region-behavior-task-1783038574090-1",
-          "displayName": "Move After Intro",
-          "description": null,
-          "targetAreaId": "region-area-1783038665540-1",
-          "currentActivity": "idle",
-          "currentGoal": "idle",
-          "activation": {
-            "questDefinitionId": null,
-            "questStageId": null,
-            "worldFlagEquals": {
-              "key": "foo",
-              "valueType": "string",
-              "value": "bar"
-            }
-          },
-          "timeWindow": null
-        }
-      ]
-    }
-  ],
+  "behaviors": [],
   "landscape": {
     "enabled": true,
     "size": 100,

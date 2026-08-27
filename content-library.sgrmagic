@@ -1196,6 +1196,70 @@
         "fileName": "rail_1_v1.glb",
         "mimeType": null
       }
+    },
+    {
+      "definitionId": "asset:wild_shrub_1",
+      "definitionKind": "asset",
+      "displayName": "wild_shrub_1",
+      "assetKind": "foliage",
+      "surfaceSlots": [
+        {
+          "slotName": "FoilageMaker Export Trunk",
+          "slotIndex": 0,
+          "surface": null
+        },
+        {
+          "slotName": "FoilageMaker Export Leaves",
+          "slotIndex": 1,
+          "surface": {
+            "kind": "inline",
+            "surface": {
+              "layers": [
+                {
+                  "layerId": "df579048-3fb7-4892-a64c-058879b6c6fe",
+                  "displayName": "Base",
+                  "enabled": true,
+                  "opacity": 1,
+                  "mask": {
+                    "kind": "always"
+                  },
+                  "kind": "appearance",
+                  "blendMode": "base",
+                  "content": {
+                    "kind": "material",
+                    "materialDefinitionId": "material:wild_shrub_1:foilagemaker-export-leaves:1",
+                    "shaderOverrideDefinitionId": null,
+                    "tiling": null
+                  }
+                }
+              ],
+              "context": "universal"
+            }
+          }
+        }
+      ],
+      "deform": null,
+      "effect": null,
+      "collider": {
+        "shape": "auto-box",
+        "localBounds": {
+          "min": [
+            -1.7188238501548767,
+            0,
+            -1.7416679859161377
+          ],
+          "max": [
+            1.7188238501548767,
+            2.7985660433769226,
+            1.7416679859161377
+          ]
+        }
+      },
+      "source": {
+        "relativeAssetPath": "assets/imported/wild_shrub_1.glb",
+        "fileName": "wild_shrub_1.glb",
+        "mimeType": null
+      }
     }
   ],
   "audioClipDefinitions": [
@@ -1949,6 +2013,31 @@
         ]
       },
       "shaderDefinitionId": null
+    },
+    {
+      "definitionId": "material:wild_shrub_1:foilagemaker-export-leaves:1",
+      "definitionKind": "material",
+      "displayName": "wild_shrub_1 FoilageMaker Export Leaves",
+      "pbr": {
+        "baseColor": 8421504,
+        "baseColorMap": "texture:wild_shrub_1:image-1",
+        "normalMap": null,
+        "ormMap": null,
+        "roughnessMap": null,
+        "metallicMap": null,
+        "ambientOcclusionMap": null,
+        "roughness": 0.7,
+        "metallic": 0,
+        "ambientOcclusion": 1,
+        "emissiveColor": 0,
+        "emissiveIntensity": 0,
+        "emissiveMap": null,
+        "tiling": [
+          1,
+          1
+        ]
+      },
+      "shaderDefinitionId": null
     }
   ],
   "soundCueDefinitions": [
@@ -2140,6 +2229,18 @@
       },
       "colorSpace": "srgb",
       "packing": "rgba"
+    },
+    {
+      "definitionId": "texture:wild_shrub_1:image-1",
+      "definitionKind": "texture",
+      "displayName": "wild_shrub_1 FoilageMaker Export Leaves Base Color",
+      "source": {
+        "relativeAssetPath": "assets/textures/foilagemakerleafsprite.png",
+        "fileName": "foilagemakerleafsprite.png",
+        "mimeType": "image/png"
+      },
+      "colorSpace": "srgb",
+      "packing": "rgba"
     }
   ],
   "maskTextureDefinitions": [
@@ -2171,7 +2272,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "dbf5b93f-4913-4077-bffc-3d0d57303762",
+            "layerId": "9f018994-8fca-4a25-b65d-047e4459ba77",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -2186,7 +2287,7 @@
             }
           },
           {
-            "layerId": "6e7ef58b-0d2f-433d-be26-8c8f4bf57feb",
+            "layerId": "9dafb4eb-2de6-4848-a6f7-ae37627ba143",
             "displayName": "Tall Grass",
             "enabled": true,
             "opacity": 1,
@@ -2204,7 +2305,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "74477202-7c2f-42d4-9dbf-00d7f2eacc84",
+            "layerId": "7a7283f5-3fab-4da2-a3a8-2f48699282f2",
             "displayName": "Flowers",
             "enabled": true,
             "opacity": 0.7,
@@ -2222,7 +2323,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "b3ea83f4-97ef-4bcc-85ef-e50e9bc6fa29",
+            "layerId": "12c65ae1-5de6-45ea-af82-5bc09b507250",
             "displayName": "Warm Light",
             "enabled": true,
             "opacity": 0.5,
@@ -2251,7 +2352,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "ecaf8613-cd26-47fc-a421-d4f70ae5f374",
+            "layerId": "cd2d6598-5f82-4343-9266-21a24ef8d779",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -2266,7 +2367,7 @@
             }
           },
           {
-            "layerId": "8815df1b-f919-4742-b2a5-46db9d83d25b",
+            "layerId": "9aaa98f6-54dd-457c-b8e8-4eec57dfadcc",
             "displayName": "Grass",
             "enabled": true,
             "opacity": 1,
@@ -2284,7 +2385,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "88e523f1-ed3f-441d-9991-60410ad1b66e",
+            "layerId": "2b9b893b-5ff0-47a5-9484-4183774a0c65",
             "displayName": "Flowers",
             "enabled": true,
             "opacity": 0.45,
@@ -2316,7 +2417,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "530591ca-dbfd-4fea-a28c-4db9b21ba96d",
+            "layerId": "6684e586-6c22-437c-9be6-ab5a6d6e64b1",
             "displayName": "Bark",
             "enabled": true,
             "opacity": 1,
@@ -2331,7 +2432,7 @@
             }
           },
           {
-            "layerId": "5baee186-53a3-49d5-83bc-b81a5022f7d4",
+            "layerId": "b3ad4a41-de06-48e1-aaf0-10206eb08881",
             "displayName": "Moss Tint",
             "enabled": true,
             "opacity": 0.45,
@@ -2360,7 +2461,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "276f7049-7e20-4916-abab-3e307a77f373",
+            "layerId": "5695058f-c2c8-4ec5-ba84-3bfc3f9e787f",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -2375,7 +2476,7 @@
             }
           },
           {
-            "layerId": "e2616d3d-0654-4e53-bb7b-6d41ab4c7992",
+            "layerId": "724da5bc-2570-4c96-961c-059c85f62176",
             "displayName": "Short Grass",
             "enabled": true,
             "opacity": 1,
@@ -2407,7 +2508,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "8be1604f-7471-45e8-a75b-490817cf84a6",
+            "layerId": "3c43b3a1-3636-402a-9d7b-f6970400fa67",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -2422,7 +2523,7 @@
             }
           },
           {
-            "layerId": "82134968-0d15-467d-9504-7ec3c2ea600c",
+            "layerId": "40fa520b-7885-462c-937c-a336d3b9762d",
             "displayName": "Clover Base",
             "enabled": true,
             "opacity": 0.85,
@@ -2440,7 +2541,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "186d392b-b9c1-4ad8-a580-3dbc87935da2",
+            "layerId": "d4102183-6756-4714-a7c3-39e302a6c2f7",
             "displayName": "Tiny Blooms",
             "enabled": true,
             "opacity": 0.35,
@@ -2472,7 +2573,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "51041dc9-5c4a-46ee-ae34-2d2cc6db3bb3",
+            "layerId": "37294f5d-a41b-4f76-bfd2-d3d7d0759d80",
             "displayName": "Ground",
             "enabled": true,
             "opacity": 1,
@@ -2487,7 +2588,7 @@
             }
           },
           {
-            "layerId": "5acb0a12-ab23-4adb-8b6d-efe7c2c70118",
+            "layerId": "868bb261-0b06-405b-be8a-ec4666be7bbc",
             "displayName": "Painterly Tufts",
             "enabled": true,
             "opacity": 0.95,
@@ -2505,7 +2606,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "bb946002-6de2-46cf-afeb-3617671662c1",
+            "layerId": "d0e89bf0-d03e-4235-8617-63d18b429ce1",
             "displayName": "Tiny Blooms",
             "enabled": true,
             "opacity": 0.2,
@@ -2523,7 +2624,7 @@
             "textureBindings": {}
           },
           {
-            "layerId": "44623a19-dedf-4620-9ca7-fea7e4648a29",
+            "layerId": "9466af73-58ea-4d8c-a988-af5b0541c249",
             "displayName": "Warm Lift",
             "enabled": true,
             "opacity": 0.35,
@@ -2709,7 +2810,7 @@
       "surface": {
         "layers": [
           {
-            "layerId": "bbfec51b-dca7-4363-baf8-6392d72bb8e7",
+            "layerId": "d7ac1454-0df1-40dc-a023-03f9a9d31514",
             "displayName": "UV Grid",
             "enabled": true,
             "opacity": 1,
@@ -14113,7 +14214,8 @@
       "metadata": {
         "builtIn": true,
         "builtInKey": "card-foliage"
-      }
+      },
+      "groups": []
     },
     {
       "shaderDefinitionId": "wordlark:shader:card-foliage-2",

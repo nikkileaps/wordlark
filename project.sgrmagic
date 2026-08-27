@@ -716,7 +716,7 @@
     "casterProfile": {
       "initialBattery": 100,
       "rechargeRate": 1,
-      "initialResonance": 0,
+      "initialResonance": 10,
       "allowedSpellTags": [],
       "blockedSpellTags": []
     },
@@ -740,7 +740,8 @@
         "id": "spell",
         "args": {
           "batteryCost": 10,
-          "chaosBase": 0
+          "chaosBase": 0,
+          "resonanceCost": 10
         }
       },
       "effects": [
@@ -949,8 +950,8 @@
             }
           ],
           "graphPosition": {
-            "x": 756.1676965789989,
-            "y": 62.73745444084362
+            "x": 851.3163514339238,
+            "y": 71.71374263470446
           }
         },
         {
@@ -960,11 +961,12 @@
           "text": "Usually they're here waiting for you, but there seems to be some irregularity today. It's been a most unusual. You may want to check up at the station while I look into it. If they don't have it up there then come and find me.",
           "next": [],
           "graphPosition": {
-            "x": 1034.8492355962424,
-            "y": 90.54258443334044
+            "x": 1243.9967505132,
+            "y": 64.51134867114399
           }
         }
       ],
+      "groups": [],
       "interactionBinding": {
         "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9"
       }
@@ -985,6 +987,7 @@
           }
         }
       ],
+      "groups": [],
       "interactionBinding": {
         "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9"
       }
@@ -1035,6 +1038,7 @@
           }
         }
       ],
+      "groups": [],
       "interactionBinding": {
         "npcDefinitionId": null
       }
@@ -1055,7 +1059,7 @@
           "nodeDefinitions": [
             {
               "nodeId": "205d4d80-e81c-469e-85f8-0295ba38d5a7",
-              "displayName": "Objective",
+              "displayName": "Horace Welcome",
               "description": "Welcome",
               "nodeBehavior": "objective",
               "objectiveSubtype": "talk",
@@ -1071,8 +1075,9 @@
               "onEnterActions": [],
               "onCompleteActions": [
                 {
-                  "type": "setFlag",
-                  "targetId": "horace_intro_complete"
+                  "type": "setNpcInteractionMode",
+                  "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9",
+                  "mode": "agent"
                 }
               ],
               "showInHud": true,
@@ -1083,7 +1088,7 @@
             },
             {
               "nodeId": "6d77b65c-2dc0-426b-ab25-7d9f2c77b5d4",
-              "displayName": "Objective",
+              "displayName": "Assessment",
               "description": "Take the language assessment.",
               "nodeBehavior": "objective",
               "objectiveSubtype": "assessment",
@@ -1103,14 +1108,14 @@
               }
             }
           ],
+          "groups": [],
           "entryNodeIds": [
             "205d4d80-e81c-469e-85f8-0295ba38d5a7",
             "6d77b65c-2dc0-426b-ab25-7d9f2c77b5d4"
           ]
         }
       ],
-      "rewardDefinitions": [],
-      "repeatable": false
+      "rewardDefinitions": []
     }
   ],
   "menuDefinitions": [
@@ -1647,7 +1652,7 @@
       {
         "id": "resonance",
         "displayName": "Resonance",
-        "default": 0,
+        "default": 10,
         "min": 0,
         "max": 100,
         "decay": null,
@@ -1675,15 +1680,27 @@
             "required": true,
             "default": 0,
             "description": "Base chaos chance from 0 to 100."
+          },
+          {
+            "id": "resonanceCost",
+            "type": "number",
+            "required": false,
+            "default": 0,
+            "description": "Resonance consumed by the spell."
           }
         ],
-        "cost": "caster.battery >= self.batteryCost",
+        "cost": "caster.battery >= self.batteryCost && caster.resonance >= self.resonanceCost",
         "acceptsTarget": false,
         "onCast": [
           {
             "op": "consume",
             "target": "caster.battery",
             "amount": "self.batteryCost"
+          },
+          {
+            "op": "consume",
+            "target": "caster.resonance",
+            "amount": "self.resonanceCost"
           },
           {
             "op": "branch",
@@ -1712,1253 +1729,6 @@
   },
   "majorVersion": 1,
   "defaultGameSavePayload": null,
-  "scenes": [
-    {
-      "sceneId": "scene:default",
-      "sceneOrder": 0,
-      "displayName": "Arrival",
-      "description": "",
-      "notes": "",
-      "unlockCondition": "always",
-      "startingRegionId": "arrival-station",
-      "environmentOverride": null,
-      "audioOverride": null,
-      "transitionConfig": {
-        "titleText": "The Arrival",
-        "subtitleText": "Getting there is the battle",
-        "durationMs": 2500,
-        "fadeStyle": "black"
-      },
-      "regionOverlays": {
-        "default": {
-          "itemPresences": [
-            {
-              "presenceId": "f089bb66-f05f-4b9c-8a84-b9e2ef2f45ee",
-              "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
-              "quantity": 1,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  6.52598755829983,
-                  1.0157776627494237,
-                  0
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            }
-          ],
-          "npcPresences": [],
-          "playerPresence": null,
-          "placedAssets": [
-            {
-              "instanceId": "placed-asset:dock-platform-small-1783639128300-1",
-              "assetDefinitionId": "asset:dock-platform-small",
-              "displayName": "dock-platform-small",
-              "parentFolderId": null,
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  0,
-                  0.5,
-                  0
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            }
-          ],
-          "folders": [],
-          "assetAppearanceOverrides": {}
-        },
-        "arrival-station": {
-          "itemPresences": [
-            {
-              "presenceId": "ee24e114-85e4-4d2a-bc0e-bafcda3691c4",
-              "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
-              "quantity": 1,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -11.44616089976463,
-                  0.5901045448114219,
-                  19.324857884928115
-                ],
-                "rotation": [
-                  -1.5407792815096668,
-                  -0.02788381031405726,
-                  -0.9609310479200881
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "presenceId": "e1b5d2f0-ad65-438a-9dd2-56639d3f16e0",
-              "itemDefinitionId": "3ad23d81-9851-4827-aff5-0780e76e24ec",
-              "quantity": 1,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -7.845582883428927,
-                  0.18082335729000776,
-                  19.611042836236788
-                ],
-                "rotation": [
-                  -1.3391238632436748,
-                  -0.004287834346092615,
-                  -0.2966473850591107
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            }
-          ],
-          "npcPresences": [
-            {
-              "presenceId": "fac3c793-5487-4567-81c0-1dba7453d982",
-              "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9",
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -0.33260616542648824,
-                  0,
-                  25.036540016040817
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              },
-              "condition": null,
-              "placementLabel": null
-            },
-            {
-              "presenceId": "8e3e3e99-b9a6-49aa-96cd-1fc9d30847e2",
-              "npcDefinitionId": "c6b350c6-855f-4e34-875d-09e4be601993",
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -3.329848870426665,
-                  0,
-                  14.135935632231483
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              },
-              "condition": null,
-              "placementLabel": null
-            },
-            {
-              "presenceId": "2dbf0a9d-2d6c-4d35-af45-96824ceda719",
-              "npcDefinitionId": "139daaec-a618-4053-b697-0ced0024d80d",
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  8.549643397950312,
-                  0,
-                  19.10044393184615
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              },
-              "condition": null,
-              "placementLabel": null
-            },
-            {
-              "presenceId": "78fe0af5-0cb7-4483-9faf-2c6a6e729cee",
-              "npcDefinitionId": "66013347-dc94-4518-898b-9dfd22ac7ced",
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  15.847908145699982,
-                  0,
-                  22.830002347029883
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              },
-              "condition": null,
-              "placementLabel": null
-            }
-          ],
-          "playerPresence": {
-            "presenceId": "d009bfe5-f0bd-4284-8cd6-64f388f811e6",
-            "transform": {
-              "position": [
-                -0.28402981253048964,
-                0,
-                28.319343273122428
-              ],
-              "rotation": [
-                0,
-                -3.0840797787920757,
-                0
-              ],
-              "scale": [
-                1,
-                1,
-                1
-              ]
-            }
-          },
-          "placedAssets": [
-            {
-              "instanceId": "placed-asset:dock_previz_v2-1784178409623-1",
-              "assetDefinitionId": "asset:dock_previz_v2",
-              "displayName": "dock_previz_v2",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "colliderOverride": {
-                "shape": "none",
-                "localBounds": null
-              },
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  0,
-                  -0.03697909459484938,
-                  20.52763049883001
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:test_tree_7-1784179928805-1",
-              "assetDefinitionId": "asset:test_tree_7",
-              "displayName": "test_tree_7",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -9.754294290755682,
-                  0.5,
-                  14.596905747755159
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:dryad_statue_previz_v3-1784231488689-1",
-              "assetDefinitionId": "asset:dryad_statue_previz_v3",
-              "displayName": "dryad_statue_previz_v3",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "surfaceSlotOverrides": [
-                {
-                  "slotName": "stone",
-                  "surface": {
-                    "kind": "inline",
-                    "surface": {
-                      "layers": [
-                        {
-                          "layerId": "4aaf68bf-3426-4a96-8d93-bc5a6e7844bb",
-                          "displayName": "Base",
-                          "enabled": true,
-                          "opacity": 1,
-                          "mask": {
-                            "kind": "always"
-                          },
-                          "kind": "appearance",
-                          "blendMode": "base",
-                          "content": {
-                            "kind": "color",
-                            "color": 8026752
-                          }
-                        },
-                        {
-                          "layerId": "0843c4e5-6bea-45dd-a51d-9c1e30d89ec0",
-                          "displayName": "Appearance",
-                          "enabled": true,
-                          "opacity": 0.8,
-                          "mask": {
-                            "kind": "world-position-gradient",
-                            "axis": "y",
-                            "min": 0.61,
-                            "max": 0.79,
-                            "fade": 0.23,
-                            "space": "local"
-                          },
-                          "kind": "appearance",
-                          "blendMode": "mix",
-                          "content": {
-                            "kind": "color",
-                            "color": 13749959
-                          }
-                        }
-                      ],
-                      "context": "universal"
-                    }
-                  }
-                }
-              ],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -2.160809417187729,
-                  -3.4946382236008393,
-                  25.31321219934368
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:rock_formation_1-1784233294715-1",
-              "assetDefinitionId": "asset:rock_formation_1",
-              "displayName": "rock_formation_1",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -8.152521717285504,
-                  -0.21326563862501258,
-                  15.281124735492412
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  2.0211986374453446,
-                  2.0211986374453446,
-                  2.0211986374453446
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:dryad_statue_previz_v3-1784237107244-1",
-              "assetDefinitionId": "asset:dryad_statue_previz_v3",
-              "displayName": "dryad_statue_previz_v3",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "surfaceSlotOverrides": [
-                {
-                  "slotName": "stone",
-                  "surface": {
-                    "kind": "inline",
-                    "surface": {
-                      "layers": [
-                        {
-                          "layerId": "f529812c-4905-4067-85f9-903d967bba0a",
-                          "displayName": "Base",
-                          "enabled": true,
-                          "opacity": 1,
-                          "mask": {
-                            "kind": "always"
-                          },
-                          "kind": "appearance",
-                          "blendMode": "base",
-                          "content": {
-                            "kind": "color",
-                            "color": 8026752
-                          }
-                        },
-                        {
-                          "layerId": "6a02de75-e5b9-421a-ac5d-844dbfe635cd",
-                          "displayName": "Appearance",
-                          "enabled": true,
-                          "opacity": 0.8,
-                          "mask": {
-                            "kind": "world-position-gradient",
-                            "axis": "y",
-                            "min": 0.73,
-                            "max": 0.83,
-                            "fade": 0.29,
-                            "space": "local"
-                          },
-                          "kind": "appearance",
-                          "blendMode": "mix",
-                          "content": {
-                            "kind": "color",
-                            "color": 13749959
-                          }
-                        }
-                      ],
-                      "context": "universal"
-                    }
-                  }
-                }
-              ],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  1.413266725976436,
-                  -3.5283838670795884,
-                  25.237791737043175
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:rock_1-1784260085859-1",
-              "assetDefinitionId": "asset:rock_1",
-              "displayName": "rock_1",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  0,
-                  -0.1336472455508093,
-                  -5.0359801705966944
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:station_bench_1_v1-1784260385233-1",
-              "assetDefinitionId": "asset:station_bench_1_v1",
-              "displayName": "station_bench_1_v1",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  7.633495977903912,
-                  0.03706311626947478,
-                  15.850771499009392
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:rock_formation_1-1784324425106-1",
-              "assetDefinitionId": "asset:rock_formation_1",
-              "displayName": "rock_formation_1",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  3.683526488735809,
-                  -0.06478251662935985,
-                  23.68838075241398
-                ],
-                "rotation": [
-                  0,
-                  -1.3822102470544686,
-                  0
-                ],
-                "scale": [
-                  4.006534451718614,
-                  3.4936596151403068,
-                  3.366313856415849
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:waiting_platform_1_v1-1784615850706-1",
-              "assetDefinitionId": "asset:waiting_platform_1_v1",
-              "displayName": "waiting_platform_1_v1",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  7.328187479283811,
-                  0.05225033898938314,
-                  15.672711236876705
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:crate_whole_closed_1_v1-1784616140238-1",
-              "assetDefinitionId": "asset:crate_whole_closed_1_v1",
-              "displayName": "crate_whole_closed_1_v1",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  19.46214240712027,
-                  -0.018289255422863526,
-                  23.616881123074336
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:park_bench_1_v6-1784674714230-1",
-              "assetDefinitionId": "asset:park_bench_1_v6",
-              "displayName": "park_bench_1_v6",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -10.544395371241215,
-                  0.00358280765169694,
-                  19.09486748056721
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1.130949141961887,
-                  1.130949141961887,
-                  1.130949141961887
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:street_light_1_v1-1784682756065-1",
-              "assetDefinitionId": "asset:street_light_1_v1",
-              "displayName": "street_light_1_v1",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -4.404102834573648,
-                  0.033499013268611044,
-                  14.426762063209022
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:rock_formation_1-1785208281418-1",
-              "assetDefinitionId": "asset:rock_formation_1",
-              "displayName": "rock_formation_1 Copy",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -3.9082219259239683,
-                  -0.21326563862501258,
-                  24.49900872513433
-                ],
-                "rotation": [
-                  0,
-                  1.0204301481280886,
-                  0
-                ],
-                "scale": [
-                  2.1169153268267693,
-                  2.7110103158154017,
-                  2.1169153268267693
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:cliff-edge-a-1785213963220-1",
-              "assetDefinitionId": "asset:cliff-edge-a",
-              "displayName": "cliff-edge-a",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "surfaceSlotOverrides": [
-                {
-                  "slotName": "Grass",
-                  "surface": {
-                    "kind": "inline",
-                    "surface": {
-                      "layers": [
-                        {
-                          "layerId": "85b2926a-c4ff-49a0-9f93-636e569ca6f1",
-                          "displayName": "Base",
-                          "enabled": true,
-                          "opacity": 1,
-                          "mask": {
-                            "kind": "always"
-                          },
-                          "kind": "appearance",
-                          "blendMode": "base",
-                          "content": {
-                            "kind": "material",
-                            "materialDefinitionId": "wordlark:material:material-1783620672561-1",
-                            "shaderOverrideDefinitionId": null,
-                            "tiling": null
-                          }
-                        }
-                      ],
-                      "context": "universal"
-                    }
-                  }
-                }
-              ],
-              "colliderOverride": {
-                "shape": "none",
-                "localBounds": null
-              },
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -16.20380839571842,
-                  -0.35546943909003703,
-                  26.048328110833186
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:cliff-edge-b-1785214103064-1",
-              "assetDefinitionId": "asset:cliff-edge-b",
-              "displayName": "cliff-edge-b",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "surfaceSlotOverrides": [
-                {
-                  "slotName": "Grass",
-                  "surface": {
-                    "kind": "inline",
-                    "surface": {
-                      "layers": [
-                        {
-                          "layerId": "bbf20af6-327c-4ad2-b2a4-ac3eb1df1c03",
-                          "displayName": "Base",
-                          "enabled": true,
-                          "opacity": 1,
-                          "mask": {
-                            "kind": "always"
-                          },
-                          "kind": "appearance",
-                          "blendMode": "base",
-                          "content": {
-                            "kind": "material",
-                            "materialDefinitionId": "wordlark:material:material-1783620672561-1",
-                            "shaderOverrideDefinitionId": null,
-                            "tiling": null
-                          }
-                        }
-                      ],
-                      "context": "universal"
-                    }
-                  }
-                }
-              ],
-              "colliderOverride": {
-                "shape": "auto-box",
-                "localBounds": {
-                  "min": [
-                    -6.5287251472473145,
-                    -8.249584197998047,
-                    -2.810279130935669
-                  ],
-                  "max": [
-                    6.474574089050293,
-                    0.3284364342689514,
-                    1.1280326843261719
-                  ]
-                }
-              },
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -7.580842467514623,
-                  -0.2452530567461353,
-                  27.468931236638216
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1.6596965429185042
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:cliff-edge-b-1785214755966-1",
-              "assetDefinitionId": "asset:cliff-edge-b",
-              "displayName": "cliff-edge-b Copy",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "surfaceSlotOverrides": [
-                {
-                  "slotName": "Grass",
-                  "surface": {
-                    "kind": "inline",
-                    "surface": {
-                      "layers": [
-                        {
-                          "layerId": "bbf20af6-327c-4ad2-b2a4-ac3eb1df1c03",
-                          "displayName": "Base",
-                          "enabled": true,
-                          "opacity": 1,
-                          "mask": {
-                            "kind": "always"
-                          },
-                          "kind": "appearance",
-                          "blendMode": "base",
-                          "content": {
-                            "kind": "material",
-                            "materialDefinitionId": "wordlark:material:material-1783620672561-1",
-                            "shaderOverrideDefinitionId": null,
-                            "tiling": null
-                          }
-                        }
-                      ],
-                      "context": "universal"
-                    }
-                  }
-                }
-              ],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  12.72462555453116,
-                  -0.39292627614253073,
-                  27.85657240659368
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1.9455376505298463,
-                  1,
-                  1.6596965429185042
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:test_tree_7-1785251418662-1",
-              "assetDefinitionId": "asset:test_tree_7",
-              "displayName": "test_tree_7",
-              "parentFolderId": null,
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -17.399666398043664,
-                  0.5,
-                  -8.816260718324685
-                ],
-                "rotation": [
-                  0,
-                  -0.7856186936211537,
-                  0
-                ],
-                "scale": [
-                  1.2669249638740985,
-                  0.8499716623615414,
-                  1.3286621967067083
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:test_tree_6-1785251465728-1",
-              "assetDefinitionId": "asset:test_tree_6",
-              "displayName": "test_tree_6",
-              "parentFolderId": null,
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -16.692843174140695,
-                  0.5,
-                  2.0557377947620648
-                ],
-                "rotation": [
-                  0,
-                  -1.6210399991315432,
-                  0
-                ],
-                "scale": [
-                  1.5895583267001387,
-                  1.2426177710744486,
-                  1.5895583267001387
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:test_tree_6-1785251516845-2",
-              "assetDefinitionId": "asset:test_tree_6",
-              "displayName": "test_tree_6",
-              "parentFolderId": null,
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  0,
-                  0.5,
-                  0
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:mountain-far-c-1785256557832-1",
-              "assetDefinitionId": "asset:mountain-far-c",
-              "displayName": "mountain-far-c",
-              "parentFolderId": null,
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -197.16668505334658,
-                  -26.559299468679463,
-                  -491.1061668400727
-                ],
-                "rotation": [
-                  0,
-                  1.1357095509559365,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:mountain-peak-b-1785256685536-1",
-              "assetDefinitionId": "asset:mountain-peak-b",
-              "displayName": "mountain-peak-b",
-              "parentFolderId": null,
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -133.36066566982205,
-                  -25.109763285299618,
-                  -128.77670710995432
-                ],
-                "rotation": [
-                  0,
-                  0.33664410969943753,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:mountain-far-c-1785256850914-2",
-              "assetDefinitionId": "asset:mountain-far-c",
-              "displayName": "mountain-far-c Copy",
-              "parentFolderId": null,
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -56.77758875503869,
-                  -26.559299468679463,
-                  -490.1061668400727
-                ],
-                "rotation": [
-                  0,
-                  1.1357095509559365,
-                  0
-                ],
-                "scale": [
-                  1,
-                  0.7523089953959944,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:mountain-far-c-1785256899197-3",
-              "assetDefinitionId": "asset:mountain-far-c",
-              "displayName": "mountain-far-c Copy",
-              "parentFolderId": null,
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  273.37184043835816,
-                  -26.559299468679463,
-                  -490.1061668400727
-                ],
-                "rotation": [
-                  0,
-                  1.1357095509559365,
-                  0
-                ],
-                "scale": [
-                  3.715856918752331,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:mountain-far-c Copy-1785256923330-1",
-              "assetDefinitionId": "asset:mountain-far-c",
-              "displayName": "mountain-far-c Copy Copy",
-              "parentFolderId": null,
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  194.81331257772558,
-                  -42.98598400144303,
-                  -751.4358945834749
-                ],
-                "rotation": [
-                  0,
-                  1.705541946236881,
-                  0
-                ],
-                "scale": [
-                  3.715856918752331,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:mountain-ridge-a-1785257035162-1",
-              "assetDefinitionId": "asset:mountain-ridge-a",
-              "displayName": "mountain-ridge-a",
-              "parentFolderId": null,
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  225.62549060997284,
-                  -32.629329942328816,
-                  -269.355997917318
-                ],
-                "rotation": [
-                  0,
-                  -1.8893985574936152,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:rail_1_v1-1786665565855-1",
-              "assetDefinitionId": "asset:rail_1_v1",
-              "displayName": "rail_1_v1",
-              "parentFolderId": null,
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -1.4100427819391819,
-                  -0.02385400902360979,
-                  30.571957846684267
-                ],
-                "rotation": [
-                  0,
-                  -1.5199792104555638,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:rail_1_v1-1786665706897-2",
-              "assetDefinitionId": "asset:rail_1_v1",
-              "displayName": "rail_1_v1 Copy",
-              "parentFolderId": null,
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  0.5526135709565827,
-                  -0.02385400902360979,
-                  30.23403987168751
-                ],
-                "rotation": [
-                  0,
-                  -1.5199792104555638,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            },
-            {
-              "instanceId": "placed-asset:crate_whole_closed_1_v1-1786665959013-1",
-              "assetDefinitionId": "asset:crate_whole_closed_1_v1",
-              "displayName": "crate_whole_closed_1_v1 Copy",
-              "parentFolderId": "scene-folder-1783830960362-2",
-              "inspectable": null,
-              "shaderOverrides": [],
-              "shaderParameterOverrides": [],
-              "transform": {
-                "position": [
-                  -0.37093709897572014,
-                  -0.018289255422863526,
-                  31.565614604581647
-                ],
-                "rotation": [
-                  0,
-                  0,
-                  0
-                ],
-                "scale": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            }
-          ],
-          "folders": [
-            {
-              "folderId": "scene-folder-1783830567607-1",
-              "displayName": "shrine",
-              "parentFolderId": null
-            },
-            {
-              "folderId": "scene-folder-1783830815490-1",
-              "displayName": "lost resonance",
-              "parentFolderId": null
-            },
-            {
-              "folderId": "scene-folder-1783830960362-2",
-              "displayName": "dock",
-              "parentFolderId": null
-            }
-          ],
-          "assetAppearanceOverrides": {}
-        }
-      }
-    },
-    {
-      "sceneId": "scene-1783109660782-1",
-      "sceneOrder": 1,
-      "displayName": "Finding that Guy",
-      "description": "",
-      "notes": "",
-      "unlockCondition": {
-        "kind": "questComplete",
-        "questDefinitionId": "7d8625b2-3652-4e65-a68b-9cb47f15c33a"
-      },
-      "startingRegionId": null,
-      "environmentOverride": null,
-      "audioOverride": null,
-      "transitionConfig": {
-        "titleText": "Finding Guy",
-        "subtitleText": "Just Keep Swimming",
-        "durationMs": 2500,
-        "fadeStyle": "black"
-      },
-      "regionOverlays": {}
-    },
-    {
-      "sceneId": "scene-1783181377160-1",
-      "sceneOrder": 2,
-      "displayName": "Meeting Agatha",
-      "description": "",
-      "notes": "",
-      "unlockCondition": "always",
-      "startingRegionId": null,
-      "environmentOverride": null,
-      "audioOverride": null,
-      "transitionConfig": null,
-      "regionOverlays": {}
-    }
-  ],
-  "scenesUiLabel": "Scene",
   "musicBindings": {
     "menuMusicId": "c1db7287-c29f-4aa8-aaef-ed8705deefdf",
     "defaultBackgroundMusicId": null,
@@ -2973,5 +1743,1347 @@
         ]
       }
     ]
-  }
+  },
+  "worldFlagDefinitions": [
+    {
+      "definitionId": "89a839da-8850-4675-803d-1806df576703",
+      "name": "talkedToDockWorker",
+      "displayName": "talkedToDockWorker",
+      "description": "",
+      "valueType": "boolean"
+    },
+    {
+      "definitionId": "cb81c6a1-2da9-4ba4-80a4-45e594d220b3",
+      "name": "bunnyFooFoo",
+      "displayName": "bunnyFooFoo",
+      "description": "",
+      "valueType": "boolean"
+    }
+  ],
+  "episodes": [
+    {
+      "episodeId": "episode:default",
+      "displayName": "Wordlark Hollow",
+      "description": "",
+      "notes": "",
+      "unlockCondition": "always",
+      "transitionConfig": null,
+      "scenes": [
+        {
+          "sceneId": "scene:default",
+          "displayName": "Arrival",
+          "description": "",
+          "notes": "",
+          "startingRegionId": "arrival-station",
+          "environmentOverride": null,
+          "audioOverride": null,
+          "transitionConfig": {
+            "titleText": "The Arrival",
+            "subtitleText": "Getting there is the battle",
+            "durationMs": 2500,
+            "fadeStyle": "black"
+          },
+          "regionOverlays": {
+            "default": {
+              "itemPresences": [
+                {
+                  "presenceId": "f089bb66-f05f-4b9c-8a84-b9e2ef2f45ee",
+                  "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+                  "quantity": 1,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      6.52598755829983,
+                      1.0157776627494237,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                }
+              ],
+              "npcPresences": [],
+              "playerPresence": null,
+              "placedAssets": [
+                {
+                  "instanceId": "placed-asset:dock-platform-small-1783639128300-1",
+                  "assetDefinitionId": "asset:dock-platform-small",
+                  "displayName": "dock-platform-small",
+                  "parentFolderId": null,
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      0,
+                      0.5,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                }
+              ],
+              "folders": [],
+              "assetAppearanceOverrides": {}
+            },
+            "arrival-station": {
+              "itemPresences": [
+                {
+                  "presenceId": "ee24e114-85e4-4d2a-bc0e-bafcda3691c4",
+                  "itemDefinitionId": "d90d83e7-1398-4ca2-9131-7e7cf4f89cab",
+                  "quantity": 1,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -11.44616089976463,
+                      0.5901045448114219,
+                      19.324857884928115
+                    ],
+                    "rotation": [
+                      -1.5407792815096668,
+                      -0.02788381031405726,
+                      -0.9609310479200881
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "presenceId": "e1b5d2f0-ad65-438a-9dd2-56639d3f16e0",
+                  "itemDefinitionId": "3ad23d81-9851-4827-aff5-0780e76e24ec",
+                  "quantity": 1,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -7.845582883428927,
+                      0.18082335729000776,
+                      19.611042836236788
+                    ],
+                    "rotation": [
+                      -1.3391238632436748,
+                      -0.004287834346092615,
+                      -0.2966473850591107
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                }
+              ],
+              "npcPresences": [
+                {
+                  "presenceId": "fac3c793-5487-4567-81c0-1dba7453d982",
+                  "npcDefinitionId": "42670c12-cecb-4484-944b-0697935173f9",
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -0.33260616542648824,
+                      0,
+                      25.036540016040817
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  },
+                  "condition": null,
+                  "placementLabel": null
+                },
+                {
+                  "presenceId": "8e3e3e99-b9a6-49aa-96cd-1fc9d30847e2",
+                  "npcDefinitionId": "c6b350c6-855f-4e34-875d-09e4be601993",
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -3.329848870426665,
+                      0,
+                      14.135935632231483
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  },
+                  "condition": null,
+                  "placementLabel": null
+                },
+                {
+                  "presenceId": "2dbf0a9d-2d6c-4d35-af45-96824ceda719",
+                  "npcDefinitionId": "139daaec-a618-4053-b697-0ced0024d80d",
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      8.549643397950312,
+                      0,
+                      19.10044393184615
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  },
+                  "condition": null,
+                  "placementLabel": null
+                },
+                {
+                  "presenceId": "78fe0af5-0cb7-4483-9faf-2c6a6e729cee",
+                  "npcDefinitionId": "66013347-dc94-4518-898b-9dfd22ac7ced",
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      15.847908145699982,
+                      0,
+                      22.830002347029883
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  },
+                  "condition": null,
+                  "placementLabel": null
+                }
+              ],
+              "playerPresence": {
+                "presenceId": "d009bfe5-f0bd-4284-8cd6-64f388f811e6",
+                "transform": {
+                  "position": [
+                    -0.28402981253048964,
+                    0,
+                    28.319343273122428
+                  ],
+                  "rotation": [
+                    0,
+                    -3.0840797787920757,
+                    0
+                  ],
+                  "scale": [
+                    1,
+                    1,
+                    1
+                  ]
+                }
+              },
+              "placedAssets": [
+                {
+                  "instanceId": "placed-asset:dock_previz_v2-1784178409623-1",
+                  "assetDefinitionId": "asset:dock_previz_v2",
+                  "displayName": "dock_previz_v2",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "colliderOverride": {
+                    "shape": "none",
+                    "localBounds": null
+                  },
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      0,
+                      -0.03697909459484938,
+                      20.52763049883001
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:test_tree_7-1784179928805-1",
+                  "assetDefinitionId": "asset:test_tree_7",
+                  "displayName": "test_tree_7",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -9.754294290755682,
+                      0.5,
+                      14.596905747755159
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:dryad_statue_previz_v3-1784231488689-1",
+                  "assetDefinitionId": "asset:dryad_statue_previz_v3",
+                  "displayName": "dryad_statue_previz_v3",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "surfaceSlotOverrides": [
+                    {
+                      "slotName": "stone",
+                      "surface": {
+                        "kind": "inline",
+                        "surface": {
+                          "layers": [
+                            {
+                              "layerId": "4aaf68bf-3426-4a96-8d93-bc5a6e7844bb",
+                              "displayName": "Base",
+                              "enabled": true,
+                              "opacity": 1,
+                              "mask": {
+                                "kind": "always"
+                              },
+                              "kind": "appearance",
+                              "blendMode": "base",
+                              "content": {
+                                "kind": "color",
+                                "color": 8026752
+                              }
+                            },
+                            {
+                              "layerId": "0843c4e5-6bea-45dd-a51d-9c1e30d89ec0",
+                              "displayName": "Appearance",
+                              "enabled": true,
+                              "opacity": 0.8,
+                              "mask": {
+                                "kind": "world-position-gradient",
+                                "axis": "y",
+                                "min": 0.61,
+                                "max": 0.79,
+                                "fade": 0.23,
+                                "space": "local"
+                              },
+                              "kind": "appearance",
+                              "blendMode": "mix",
+                              "content": {
+                                "kind": "color",
+                                "color": 13749959
+                              }
+                            }
+                          ],
+                          "context": "universal"
+                        }
+                      }
+                    }
+                  ],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -2.160809417187729,
+                      -3.4946382236008393,
+                      25.31321219934368
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:rock_formation_1-1784233294715-1",
+                  "assetDefinitionId": "asset:rock_formation_1",
+                  "displayName": "rock_formation_1",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -8.152521717285504,
+                      -0.21326563862501258,
+                      15.281124735492412
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      2.0211986374453446,
+                      2.0211986374453446,
+                      2.0211986374453446
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:dryad_statue_previz_v3-1784237107244-1",
+                  "assetDefinitionId": "asset:dryad_statue_previz_v3",
+                  "displayName": "dryad_statue_previz_v3",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "surfaceSlotOverrides": [
+                    {
+                      "slotName": "stone",
+                      "surface": {
+                        "kind": "inline",
+                        "surface": {
+                          "layers": [
+                            {
+                              "layerId": "f529812c-4905-4067-85f9-903d967bba0a",
+                              "displayName": "Base",
+                              "enabled": true,
+                              "opacity": 1,
+                              "mask": {
+                                "kind": "always"
+                              },
+                              "kind": "appearance",
+                              "blendMode": "base",
+                              "content": {
+                                "kind": "color",
+                                "color": 8026752
+                              }
+                            },
+                            {
+                              "layerId": "6a02de75-e5b9-421a-ac5d-844dbfe635cd",
+                              "displayName": "Appearance",
+                              "enabled": true,
+                              "opacity": 0.8,
+                              "mask": {
+                                "kind": "world-position-gradient",
+                                "axis": "y",
+                                "min": 0.73,
+                                "max": 0.83,
+                                "fade": 0.29,
+                                "space": "local"
+                              },
+                              "kind": "appearance",
+                              "blendMode": "mix",
+                              "content": {
+                                "kind": "color",
+                                "color": 13749959
+                              }
+                            }
+                          ],
+                          "context": "universal"
+                        }
+                      }
+                    }
+                  ],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      1.413266725976436,
+                      -3.5283838670795884,
+                      25.237791737043175
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:rock_1-1784260085859-1",
+                  "assetDefinitionId": "asset:rock_1",
+                  "displayName": "rock_1",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      0,
+                      -0.1336472455508093,
+                      -5.0359801705966944
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:station_bench_1_v1-1784260385233-1",
+                  "assetDefinitionId": "asset:station_bench_1_v1",
+                  "displayName": "station_bench_1_v1",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      7.633495977903912,
+                      0.03706311626947478,
+                      15.850771499009392
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:rock_formation_1-1784324425106-1",
+                  "assetDefinitionId": "asset:rock_formation_1",
+                  "displayName": "rock_formation_1",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      3.683526488735809,
+                      -0.06478251662935985,
+                      23.68838075241398
+                    ],
+                    "rotation": [
+                      0,
+                      -1.3822102470544686,
+                      0
+                    ],
+                    "scale": [
+                      4.006534451718614,
+                      3.4936596151403068,
+                      3.366313856415849
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:waiting_platform_1_v1-1784615850706-1",
+                  "assetDefinitionId": "asset:waiting_platform_1_v1",
+                  "displayName": "waiting_platform_1_v1",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      7.328187479283811,
+                      0.05225033898938314,
+                      15.672711236876705
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:crate_whole_closed_1_v1-1784616140238-1",
+                  "assetDefinitionId": "asset:crate_whole_closed_1_v1",
+                  "displayName": "crate_whole_closed_1_v1",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      19.46214240712027,
+                      -0.018289255422863526,
+                      23.616881123074336
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:park_bench_1_v6-1784674714230-1",
+                  "assetDefinitionId": "asset:park_bench_1_v6",
+                  "displayName": "park_bench_1_v6",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -10.544395371241215,
+                      0.00358280765169694,
+                      19.09486748056721
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1.130949141961887,
+                      1.130949141961887,
+                      1.130949141961887
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:street_light_1_v1-1784682756065-1",
+                  "assetDefinitionId": "asset:street_light_1_v1",
+                  "displayName": "street_light_1_v1",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -4.404102834573648,
+                      0.033499013268611044,
+                      14.426762063209022
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:rock_formation_1-1785208281418-1",
+                  "assetDefinitionId": "asset:rock_formation_1",
+                  "displayName": "rock_formation_1 Copy",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -3.9082219259239683,
+                      -0.21326563862501258,
+                      24.49900872513433
+                    ],
+                    "rotation": [
+                      0,
+                      1.0204301481280886,
+                      0
+                    ],
+                    "scale": [
+                      2.1169153268267693,
+                      2.7110103158154017,
+                      2.1169153268267693
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:cliff-edge-a-1785213963220-1",
+                  "assetDefinitionId": "asset:cliff-edge-a",
+                  "displayName": "cliff-edge-a",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "surfaceSlotOverrides": [
+                    {
+                      "slotName": "Grass",
+                      "surface": {
+                        "kind": "inline",
+                        "surface": {
+                          "layers": [
+                            {
+                              "layerId": "85b2926a-c4ff-49a0-9f93-636e569ca6f1",
+                              "displayName": "Base",
+                              "enabled": true,
+                              "opacity": 1,
+                              "mask": {
+                                "kind": "always"
+                              },
+                              "kind": "appearance",
+                              "blendMode": "base",
+                              "content": {
+                                "kind": "material",
+                                "materialDefinitionId": "wordlark:material:material-1783620672561-1",
+                                "shaderOverrideDefinitionId": null,
+                                "tiling": null
+                              }
+                            }
+                          ],
+                          "context": "universal"
+                        }
+                      }
+                    }
+                  ],
+                  "colliderOverride": {
+                    "shape": "none",
+                    "localBounds": null
+                  },
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -16.20380839571842,
+                      -0.35546943909003703,
+                      26.048328110833186
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:cliff-edge-b-1785214103064-1",
+                  "assetDefinitionId": "asset:cliff-edge-b",
+                  "displayName": "cliff-edge-b",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "surfaceSlotOverrides": [
+                    {
+                      "slotName": "Grass",
+                      "surface": {
+                        "kind": "inline",
+                        "surface": {
+                          "layers": [
+                            {
+                              "layerId": "bbf20af6-327c-4ad2-b2a4-ac3eb1df1c03",
+                              "displayName": "Base",
+                              "enabled": true,
+                              "opacity": 1,
+                              "mask": {
+                                "kind": "always"
+                              },
+                              "kind": "appearance",
+                              "blendMode": "base",
+                              "content": {
+                                "kind": "material",
+                                "materialDefinitionId": "wordlark:material:material-1783620672561-1",
+                                "shaderOverrideDefinitionId": null,
+                                "tiling": null
+                              }
+                            }
+                          ],
+                          "context": "universal"
+                        }
+                      }
+                    }
+                  ],
+                  "colliderOverride": {
+                    "shape": "auto-box",
+                    "localBounds": {
+                      "min": [
+                        -6.5287251472473145,
+                        -8.249584197998047,
+                        -2.810279130935669
+                      ],
+                      "max": [
+                        6.474574089050293,
+                        0.3284364342689514,
+                        1.1280326843261719
+                      ]
+                    }
+                  },
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -7.580842467514623,
+                      -0.2452530567461353,
+                      27.468931236638216
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1.6596965429185042
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:cliff-edge-b-1785214755966-1",
+                  "assetDefinitionId": "asset:cliff-edge-b",
+                  "displayName": "cliff-edge-b Copy",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "surfaceSlotOverrides": [
+                    {
+                      "slotName": "Grass",
+                      "surface": {
+                        "kind": "inline",
+                        "surface": {
+                          "layers": [
+                            {
+                              "layerId": "bbf20af6-327c-4ad2-b2a4-ac3eb1df1c03",
+                              "displayName": "Base",
+                              "enabled": true,
+                              "opacity": 1,
+                              "mask": {
+                                "kind": "always"
+                              },
+                              "kind": "appearance",
+                              "blendMode": "base",
+                              "content": {
+                                "kind": "material",
+                                "materialDefinitionId": "wordlark:material:material-1783620672561-1",
+                                "shaderOverrideDefinitionId": null,
+                                "tiling": null
+                              }
+                            }
+                          ],
+                          "context": "universal"
+                        }
+                      }
+                    }
+                  ],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      12.72462555453116,
+                      -0.39292627614253073,
+                      27.85657240659368
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1.9455376505298463,
+                      1,
+                      1.6596965429185042
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:test_tree_7-1785251418662-1",
+                  "assetDefinitionId": "asset:test_tree_7",
+                  "displayName": "test_tree_7",
+                  "parentFolderId": null,
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -17.399666398043664,
+                      0.5,
+                      -8.816260718324685
+                    ],
+                    "rotation": [
+                      0,
+                      -0.7856186936211537,
+                      0
+                    ],
+                    "scale": [
+                      1.2669249638740985,
+                      0.8499716623615414,
+                      1.3286621967067083
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:test_tree_6-1785251465728-1",
+                  "assetDefinitionId": "asset:test_tree_6",
+                  "displayName": "test_tree_6",
+                  "parentFolderId": null,
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -16.692843174140695,
+                      0.5,
+                      2.0557377947620648
+                    ],
+                    "rotation": [
+                      0,
+                      -1.6210399991315432,
+                      0
+                    ],
+                    "scale": [
+                      1.5895583267001387,
+                      1.2426177710744486,
+                      1.5895583267001387
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:test_tree_6-1785251516845-2",
+                  "assetDefinitionId": "asset:test_tree_6",
+                  "displayName": "test_tree_6",
+                  "parentFolderId": null,
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      0,
+                      0.5,
+                      0
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:mountain-far-c-1785256557832-1",
+                  "assetDefinitionId": "asset:mountain-far-c",
+                  "displayName": "mountain-far-c",
+                  "parentFolderId": null,
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -197.16668505334658,
+                      -26.559299468679463,
+                      -491.1061668400727
+                    ],
+                    "rotation": [
+                      0,
+                      1.1357095509559365,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:mountain-peak-b-1785256685536-1",
+                  "assetDefinitionId": "asset:mountain-peak-b",
+                  "displayName": "mountain-peak-b",
+                  "parentFolderId": null,
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -133.36066566982205,
+                      -25.109763285299618,
+                      -128.77670710995432
+                    ],
+                    "rotation": [
+                      0,
+                      0.33664410969943753,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:mountain-far-c-1785256850914-2",
+                  "assetDefinitionId": "asset:mountain-far-c",
+                  "displayName": "mountain-far-c Copy",
+                  "parentFolderId": null,
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -56.77758875503869,
+                      -26.559299468679463,
+                      -490.1061668400727
+                    ],
+                    "rotation": [
+                      0,
+                      1.1357095509559365,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      0.7523089953959944,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:mountain-far-c-1785256899197-3",
+                  "assetDefinitionId": "asset:mountain-far-c",
+                  "displayName": "mountain-far-c Copy",
+                  "parentFolderId": null,
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      273.37184043835816,
+                      -26.559299468679463,
+                      -490.1061668400727
+                    ],
+                    "rotation": [
+                      0,
+                      1.1357095509559365,
+                      0
+                    ],
+                    "scale": [
+                      3.715856918752331,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:mountain-far-c Copy-1785256923330-1",
+                  "assetDefinitionId": "asset:mountain-far-c",
+                  "displayName": "mountain-far-c Copy Copy",
+                  "parentFolderId": null,
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      194.81331257772558,
+                      -42.98598400144303,
+                      -751.4358945834749
+                    ],
+                    "rotation": [
+                      0,
+                      1.705541946236881,
+                      0
+                    ],
+                    "scale": [
+                      3.715856918752331,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:mountain-ridge-a-1785257035162-1",
+                  "assetDefinitionId": "asset:mountain-ridge-a",
+                  "displayName": "mountain-ridge-a",
+                  "parentFolderId": null,
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      225.62549060997284,
+                      -32.629329942328816,
+                      -269.355997917318
+                    ],
+                    "rotation": [
+                      0,
+                      -1.8893985574936152,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:rail_1_v1-1786665565855-1",
+                  "assetDefinitionId": "asset:rail_1_v1",
+                  "displayName": "rail_1_v1",
+                  "parentFolderId": null,
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -1.4100427819391819,
+                      -0.02385400902360979,
+                      30.571957846684267
+                    ],
+                    "rotation": [
+                      0,
+                      -1.5199792104555638,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:rail_1_v1-1786665706897-2",
+                  "assetDefinitionId": "asset:rail_1_v1",
+                  "displayName": "rail_1_v1 Copy",
+                  "parentFolderId": null,
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      0.5526135709565827,
+                      -0.02385400902360979,
+                      30.23403987168751
+                    ],
+                    "rotation": [
+                      0,
+                      -1.5199792104555638,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:crate_whole_closed_1_v1-1786665959013-1",
+                  "assetDefinitionId": "asset:crate_whole_closed_1_v1",
+                  "displayName": "crate_whole_closed_1_v1 Copy",
+                  "parentFolderId": "scene-folder-1783830960362-2",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -0.37093709897572014,
+                      -0.018289255422863526,
+                      31.565614604581647
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      1,
+                      1,
+                      1
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:wild_shrub_1-1787078577721-1",
+                  "assetDefinitionId": "asset:wild_shrub_1",
+                  "displayName": "wild_shrub_1",
+                  "parentFolderId": "scene-folder-1783830567607-1",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -2.8748001962033634,
+                      -1.0420624709369273,
+                      -8.756843015912601
+                    ],
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": [
+                      0.9687185494314862,
+                      0.9687185494314862,
+                      0.9687185494314862
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:wild_shrub_1-1787078686293-2",
+                  "assetDefinitionId": "asset:wild_shrub_1",
+                  "displayName": "wild_shrub_1 Copy",
+                  "parentFolderId": "scene-folder-1783830567607-1",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -0.8678499060542055,
+                      -1.0034398453345226,
+                      -8.532556519055179
+                    ],
+                    "rotation": [
+                      0,
+                      -1.137850415886267,
+                      0
+                    ],
+                    "scale": [
+                      0.9687185494314862,
+                      0.9687185494314862,
+                      0.9687185494314862
+                    ]
+                  }
+                },
+                {
+                  "instanceId": "placed-asset:wild_shrub_1 Copy-1787078882122-1",
+                  "assetDefinitionId": "asset:wild_shrub_1",
+                  "displayName": "wild_shrub_1 Copy Copy",
+                  "parentFolderId": "scene-folder-1783830567607-1",
+                  "inspectable": null,
+                  "shaderOverrides": [],
+                  "shaderParameterOverrides": [],
+                  "transform": {
+                    "position": [
+                      -0.15900562283974917,
+                      -0.6440117777020977,
+                      -6.729334288133764
+                    ],
+                    "rotation": [
+                      0,
+                      -1.137850415886267,
+                      0
+                    ],
+                    "scale": [
+                      0.6989784511909124,
+                      0.6989784511909124,
+                      0.6989784511909124
+                    ]
+                  }
+                }
+              ],
+              "folders": [
+                {
+                  "folderId": "scene-folder-1783830567607-1",
+                  "displayName": "shrine",
+                  "parentFolderId": null
+                },
+                {
+                  "folderId": "scene-folder-1783830815490-1",
+                  "displayName": "lost resonance",
+                  "parentFolderId": null
+                },
+                {
+                  "folderId": "scene-folder-1783830960362-2",
+                  "displayName": "dock",
+                  "parentFolderId": null
+                }
+              ],
+              "assetAppearanceOverrides": {}
+            }
+          }
+        },
+        {
+          "sceneId": "scene-1783109660782-1",
+          "displayName": "Finding that Guy",
+          "description": "",
+          "notes": "",
+          "startingRegionId": null,
+          "environmentOverride": null,
+          "audioOverride": null,
+          "transitionConfig": {
+            "titleText": "Finding Guy",
+            "subtitleText": "Just Keep Swimming",
+            "durationMs": 2500,
+            "fadeStyle": "black"
+          },
+          "regionOverlays": {}
+        },
+        {
+          "sceneId": "scene-1783181377160-1",
+          "displayName": "Meeting Agatha",
+          "description": "",
+          "notes": "",
+          "startingRegionId": null,
+          "environmentOverride": null,
+          "audioOverride": null,
+          "transitionConfig": null,
+          "regionOverlays": {}
+        }
+      ]
+    }
+  ],
+  "episodeEndRouting": "episodes-screen"
 }

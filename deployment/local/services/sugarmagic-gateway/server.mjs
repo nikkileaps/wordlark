@@ -1161,6 +1161,13 @@ async function handleSugarAgentGenerate(req, res) {
   sendJson(res, 200, {
     text,
     requestId: headers.get("request-id"),
+    // WHY THE MODEL STOPPED. A reply cut off at `max_tokens` and a reply the
+    // model simply wrote badly are indistinguishable from the text alone: both
+    // arrive as something that will not parse. The scene-context pass failed
+    // for days reported as "invalid JSON" when every one of those replies was
+    // complete-but-truncated, and the parser error was the only clue anyone
+    // had. Callers branch on this instead of guessing from a parser message.
+    stopReason: typeof payload.stop_reason === "string" ? payload.stop_reason : null,
     usage: {
       inputTokens: usageNumber("input_tokens"),
       outputTokens: usageNumber("output_tokens"),
