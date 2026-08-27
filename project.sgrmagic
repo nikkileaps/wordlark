@@ -75,6 +75,15 @@
         },
         "deployHistory": [
           {
+            "runId": 33076879884,
+            "runUrl": "https://github.com/nikkileaps/wordlark/actions/runs/33076879884",
+            "ref": "main",
+            "headSha": "a79a5a2cfa7a92837d1af78afc8103879956ee21",
+            "dispatchedAt": "2026-08-27T13:27:06.440Z",
+            "status": "queued",
+            "conclusion": null
+          },
+          {
             "runId": 30047619966,
             "runUrl": "https://github.com/nikkileaps/wordlark/actions/runs/30047619966",
             "ref": "main",
@@ -145,7 +154,7 @@
       "enabled": true,
       "config": {
         "targetLanguage": "es",
-        "debugBandOverride": "A1",
+        "debugBandOverride": "",
         "teachPlans": {
           "version": "090.11.1",
           "lang": "es",
