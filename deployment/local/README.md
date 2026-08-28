@@ -10,7 +10,6 @@ Service Units:
   - route /api/sugaragent/generate
   - route /api/sugaragent/lore
   - route /api/sugaragent/retrieve
-  - route /api/sugarlang/telemetry
 
 Local Target Notes:
 - Copy .env.example to .env before starting the stack.

@@ -20,14 +20,12 @@
       "executionModel": "request-response",
       "isolation": "shared-allowed",
       "ownerIds": [
-        "sugaragent",
-        "sugarlang"
+        "sugaragent"
       ],
       "routes": [
         "/api/sugaragent/generate",
         "/api/sugaragent/lore",
-        "/api/sugaragent/retrieve",
-        "/api/sugarlang/telemetry"
+        "/api/sugaragent/retrieve"
       ],
       "hostPort": 8787
     }
