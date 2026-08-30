@@ -171,11 +171,26 @@ async function verifySupabaseJwt(req) {
 var PERSONA_CARD_SECTION_SLUGS = ["persona", "voice"];
 var SECRETS_SECTION_SLUG = "secrets";
 var RELATIONSHIPS_SECTION_SLUG = "relationships";
+var RECOVERY_SECTION_SLUG = "recovery";
+var RECOVERY_STRATEGIES = [
+  "curt-exit",
+  "change-subject",
+  "joke",
+  "playful-probe",
+  "self-disclosure",
+  "gossip"
+];
 function isPersonaCardSection(section) {
   return PERSONA_CARD_SECTION_SLUGS.includes(section.slug);
 }
 function isRelationshipsSection(section) {
   return section.slug === RELATIONSHIPS_SECTION_SLUG;
+}
+function isRecoverySection(section) {
+  return section.slug === RECOVERY_SECTION_SLUG;
+}
+function isWithheldSection(section) {
+  return isSecretSection(section) || isRecoverySection(section);
 }
 var LINKED_NAME = /^(?:[-*]\s+)?\[([^\]]+)\]\(([^)]+)\)\s*(.*)$/;
 function stripLeadingSeparator(text) {
@@ -214,20 +229,42 @@ function findRelationshipEntry(entries, target) {
 function isSecretSection(section) {
   return section.slug === SECRETS_SECTION_SLUG;
 }
+var RECOVERY_ENTRY = /^[-*]\s+([^\s:]+)/;
+function isRecoveryStrategy(name) {
+  return RECOVERY_STRATEGIES.includes(name);
+}
+function parseRecoveryStrategies(content) {
+  const strategies = [];
+  const unrecognized = [];
+  for (const rawLine of content.split("\n")) {
+    const entry = RECOVERY_ENTRY.exec(rawLine.trim());
+    if (!entry) continue;
+    const name = entry[1].toLowerCase();
+    if (isRecoveryStrategy(name)) {
+      strategies.push(name);
+    } else {
+      unrecognized.push(name);
+    }
+  }
+  return { strategies, unrecognized };
+}
 function designateLoreSections(sections) {
   const personaCard = [];
   const coreKnowledge = [];
   const secrets = [];
+  const recovery = [];
   for (const section of sections) {
     if (isSecretSection(section)) {
       secrets.push(section);
+    } else if (isRecoverySection(section)) {
+      recovery.push(section);
     } else if (isPersonaCardSection(section)) {
       personaCard.push(section);
     } else {
       coreKnowledge.push(section);
     }
   }
-  return { personaCard, coreKnowledge, secrets };
+  return { personaCard, coreKnowledge, secrets, recovery };
 }
 function composeLoreBody(sections) {
   return sections.map(
@@ -565,6 +602,9 @@ function readCanonLevel(metadata, relativePath, warnings) {
   );
   return "hard";
 }
+function stripTrailingRule(content) {
+  return content.replace(/(?:\n\s*(?:-{3,}|\*{3,}|_{3,})\s*)+$/, "").trim();
+}
 function splitLoreSections(markdown) {
   const lines = markdown.split("\n");
   const sections = [];
@@ -576,7 +616,7 @@ function splitLoreSections(markdown) {
   for (const line of lines) {
     const headingMatch = /^(#{1,6})\s+(.+)$/.exec(line.trim());
     if (headingMatch) {
-      const content = current.contentLines.join("\n").trim();
+      const content = stripTrailingRule(current.contentLines.join("\n"));
       if (content) {
         sections.push({
           heading: current.heading,
@@ -594,7 +634,7 @@ function splitLoreSections(markdown) {
     }
     current.contentLines.push(line);
   }
-  const trailingContent = current.contentLines.join("\n").trim();
+  const trailingContent = stripTrailingRule(current.contentLines.join("\n"));
   if (trailingContent) {
     sections.push({
       heading: current.heading,
@@ -707,6 +747,13 @@ function readLorePages() {
     const relativePath = relative(source.sourcePath, absolutePath);
     const title = typeof metadata["title"] === "string" && metadata["title"].trim() || pageId.split(".").at(-1) || pageId;
     const sections = splitLoreSections(body);
+    for (const section of sections.filter(isRecoverySection)) {
+      for (const name of parseRecoveryStrategies(section.content).unrecognized) {
+        warnings.push(
+          'Ignored unknown recovery strategy "' + name + '" in ' + relativePath + " (" + pageId + "). Known strategies: " + RECOVERY_STRATEGIES.join(", ") + "."
+        );
+      }
+    }
     pages.push({
       pageId,
       title,
@@ -730,7 +777,7 @@ function readLorePages() {
       continue;
     }
     for (const section of sections) {
-      if (isSecretSection(section)) continue;
+      if (isWithheldSection(section)) continue;
       const chunkId = pageId + "#" + section.slug;
       const embeddingText = [
         "Page ID: " + pageId,
@@ -1562,28 +1609,21 @@ async function handleSugarAgentLoreResolve(req, res) {
       missingPageIds.push(pageId);
       continue;
     }
-    const hasSecret = page.sections.some(isSecretSection);
-    if (!hasSecret) {
-      resolvedPages.push({
-        pageId: page.pageId,
-        title: page.title,
-        relativePath: page.relativePath,
-        sectionCount: page.sectionCount,
-        body: page.body,
-        sections: page.sections
-      });
-      continue;
-    }
-    const visibleSections = page.sections.filter(
+    const sections = page.sections.filter(
       (section) => !isSecretSection(section)
+    );
+    const bodySections = sections.filter(
+      (section) => !isRecoverySection(section)
     );
     resolvedPages.push({
       pageId: page.pageId,
       title: page.title,
       relativePath: page.relativePath,
-      sectionCount: visibleSections.length,
-      body: composeLoreBody(visibleSections),
-      sections: visibleSections
+      sectionCount: sections.length,
+      // A page with nothing withheld ships its raw markdown untouched;
+      // recomposing would round-trip the author's formatting for no reason.
+      body: bodySections.length === page.sections.length ? page.body : composeLoreBody(bodySections),
+      sections
     });
   }
   sendJson(res, 200, {
@@ -2033,14 +2073,14 @@ async function handleSugarAgentLoreProbe(req, res) {
   }
   sendJson(res, 200, { ok: true, steps, durationMs });
 }
-var TELEMETRY_PII_FIELDS = [
+var SUGARLANG_TELEMETRY_PII_FIELDS = [
   "inputText",
   "originalText",
   "repairedText",
   "playerResponseText"
 ];
-function scrubTelemetryEvent(event) {
-  for (const field of TELEMETRY_PII_FIELDS) {
+function scrubSugarlangTelemetryEvent(event) {
+  for (const field of SUGARLANG_TELEMETRY_PII_FIELDS) {
     delete event[field];
   }
   const observations = event.observations;
@@ -2057,7 +2097,7 @@ function scrubTelemetryEvent(event) {
     }
   }
 }
-async function handleTelemetryIngest(req, res) {
+async function handleSugarlangTelemetry(req, res) {
   if (req.method !== "POST") {
     sendMethodNotAllowed(res, ["POST"]);
     return;
@@ -2083,7 +2123,7 @@ async function handleTelemetryIngest(req, res) {
   for (let i = 0; i < accepted; i++) {
     const event = events[i];
     if (typeof event === "object" && event !== null) {
-      scrubTelemetryEvent(event);
+      scrubSugarlangTelemetryEvent(event);
       process.stdout.write(JSON.stringify(event) + "\n");
     }
   }
@@ -2212,9 +2252,9 @@ var server = createServer(async (req, res) => {
       await handleSugarAgentLoreProbe(req, res);
       return;
     }
-    if (match.routeId === "telemetry" && path === match.path) {
+    if (match.routeId === "sugarlang-telemetry" && path === match.path) {
       logInfo("gateway:dispatch", { routeId: match.routeId, path });
-      await handleTelemetryIngest(req, res);
+      await handleSugarlangTelemetry(req, res);
       return;
     }
     logInfo("gateway:route-unimplemented", {
@@ -2278,7 +2318,6 @@ export {
   handleSugarAgentLoreStatus,
   handleSugarAgentModerate,
   handleSugarAgentSearch,
-  handleTelemetryIngest,
   indexedChunksByAddress,
   initGateway,
   isLoreVectorStoreFile,
@@ -2294,7 +2333,6 @@ export {
   resetLoreIngestState,
   resolveAllowedOrigin,
   resolveCorsHeaders,
-  scrubTelemetryEvent,
   sendJson,
   sendMethodNotAllowed,
   server,
