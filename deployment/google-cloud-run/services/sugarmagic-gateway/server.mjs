@@ -171,26 +171,11 @@ async function verifySupabaseJwt(req) {
 var PERSONA_CARD_SECTION_SLUGS = ["persona", "voice"];
 var SECRETS_SECTION_SLUG = "secrets";
 var RELATIONSHIPS_SECTION_SLUG = "relationships";
-var RECOVERY_SECTION_SLUG = "recovery";
-var RECOVERY_STRATEGIES = [
-  "curt-exit",
-  "change-subject",
-  "joke",
-  "playful-probe",
-  "self-disclosure",
-  "gossip"
-];
 function isPersonaCardSection(section) {
   return PERSONA_CARD_SECTION_SLUGS.includes(section.slug);
 }
 function isRelationshipsSection(section) {
   return section.slug === RELATIONSHIPS_SECTION_SLUG;
-}
-function isRecoverySection(section) {
-  return section.slug === RECOVERY_SECTION_SLUG;
-}
-function isWithheldSection(section) {
-  return isSecretSection(section) || isRecoverySection(section);
 }
 var LINKED_NAME = /^(?:[-*]\s+)?\[([^\]]+)\]\(([^)]+)\)\s*(.*)$/;
 function stripLeadingSeparator(text) {
@@ -229,42 +214,20 @@ function findRelationshipEntry(entries, target) {
 function isSecretSection(section) {
   return section.slug === SECRETS_SECTION_SLUG;
 }
-var RECOVERY_ENTRY = /^[-*]\s+([^\s:]+)/;
-function isRecoveryStrategy(name) {
-  return RECOVERY_STRATEGIES.includes(name);
-}
-function parseRecoveryStrategies(content) {
-  const strategies = [];
-  const unrecognized = [];
-  for (const rawLine of content.split("\n")) {
-    const entry = RECOVERY_ENTRY.exec(rawLine.trim());
-    if (!entry) continue;
-    const name = entry[1].toLowerCase();
-    if (isRecoveryStrategy(name)) {
-      strategies.push(name);
-    } else {
-      unrecognized.push(name);
-    }
-  }
-  return { strategies, unrecognized };
-}
 function designateLoreSections(sections) {
   const personaCard = [];
   const coreKnowledge = [];
   const secrets = [];
-  const recovery = [];
   for (const section of sections) {
     if (isSecretSection(section)) {
       secrets.push(section);
-    } else if (isRecoverySection(section)) {
-      recovery.push(section);
     } else if (isPersonaCardSection(section)) {
       personaCard.push(section);
     } else {
       coreKnowledge.push(section);
     }
   }
-  return { personaCard, coreKnowledge, secrets, recovery };
+  return { personaCard, coreKnowledge, secrets };
 }
 function composeLoreBody(sections) {
   return sections.map(
@@ -747,13 +710,6 @@ function readLorePages() {
     const relativePath = relative(source.sourcePath, absolutePath);
     const title = typeof metadata["title"] === "string" && metadata["title"].trim() || pageId.split(".").at(-1) || pageId;
     const sections = splitLoreSections(body);
-    for (const section of sections.filter(isRecoverySection)) {
-      for (const name of parseRecoveryStrategies(section.content).unrecognized) {
-        warnings.push(
-          'Ignored unknown recovery strategy "' + name + '" in ' + relativePath + " (" + pageId + "). Known strategies: " + RECOVERY_STRATEGIES.join(", ") + "."
-        );
-      }
-    }
     pages.push({
       pageId,
       title,
@@ -770,14 +726,15 @@ function readLorePages() {
         title,
         sectionHeading: title,
         sectionSlug: SOFT_PAGE_CHUNK_SLUG,
+        sectionIndex: 0,
         relativePath,
         embeddingText: ["Page ID: " + pageId, "Title: " + title].join("\n\n"),
         canonLevel
       });
       continue;
     }
-    for (const section of sections) {
-      if (isWithheldSection(section)) continue;
+    sections.forEach((section, sectionIndex) => {
+      if (isSecretSection(section)) return;
       const chunkId = pageId + "#" + section.slug;
       const embeddingText = [
         "Page ID: " + pageId,
@@ -791,11 +748,12 @@ function readLorePages() {
         title,
         sectionHeading: section.heading,
         sectionSlug: section.slug,
+        sectionIndex,
         relativePath,
         embeddingText,
         canonLevel
       });
-    }
+    });
   }
   pages.sort((left, right) => left.pageId.localeCompare(right.pageId));
   chunks.sort((left, right) => left.chunkId.localeCompare(right.chunkId));
@@ -826,7 +784,7 @@ async function listVectorStoreFiles(vectorStoreId) {
   const items = [];
   let after = "";
   while (true) {
-    const query = after ? "?after=" + encodeURIComponent(after) : "";
+    const query = "?limit=100" + (after ? "&after=" + encodeURIComponent(after) : "");
     const { payload } = await requestJson(
       "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/files" + query,
       {
@@ -882,17 +840,99 @@ async function deleteVectorStoreFile(vectorStoreId, vectorStoreFileId) {
   );
 }
 var MAX_FILES_PER_BATCH = 2e3;
+var LORE_CHUNK_FETCH_CONCURRENCY = 8;
 var UPLOAD_CONCURRENCY = 8;
 var BATCH_INDEX_DEADLINE_MS = 30 * 60 * 1e3;
 var BATCH_POLL_INTERVAL_MS = 2e3;
 function chunkContentHash(chunk) {
   return createHash("sha256").update(chunk.embeddingText, "utf8").digest("hex");
 }
+async function fetchChunkText(vectorStoreId, fileId) {
+  const { payload } = await requestJson(
+    "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/files/" + fileId + "/content",
+    {
+      method: "GET",
+      headers: {
+        authorization: "Bearer " + requireEnv("SUGARMAGIC_OPENAI_API_KEY")
+      }
+    },
+    "OpenAI vector store file content"
+  );
+  const data = payload?.data;
+  if (!Array.isArray(data)) return "";
+  return data.map(
+    (part) => typeof part?.text === "string" ? part.text : ""
+  ).join("");
+}
+function stripChunkHeader(text) {
+  const marker = "\n\nSection: ";
+  const at = text.indexOf(marker);
+  if (at < 0) return text.trim();
+  const afterHeading = text.indexOf("\n\n", at + marker.length);
+  return afterHeading < 0 ? "" : text.slice(afterHeading + 2).trim();
+}
+function readChunkRef(file) {
+  const attributes = file["attributes"];
+  if (typeof attributes !== "object" || attributes === null) return null;
+  const read = (key) => {
+    const value = attributes[key];
+    return typeof value === "string" ? value : "";
+  };
+  const pageId = read("page_id");
+  const fileId = typeof file["id"] === "string" ? file["id"] : "";
+  if (!pageId || !fileId) return null;
+  return {
+    fileId,
+    pageId,
+    title: read("title") || pageId,
+    sectionSlug: read("section_slug"),
+    sectionHeading: read("section_heading"),
+    // Chunks indexed before section_index existed sort last rather than
+    // scrambling the ones that have it.
+    sectionIndex: Number(read("section_index") || Number.MAX_SAFE_INTEGER),
+    relativePath: read("relative_path")
+  };
+}
+async function readLorePagesFromStore(vectorStoreId, pageIds) {
+  const wanted = new Set(pageIds);
+  const refs = (await listVectorStoreFiles(vectorStoreId)).map(readChunkRef).filter((ref) => ref !== null && wanted.has(ref.pageId));
+  const texts = await mapWithConcurrency(
+    refs,
+    LORE_CHUNK_FETCH_CONCURRENCY,
+    (ref) => fetchChunkText(vectorStoreId, ref.fileId)
+  );
+  const byPage = /* @__PURE__ */ new Map();
+  refs.forEach((ref, index) => {
+    const entries = byPage.get(ref.pageId) ?? [];
+    entries.push({ ref, content: stripChunkHeader(texts[index] ?? "") });
+    byPage.set(ref.pageId, entries);
+  });
+  const pages = [];
+  for (const [pageId, entries] of byPage) {
+    entries.sort((left, right) => left.ref.sectionIndex - right.ref.sectionIndex);
+    const sections = entries.filter((entry) => entry.ref.sectionSlug !== SOFT_PAGE_CHUNK_SLUG).map((entry) => ({
+      heading: entry.ref.sectionHeading,
+      slug: entry.ref.sectionSlug,
+      content: entry.content
+    }));
+    const first = entries[0].ref;
+    pages.push({
+      pageId,
+      title: first.title,
+      relativePath: first.relativePath,
+      sectionCount: sections.length,
+      body: composeLoreBody(sections),
+      sections
+    });
+  }
+  return pages;
+}
 function chunkAttributes(chunk) {
   return {
     page_id: chunk.pageId,
     chunk_id: chunk.chunkId,
     section_slug: chunk.sectionSlug,
+    section_index: String(chunk.sectionIndex),
     section_heading: chunk.sectionHeading,
     title: chunk.title,
     relative_path: chunk.relativePath,
@@ -1597,39 +1637,32 @@ async function handleSugarAgentLoreResolve(req, res) {
     });
     return;
   }
-  const lore = readLorePages();
-  const pagesById = new Map(
-    lore.pages.map((page) => [page.pageId, page])
-  );
+  const vectorStoreId = resolveEnv("SUGARMAGIC_SUGARAGENT_OPENAI_VECTOR_STORE_ID");
+  if (!vectorStoreId) {
+    sendJson(res, 503, {
+      ok: false,
+      error: "LoreStoreUnavailable",
+      message: "SUGARMAGIC_SUGARAGENT_OPENAI_VECTOR_STORE_ID is not configured, so no lore page can be read. Set it in the SugarAgent plugin settings and redeploy."
+    });
+    return;
+  }
+  const pages = await readLorePagesFromStore(vectorStoreId, pageIds);
+  const pagesById = new Map(pages.map((page) => [page.pageId, page]));
   const resolvedPages = [];
   const missingPageIds = [];
   for (const pageId of pageIds) {
     const page = pagesById.get(pageId);
-    if (!page) {
+    if (page) {
+      resolvedPages.push(page);
+    } else {
       missingPageIds.push(pageId);
-      continue;
     }
-    const sections = page.sections.filter(
-      (section) => !isWithheldSection(section)
-    );
-    const recoverySections = page.sections.filter(isRecoverySection);
-    resolvedPages.push({
-      pageId: page.pageId,
-      title: page.title,
-      relativePath: page.relativePath,
-      sectionCount: sections.length,
-      // A page with nothing withheld ships its raw markdown untouched;
-      // recomposing would round-trip the author's formatting for no reason.
-      body: sections.length === page.sections.length ? page.body : composeLoreBody(sections),
-      sections,
-      ...recoverySections.length > 0 ? { recoverySections } : {}
-    });
   }
   sendJson(res, 200, {
     ok: true,
     pages: resolvedPages,
     missingPageIds,
-    warnings: lore.warnings
+    warnings: []
   });
 }
 async function runIngestWork(vectorStoreId, mode, lore) {
@@ -2330,6 +2363,7 @@ export {
   planIncrementalIngest,
   readCanonLevel,
   readLorePages,
+  readLorePagesFromStore,
   resetLoreIngestState,
   resolveAllowedOrigin,
   resolveCorsHeaders,
@@ -2338,5 +2372,6 @@ export {
   sendMethodNotAllowed,
   server,
   splitLoreSections,
+  stripChunkHeader,
   toStructuredOutputSchema
 };

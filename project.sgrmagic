@@ -856,6 +856,16 @@
       "displayName": "Horace Pennyfeather",
       "interactionMode": "scripted",
       "lorePageId": "lore.entities.npcs.horace_pennyfeather",
+      "recoveryStrategies": [
+        {
+          "strategy": "joke",
+          "note": "He answers what you said completely literally, with a perfectly straight face, as though it were a reasonable thing to have asked at a ticket window. He does not signal that he is joking. He usually is."
+        },
+        {
+          "strategy": "curt-exit",
+          "note": "He checks the time, tells you plainly where he has to be and what is departing, and goes. No apology and no lecture, because from his side nothing has gone wrong -- there is simply a platform that needs him. If he can point you somewhere useful on his way out, he does."
+        }
+      ],
       "presentation": {
         "modelAssetDefinitionId": "wordlark:character-model:Horace-Pennyfeather-rigged",
         "modelHeight": 1.7,
@@ -872,6 +882,20 @@
       "description": "Cheese shop owner.",
       "interactionMode": "agent",
       "lorePageId": "lore.entities.npcs.finnick_thorn",
+      "recoveryStrategies": [
+        {
+          "strategy": "gossip",
+          "note": "He is delighted to already know something about you and says so straight away, the way he would with any local. He is not being nosy, it just comes out. If he has heard nothing about you, he does not pretend he has."
+        },
+        {
+          "strategy": "playful-probe",
+          "note": "He guesses out loud at what you meant, cheerfully and wrong, and the guess usually involves cheese. He is not waiting to be corrected -- the guessing is the fun part."
+        },
+        {
+          "strategy": "change-subject",
+          "note": "He can always fallback to talking about cheese or his cheese shop."
+        }
+      ],
       "presentation": {
         "modelAssetDefinitionId": "wordlark:character-model:Finnick-Thorn-rigged",
         "modelHeight": 1.7,
@@ -888,6 +912,16 @@
       "description": "A snobby racoon lady who is super rich and narcissistic.",
       "interactionMode": "agent",
       "lorePageId": "lore.entities.npcs.penelope_mccrick",
+      "recoveryStrategies": [
+        {
+          "strategy": "change-subject",
+          "note": "She assumes you simply have not learned how things ought to be done, and tells you about them instead."
+        },
+        {
+          "strategy": "playful-probe",
+          "note": ""
+        }
+      ],
       "presentation": {
         "modelAssetDefinitionId": "wordlark:character-model:penelope_mccrick_generated_v1",
         "modelHeight": 1.7,
@@ -904,6 +938,16 @@
       "description": "Native of Earendale is an air whale pilot and handler.",
       "interactionMode": "agent",
       "lorePageId": "lore.entities.npcs.bo_greyfoot",
+      "recoveryStrategies": [
+        {
+          "strategy": "change-subject",
+          "note": "He is not going to stand there guessing at what you meant. He says something practical instead: the weather turning, the thing in his hands, where you ought to be standing if you do not want to get wet. Flat delivery, no explanation of what he is doing, and no apology for the swerve."
+        },
+        {
+          "strategy": "self-disclosure",
+          "note": "The mountains, or the air whales. That is the one subject that gets him talking, and if a conversation has stalled he fills it with that rather than with questions. Still short sentences. He does not perform warmth; he just stops being brief for a moment."
+        }
+      ],
       "presentation": {
         "modelAssetDefinitionId": "wordlark:character-model:Bo-Greyfoot-rigged",
         "modelHeight": 1.7,
