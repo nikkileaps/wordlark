@@ -1610,11 +1610,9 @@ async function handleSugarAgentLoreResolve(req, res) {
       continue;
     }
     const sections = page.sections.filter(
-      (section) => !isSecretSection(section)
+      (section) => !isWithheldSection(section)
     );
-    const bodySections = sections.filter(
-      (section) => !isRecoverySection(section)
-    );
+    const recoverySections = page.sections.filter(isRecoverySection);
     resolvedPages.push({
       pageId: page.pageId,
       title: page.title,
@@ -1622,8 +1620,9 @@ async function handleSugarAgentLoreResolve(req, res) {
       sectionCount: sections.length,
       // A page with nothing withheld ships its raw markdown untouched;
       // recomposing would round-trip the author's formatting for no reason.
-      body: bodySections.length === page.sections.length ? page.body : composeLoreBody(bodySections),
-      sections
+      body: sections.length === page.sections.length ? page.body : composeLoreBody(sections),
+      sections,
+      ...recoverySections.length > 0 ? { recoverySections } : {}
     });
   }
   sendJson(res, 200, {

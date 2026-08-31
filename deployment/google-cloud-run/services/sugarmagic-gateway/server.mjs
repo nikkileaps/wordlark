@@ -1610,11 +1610,9 @@ async function handleSugarAgentLoreResolve(req, res) {
       continue;
     }
     const sections = page.sections.filter(
-      (section) => !isSecretSection(section)
+      (section) => !isWithheldSection(section)
     );
-    const bodySections = sections.filter(
-      (section) => !isRecoverySection(section)
-    );
+    const recoverySections = page.sections.filter(isRecoverySection);
     resolvedPages.push({
       pageId: page.pageId,
       title: page.title,
@@ -1622,8 +1620,9 @@ async function handleSugarAgentLoreResolve(req, res) {
       sectionCount: sections.length,
       // A page with nothing withheld ships its raw markdown untouched;
       // recomposing would round-trip the author's formatting for no reason.
-      body: bodySections.length === page.sections.length ? page.body : composeLoreBody(bodySections),
-      sections
+      body: sections.length === page.sections.length ? page.body : composeLoreBody(sections),
+      sections,
+      ...recoverySections.length > 0 ? { recoverySections } : {}
     });
   }
   sendJson(res, 200, {
@@ -2073,14 +2072,14 @@ async function handleSugarAgentLoreProbe(req, res) {
   }
   sendJson(res, 200, { ok: true, steps, durationMs });
 }
-var SUGARLANG_TELEMETRY_PII_FIELDS = [
+var TELEMETRY_PII_FIELDS = [
   "inputText",
   "originalText",
   "repairedText",
   "playerResponseText"
 ];
-function scrubSugarlangTelemetryEvent(event) {
-  for (const field of SUGARLANG_TELEMETRY_PII_FIELDS) {
+function scrubTelemetryEvent(event) {
+  for (const field of TELEMETRY_PII_FIELDS) {
     delete event[field];
   }
   const observations = event.observations;
@@ -2097,7 +2096,7 @@ function scrubSugarlangTelemetryEvent(event) {
     }
   }
 }
-async function handleSugarlangTelemetry(req, res) {
+async function handleTelemetryIngest(req, res) {
   if (req.method !== "POST") {
     sendMethodNotAllowed(res, ["POST"]);
     return;
@@ -2123,7 +2122,7 @@ async function handleSugarlangTelemetry(req, res) {
   for (let i = 0; i < accepted; i++) {
     const event = events[i];
     if (typeof event === "object" && event !== null) {
-      scrubSugarlangTelemetryEvent(event);
+      scrubTelemetryEvent(event);
       process.stdout.write(JSON.stringify(event) + "\n");
     }
   }
@@ -2252,9 +2251,9 @@ var server = createServer(async (req, res) => {
       await handleSugarAgentLoreProbe(req, res);
       return;
     }
-    if (match.routeId === "sugarlang-telemetry" && path === match.path) {
+    if (match.routeId === "telemetry" && path === match.path) {
       logInfo("gateway:dispatch", { routeId: match.routeId, path });
-      await handleSugarlangTelemetry(req, res);
+      await handleTelemetryIngest(req, res);
       return;
     }
     logInfo("gateway:route-unimplemented", {
@@ -2318,6 +2317,7 @@ export {
   handleSugarAgentLoreStatus,
   handleSugarAgentModerate,
   handleSugarAgentSearch,
+  handleTelemetryIngest,
   indexedChunksByAddress,
   initGateway,
   isLoreVectorStoreFile,
@@ -2333,6 +2333,7 @@ export {
   resetLoreIngestState,
   resolveAllowedOrigin,
   resolveCorsHeaders,
+  scrubTelemetryEvent,
   sendJson,
   sendMethodNotAllowed,
   server,
