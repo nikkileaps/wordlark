@@ -436,13 +436,14 @@ async function parseApiJsonResponse(response, label) {
   }
   return payload;
 }
-async function requestJson(url, options, label) {
+var UPSTREAM_TIMEOUT_MS = 12e4;
+async function requestJson(url, options, label, timeoutMs = UPSTREAM_TIMEOUT_MS) {
   logInfo("upstream:request", {
     label,
     url,
     method: options?.method ?? "GET"
   });
-  const response = await fetch(url, options);
+  const response = await fetch(url, { ...options, signal: AbortSignal.timeout(timeoutMs) });
   const raw = await response.text();
   let payload = null;
   if (raw.trim()) {
@@ -726,34 +727,32 @@ function readLorePages() {
         title,
         sectionHeading: title,
         sectionSlug: SOFT_PAGE_CHUNK_SLUG,
-        sectionIndex: 0,
         relativePath,
-        embeddingText: ["Page ID: " + pageId, "Title: " + title].join("\n\n"),
+        embeddingText: composeChunkText({ pageId, title }),
         canonLevel
       });
       continue;
     }
-    sections.forEach((section, sectionIndex) => {
-      if (isSecretSection(section)) return;
+    for (const section of sections) {
+      if (isSecretSection(section)) continue;
       const chunkId = pageId + "#" + section.slug;
-      const embeddingText = [
-        "Page ID: " + pageId,
-        "Title: " + title,
-        "Section: " + section.heading,
-        section.content
-      ].filter(Boolean).join("\n\n");
+      const embeddingText = composeChunkText({
+        pageId,
+        title,
+        sectionHeading: section.heading,
+        content: section.content
+      });
       chunks.push({
         pageId,
         chunkId,
         title,
         sectionHeading: section.heading,
         sectionSlug: section.slug,
-        sectionIndex,
         relativePath,
         embeddingText,
         canonLevel
       });
-    });
+    }
   }
   pages.sort((left, right) => left.pageId.localeCompare(right.pageId));
   chunks.sort((left, right) => left.chunkId.localeCompare(right.chunkId));
@@ -841,6 +840,7 @@ async function deleteVectorStoreFile(vectorStoreId, vectorStoreFileId) {
 }
 var MAX_FILES_PER_BATCH = 2e3;
 var LORE_CHUNK_FETCH_CONCURRENCY = 8;
+var LORE_FETCH_TIMEOUT_MS = 2e4;
 var UPLOAD_CONCURRENCY = 8;
 var BATCH_INDEX_DEADLINE_MS = 30 * 60 * 1e3;
 var BATCH_POLL_INTERVAL_MS = 2e3;
@@ -848,26 +848,46 @@ function chunkContentHash(chunk) {
   return createHash("sha256").update(chunk.embeddingText, "utf8").digest("hex");
 }
 async function fetchChunkText(vectorStoreId, fileId) {
-  const { payload } = await requestJson(
-    "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/files/" + fileId + "/content",
-    {
-      method: "GET",
-      headers: {
-        authorization: "Bearer " + requireEnv("SUGARMAGIC_OPENAI_API_KEY")
-      }
-    },
-    "OpenAI vector store file content"
-  );
-  const data = payload?.data;
-  if (!Array.isArray(data)) return "";
-  return data.map(
-    (part) => typeof part?.text === "string" ? part.text : ""
-  ).join("");
+  const parts = [];
+  let after = "";
+  while (true) {
+    const { payload } = await requestJson(
+      "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/files/" + fileId + "/content" + (after ? "?after=" + encodeURIComponent(after) : ""),
+      {
+        method: "GET",
+        headers: {
+          authorization: "Bearer " + requireEnv("SUGARMAGIC_OPENAI_API_KEY")
+        }
+      },
+      "OpenAI vector store file content",
+      LORE_FETCH_TIMEOUT_MS
+    );
+    const data = payload?.data;
+    if (!Array.isArray(data)) break;
+    for (const part of data) {
+      const text = part?.text;
+      if (typeof text === "string") parts.push(text);
+    }
+    const next = payload?.next_page;
+    if (!payload?.has_more || typeof next !== "string" || !next) {
+      break;
+    }
+    after = next;
+  }
+  return parts.join("");
+}
+function composeChunkText(parts) {
+  return [
+    "Page ID: " + parts.pageId,
+    "Title: " + parts.title,
+    parts.sectionHeading ? "Section: " + parts.sectionHeading : "",
+    parts.content ?? ""
+  ].filter(Boolean).join("\n\n");
 }
 function stripChunkHeader(text) {
   const marker = "\n\nSection: ";
   const at = text.indexOf(marker);
-  if (at < 0) return text.trim();
+  if (at < 0) return text.startsWith("Page ID: ") ? "" : text.trim();
   const afterHeading = text.indexOf("\n\n", at + marker.length);
   return afterHeading < 0 ? "" : text.slice(afterHeading + 2).trim();
 }
@@ -887,29 +907,34 @@ function readChunkRef(file) {
     title: read("title") || pageId,
     sectionSlug: read("section_slug"),
     sectionHeading: read("section_heading"),
-    // Chunks indexed before section_index existed sort last rather than
-    // scrambling the ones that have it.
-    sectionIndex: Number(read("section_index") || Number.MAX_SAFE_INTEGER),
     relativePath: read("relative_path")
   };
 }
 async function readLorePagesFromStore(vectorStoreId, pageIds) {
   const wanted = new Set(pageIds);
   const refs = (await listVectorStoreFiles(vectorStoreId)).map(readChunkRef).filter((ref) => ref !== null && wanted.has(ref.pageId));
-  const texts = await mapWithConcurrency(
-    refs,
-    LORE_CHUNK_FETCH_CONCURRENCY,
-    (ref) => fetchChunkText(vectorStoreId, ref.fileId)
-  );
+  const texts = await mapWithConcurrency(refs, LORE_CHUNK_FETCH_CONCURRENCY, async (ref) => {
+    try {
+      return await fetchChunkText(vectorStoreId, ref.fileId);
+    } catch (error) {
+      logError("lore chunk unreadable", error, {
+        pageId: ref.pageId,
+        sectionSlug: ref.sectionSlug,
+        fileId: ref.fileId
+      });
+      return null;
+    }
+  });
   const byPage = /* @__PURE__ */ new Map();
   refs.forEach((ref, index) => {
+    const text = texts[index];
+    if (text === null || text === void 0) return;
     const entries = byPage.get(ref.pageId) ?? [];
-    entries.push({ ref, content: stripChunkHeader(texts[index] ?? "") });
+    entries.push({ ref, content: stripChunkHeader(text) });
     byPage.set(ref.pageId, entries);
   });
   const pages = [];
   for (const [pageId, entries] of byPage) {
-    entries.sort((left, right) => left.ref.sectionIndex - right.ref.sectionIndex);
     const sections = entries.filter((entry) => entry.ref.sectionSlug !== SOFT_PAGE_CHUNK_SLUG).map((entry) => ({
       heading: entry.ref.sectionHeading,
       slug: entry.ref.sectionSlug,
@@ -932,7 +957,6 @@ function chunkAttributes(chunk) {
     page_id: chunk.pageId,
     chunk_id: chunk.chunkId,
     section_slug: chunk.sectionSlug,
-    section_index: String(chunk.sectionIndex),
     section_heading: chunk.sectionHeading,
     title: chunk.title,
     relative_path: chunk.relativePath,
@@ -2339,6 +2363,7 @@ export {
   buildLanguageToolFields,
   chunkAttributes,
   chunkContentHash,
+  composeChunkText,
   enforceLanguageReportingOnly,
   handleSugarAgentGenerate,
   handleSugarAgentJudge,

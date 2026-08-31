@@ -171,26 +171,11 @@ async function verifySupabaseJwt(req) {
 var PERSONA_CARD_SECTION_SLUGS = ["persona", "voice"];
 var SECRETS_SECTION_SLUG = "secrets";
 var RELATIONSHIPS_SECTION_SLUG = "relationships";
-var RECOVERY_SECTION_SLUG = "recovery";
-var RECOVERY_STRATEGIES = [
-  "curt-exit",
-  "change-subject",
-  "joke",
-  "playful-probe",
-  "self-disclosure",
-  "gossip"
-];
 function isPersonaCardSection(section) {
   return PERSONA_CARD_SECTION_SLUGS.includes(section.slug);
 }
 function isRelationshipsSection(section) {
   return section.slug === RELATIONSHIPS_SECTION_SLUG;
-}
-function isRecoverySection(section) {
-  return section.slug === RECOVERY_SECTION_SLUG;
-}
-function isWithheldSection(section) {
-  return isSecretSection(section) || isRecoverySection(section);
 }
 var LINKED_NAME = /^(?:[-*]\s+)?\[([^\]]+)\]\(([^)]+)\)\s*(.*)$/;
 function stripLeadingSeparator(text) {
@@ -229,42 +214,20 @@ function findRelationshipEntry(entries, target) {
 function isSecretSection(section) {
   return section.slug === SECRETS_SECTION_SLUG;
 }
-var RECOVERY_ENTRY = /^[-*]\s+([^\s:]+)/;
-function isRecoveryStrategy(name) {
-  return RECOVERY_STRATEGIES.includes(name);
-}
-function parseRecoveryStrategies(content) {
-  const strategies = [];
-  const unrecognized = [];
-  for (const rawLine of content.split("\n")) {
-    const entry = RECOVERY_ENTRY.exec(rawLine.trim());
-    if (!entry) continue;
-    const name = entry[1].toLowerCase();
-    if (isRecoveryStrategy(name)) {
-      strategies.push(name);
-    } else {
-      unrecognized.push(name);
-    }
-  }
-  return { strategies, unrecognized };
-}
 function designateLoreSections(sections) {
   const personaCard = [];
   const coreKnowledge = [];
   const secrets = [];
-  const recovery = [];
   for (const section of sections) {
     if (isSecretSection(section)) {
       secrets.push(section);
-    } else if (isRecoverySection(section)) {
-      recovery.push(section);
     } else if (isPersonaCardSection(section)) {
       personaCard.push(section);
     } else {
       coreKnowledge.push(section);
     }
   }
-  return { personaCard, coreKnowledge, secrets, recovery };
+  return { personaCard, coreKnowledge, secrets };
 }
 function composeLoreBody(sections) {
   return sections.map(
@@ -473,13 +436,14 @@ async function parseApiJsonResponse(response, label) {
   }
   return payload;
 }
-async function requestJson(url, options, label) {
+var UPSTREAM_TIMEOUT_MS = 12e4;
+async function requestJson(url, options, label, timeoutMs = UPSTREAM_TIMEOUT_MS) {
   logInfo("upstream:request", {
     label,
     url,
     method: options?.method ?? "GET"
   });
-  const response = await fetch(url, options);
+  const response = await fetch(url, { ...options, signal: AbortSignal.timeout(timeoutMs) });
   const raw = await response.text();
   let payload = null;
   if (raw.trim()) {
@@ -747,13 +711,6 @@ function readLorePages() {
     const relativePath = relative(source.sourcePath, absolutePath);
     const title = typeof metadata["title"] === "string" && metadata["title"].trim() || pageId.split(".").at(-1) || pageId;
     const sections = splitLoreSections(body);
-    for (const section of sections.filter(isRecoverySection)) {
-      for (const name of parseRecoveryStrategies(section.content).unrecognized) {
-        warnings.push(
-          'Ignored unknown recovery strategy "' + name + '" in ' + relativePath + " (" + pageId + "). Known strategies: " + RECOVERY_STRATEGIES.join(", ") + "."
-        );
-      }
-    }
     pages.push({
       pageId,
       title,
@@ -771,20 +728,20 @@ function readLorePages() {
         sectionHeading: title,
         sectionSlug: SOFT_PAGE_CHUNK_SLUG,
         relativePath,
-        embeddingText: ["Page ID: " + pageId, "Title: " + title].join("\n\n"),
+        embeddingText: composeChunkText({ pageId, title }),
         canonLevel
       });
       continue;
     }
     for (const section of sections) {
-      if (isWithheldSection(section)) continue;
+      if (isSecretSection(section)) continue;
       const chunkId = pageId + "#" + section.slug;
-      const embeddingText = [
-        "Page ID: " + pageId,
-        "Title: " + title,
-        "Section: " + section.heading,
-        section.content
-      ].filter(Boolean).join("\n\n");
+      const embeddingText = composeChunkText({
+        pageId,
+        title,
+        sectionHeading: section.heading,
+        content: section.content
+      });
       chunks.push({
         pageId,
         chunkId,
@@ -826,7 +783,7 @@ async function listVectorStoreFiles(vectorStoreId) {
   const items = [];
   let after = "";
   while (true) {
-    const query = after ? "?after=" + encodeURIComponent(after) : "";
+    const query = "?limit=100" + (after ? "&after=" + encodeURIComponent(after) : "");
     const { payload } = await requestJson(
       "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/files" + query,
       {
@@ -882,11 +839,118 @@ async function deleteVectorStoreFile(vectorStoreId, vectorStoreFileId) {
   );
 }
 var MAX_FILES_PER_BATCH = 2e3;
+var LORE_CHUNK_FETCH_CONCURRENCY = 8;
+var LORE_FETCH_TIMEOUT_MS = 2e4;
 var UPLOAD_CONCURRENCY = 8;
 var BATCH_INDEX_DEADLINE_MS = 30 * 60 * 1e3;
 var BATCH_POLL_INTERVAL_MS = 2e3;
 function chunkContentHash(chunk) {
   return createHash("sha256").update(chunk.embeddingText, "utf8").digest("hex");
+}
+async function fetchChunkText(vectorStoreId, fileId) {
+  const parts = [];
+  let after = "";
+  while (true) {
+    const { payload } = await requestJson(
+      "https://api.openai.com/v1/vector_stores/" + vectorStoreId + "/files/" + fileId + "/content" + (after ? "?after=" + encodeURIComponent(after) : ""),
+      {
+        method: "GET",
+        headers: {
+          authorization: "Bearer " + requireEnv("SUGARMAGIC_OPENAI_API_KEY")
+        }
+      },
+      "OpenAI vector store file content",
+      LORE_FETCH_TIMEOUT_MS
+    );
+    const data = payload?.data;
+    if (!Array.isArray(data)) break;
+    for (const part of data) {
+      const text = part?.text;
+      if (typeof text === "string") parts.push(text);
+    }
+    const next = payload?.next_page;
+    if (!payload?.has_more || typeof next !== "string" || !next) {
+      break;
+    }
+    after = next;
+  }
+  return parts.join("");
+}
+function composeChunkText(parts) {
+  return [
+    "Page ID: " + parts.pageId,
+    "Title: " + parts.title,
+    parts.sectionHeading ? "Section: " + parts.sectionHeading : "",
+    parts.content ?? ""
+  ].filter(Boolean).join("\n\n");
+}
+function stripChunkHeader(text) {
+  const marker = "\n\nSection: ";
+  const at = text.indexOf(marker);
+  if (at < 0) return text.startsWith("Page ID: ") ? "" : text.trim();
+  const afterHeading = text.indexOf("\n\n", at + marker.length);
+  return afterHeading < 0 ? "" : text.slice(afterHeading + 2).trim();
+}
+function readChunkRef(file) {
+  const attributes = file["attributes"];
+  if (typeof attributes !== "object" || attributes === null) return null;
+  const read = (key) => {
+    const value = attributes[key];
+    return typeof value === "string" ? value : "";
+  };
+  const pageId = read("page_id");
+  const fileId = typeof file["id"] === "string" ? file["id"] : "";
+  if (!pageId || !fileId) return null;
+  return {
+    fileId,
+    pageId,
+    title: read("title") || pageId,
+    sectionSlug: read("section_slug"),
+    sectionHeading: read("section_heading"),
+    relativePath: read("relative_path")
+  };
+}
+async function readLorePagesFromStore(vectorStoreId, pageIds) {
+  const wanted = new Set(pageIds);
+  const refs = (await listVectorStoreFiles(vectorStoreId)).map(readChunkRef).filter((ref) => ref !== null && wanted.has(ref.pageId));
+  const texts = await mapWithConcurrency(refs, LORE_CHUNK_FETCH_CONCURRENCY, async (ref) => {
+    try {
+      return await fetchChunkText(vectorStoreId, ref.fileId);
+    } catch (error) {
+      logError("lore chunk unreadable", error, {
+        pageId: ref.pageId,
+        sectionSlug: ref.sectionSlug,
+        fileId: ref.fileId
+      });
+      return null;
+    }
+  });
+  const byPage = /* @__PURE__ */ new Map();
+  refs.forEach((ref, index) => {
+    const text = texts[index];
+    if (text === null || text === void 0) return;
+    const entries = byPage.get(ref.pageId) ?? [];
+    entries.push({ ref, content: stripChunkHeader(text) });
+    byPage.set(ref.pageId, entries);
+  });
+  const pages = [];
+  for (const [pageId, entries] of byPage) {
+    const sections = entries.filter((entry) => entry.ref.sectionSlug !== SOFT_PAGE_CHUNK_SLUG).map((entry) => ({
+      heading: entry.ref.sectionHeading,
+      slug: entry.ref.sectionSlug,
+      content: entry.content
+    }));
+    const first = entries[0].ref;
+    pages.push({
+      pageId,
+      title: first.title,
+      relativePath: first.relativePath,
+      sectionCount: sections.length,
+      body: composeLoreBody(sections),
+      sections
+    });
+  }
+  return pages;
 }
 function chunkAttributes(chunk) {
   return {
@@ -1597,39 +1661,32 @@ async function handleSugarAgentLoreResolve(req, res) {
     });
     return;
   }
-  const lore = readLorePages();
-  const pagesById = new Map(
-    lore.pages.map((page) => [page.pageId, page])
-  );
+  const vectorStoreId = resolveEnv("SUGARMAGIC_SUGARAGENT_OPENAI_VECTOR_STORE_ID");
+  if (!vectorStoreId) {
+    sendJson(res, 503, {
+      ok: false,
+      error: "LoreStoreUnavailable",
+      message: "SUGARMAGIC_SUGARAGENT_OPENAI_VECTOR_STORE_ID is not configured, so no lore page can be read. Set it in the SugarAgent plugin settings and redeploy."
+    });
+    return;
+  }
+  const pages = await readLorePagesFromStore(vectorStoreId, pageIds);
+  const pagesById = new Map(pages.map((page) => [page.pageId, page]));
   const resolvedPages = [];
   const missingPageIds = [];
   for (const pageId of pageIds) {
     const page = pagesById.get(pageId);
-    if (!page) {
+    if (page) {
+      resolvedPages.push(page);
+    } else {
       missingPageIds.push(pageId);
-      continue;
     }
-    const sections = page.sections.filter(
-      (section) => !isWithheldSection(section)
-    );
-    const recoverySections = page.sections.filter(isRecoverySection);
-    resolvedPages.push({
-      pageId: page.pageId,
-      title: page.title,
-      relativePath: page.relativePath,
-      sectionCount: sections.length,
-      // A page with nothing withheld ships its raw markdown untouched;
-      // recomposing would round-trip the author's formatting for no reason.
-      body: sections.length === page.sections.length ? page.body : composeLoreBody(sections),
-      sections,
-      ...recoverySections.length > 0 ? { recoverySections } : {}
-    });
   }
   sendJson(res, 200, {
     ok: true,
     pages: resolvedPages,
     missingPageIds,
-    warnings: lore.warnings
+    warnings: []
   });
 }
 async function runIngestWork(vectorStoreId, mode, lore) {
@@ -2072,14 +2129,14 @@ async function handleSugarAgentLoreProbe(req, res) {
   }
   sendJson(res, 200, { ok: true, steps, durationMs });
 }
-var SUGARLANG_TELEMETRY_PII_FIELDS = [
+var TELEMETRY_PII_FIELDS = [
   "inputText",
   "originalText",
   "repairedText",
   "playerResponseText"
 ];
-function scrubSugarlangTelemetryEvent(event) {
-  for (const field of SUGARLANG_TELEMETRY_PII_FIELDS) {
+function scrubTelemetryEvent(event) {
+  for (const field of TELEMETRY_PII_FIELDS) {
     delete event[field];
   }
   const observations = event.observations;
@@ -2096,7 +2153,7 @@ function scrubSugarlangTelemetryEvent(event) {
     }
   }
 }
-async function handleSugarlangTelemetry(req, res) {
+async function handleTelemetryIngest(req, res) {
   if (req.method !== "POST") {
     sendMethodNotAllowed(res, ["POST"]);
     return;
@@ -2122,7 +2179,7 @@ async function handleSugarlangTelemetry(req, res) {
   for (let i = 0; i < accepted; i++) {
     const event = events[i];
     if (typeof event === "object" && event !== null) {
-      scrubSugarlangTelemetryEvent(event);
+      scrubTelemetryEvent(event);
       process.stdout.write(JSON.stringify(event) + "\n");
     }
   }
@@ -2245,9 +2302,9 @@ var server = createServer(async (req, res) => {
       await handleSugarAgentLoreProbe(req, res);
       return;
     }
-    if (match.routeId === "sugarlang-telemetry" && path === match.path) {
+    if (match.routeId === "telemetry" && path === match.path) {
       logInfo("gateway:dispatch", { routeId: match.routeId, path });
-      await handleSugarlangTelemetry(req, res);
+      await handleTelemetryIngest(req, res);
       return;
     }
     logInfo("gateway:route-unimplemented", {
@@ -2300,6 +2357,7 @@ export {
   buildLanguageToolFields,
   chunkAttributes,
   chunkContentHash,
+  composeChunkText,
   enforceLanguageReportingOnly,
   handleSugarAgentGenerate,
   handleSugarAgentJudge,
@@ -2311,6 +2369,7 @@ export {
   handleSugarAgentLoreStatus,
   handleSugarAgentModerate,
   handleSugarAgentSearch,
+  handleTelemetryIngest,
   indexedChunksByAddress,
   initGateway,
   isLoreVectorStoreFile,
@@ -2323,12 +2382,15 @@ export {
   planIncrementalIngest,
   readCanonLevel,
   readLorePages,
+  readLorePagesFromStore,
   resetLoreIngestState,
   resolveAllowedOrigin,
   resolveCorsHeaders,
+  scrubTelemetryEvent,
   sendJson,
   sendMethodNotAllowed,
   server,
   splitLoreSections,
+  stripChunkHeader,
   toStructuredOutputSchema
 };
